@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Track0tic admin — reports</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>body{margin:0;font-family:"Noto Sans",system-ui,sans-serif;color:#0f172a;background:#f3f5f9}a{color:#1a43b8}a:hover{color:#0f2f8a}table{border-collapse:collapse}input,select,button{font-family:inherit}/*sc-safety*/ input,select,textarea{min-width:0;max-width:100%;box-sizing:border-box} td,th,p,li{overflow-wrap:break-word} td:last-child,th:last-child{white-space:nowrap} button{white-space:normal;line-height:1.2}</style>
+</helmet>
+<div style="color:#0f172a;display:flex;flex-wrap:wrap;min-height:900px;background:#f3f5f9">
+  <dc-import name="Admin-Sidebar" active="reports" hint-size="240px,820px"></dc-import>
+  <main style="color:#0f172a;flex:999 1 560px;min-width:0;padding:24px;box-sizing:border-box;display:flex;flex-direction:column;gap:20px">
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px">
+      <div><div style="font-size:13px;color:#4b5565">5 · Admin</div><h1 style="margin:0;font-size:22px;line-height:28px;font-weight:600">Reports</h1></div>
+      <div style="display:flex;gap:8px;align-items:center">
+        <select style="color:#0f172a;max-width:100%;height:40px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;background:#fff"><option>All tenants</option><option>Adroit Agencies</option><option>Apollo Pharmacy</option><option>Max Pharmacy</option><option>Sun Pharma</option><option>Test Lab</option><option>MedPlus</option></select>
+        <select style="color:#0f172a;max-width:100%;height:40px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;background:#fff"><option>Last 30 days</option><option>This month</option><option>Last quarter</option><option>Custom…</option></select>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3, minmax(0, 1fr));gap:12px">
+      <sc-for list="{{cards}}" as="c" hint-placeholder-count="6">
+        <section style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;padding:16px 18px;display:flex;flex-direction:column;gap:8px">
+          <div style="display:flex;justify-content:space-between;align-items:baseline"><h2 style="margin:0;font-size:15px;font-weight:600">{{c.title}}</h2><span style="font-size:12px;color:#4b5565">{{c.tag}}</span></div>
+          <div style="font-size:26px;font-weight:600">{{c.big}} <span style="font-size:13px;font-weight:500;color:{{c.deltaColor}}">{{c.delta}}</span></div>
+          <svg viewBox="0 0 200 40" width="100%" height="40" aria-hidden="true"><polyline fill="none" stroke="#1d4ed8" stroke-width="2" points="{{c.spark}}"/></svg>
+          <div style="font-size:13px;color:#4b5565;line-height:18px">{{c.note}}</div>
+          <div style="display:flex;gap:10px;font-size:13px"><a href="#" style="color:#1a43b8">Open</a><a href="#" style="color:#1a43b8">CSV</a><a href="#" style="color:#1a43b8">Schedule weekly email</a></div>
+        </section>
+      </sc-for>
+    </div>
+
+    <section style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;padding:16px 20px;display:flex;flex-direction:column;gap:10px">
+      <div style="display:flex;justify-content:space-between;align-items:baseline"><h2 style="margin:0;font-size:16px;font-weight:600">Leg duration vs template · last 30 days</h2><span style="font-size:13px;color:#4b5565">bars = median; line = template maximum</span></div>
+      <svg viewBox="0 0 900 180" width="100%" height="180" role="img" aria-label="Median leg duration by leg type">
+        <line x1="60" y1="150" x2="880" y2="150" stroke="#e2e6ed"/>
+        <rect x="100" y="90" width="80" height="60" fill="#1d4ed8"/><text x="140" y="168" font-size="12" text-anchor="middle" fill="#4b5565">Cold room</text><text x="140" y="84" font-size="12" text-anchor="middle">11 d</text><line x1="90" y1="30" x2="190" y2="30" stroke="#b45309" stroke-dasharray="4 3"/><text x="195" y="34" font-size="11" fill="#b45309">30 d</text>
+        <rect x="300" y="110" width="80" height="40" fill="#1d4ed8"/><text x="340" y="168" font-size="12" text-anchor="middle" fill="#4b5565">Delivery · PRO</text><text x="340" y="104" font-size="12" text-anchor="middle">4.2 h</text><line x1="290" y1="70" x2="390" y2="70" stroke="#b45309" stroke-dasharray="4 3"/><text x="395" y="74" font-size="11" fill="#b45309">12 h</text>
+        <rect x="500" y="60" width="80" height="90" fill="#b91c1c"/><text x="540" y="168" font-size="12" text-anchor="middle" fill="#4b5565">Collection · LITE</text><text x="540" y="54" font-size="12" text-anchor="middle">4.6 h</text><line x1="490" y1="66" x2="590" y2="66" stroke="#b45309" stroke-dasharray="4 3"/><text x="595" y="70" font-size="11" fill="#b45309">4 h</text>
+        <rect x="700" y="130" width="80" height="20" fill="#1d4ed8"/><text x="740" y="168" font-size="12" text-anchor="middle" fill="#4b5565">Last mile · LITE</text><text x="740" y="124" font-size="12" text-anchor="middle">1.9 h</text><line x1="690" y1="90" x2="790" y2="90" stroke="#b45309" stroke-dasharray="4 3"/><text x="795" y="94" font-size="11" fill="#b45309">8 h</text>
+      </svg>
+      <div style="font-size:13px;color:#4b5565">Diagnostics collection legs are running over the 4 h template — 38% of Test Lab bags. That shows on the lab bench as CHECK and here as a trend.</div>
+    </section>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":900}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const cards = [
+      { title:'Passports issued', tag:'by tenant · by batch', big:'6,900', delta:'+12% vs prior', deltaColor:'#047857', spark:'0,30 25,28 50,26 75,27 100,20 125,18 150,14 175,12 200,8', note:'2,400 Adroit · 4,000 Test Lab · 500 Apollo. 61% still unused.' },
+      { title:'Binds per day', tag:'SCAN vs TYPED', big:'412', delta:'9% typed', deltaColor:'#92400e', spark:'0,25 25,22 50,28 75,18 100,20 125,15 150,17 175,12 200,10', note:'Typed binds cluster on 3 users — check their phone cameras or label print quality.' },
+      { title:'Legs closed in range', tag:'certificate outcome', big:'97.4%', delta:'−0.6 pt', deltaColor:'#b91c1c', spark:'0,8 25,8 50,9 75,8 100,10 125,9 150,11 175,12 200,12', note:'Excursions: 14 of 541 closed legs. 9 on one PRO with a door-seal issue.' },
+      { title:'Open legs older than template', tag:'exceptions', big:'27', delta:'↑ 6 this week', deltaColor:'#b91c1c', spark:'0,30 25,30 50,28 75,26 100,25 125,20 150,16 175,12 200,8', note:'22 are diagnostics bags over 4 h. 5 pharma deliveries over 12 h.' },
+      { title:'Device health', tag:'fleet', big:'1,180 / 1,214', delta:'34 not reporting', deltaColor:'#92400e', spark:'0,10 25,10 50,11 75,10 100,10 125,12 150,11 175,11 200,12', note:'Silent > 24 h: 7 Adroit PRO (in stock?), 27 unsold in warehouse — expected.' },
+      { title:'Public certificate views', tag:'/p/ scans by non-staff', big:'1,311', delta:'+40%', deltaColor:'#047857', spark:'0,34 25,32 50,30 75,26 100,24 125,20 150,16 175,10 200,4', note:'Pharmacies and patients scanning. No PII is served; views are counted only.' }
+    ];
+    return { cards };
+  }
+}
+</script>
+</body>
+</html>

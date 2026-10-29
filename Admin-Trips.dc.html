@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Track0tic admin — trips (existing module) and the passports that rode on them</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>body{margin:0;font-family:"Noto Sans",system-ui,sans-serif;color:#0f172a;background:#f3f5f9}a{color:#1a43b8}a:hover{color:#0f2f8a}table{border-collapse:collapse}input,select,button{font-family:inherit}/*sc-safety*/ input,select,textarea{min-width:0;max-width:100%;box-sizing:border-box} td,th,p,li{overflow-wrap:break-word} td:last-child,th:last-child{white-space:nowrap} button{white-space:normal;line-height:1.2}</style>
+</helmet>
+<div style="color:#0f172a;display:flex;flex-wrap:wrap;min-height:900px;background:#f3f5f9">
+  <dc-import name="Admin-Sidebar" active="trips" hint-size="240px,820px"></dc-import>
+  <main style="color:#0f172a;flex:999 1 560px;min-width:0;padding:24px;box-sizing:border-box;display:flex;flex-direction:column;gap:20px">
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px">
+      <div><div style="font-size:13px;color:#4b5565">4 · Operations</div><h1 style="margin:0;font-size:22px;line-height:28px;font-weight:600">Trips</h1><div style="font-size:14px;color:#4b5565;margin-top:2px">The existing dispatch module (trip, device, driver, vehicle, delivery window) — unchanged. What's new: every passport bound to the trip's device while the trip ran is listed under it, and the trip's invoice compliance report now carries those passport codes.</div></div>
+      <div style="display:flex;gap:8px;align-items:center">
+        <select onChange="{{setTenant}}" style="color:#0f172a;max-width:100%;height:40px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;background:#fff"><option value="all">All tenants</option><option value="adroit">Adroit Agencies</option><option value="apollo">Apollo Pharmacy</option><option value="max">Max Pharmacy</option><option value="sun">Sun Pharma</option><option value="testlab">Test Lab</option><option value="medplus">MedPlus</option></select>
+        <select style="color:#0f172a;max-width:100%;height:40px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;background:#fff"><option>Today</option><option>Last 7 days</option><option>Last 30 days</option></select>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(5, minmax(0, 1fr));gap:12px">
+      <div style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;padding:14px 16px"><div style="font-size:13px;color:#4b5565">Trips today</div><div style="font-size:24px;font-weight:600">{{k.trips}}</div></div>
+      <div style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;padding:14px 16px"><div style="font-size:13px;color:#4b5565">In progress</div><div style="font-size:24px;font-weight:600;color:#1a43b8">{{k.live}}</div></div>
+      <div style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;padding:14px 16px"><div style="font-size:13px;color:#4b5565">Delivered on time</div><div style="font-size:24px;font-weight:600;color:#047857">{{k.ontime}}</div></div>
+      <div style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;padding:14px 16px"><div style="font-size:13px;color:#4b5565">With excursion</div><div style="font-size:24px;font-weight:600;color:#a61b1b">{{k.exc}}</div></div>
+      <div style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;padding:14px 16px"><div style="font-size:13px;color:#4b5565">Passports carried</div><div style="font-size:24px;font-weight:600">{{k.pass}}</div></div>
+    </div>
+
+    <section style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;overflow:hidden">
+      <table style="width:100%;font-size:14px">
+        <thead><tr style="color:#4b5565;text-align:left;font-size:13px"><th style="padding:10px 16px;font-weight:500">Trip</th><th style="padding:10px 8px;font-weight:500">Tenant · route</th><th style="padding:10px 8px;font-weight:500">Device · driver</th><th style="padding:10px 8px;font-weight:500">Window</th><th style="padding:10px 8px;font-weight:500">Temp</th><th style="padding:10px 8px;font-weight:500">Passports</th><th style="padding:10px 8px;font-weight:500">Status</th><th style="padding:10px 16px;font-weight:500;text-align:right">Report</th></tr></thead>
+        <tbody>
+          <sc-for list="{{rows}}" as="r" hint-placeholder-count="5">
+          <tr onClick="{{r.pick}}" style="border-top:1px solid #e2e6ed;background:{{r.bg}};cursor:pointer">
+            <td style="padding:12px 16px;font-family:'IBM Plex Mono',monospace;font-weight:600">{{r.id}}</td>
+            <td style="padding:12px 8px">{{r.tenant}}<div style="font-size:12px;color:#4b5565">{{r.route}}</div></td>
+            <td style="padding:12px 8px;font-family:'IBM Plex Mono',monospace">{{r.dev}}<div style="font-size:12px;color:#4b5565;font-family:'Noto Sans',sans-serif">{{r.driver}}</div></td>
+            <td style="padding:12px 8px">{{r.win}}</td>
+            <td style="padding:12px 8px;color:{{r.tc}}">{{r.temp}}</td>
+            <td style="padding:12px 8px">{{r.n}}</td>
+            <td style="padding:12px 8px"><span style="padding:2px 8px;border-radius:9999px;background:{{r.sbg}};color:{{r.sfg}};font-size:12px;font-weight:500">{{r.status}}</span></td>
+            <td style="padding:12px 16px;text-align:right"><a href="#" style="color:#1a43b8">{{r.rep}}</a></td>
+          </tr>
+          </sc-for>
+        </tbody>
+      </table>
+    </section>
+
+    <section style="background:#fff;border:1px solid #1d4ed8;border-radius:12px;padding:16px 20px;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:20px">
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px"><h2 style="margin:0;font-size:16px;font-weight:600">Trip <span style="font-family:'IBM Plex Mono',monospace">{{sel.id}}</span> · {{sel.route}}</h2><span style="font-size:13px;color:#4b5565">{{sel.dev}} · {{sel.driver}} · {{sel.vehicle}}</span></div>
+        <svg viewBox="0 0 600 130" width="100%" height="130" aria-hidden="true"><rect x="0" y="25" width="600" height="80" fill="#e6f6ef"/><line x1="0" y1="25" x2="600" y2="25" stroke="#047857" stroke-dasharray="4 4"/><line x1="0" y1="105" x2="600" y2="105" stroke="#047857" stroke-dasharray="4 4"/><text x="4" y="20" font-size="11" fill="#4b5565">8 °C</text><text x="4" y="120" font-size="11" fill="#4b5565">2 °C</text><polyline fill="none" stroke="#1d4ed8" stroke-width="2" points="{{sel.pts}}"/><path fill="none" stroke="#b91c1c" stroke-width="3" d="{{sel.red}}"/></svg>
+        <div style="display:flex;gap:16px;font-size:13px;color:#4b5565;flex-wrap:wrap"><span>Window {{sel.win}}</span><span>Delivered {{sel.delivered}}</span><span>Min/max {{sel.minmax}}</span><span>Breach {{sel.breach}}</span></div>
+        <div style="font-size:13px;color:#4b5565;line-height:18px"><strong style="color:#0f172a">Trip ↔ passport rule:</strong> a trip is the device's run; a passport leg is the passport's time on that device. They overlap but are not the same record — a passport bound mid-trip gets a leg that starts at its bind, not at trip start. The trip's invoice report lists the passports; each passport's own PDF shows only its leg.</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="font-size:14px;font-weight:600">Passports on this trip · {{sel.n}}</div>
+        <table style="width:100%;font-size:13px">
+          <thead><tr style="color:#4b5565;text-align:left;font-size:12px"><th style="padding:6px 8px;font-weight:500">Passport</th><th style="padding:6px 8px;font-weight:500">Bound</th><th style="padding:6px 8px;font-weight:500">Handed over</th><th style="padding:6px 8px;font-weight:500;text-align:right">Leg</th></tr></thead>
+          <tbody>
+            <sc-for list="{{sel.ps}}" as="p" hint-placeholder-count="4">
+            <tr style="border-top:1px solid #e2e6ed"><td style="padding:6px 8px;font-family:'IBM Plex Mono',monospace;font-weight:600">{{p.code}}</td><td style="padding:6px 8px">{{p.bound}}</td><td style="padding:6px 8px">{{p.off}}</td><td style="padding:6px 8px;text-align:right;color:{{p.c}}">{{p.leg}}</td></tr>
+            </sc-for>
+          </tbody>
+        </table>
+        <div style="display:flex;gap:8px;flex-wrap:wrap"><a href="#" style="display:inline-flex;align-items:center;min-height:36px;padding:4px 12px;border:1px solid #7a8696;border-radius:8px;background:#fff;font-size:13px;font-weight:500;text-decoration:none;color:#0f172a">Invoice compliance report (PDF)</a><a href="Cert-Staff.dc.html" style="display:inline-flex;align-items:center;min-height:36px;padding:4px 12px;border:1px solid #7a8696;border-radius:8px;background:#fff;font-size:13px;font-weight:500;text-decoration:none;color:#0f172a">A passport's custodian report</a></div>
+      </div>
+    </section>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":900}}'>
+class Component extends DCLogic {
+  constructor(p){ super(p); this.state = { tenant: 'all', sel: 0 }; }
+  renderVals() {
+    const all = [
+      { id:'TRP-20261029-004', k:'adroit', tenant:'Adroit Agencies', route:'Okhla → Apollo Saket', dev:'TRK-PRO-900001', driver:'Rajesh Sharma', vehicle:'DL1CAB4567', win:'07:48 – 09:48', temp:'3.9–6.2 °C', tc:'#047857', n:16, status:'delivered · on time', sbg:'#e6f6ef', sfg:'#047857', rep:'PDF', delivered:'09:31', minmax:'3.9 / 6.2', breach:'none', pts:'0,78 60,74 120,68 180,60 240,56 300,58 360,62 420,66 480,70 540,74 600,78', red:'M0 0', ps:[['AWHK7ZRR','07:52','09:31','in range','#047857'],['097FQYD7','07:52','09:31','in range','#047857'],['T5YW4EZ1','07:52','09:31','in range','#047857'],['+ 13 more','','','','#4b5565']] },
+      { id:'TRP-20261029-005', k:'adroit', tenant:'Adroit Agencies', route:'Okhla → Gurgaon branch', dev:'TRK-PRO-900012', driver:'Staff Member 2', vehicle:'HR26DK0912', win:'11:00 – 15:00', temp:'9.4 °C now', tc:'#a61b1b', n:8, status:'in progress · excursion', sbg:'#fdecec', sfg:'#a61b1b', rep:'live', delivered:'—', minmax:'3.8 / 9.4', breach:'12 min, open', pts:'0,80 60,76 120,70 180,62 240,50 300,38 360,24 420,18 480,16', red:'M300 38 L360 24 L420 18 L480 16', ps:[['KGVZA1FQ','11:04','—','excursion open','#a61b1b'],['KGVZA1FR','11:04','—','excursion open','#a61b1b'],['+ 6 more','','','','#4b5565']] },
+      { id:'TRP-20261029-002', k:'testlab', tenant:'Test Lab', route:'Route South Delhi → Lab 1', dev:'TRK-LTE-900002', driver:'Sunil R', vehicle:'two-wheeler', win:'08:00 – 12:00', temp:'3.1–7.4 °C', tc:'#047857', n:7, status:'delivered · 4 h 06 (late)', sbg:'#fef3e2', sfg:'#92400e', rep:'PDF', delivered:'12:06', minmax:'3.1 / 7.4', breach:'none', pts:'0,70 100,66 200,60 300,56 400,50 500,46 600,44', red:'M0 0', ps:[['7PQ2M9XA','09:42','12:06','in range','#047857'],['K3T8W2NQ','07:58','12:06','over 4 h','#92400e'],['+ 5 more','','','','#4b5565']] },
+      { id:'TRP-20261029-001', k:'max', tenant:'Max Pharmacy', route:'Rohini store → home deliveries', dev:'TRK-LTE-900410', driver:'Delivery partner', vehicle:'—', win:'10:00 – 13:00', temp:'4.0–5.1 °C', tc:'#047857', n:3, status:'delivered · on time', sbg:'#e6f6ef', sfg:'#047857', rep:'PDF', delivered:'12:40', minmax:'4.0 / 5.1', breach:'none', pts:'0,76 150,72 300,70 450,68 600,70', red:'M0 0', ps:[['MX01A2B3','10:05','11:20','in range','#047857'],['MX01A2B4','10:05','12:10','in range','#047857'],['MX01A2B5','10:05','12:40','in range','#047857']] },
+      { id:'TRP-20261028-019', k:'adroit', tenant:'Adroit Agencies', route:'Okhla → Max Rohini', dev:'TRK-PRO-900008', driver:'Delhi Zone Manager', vehicle:'DL1CAB4567', win:'17:00 – 21:00 (28 Oct)', temp:'4.2–6.0 °C', tc:'#047857', n:5, status:'delivered · receiver did not scan', sbg:'#fef3e2', sfg:'#92400e', rep:'PDF', delivered:'closed by dispatcher 09:12', minmax:'4.2 / 6.0', breach:'none', pts:'0,74 150,70 300,66 450,64 600,66', red:'M0 0', ps:[['Z8RK2QMA','17:40','09:12 (manual)','in range','#047857'],['+ 4 more','','','','#4b5565']] }
+    ];
+    const f = this.state.tenant === 'all' ? all : all.filter(r => r.k === this.state.tenant);
+    const selIdx = Math.min(this.state.sel, Math.max(f.length - 1, 0));
+    const rows = f.map((r, i) => ({ ...r, bg: i === selIdx ? '#e8eefc' : '#fff', pick: () => this.setState({ sel: i }) }));
+    const s = f[selIdx] || all[0];
+    const sel = { ...s, ps: s.ps.map(p => ({ code: p[0], bound: p[1], off: p[2], leg: p[3], c: p[4] })) };
+    const k = { trips: f.length, live: f.filter(r => r.status.startsWith('in progress')).length, ontime: f.filter(r => r.status.includes('on time')).length, exc: f.filter(r => r.status.includes('excursion')).length, pass: f.reduce((a, r) => a + r.n, 0) };
+    return { rows, sel, k, setTenant: (e) => this.setState({ tenant: e.target.value, sel: 0 }) };
+  }
+}
+</script>
+</body>
+</html>

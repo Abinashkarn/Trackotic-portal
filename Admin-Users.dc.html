@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Track0tic admin — users and roles</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+body{margin:0;font-family:"Noto Sans",system-ui,sans-serif;color:#0f172a;background:#f3f5f9}
+a{color:#1a43b8}a:hover{color:#0f2f8a}
+table{border-collapse:collapse}
+input,select,button{font-family:inherit}
+/*sc-safety*/ input,select,textarea{min-width:0;max-width:100%;box-sizing:border-box} td,th,p,li{overflow-wrap:break-word} td:last-child,th:last-child{white-space:nowrap} button{white-space:normal;line-height:1.2}</style>
+</helmet>
+<div style="color:#0f172a;display:flex;flex-wrap:wrap;min-height:900px;background:#f3f5f9">
+  <dc-import name="Admin-Sidebar" active="users" hint-size="240px,820px"></dc-import>
+
+  <main style="color:#0f172a;flex:999 1 560px;min-width:0;padding:24px;box-sizing:border-box;display:flex;flex-direction:column;gap:20px">
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px">
+      <div>
+        <div style="font-size:13px;color:#4b5565">Tenants</div>
+        <h1 style="margin:0;font-size:22px;line-height:28px;font-weight:600">Users and roles</h1>
+      </div>
+      <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;color:#4b5565">Tenant
+        <select onChange="{{setTenant}}" style="color:#0f172a;max-width:100%;height:40px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;background:#fff;min-width:260px">
+          <option value="adroit">Adroit Agencies · pharma · distributor</option><option value="apollo">Apollo Pharmacy · pharma · pharmacy chain</option><option value="max">Max Pharmacy · pharma · pharmacy chain</option><option value="sun">Sun Pharma · pharma · manufacturer</option><option value="testlab">Test Lab · diagnostics · lab</option><option value="medplus">MedPlus · pharma · pharmacy chain</option>
+        </select>
+      </label>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(4, minmax(0, 1fr));gap:12px">
+      <div style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;padding:14px 16px"><div style="font-size:13px;color:#4b5565">Seats used</div><div style="font-size:24px;font-weight:600">{{t.n}} <span style="font-size:14px;color:#4b5565;font-weight:500">/ {{t.seats}}</span></div></div>
+      <div style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;padding:14px 16px"><div style="font-size:13px;color:#4b5565">Sign-in</div><div style="font-size:16px;font-weight:600;line-height:32px">OTP by SMS · no passwords</div></div>
+      <div style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;padding:14px 16px"><div style="font-size:13px;color:#4b5565">Can bind in the field</div><div style="font-size:24px;font-weight:600">4</div></div>
+      <div style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;padding:14px 16px"><div style="font-size:13px;color:#4b5565">Last staff change</div><div style="font-size:14px;font-weight:600;line-height:32px">21 Oct · Platform admin</div></div>
+    </div>
+
+    <section style="background:#fff;border:1px solid #1d4ed8;border-radius:12px;padding:16px 20px;display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;justify-content:space-between;align-items:baseline">
+        <h2 style="margin:0;font-size:16px;font-weight:600">Add a user to {{t.name}}</h2>
+        <span style="font-size:13px;color:#4b5565">They get a welcome SMS and log in by code</span>
+      </div>
+      <div style="display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr) minmax(0,1.2fr) minmax(0,1fr) auto;gap:10px;align-items:end">
+        <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Name<input type="text" placeholder="Full name" style="color:#0f172a;height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px"></label>
+        <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Mobile<input type="tel" placeholder="+91" style="color:#0f172a;height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;font-family:'IBM Plex Mono',monospace"></label>
+        <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Role
+          <select style="color:#0f172a;width:100%;height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;background:#fff"><option>Field user · bind, hand over</option><option>Dispatcher · + trips, reports</option><option>Tenant admin · + users, settings</option></select>
+        </label>
+        <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Scope
+          <select style="color:#0f172a;width:100%;height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;background:#fff"><option>Whole tenant</option><option>Okhla depot</option><option>Delhi zone</option></select>
+        </label>
+        <button style="min-height:44px;padding:6px 18px;border:0;border-radius:12px;background:#1d4ed8;color:#fff;font-size:14px;font-weight:600;cursor:pointer">Add user</button>
+      </div>
+    </section>
+
+    <section style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;overflow:hidden">
+      <div style="padding:14px 16px;border-bottom:1px solid #e2e6ed;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+        <h2 style="margin:0;font-size:18px;font-weight:600">Users in {{t.name}} <span style="font-weight:500;color:#4b5565">· {{t.n}}</span></h2>
+        <div style="display:flex;gap:6px">
+          <span style="padding:6px 12px;border-radius:9999px;background:#1d4ed8;color:#fff;font-size:13px;font-weight:500">Active {{t.active}}</span>
+          <span style="padding:6px 12px;border-radius:9999px;background:#eef1f6;color:#4b5565;font-size:13px;font-weight:500">Disabled {{t.disabled}}</span>
+          <span style="padding:6px 12px;border-radius:9999px;background:#eef1f6;color:#4b5565;font-size:13px;font-weight:500">Never logged in {{t.never}}</span>
+        </div>
+      </div>
+      <div style="overflow-x:auto">
+      <table style="width:100%;font-size:14px;min-width:720px">
+        <thead><tr style="color:#4b5565;text-align:left;font-size:13px">
+          <th style="padding:10px 16px;font-weight:500">Name</th><th style="padding:10px 8px;font-weight:500">Mobile</th><th style="padding:10px 8px;font-weight:500">Role</th><th style="padding:10px 8px;font-weight:500">Scope</th><th style="padding:10px 8px;font-weight:500">Last login</th><th style="padding:10px 16px;font-weight:500;text-align:right">Actions</th>
+        </tr></thead>
+        <tbody>
+          <sc-if value="{{t.isAdroit}}" hint-placeholder-val="{{ true }}">
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:12px 16px"><strong>Renamed by admin</strong><div style="font-size:12px;color:#4b5565">admin@adroit.com</div></td><td style="padding:12px 8px;font-family:'IBM Plex Mono',monospace">+91 98***** 4421</td><td style="padding:12px 8px">Tenant admin</td><td style="padding:12px 8px">Whole tenant</td><td style="padding:12px 8px">Today 11:02</td><td style="padding:12px 16px;text-align:right"><a href="#" style="color:#1a43b8;font-weight:500">Edit</a> · <a href="#" style="color:#1a43b8;font-weight:500">Disable</a></td></tr>
+          <tr style="border-top:1px solid #e2e6ed;background:#e8eefc"><td style="padding:12px 16px"><strong>QA Field Tester</strong><div style="font-size:12px;color:#4b5565">added 21 Oct by Platform admin</div></td><td style="padding:12px 8px;font-family:'IBM Plex Mono',monospace">+91 90***** 0011</td><td style="padding:12px 8px">Field user</td><td style="padding:12px 8px">Okhla depot</td><td style="padding:12px 8px">Today 16:12</td><td style="padding:12px 16px;text-align:right"><a href="#" style="color:#1a43b8;font-weight:500">Edit</a> · <a href="#" style="color:#1a43b8;font-weight:500">Disable</a></td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:12px 16px"><strong>Delhi Zone Manager</strong><div style="font-size:12px;color:#4b5565">manager1@adroit.com</div></td><td style="padding:12px 8px;font-family:'IBM Plex Mono',monospace">+91 98***** 7730</td><td style="padding:12px 8px">Dispatcher</td><td style="padding:12px 8px">Delhi zone</td><td style="padding:12px 8px">20 Oct</td><td style="padding:12px 16px;text-align:right"><a href="#" style="color:#1a43b8;font-weight:500">Edit</a> · <a href="#" style="color:#1a43b8;font-weight:500">Disable</a></td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:12px 16px"><strong>Staff Member 1</strong></td><td style="padding:12px 8px;font-family:'IBM Plex Mono',monospace">+91 99***** 1180</td><td style="padding:12px 8px">Field user</td><td style="padding:12px 8px">Okhla depot</td><td style="padding:12px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#fef3e2;color:#92400e;font-size:12px;font-weight:500">never · resend SMS</span></td><td style="padding:12px 16px;text-align:right"><a href="#" style="color:#1a43b8;font-weight:500">Edit</a> · <a href="#" style="color:#1a43b8;font-weight:500">Disable</a></td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:12px 16px"><strong>Staff Member 2</strong></td><td style="padding:12px 8px;font-family:'IBM Plex Mono',monospace">+91 99***** 1181</td><td style="padding:12px 8px">Field user</td><td style="padding:12px 8px">Okhla depot</td><td style="padding:12px 8px">19 Oct</td><td style="padding:12px 16px;text-align:right"><a href="#" style="color:#1a43b8;font-weight:500">Edit</a> · <a href="#" style="color:#1a43b8;font-weight:500">Disable</a></td></tr>
+          <tr style="border-top:1px solid #e2e6ed;color:#4b5565"><td style="padding:12px 16px"><strong>Staff Member 3</strong><div style="font-size:12px">disabled 14 Oct · left company</div></td><td style="padding:12px 8px;font-family:'IBM Plex Mono',monospace">+91 99***** 1182</td><td style="padding:12px 8px">Field user</td><td style="padding:12px 8px">—</td><td style="padding:12px 8px">3 Oct</td><td style="padding:12px 16px;text-align:right"><a href="#" style="color:#1a43b8;font-weight:500">Re-enable</a></td></tr>
+        </sc-if>
+          <sc-if value="{{t.isApollo}}" hint-placeholder-val="{{ false }}">
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:12px 16px"><strong>Priya Nair</strong><div style="font-size:12px;color:#4b5565">priya.nair@apollopharmacy.in · first admin</div></td><td style="padding:12px 8px;font-family:'IBM Plex Mono',monospace">+91 98***** 2310</td><td style="padding:12px 8px">Tenant admin</td><td style="padding:12px 8px">Whole tenant</td><td style="padding:12px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#fef3e2;color:#92400e;font-size:12px;font-weight:500">never · resend SMS</span></td><td style="padding:12px 16px;text-align:right"><a href="#" style="color:#1a43b8;font-weight:500">Edit</a></td></tr>
+          </sc-if>
+          <sc-if value="{{t.isTestlab}}" hint-placeholder-val="{{ false }}">
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:12px 16px"><strong>Lab admin</strong><div style="font-size:12px;color:#4b5565">admin@testlab.in</div></td><td style="padding:12px 8px;font-family:'IBM Plex Mono',monospace">+91 97***** 1010</td><td style="padding:12px 8px">Tenant admin</td><td style="padding:12px 8px">Whole tenant</td><td style="padding:12px 8px">Today 09:15</td><td style="padding:12px 16px;text-align:right"><a href="#" style="color:#1a43b8;font-weight:500">Edit</a> · <a href="#" style="color:#1a43b8;font-weight:500">Disable</a></td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:12px 16px"><strong>Sunil R</strong><div style="font-size:12px;color:#4b5565">collection route South Delhi</div></td><td style="padding:12px 8px;font-family:'IBM Plex Mono',monospace">+91 96***** 4477</td><td style="padding:12px 8px">Field user</td><td style="padding:12px 8px">Route South Delhi</td><td style="padding:12px 8px">Today 09:42</td><td style="padding:12px 16px;text-align:right"><a href="#" style="color:#1a43b8;font-weight:500">Edit</a> · <a href="#" style="color:#1a43b8;font-weight:500">Disable</a></td></tr>
+          </sc-if>
+        </tbody>
+      </table>
+      </div>
+    </section>
+
+    <div style="font-size:13px;color:#4b5565">Staff can add, disable and change roles for tenant users (ADMIN and OPS_SUPPORT only). Every change is written to the audit log with who did it. Roles above tenant admin cannot be granted here.</div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":900}}'>
+class Component extends DCLogic {
+  constructor(p){ super(p); this.state = { tenant: 'adroit' }; }
+  renderVals() {
+    const T = { adroit:{ name:'Adroit Agencies', n:7, seats:25, active:6, disabled:1, never:2 }, apollo:{ name:'Apollo Pharmacy', n:1, seats:10, active:1, disabled:0, never:1 }, testlab:{ name:'Test Lab', n:2, seats:10, active:2, disabled:0, never:0 } };
+    const k = this.state.tenant; const T2 = T[k] || { name: { max:'Max Pharmacy', sun:'Sun Pharma', medplus:'MedPlus' }[k], n:1, seats:10, active:1, disabled:0, never:0 }; const t = { ...T2, isAdroit: k === 'adroit', isApollo: k === 'apollo', isTestlab: k === 'testlab' };
+    return { t, setTenant: (e) => this.setState({ tenant: e.target.value }) };
+  }
+}
+</script>
+</body>
+</html>

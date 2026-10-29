@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Track0tic admin — device inventory</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>body{margin:0;font-family:"Noto Sans",system-ui,sans-serif;color:#0f172a;background:#f3f5f9}a{color:#1a43b8}a:hover{color:#0f2f8a}table{border-collapse:collapse}input,select,button{font-family:inherit}/*sc-safety*/ input,select,textarea{min-width:0;max-width:100%;box-sizing:border-box} td,th,p,li{overflow-wrap:break-word} td:last-child,th:last-child{white-space:nowrap} button{white-space:normal;line-height:1.2}</style>
+</helmet>
+<div style="color:#0f172a;display:flex;flex-wrap:wrap;min-height:900px;background:#f3f5f9">
+  <dc-import name="Admin-Sidebar" active="inventory" hint-size="240px,820px"></dc-import>
+  <main style="color:#0f172a;flex:999 1 560px;min-width:0;padding:24px;box-sizing:border-box;display:flex;flex-direction:column;gap:20px">
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px">
+      <div><div style="font-size:13px;color:#4b5565">1 · Devices</div><h1 style="margin:0;font-size:22px;line-height:28px;font-weight:600">Inventory</h1></div>
+      <div style="display:flex;gap:8px">
+        <input type="search" placeholder="TRK ID, serial, IMEI" style="color:#0f172a;height:40px;border:1px solid #7a8696;border-radius:8px;padding:0 12px;font-size:14px;width:260px;font-family:'IBM Plex Mono',monospace">
+        <button style="color:#0f172a;min-height:40px;padding:6px 14px;border:1px solid #7a8696;border-radius:8px;background:#fff;font-size:14px;font-weight:500;cursor:pointer">Export CSV</button>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(7, minmax(0, 1fr));gap:12px">
+      <sc-for list="{{stages}}" as="s" hint-placeholder-count="6">
+        <button onClick="{{s.pick}}" style="text-align:left;background:{{s.bg}};border:1px solid {{s.border}};border-radius:12px;padding:14px 16px;cursor:pointer;color:inherit">
+          <div style="font-size:13px;color:#4b5565">{{s.label}}</div>
+          <div style="font-size:24px;font-weight:600">{{s.n}}</div>
+          <div style="font-size:12px;color:#4b5565">{{s.sub}}</div>
+        </button>
+      </sc-for>
+    </div>
+
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-size:13px">
+      <span style="color:#4b5565">Model</span>
+      <span style="padding:6px 12px;border-radius:9999px;background:#1d4ed8;color:#fff;font-weight:500">All 1,214</span>
+      <span style="padding:6px 12px;border-radius:9999px;background:#eef1f6;color:#4b5565;font-weight:500">PRO 412</span>
+      <span style="padding:6px 12px;border-radius:9999px;background:#eef1f6;color:#4b5565;font-weight:500">LITE 640</span>
+      <span style="padding:6px 12px;border-radius:9999px;background:#eef1f6;color:#4b5565;font-weight:500">HUB 112</span>
+      <span style="padding:6px 12px;border-radius:9999px;background:#eef1f6;color:#4b5565;font-weight:500">LOCKBOX 50</span>
+      <span style="margin-left:auto;color:#4b5565">Showing: <strong style="color:#0f172a">{{current}}</strong></span>
+    </div>
+
+    <section style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;overflow:hidden">
+      <table style="width:100%;font-size:14px">
+        <thead><tr style="color:#4b5565;text-align:left;font-size:13px"><th style="padding:10px 16px;font-weight:500"><input type="checkbox" style="color:#0f172a;margin:0 8px 0 0;vertical-align:middle">TRK ID</th><th style="padding:10px 8px;font-weight:500">Model</th><th style="padding:10px 8px;font-weight:500">Stage</th><th style="padding:10px 8px;font-weight:500">Tenant</th><th style="padding:10px 8px;font-weight:500">Label</th><th style="padding:10px 8px;font-weight:500">Last sync</th><th style="padding:10px 8px;font-weight:500">Firmware</th><th style="padding:10px 16px;font-weight:500;text-align:right">Open passports</th></tr></thead>
+        <tbody>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:12px 16px;font-family:'IBM Plex Mono',monospace"><input type="checkbox" style="color:#0f172a;margin:0 8px 0 0;vertical-align:middle"><a href="Admin-DeviceDetail.dc.html" style="color:#1a43b8">TRK-PRO-900001</a></td><td style="padding:12px 8px">PRO</td><td style="padding:12px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#e6f6ef;color:#047857;font-size:12px;font-weight:500">active · allocated</span></td><td style="padding:12px 8px">Adroit Agencies</td><td style="padding:12px 8px">v1 · printed 12 Oct</td><td style="padding:12px 8px">2 min ago</td><td style="padding:12px 8px;font-family:'IBM Plex Mono',monospace">pro-3.1.0</td><td style="padding:12px 16px;text-align:right">16</td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:12px 16px;font-family:'IBM Plex Mono',monospace"><input type="checkbox" style="color:#0f172a;margin:0 8px 0 0;vertical-align:middle"><a href="Admin-DeviceDetail.dc.html" style="color:#1a43b8">TRK-HUB-900010</a></td><td style="padding:12px 8px">HUB</td><td style="padding:12px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#e6f6ef;color:#047857;font-size:12px;font-weight:500">active · depot hub</span></td><td style="padding:12px 8px">Test Lab</td><td style="padding:12px 8px">v1</td><td style="padding:12px 8px">40 s ago</td><td style="padding:12px 8px;font-family:'IBM Plex Mono',monospace">hub-2.4.1</td><td style="padding:12px 16px;text-align:right">41</td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:12px 16px;font-family:'IBM Plex Mono',monospace"><input type="checkbox" style="color:#0f172a;margin:0 8px 0 0;vertical-align:middle"><a href="Admin-DeviceDetail.dc.html" style="color:#1a43b8">TRK-HUB-900040</a></td><td style="padding:12px 8px">HUB</td><td style="padding:12px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#e8eefc;color:#1a43b8;font-size:12px;font-weight:500">QC pass · unlabelled</span></td><td style="padding:12px 8px;color:#4b5565">Track0tic stock</td><td style="padding:12px 8px"><a href="Admin-DeviceLabels.dc.html" style="color:#1a43b8">print now</a></td><td style="padding:12px 8px">11 Oct</td><td style="padding:12px 8px;font-family:'IBM Plex Mono',monospace">hub-2.4.1</td><td style="padding:12px 16px;text-align:right">0</td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:12px 16px;font-family:'IBM Plex Mono',monospace"><input type="checkbox" style="color:#0f172a;margin:0 8px 0 0;vertical-align:middle"><a href="Admin-DeviceDetail.dc.html" style="color:#1a43b8">TRK-LTE-900388</a></td><td style="padding:12px 8px">LITE</td><td style="padding:12px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#eef1f6;color:#4b5565;font-size:12px;font-weight:500">labelled · in stock</span></td><td style="padding:12px 8px;color:#4b5565">Track0tic stock</td><td style="padding:12px 8px">v1</td><td style="padding:12px 8px;color:#4b5565">never</td><td style="padding:12px 8px;font-family:'IBM Plex Mono',monospace">lite-1.9.2</td><td style="padding:12px 16px;text-align:right">0</td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:12px 16px;font-family:'IBM Plex Mono',monospace"><input type="checkbox" style="color:#0f172a;margin:0 8px 0 0;vertical-align:middle"><a href="Admin-DeviceDetail.dc.html" style="color:#1a43b8">TRK-PRO-900017</a></td><td style="padding:12px 8px">PRO</td><td style="padding:12px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#fef3e2;color:#92400e;font-size:12px;font-weight:500">maintenance</span></td><td style="padding:12px 8px">Adroit Agencies</td><td style="padding:12px 8px">v2 · replaced 9 Oct</td><td style="padding:12px 8px">6 d ago</td><td style="padding:12px 8px;font-family:'IBM Plex Mono',monospace">pro-3.0.4</td><td style="padding:12px 16px;text-align:right">0</td></tr>
+          <tr style="border-top:1px solid #e2e6ed;color:#4b5565"><td style="padding:12px 16px;font-family:'IBM Plex Mono',monospace"><input type="checkbox" style="color:#0f172a;margin:0 8px 0 0;vertical-align:middle"><a href="Admin-DeviceDetail.dc.html" style="color:#1a43b8">TRK-PRO-900003</a></td><td style="padding:12px 8px">PRO</td><td style="padding:12px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#fdecec;color:#a61b1b;font-size:12px;font-weight:500">revoked · lost</span></td><td style="padding:12px 8px">Adroit Agencies</td><td style="padding:12px 8px">v1 · dead link</td><td style="padding:12px 8px">3 Oct</td><td style="padding:12px 8px;font-family:'IBM Plex Mono',monospace">pro-3.0.4</td><td style="padding:12px 16px;text-align:right">0</td></tr>
+        </tbody>
+      </table>
+      <div style="padding:12px 16px;border-top:1px solid #e2e6ed;display:flex;justify-content:space-between;align-items:center;font-size:13px;color:#4b5565">
+        <span>With 0 selected: <a href="Admin-Allocate.dc.html" style="color:#1a43b8">Allocate</a> · <a href="Admin-DeviceLabels.dc.html" style="color:#1a43b8">Print labels</a> · Mark maintenance · Revoke</span>
+        <span>1–6 of 1,214 · <a href="#" style="color:#1a43b8">Next</a></span>
+      </div>
+    </section>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":900}}'>
+class Component extends DCLogic {
+  constructor(p){ super(p); this.state = { pick: 'all' }; }
+  renderVals() {
+    const defs = [
+      { id:'all', label:'All devices', n:'1,214', sub:'every stage' },
+      { id:'qc', label:'Awaiting QC', n:'12', sub:'received, no TRK ID' },
+      { id:'sim', label:'SIM bound', n:'5', sub:'ICCID recorded · QC pending' },
+      { id:'unl', label:'QC pass · unlabelled', n:'29', sub:'print labels' },
+      { id:'stock', label:'In stock', n:'238', sub:'labelled, unsold' },
+      { id:'alloc', label:'Allocated', n:'901', sub:'with tenants' },
+      { id:'out', label:'Maintenance / revoked', n:'34', sub:'not binding' }
+    ];
+    const stages = defs.map(d => ({ ...d, bg: this.state.pick === d.id ? '#e8eefc' : '#fff', border: this.state.pick === d.id ? '#1d4ed8' : '#e2e6ed', pick: () => this.setState({ pick: d.id }) }));
+    return { stages, current: defs.find(d => d.id === this.state.pick).label };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Tenant portal — visibility grants</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>body{margin:0;font-family:"Noto Sans",system-ui,sans-serif;color:#0f172a;background:#f3f5f9}a{color:#1a43b8}a:hover{color:#0f2f8a}table{border-collapse:collapse}input,select,button,textarea{font-family:inherit}/*sc-safety*/ input,select,textarea{min-width:0;max-width:100%;box-sizing:border-box} td,th,p,li{overflow-wrap:break-word} td:last-child,th:last-child{white-space:nowrap} button{white-space:normal;line-height:1.2}</style>
+</helmet>
+<div style="color:#0f172a;display:flex;flex-wrap:wrap;min-height:820px;background:#f3f5f9">
+  <nav aria-label="Adroit portal" style="width:220px;box-sizing:border-box;background:#fff;border-right:1px solid #e2e6ed;padding:16px 12px;display:flex;flex-direction:column;gap:2px;font-size:14px">
+    <div style="padding:4px 10px 14px;display:flex;flex-direction:column;gap:2px"><span style="font-size:16px;font-weight:600">Adroit Agencies</span><span style="font-size:12px;color:#4b5565">Track<span style="color:#e11d2e">0</span>tic<sup style="font-size:0.45em;font-weight:600;vertical-align:top;margin-left:1px;opacity:0.85">TM</sup> · pharma</span></div>
+    <a href="#" style="display:flex;align-items:center;height:36px;padding:0 10px;border-radius:8px;text-decoration:none;color:#0f172a">Dashboard</a>
+    <a href="#" style="display:flex;align-items:center;height:36px;padding:0 10px;border-radius:8px;text-decoration:none;color:#0f172a">Dispatcher</a>
+    <a href="#" style="display:flex;align-items:center;height:36px;padding:0 10px;border-radius:8px;text-decoration:none;color:#0f172a">Trips</a>
+    <div style="padding:12px 10px 4px;font-size:11px;letter-spacing:0.08em;color:#4b5565;font-weight:600">PASSPORTS</div>
+    <a href="Tenant-Stock.dc.html" style="display:flex;align-items:center;height:36px;padding:0 10px;border-radius:8px;text-decoration:none;color:#0f172a">Stock</a>
+    <a href="Tenant-Custody.dc.html" style="display:flex;align-items:center;height:36px;padding:0 10px;border-radius:8px;text-decoration:none;color:#0f172a">In custody</a>
+    <a href="Tenant-Custody.dc.html" style="display:flex;align-items:center;height:36px;padding:0 10px;border-radius:8px;text-decoration:none;color:#0f172a">Off device</a>
+    <div style="padding:12px 10px 4px;font-size:11px;letter-spacing:0.08em;color:#4b5565;font-weight:600">DEVICES</div>
+    <a href="Tenant-Devices.dc.html" style="display:flex;align-items:center;height:36px;padding:0 10px;border-radius:8px;text-decoration:none;color:#0f172a">My devices</a>
+    <a href="Tenant-Devices.dc.html" style="display:flex;align-items:center;height:36px;padding:0 10px;border-radius:8px;text-decoration:none;color:#0f172a">HUB cold room</a>
+    <div style="padding:12px 10px 4px;font-size:11px;letter-spacing:0.08em;color:#4b5565;font-weight:600">TEAM</div>
+    <a href="Tenant-Exceptions.dc.html" style="display:flex;align-items:center;justify-content:space-between;height:36px;padding:0 10px;border-radius:8px;text-decoration:none;color:#0f172a"><span>Exceptions</span><span style="font-size:11px;font-weight:600;padding:1px 7px;border-radius:9999px;background:#b45309;color:#fff">3</span></a>
+    <a href="Tenant-Grants.dc.html" style="display:flex;align-items:center;height:36px;padding:0 10px;border-radius:8px;text-decoration:none;color:#fff;background:#1d4ed8;font-weight:500">Visibility grants</a>
+    <a href="Tenant-Users.dc.html" style="display:flex;align-items:center;height:36px;padding:0 10px;border-radius:8px;text-decoration:none;color:#0f172a">Users</a>
+    <a href="#" style="display:flex;align-items:center;height:36px;padding:0 10px;border-radius:8px;text-decoration:none;color:#0f172a">Reports</a>
+  </nav>
+
+
+  <main style="color:#0f172a;flex:999 1 560px;min-width:0;padding:24px;box-sizing:border-box;display:flex;flex-direction:column;gap:20px">
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px">
+      <div><h1 style="margin:0;font-size:22px;line-height:28px;font-weight:600">Visibility grants</h1><div style="font-size:14px;color:#4b5565;margin-top:2px">By default each tenant sees its own legs plus the one it received from. A grant lets a partner see more of <em>your</em> legs on passports you share. You cannot grant what you cannot see.</div></div>
+      <button style="min-height:44px;padding:6px 16px;border:0;border-radius:12px;background:#1d4ed8;color:#fff;font-size:14px;font-weight:600;cursor:pointer">+ New grant</button>
+    </div>
+
+    <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:start">
+      <section style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;overflow:hidden">
+        <div style="padding:14px 16px;border-bottom:1px solid #e2e6ed;font-size:16px;font-weight:600">Grants you have given</div>
+        <table style="width:100%;font-size:14px">
+          <thead><tr style="color:#4b5565;text-align:left;font-size:13px"><th style="padding:10px 16px;font-weight:500">To</th><th style="padding:10px 8px;font-weight:500">They can see</th><th style="padding:10px 8px;font-weight:500">Scope</th><th style="padding:10px 16px;font-weight:500;text-align:right"></th></tr></thead>
+          <tbody>
+            <tr style="border-top:1px solid #e2e6ed"><td style="padding:12px 16px"><strong>Apollo Pharmacy</strong><div style="font-size:12px;color:#4b5565">since 5 Oct · by admin@adroit.com</div></td><td style="padding:12px 8px">Your cold-room leg (HUB) before the delivery leg</td><td style="padding:12px 8px">All passports you hand to them</td><td style="padding:12px 16px;text-align:right"><a href="#" style="color:#1a43b8">Edit</a> · <a href="#" style="color:#1a43b8">Revoke</a></td></tr>
+            <tr style="border-top:1px solid #e2e6ed"><td style="padding:12px 16px"><strong>Sun Pharma (manufacturer)</strong><div style="font-size:12px;color:#4b5565">since 12 Oct · by admin@adroit.com</div></td><td style="padding:12px 8px">All your legs, incl. temperature graphs</td><td style="padding:12px 8px">Batches PB-0203, PB-0210 only</td><td style="padding:12px 16px;text-align:right"><a href="#" style="color:#1a43b8">Edit</a> · <a href="#" style="color:#1a43b8">Revoke</a></td></tr>
+            <tr style="border-top:1px solid #e2e6ed;color:#4b5565"><td style="padding:12px 16px"><strong>MedPlus</strong><div style="font-size:12px">revoked 18 Oct</div></td><td style="padding:12px 8px">—</td><td style="padding:12px 8px">—</td><td style="padding:12px 16px;text-align:right"><a href="#" style="color:#1a43b8">Re-grant</a></td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;overflow:hidden">
+        <div style="padding:14px 16px;border-bottom:1px solid #e2e6ed;font-size:16px;font-weight:600">Grants given to you</div>
+        <table style="width:100%;font-size:14px">
+          <thead><tr style="color:#4b5565;text-align:left;font-size:13px"><th style="padding:10px 16px;font-weight:500">From</th><th style="padding:10px 8px;font-weight:500">You can see</th><th style="padding:10px 16px;font-weight:500;text-align:right">Scope</th></tr></thead>
+          <tbody>
+            <tr style="border-top:1px solid #e2e6ed"><td style="padding:12px 16px"><strong>Sun Pharma</strong><div style="font-size:12px;color:#4b5565">since 12 Oct</div></td><td style="padding:12px 8px">Their factory-to-depot leg (line haul)</td><td style="padding:12px 16px;text-align:right">Batches they ship you</td></tr>
+          </tbody>
+        </table>
+        <div style="padding:14px 16px;border-top:1px solid #e2e6ed;font-size:13px;line-height:18px;color:#4b5565">
+          <strong style="color:#0f172a">What a grant never changes</strong>
+          <ul style="margin:6px 0 0;padding-left:18px"><li>The public compliance PDF — whole chain as anonymous Storage/Transit steps, no names, no places, no TRK IDs</li><li>Who may bind — any tenant to its own device, always</li><li>Track0tic staff — they see everything regardless</li><li>Bank environments — grants do not exist there; custody is per branch</li></ul>
+        </div>
+      </section>
+    </div>
+
+    <section style="background:#fff;border:1px solid #1d4ed8;border-radius:12px;padding:16px 20px;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1.4fr) minmax(0,1fr) auto;gap:10px;align-items:end">
+      <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Partner tenant<select style="color:#0f172a;width:100%;height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;background:#fff"><option>Choose a tenant you exchange passports with…</option><option>Apollo Pharmacy</option><option>Max Pharmacy</option><option>Sun Pharma</option></select></label>
+      <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Let them see<select style="color:#0f172a;width:100%;height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;background:#fff"><option>The leg right before the one I hand them</option><option>All my legs on the passport</option><option>All my legs + temperature graphs</option></select></label>
+      <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">On<select style="color:#0f172a;width:100%;height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;background:#fff"><option>Everything I hand them</option><option>Specific batches…</option></select></label>
+      <button style="min-height:44px;padding:6px 18px;border:0;border-radius:12px;background:#1d4ed8;color:#fff;font-size:14px;font-weight:600;cursor:pointer">Grant</button>
+    </section>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":820}}'>
+class Component extends DCLogic { renderVals() { return {}; } }
+</script>
+</body>
+</html>

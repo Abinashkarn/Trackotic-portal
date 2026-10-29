@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Receiver without a device</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>body{margin:0;font-family:"Noto Sans",system-ui,sans-serif;color:#0f172a}a{color:#1a43b8}a:hover{color:#0f2f8a}button{font-family:inherit}/*sc-safety*/ input,select,textarea{min-width:0;max-width:100%;box-sizing:border-box} td,th,p,li{overflow-wrap:break-word} td:last-child,th:last-child{white-space:nowrap} button{white-space:normal;line-height:1.2}</style>
+</helmet>
+<div style="color:#0f172a;width:390px;height:844px;box-sizing:border-box;background:#ffffff;display:flex;flex-direction:column;position:relative;overflow:hidden">
+  <header style="height:56px;box-sizing:border-box;padding:0 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #e2e6ed">
+    <div style="font-size:18px;font-weight:600">Track<span style="color:#e11d2e">0</span>tic<sup style="font-size:0.45em;font-weight:600;vertical-align:top;margin-left:1px;opacity:0.85">TM</sup></div>
+    <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:#4b5565"><span style="width:8px;height:8px;border-radius:9999px;background:#047857"></span>Priya N · Apollo</div>
+  </header>
+
+  <main style="flex:1 1 auto;overflow:auto;padding:20px 20px 136px;box-sizing:border-box;display:flex;flex-direction:column;gap:16px">
+    <div>
+      <div style="font-size:13px;font-weight:500;color:#4b5565;letter-spacing:0.02em">PASSPORT · OFF DEVICE</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:28px;font-weight:600;letter-spacing:0.04em;margin-top:4px">097FQYD7</div>
+    </div>
+
+    <div style="padding:16px;border-radius:16px;background:#e6f6ef;border:1px solid #e2e6ed;display:flex;gap:12px;align-items:flex-start">
+      <span style="width:40px;height:40px;border-radius:9999px;background:#047857;color:#fff;display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg></span>
+      <div>
+        <div style="font-size:18px;line-height:24px;font-weight:600">Kept between 2–8 °C</div>
+        <div style="font-size:14px;line-height:20px;color:#4b5565">Handed over to you 21 Oct, 16:28 by Adroit Agencies. Lowest 3.9°, highest 6.2°, no time out of range.</div>
+      </div>
+    </div>
+
+    <sc-if value="{{pending}}" hint-placeholder-val="{{ true }}">
+      <div style="padding:16px;border:1px solid #1d4ed8;border-radius:12px;display:flex;flex-direction:column;gap:10px;background:#fff">
+        <div style="font-size:16px;font-weight:600">You have no Track0tic device here</div>
+        <p style="margin:0;font-size:14px;line-height:20px;color:#4b5565">That's fine. Acknowledge receipt so the sender's record shows it arrived, and keep the label on the product. If you later put it in a HUB or send it on with a logger, just bind it then.</p>
+      </div>
+    </sc-if>
+    <sc-if value="{{acked}}" hint-placeholder-val="{{ false }}">
+      <div style="padding:16px;border-radius:12px;background:#e8eefc;display:flex;flex-direction:column;gap:4px">
+        <div style="font-size:16px;font-weight:600;color:#1a43b8">Receipt acknowledged · 16:31</div>
+        <div style="font-size:14px;line-height:20px;color:#4b5565">Recorded as Priya N, Apollo Pharmacy. The sender can see it now.</div>
+      </div>
+    </sc-if>
+
+    <section style="border:1px solid #e2e6ed;border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:8px;font-size:14px">
+      <div style="font-size:16px;font-weight:600">What you can see</div>
+      <div style="display:flex;justify-content:space-between"><span style="color:#4b5565">The leg you received</span><span>PRO · 15:57 → 16:28</span></div>
+      <div style="display:flex;justify-content:space-between"><span style="color:#4b5565">The leg before it</span><span>HUB · Adroit cold room</span></div>
+      <div style="display:flex;justify-content:space-between"><span style="color:#4b5565">Earlier legs</span><span style="color:#4b5565">not yours to see</span></div>
+    </section>
+  </main>
+
+  <div style="position:absolute;left:0;right:0;bottom:0;padding:12px 20px 24px;background:#fff;box-shadow:0 -2px 12px #0f172a14;display:flex;flex-direction:column;gap:8px">
+    <sc-if value="{{pending}}" hint-placeholder-val="{{ true }}">
+      <button onClick="{{ack}}" style="height:56px;border:0;border-radius:12px;background:#1d4ed8;color:#fff;font-size:17px;font-weight:600;cursor:pointer">Acknowledge receipt</button>
+    </sc-if>
+    <sc-if value="{{acked}}" hint-placeholder-val="{{ false }}">
+      <a href="Bind-Sheet.dc.html" style="display:flex;align-items:center;justify-content:center;height:56px;border-radius:12px;border:1px solid #7a8696;color:#1a43b8;font-size:17px;font-weight:600;text-decoration:none;background:#fff">Bind to my device instead</a>
+    </sc-if>
+    <a href="Cert-Public.dc.html" style="color:#1a43b8;display:flex;align-items:center;justify-content:center;height:44px;font-size:15px;font-weight:500;text-decoration:underline">Compliance report (PDF) · what the patient will see</a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(p){ super(p); this.state = { acked: false }; }
+  renderVals() { return { pending: !this.state.acked, acked: this.state.acked, ack: () => this.setState({ acked: true }) }; }
+}
+</script>
+</body>
+</html>

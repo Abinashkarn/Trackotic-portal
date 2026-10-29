@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Admin sidebar — workflow groups</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&display=swap">
+<style>
+body{margin:0;font-family:"Noto Sans",system-ui,sans-serif;color:#eef2f8}
+a{color:#eef2f8;text-decoration:none}a:hover{color:#ffffff}
+input{font-family:inherit}
+/*sc-safety*/ input,select,textarea{min-width:0;max-width:100%;box-sizing:border-box} td,th,p,li{overflow-wrap:break-word} td:last-child,th:last-child{white-space:nowrap} button{white-space:normal;line-height:1.2}</style>
+</helmet>
+<nav aria-label="Admin" style="width:240px;min-height:820px;box-sizing:border-box;background:#0f172a;color:#eef2f8;display:flex;flex-direction:column;padding:16px 12px 20px;gap:4px;font-size:14px">
+  <div style="display:flex;align-items:baseline;gap:6px;padding:4px 8px 12px">
+    <span style="font-size:18px;font-weight:600">Track<span style="color:#ff5a66">0</span>tic<sup style="font-size:0.45em;font-weight:600;vertical-align:top;margin-left:1px;opacity:0.85">TM</sup></span>
+    <span style="font-size:12px;color:#a3adbf">admin</span>
+  </div>
+  <label style="display:flex;align-items:center;gap:8px;height:36px;padding:0 10px;border-radius:8px;background:#172036;border:1px solid #273149;margin-bottom:8px">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#a3adbf" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+    <input type="search" placeholder="Search menu" aria-label="Search menu" style="flex:1;border:0;outline:0;background:transparent;color:#eef2f8;font-size:13px">
+  </label>
+
+  <a href="Admin-Dashboard.dc.html" style="color:#eef2f8;display:flex;align-items:center;height:36px;padding:0 10px;border-radius:8px;font-weight:500;background:{{bg.dashboard}}">Dashboard</a>
+
+  <div style="padding:14px 10px 4px;font-size:11px;letter-spacing:0.08em;color:#a3adbf;font-weight:600">1 · DEVICES</div>
+  <a href="Admin-Suppliers.dc.html" style="display:flex;align-items:center;height:34px;padding:0 10px 0 22px;border-radius:8px;background:{{bg.suppliers}}">Suppliers</a>
+  <a href="Admin-Receive.dc.html" style="color:#eef2f8;display:flex;align-items:center;height:34px;padding:0 10px 0 22px;border-radius:8px;background:{{bg.receive}}">Receive devices</a>
+  <a href="Admin-Inventory.dc.html" style="color:#eef2f8;display:flex;align-items:center;height:34px;padding:0 10px 0 22px;border-radius:8px;background:{{bg.inventory}}">Inventory</a>
+  <a href="Admin-QC.dc.html" style="color:#eef2f8;display:flex;align-items:center;height:34px;padding:0 10px 0 22px;border-radius:8px;background:{{bg.qc}}">QC and firmware</a>
+  <a href="Admin-DeviceLabels.dc.html" style="color:#eef2f8;display:flex;align-items:center;height:34px;padding:0 10px 0 22px;border-radius:8px;background:{{bg.labels}}">QR labels</a>
+
+  <div style="padding:14px 10px 4px;font-size:11px;letter-spacing:0.08em;color:#a3adbf;font-weight:600">2 · TENANTS</div>
+  <a href="Admin-Tenants.dc.html" style="color:#eef2f8;display:flex;align-items:center;height:34px;padding:0 10px 0 22px;border-radius:8px;background:{{bg.tenants}}">Tenants</a>
+  <a href="Admin-Users.dc.html" style="color:#eef2f8;display:flex;align-items:center;height:34px;padding:0 10px 0 22px;border-radius:8px;background:{{bg.users}}">Users and roles</a>
+  <a href="Admin-Journeys.dc.html" style="color:#eef2f8;display:flex;align-items:center;height:34px;padding:0 10px 0 22px;border-radius:8px;background:{{bg.journeys}}">Journey templates</a>
+
+  <div style="padding:14px 10px 4px;font-size:11px;letter-spacing:0.08em;color:#a3adbf;font-weight:600">3 · SALE &amp; SUPPLY</div>
+  <a href="Admin-Allocate.dc.html" style="color:#eef2f8;display:flex;align-items:center;height:34px;padding:0 10px 0 22px;border-radius:8px;background:{{bg.allocate}}">Allocate devices</a>
+  <a href="Admin-Issue.dc.html" style="color:#eef2f8;display:flex;align-items:center;height:34px;padding:0 10px 0 22px;border-radius:8px;background:{{bg.issue}}">Issue passports</a>
+  <a href="Admin-Profiles.dc.html" style="color:#eef2f8;display:flex;align-items:center;height:34px;padding:0 10px 0 22px;border-radius:8px;background:{{bg.profiles}}">Temperature profiles</a>
+
+  <div style="padding:14px 10px 4px;font-size:11px;letter-spacing:0.08em;color:#a3adbf;font-weight:600">4 · OPERATIONS</div>
+  <a href="Admin-Trips.dc.html" style="color:#eef2f8;display:flex;align-items:center;height:34px;padding:0 10px 0 22px;border-radius:8px;background:{{bg.trips}}">Trips</a>
+  <a href="Admin-Alerts.dc.html" style="color:#8fb0ff;display:flex;align-items:center;justify-content:space-between;height:34px;padding:0 10px 0 22px;border-radius:8px;background:{{bg.alerts}}"><span>Alerts</span><span style="font-size:11px;font-weight:600;padding:1px 7px;border-radius:9999px;background:#ef4444;color:#fff">34</span></a>
+  <a href="Admin-Approvals.dc.html" style="color:#8fb0ff;display:flex;align-items:center;justify-content:space-between;height:34px;padding:0 10px 0 22px;border-radius:8px;background:{{bg.approvals}}"><span>Approvals</span><span style="font-size:11px;font-weight:600;padding:1px 7px;border-radius:9999px;background:#3b6cf0;color:#fff">2</span></a>
+
+  <div style="padding:14px 10px 4px;font-size:11px;letter-spacing:0.08em;color:#a3adbf;font-weight:600">5 · ADMIN</div>
+  <a href="Admin-StaffUsers.dc.html" style="color:#eef2f8;display:flex;align-items:center;height:34px;padding:0 10px 0 22px;border-radius:8px;background:{{bg.staff}}">Staff users</a>
+  <a href="Admin-Reports.dc.html" style="color:#eef2f8;display:flex;align-items:center;height:34px;padding:0 10px 0 22px;border-radius:8px;background:{{bg.reports}}">Reports</a>
+  <a href="Admin-AuditLog.dc.html" style="color:#eef2f8;display:flex;align-items:center;height:34px;padding:0 10px 0 22px;border-radius:8px;background:{{bg.audit}}">Audit log</a>
+  <a href="#" style="color:#eef2f8;display:flex;align-items:center;height:34px;padding:0 10px 0 22px;border-radius:8px">Reference data</a>
+
+  <div style="margin-top:auto;padding:12px 10px 0;border-top:1px solid #273149;display:flex;justify-content:space-between;align-items:center;font-size:13px;color:#a3adbf">
+    <span>Platform admin</span>
+    <a href="Admin-Login.dc.html" aria-label="Log out" style="color:#a3adbf"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 17l5-5-5-5M15 12H3M21 3v18"/></svg></a>
+  </div>
+</nav>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"active":{"editor":"enum","options":["dashboard","suppliers","receive","inventory","qc","labels","tenants","users","journeys","allocate","issue","profiles","trips","alerts","approvals","staff","reports","audit"],"default":"dashboard"},"$preview":{"width":240,"height":820}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const a = this.props.active ?? 'dashboard';
+    const keys = ['dashboard','suppliers','receive','inventory','qc','labels','tenants','users','journeys','allocate','issue','profiles','trips','alerts','approvals','staff','reports','audit'];
+    const bg = {};
+    keys.forEach(k => { bg[k] = a === k ? '#1d4ed8' : 'transparent'; });
+    return { bg };
+  }
+}
+</script>
+</body>
+</html>

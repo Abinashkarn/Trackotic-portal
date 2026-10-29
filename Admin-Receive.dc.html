@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Track0tic admin — receive devices from factory</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>body{margin:0;font-family:"Noto Sans",system-ui,sans-serif;color:#0f172a;background:#f3f5f9}a{color:#1a43b8}a:hover{color:#0f2f8a}table{border-collapse:collapse}input,select,button,textarea{font-family:inherit}/*sc-safety*/ input,select,textarea{min-width:0;max-width:100%;box-sizing:border-box} td,th,p,li{overflow-wrap:break-word} td:last-child,th:last-child{white-space:nowrap} button{white-space:normal;line-height:1.2}</style>
+</helmet>
+<div style="color:#0f172a;display:flex;flex-wrap:wrap;min-height:900px;background:#f3f5f9">
+  <dc-import name="Admin-Sidebar" active="receive" hint-size="240px,820px"></dc-import>
+  <main style="color:#0f172a;flex:999 1 560px;min-width:0;padding:24px;box-sizing:border-box;display:flex;flex-direction:column;gap:20px">
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px">
+      <div><div style="font-size:13px;color:#4b5565">1 · Devices</div><h1 style="margin:0;font-size:22px;line-height:28px;font-weight:600">Receive devices</h1></div>
+      <div style="font-size:13px;color:#4b5565">Step 1 of 3 · Receive → QC → QR labels (print = allocate)</div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:16px;align-items:start">
+      <section style="background:#fff;border:1px solid #1d4ed8;border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:14px">
+        <h2 style="margin:0;font-size:16px;font-weight:600">New inbound batch</h2>
+        <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px">
+          <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Supplier / factory <a href="Admin-Suppliers.dc.html" style="font-weight:500;margin-left:6px">+ register new</a><select style="color:#0f172a;width:100%;height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;background:#fff"><option>Shenzhen Coldtrace Ltd</option><option>In-house assembly · Noida</option></select></label>
+          <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Invoice / PO<input type="text" placeholder="PO-2026-0931" style="color:#0f172a;height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;font-family:'IBM Plex Mono',monospace"></label>
+          <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Model<select style="color:#0f172a;width:100%;height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;background:#fff"><option>PRO · logger, GPS</option><option>LITE · logger, no GPS</option><option>HUB · fixed, mains</option><option>LOCKBOX · BFSI</option></select></label>
+          <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Quantity on invoice<input type="text" value="120" style="color:#0f172a;height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px"></label>
+        </div>
+        <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Serial / IMEI list
+          <textarea rows="5" placeholder="Paste one per line, or upload the factory CSV" style="color:#0f172a;border:1px solid #7a8696;border-radius:8px;padding:10px;font-size:13px;font-family:'IBM Plex Mono',monospace;resize:vertical">867530041122331
+867530041122332
+867530041122333</textarea>
+        </label>
+        <div style="display:flex;gap:10px;align-items:center">
+          <button style="min-height:44px;padding:6px 18px;border:0;border-radius:12px;background:#1d4ed8;color:#fff;font-size:14px;font-weight:600;cursor:pointer">Receive 120 devices</button>
+          <button style="color:#0f172a;min-height:44px;padding:6px 16px;border:1px solid #7a8696;border-radius:12px;background:#fff;font-size:14px;font-weight:500;cursor:pointer">Upload CSV</button>
+          <span style="font-size:13px;color:#4b5565">Creates devices as <strong>inactive · unlabelled</strong>. No TRK ID until QC passes.</span>
+        </div>
+      </section>
+
+      <section style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:12px">
+        <h2 style="margin:0;font-size:16px;font-weight:600">Checks before you receive</h2>
+        <div style="display:flex;flex-direction:column;gap:8px;font-size:14px">
+          <div style="display:flex;gap:10px"><span style="color:#047857">✓</span><span>3 serials pasted · all unique · none already in inventory</span></div>
+          <div style="display:flex;gap:10px"><span style="color:#92400e">!</span><span>117 serials short of invoice quantity — receive partial, or upload the CSV</span></div>
+          <div style="display:flex;gap:10px"><span style="color:#047857">✓</span><span>Model PRO matches PO-2026-0931 line 1</span></div>
+        </div>
+        <div style="padding:12px;border-radius:8px;background:#f3f5f9;font-size:13px;line-height:18px;color:#4b5565">Received devices are not sellable. They appear in <a href="Admin-Inventory.dc.html" style="color:#1a43b8">Inventory</a> under <em>Awaiting QC</em>, and in <a href="Admin-QC.dc.html" style="color:#1a43b8">QC and firmware</a> as the next batch.</div>
+      </section>
+    </div>
+
+    <section style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;overflow:hidden">
+      <div style="padding:14px 16px;border-bottom:1px solid #e2e6ed;font-size:18px;font-weight:600">Recent batches</div>
+      <table style="width:100%;font-size:14px">
+        <thead><tr style="color:#4b5565;text-align:left;font-size:13px"><th style="padding:10px 16px;font-weight:500">Batch</th><th style="padding:10px 8px;font-weight:500">Supplier</th><th style="padding:10px 8px;font-weight:500">Model</th><th style="padding:10px 8px;font-weight:500">Qty</th><th style="padding:10px 8px;font-weight:500">QC</th><th style="padding:10px 8px;font-weight:500">Labelled</th><th style="padding:10px 16px;font-weight:500;text-align:right">Received</th></tr></thead>
+        <tbody>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:12px 16px;font-family:'IBM Plex Mono',monospace">RB-0042</td><td style="padding:12px 8px">Shenzhen Coldtrace</td><td style="padding:12px 8px">PRO</td><td style="padding:12px 8px">200</td><td style="padding:12px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#e6f6ef;color:#047857;font-size:12px;font-weight:500">198 pass · 2 fail</span></td><td style="padding:12px 8px">198</td><td style="padding:12px 16px;text-align:right">14 Oct · Platform admin</td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:12px 16px;font-family:'IBM Plex Mono',monospace">RB-0041</td><td style="padding:12px 8px">In-house · Noida</td><td style="padding:12px 8px">HUB</td><td style="padding:12px 8px">40</td><td style="padding:12px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#fef3e2;color:#92400e;font-size:12px;font-weight:500">12 pending</span></td><td style="padding:12px 8px">28</td><td style="padding:12px 16px;text-align:right">11 Oct · Ops support</td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:12px 16px;font-family:'IBM Plex Mono',monospace">RB-0040</td><td style="padding:12px 8px">Shenzhen Coldtrace</td><td style="padding:12px 8px">LITE</td><td style="padding:12px 8px">500</td><td style="padding:12px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#e6f6ef;color:#047857;font-size:12px;font-weight:500">500 pass</span></td><td style="padding:12px 8px">500</td><td style="padding:12px 16px;text-align:right">2 Oct · Platform admin</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":900}}'>
+class Component extends DCLogic { renderVals() { return {}; } }
+</script>
+</body>
+</html>

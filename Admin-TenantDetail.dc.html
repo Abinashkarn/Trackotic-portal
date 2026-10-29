@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Track0tic admin — tenant detail</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>body{margin:0;font-family:"Noto Sans",system-ui,sans-serif;color:#0f172a;background:#f3f5f9}a{color:#1a43b8}a:hover{color:#0f2f8a}table{border-collapse:collapse}input,select,button{font-family:inherit}/*sc-safety*/ input,select,textarea{min-width:0;max-width:100%;box-sizing:border-box} td,th,p,li{overflow-wrap:break-word} td:last-child,th:last-child{white-space:nowrap} button{white-space:normal;line-height:1.2}</style>
+</helmet>
+<div style="color:#0f172a;display:flex;flex-wrap:wrap;min-height:900px;background:#f3f5f9">
+  <dc-import name="Admin-Sidebar" active="tenants" hint-size="240px,820px"></dc-import>
+  <main style="color:#0f172a;flex:999 1 560px;min-width:0;padding:24px;box-sizing:border-box;display:flex;flex-direction:column;gap:20px">
+    <div style="font-size:13px;color:#4b5565"><a href="Admin-Tenants.dc.html" style="color:#1a43b8">Tenants</a> › Adroit Agencies</div>
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:12px">
+      <div>
+        <h1 style="margin:0;font-size:26px;line-height:32px;font-weight:600">Adroit Agencies</h1>
+        <div style="display:flex;gap:8px;align-items:center;margin-top:6px;font-size:14px;color:#4b5565">pharma · shared platform · <span style="padding:2px 8px;border-radius:9999px;background:#e6f6ef;color:#047857;font-size:12px;font-weight:500">active</span> · since 2 Oct 2026 · <span style="font-family:'IBM Plex Mono',monospace">ten_adroit</span></div>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <a href="Admin-Issue.dc.html" style="display:inline-flex;align-items:center;height:40px;padding:0 14px;border:0;border-radius:8px;background:#1d4ed8;color:#fff;font-size:14px;font-weight:600;text-decoration:none">Issue passports</a>
+        <a href="Admin-Allocate.dc.html" style="display:inline-flex;align-items:center;height:40px;padding:0 14px;border:1px solid #7a8696;border-radius:8px;background:#fff;font-size:14px;font-weight:500;text-decoration:none;color:#0f172a">Allocate devices</a>
+        <button style="color:#0f172a;min-height:40px;padding:6px 14px;border:1px solid #7a8696;border-radius:8px;background:#fff;font-size:14px;font-weight:500;cursor:pointer">Suspend</button>
+      </div>
+    </div>
+
+    <sc-if value="{{needsAdmin}}" hint-placeholder-val="{{ true }}">
+    <section style="background:#fef3e2;border:1px solid #f0c48a;border-left:4px solid #b45309;border-radius:12px;padding:16px 20px;display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;gap:12px;align-items:flex-start">
+        <span style="width:32px;height:32px;border-radius:9999px;background:#b45309;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-weight:600;flex:0 0 auto">!</span>
+        <div><div style="font-size:16px;font-weight:600;color:#92400e">Tenant created · no users yet</div><div style="font-size:14px;color:#4b5565;line-height:20px">Nobody can sign in to this tenant. Add the first tenant admin now — they log in by mobile OTP and add everyone else themselves. Devices and passports can't be allocated until this is done.</div></div>
+      </div>
+      <div style="display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr) minmax(0,1.3fr) auto;gap:10px;align-items:end">
+        <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Full name<input type="text" value="Priya Nair" style="color:#0f172a;height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;background:#fff"></label>
+        <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Mobile (login)<input type="tel" value="+91 98100 22310" style="color:#0f172a;height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;font-family:'IBM Plex Mono',monospace;background:#fff"></label>
+        <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Email (optional)<input type="email" value="priya.nair@apollopharmacy.in" style="color:#0f172a;height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;background:#fff"></label>
+        <button onClick="{{addAdmin}}" style="color:#fff;min-height:44px;padding:6px 18px;border:0;border-radius:12px;background:#1d4ed8;font-size:14px;font-weight:600;cursor:pointer">Add tenant admin</button>
+      </div>
+      <div style="font-size:12px;color:#4b5565">Role is fixed to Tenant admin for the first user. No password is set — a welcome SMS with the login link goes to this number. Audit-logged with your name.</div>
+    </section>
+    </sc-if>
+    <sc-if value="{{hasAdmin}}" hint-placeholder-val="{{ false }}">
+    <section style="background:#e6f6ef;border:1px solid #c6e7d6;border-radius:12px;padding:12px 20px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+      <div style="font-size:14px"><strong style="color:#047857">Tenant admin added · Priya Nair</strong> <span style="color:#4b5565">· welcome SMS sent · she can now add users from the tenant portal</span></div>
+      <div style="display:flex;gap:8px"><a href="Admin-Allocate.dc.html" style="display:inline-flex;align-items:center;min-height:40px;padding:4px 14px;border-radius:8px;background:#1d4ed8;color:#fff;font-size:14px;font-weight:600;text-decoration:none">Next: allocate devices ›</a><a href="Admin-Users.dc.html" style="display:inline-flex;align-items:center;min-height:40px;padding:4px 14px;border:1px solid #7a8696;border-radius:8px;background:#fff;font-size:14px;font-weight:500;text-decoration:none;color:#0f172a">Add more users</a></div>
+    </section>
+    </sc-if>
+
+    <div style="display:flex;gap:4px;border-bottom:1px solid #e2e6ed;font-size:14px">
+      <sc-for list="{{tabs}}" as="t" hint-placeholder-count="5">
+        <button onClick="{{t.pick}}" style="height:40px;padding:0 14px;border:0;border-bottom:2px solid {{t.line}};background:transparent;font-size:14px;font-weight:{{t.w}};color:{{t.fg}};cursor:pointer">{{t.label}}</button>
+      </sc-for>
+    </div>
+
+    <sc-if value="{{isOverview}}" hint-placeholder-val="{{ true }}">
+      <div style="display:grid;grid-template-columns:repeat(5, minmax(0, 1fr));gap:12px">
+        <div style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;padding:14px 16px"><div style="font-size:13px;color:#4b5565">Devices</div><div style="font-size:24px;font-weight:600">30</div><div style="font-size:12px;color:#4b5565">24 PRO · 6 HUB · 1 depot</div></div>
+        <div style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;padding:14px 16px"><div style="font-size:13px;color:#4b5565">Passports issued</div><div style="font-size:24px;font-weight:600">2,400</div><div style="font-size:12px;color:#4b5565">1,814 unused · 586 in play</div></div>
+        <div style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;padding:14px 16px"><div style="font-size:13px;color:#4b5565">Open legs now</div><div style="font-size:24px;font-weight:600">212</div><div style="font-size:12px;color:#4b5565">16 on PRO-900001</div></div>
+        <div style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;padding:14px 16px"><div style="font-size:13px;color:#4b5565">Users</div><div style="font-size:24px;font-weight:600">7 <span style="font-size:14px;color:#4b5565;font-weight:500">/ 25</span></div><div style="font-size:12px;color:#4b5565"><a href="Admin-Users.dc.html" style="color:#1a43b8">manage</a></div></div>
+        <div style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;padding:14px 16px"><div style="font-size:13px;color:#4b5565">Open alerts</div><div style="font-size:24px;font-weight:600;color:#92400e">9</div><div style="font-size:12px;color:#4b5565">2 excursions · 7 silent</div></div>
+      </div>
+      <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:start">
+        <section style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;padding:16px 20px;display:flex;flex-direction:column;gap:8px;font-size:14px">
+          <h2 style="margin:0;font-size:16px;font-weight:600">Setup</h2>
+          <div style="display:flex;justify-content:space-between"><span style="color:#4b5565">Vertical</span><span>Pharma · product passports</span></div>
+          <div style="display:flex;justify-content:space-between"><span style="color:#4b5565">Hosted on</span><span>Shared platform · ap-south-1</span></div>
+          <div style="display:flex;justify-content:space-between"><span style="color:#4b5565">Default profile</span><span>2–8 °C · 30 min grace · <a href="Admin-Profiles.dc.html" style="color:#1a43b8">profiles</a></span></div>
+          <div style="display:flex;justify-content:space-between"><span style="color:#4b5565">Journey template</span><span>Depot → Pro → Pharmacy · <a href="Admin-Journeys.dc.html" style="color:#1a43b8">edit</a></span></div>
+          <div style="display:flex;justify-content:space-between"><span style="color:#4b5565">Location on bind</span><span>required (pharma)</span></div>
+          <div style="display:flex;justify-content:space-between"><span style="color:#4b5565">Passport quota</span><span>5,000 / month · 2,400 used</span></div>
+          <div style="display:flex;justify-content:space-between"><span style="color:#4b5565">Prints own passports</span><span>yes · from tenant portal</span></div>
+          <div style="display:flex;justify-content:space-between"><span style="color:#4b5565">Depots</span><span>Okhla (hub TRK-HUB-900004)</span></div>
+        </section>
+        <section style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;padding:16px 20px;display:flex;flex-direction:column;gap:8px;font-size:14px">
+          <h2 style="margin:0;font-size:16px;font-weight:600">Contacts &amp; billing</h2>
+          <div style="display:flex;justify-content:space-between"><span style="color:#4b5565">Primary admin</span><span>admin@adroit.com · +91 98***** 4421</span></div>
+          <div style="display:flex;justify-content:space-between"><span style="color:#4b5565">Escalation</span><span>Delhi Zone Manager</span></div>
+          <div style="display:flex;justify-content:space-between"><span style="color:#4b5565">Plan</span><span>Devices sold · passports per 1,000</span></div>
+          <div style="display:flex;justify-content:space-between"><span style="color:#4b5565">Last invoice</span><span>INV-2026-118 · 2 Oct</span></div>
+          <div style="display:flex;justify-content:space-between"><span style="color:#4b5565">Allowed IPs</span><span style="color:#4b5565">not enforced (shared pod)</span></div>
+          <h2 style="margin:10px 0 0;font-size:16px;font-weight:600">Recent activity</h2>
+          <div style="color:#4b5565">21 Oct · asked to replace label on PRO-900001 · <a href="Admin-Approvals.dc.html" style="color:#1a43b8">waiting</a></div>
+          <div style="color:#4b5565">21 Oct · 48 passports issued from tenant portal</div>
+          <div style="color:#4b5565">20 Oct · user "QA Field Tester" added by staff</div>
+        </section>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{isOther}}" hint-placeholder-val="{{ false }}">
+      <section style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;padding:40px;text-align:center;color:#4b5565;font-size:14px">
+        <div style="font-size:16px;font-weight:600;color:#0f172a;margin-bottom:6px">{{otherTitle}}</div>
+        {{otherText}}
+      </section>
+    </sc-if>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":900}}'>
+class Component extends DCLogic {
+  constructor(p){ super(p); this.state = { tab: 'overview', admin: false }; }
+  renderVals() {
+    const defs = [
+      ['overview','Overview','',''],
+      ['devices','Devices · 30','Same table as Inventory, filtered to this tenant','Columns: TRK ID, model, depot hub, last sync, open passports, firmware.'],
+      ['passports','Passports · 2,400','Batches issued to Adroit','Per batch: size, issued by (staff or tenant portal), printed, used, void. Links to Issue passports.'],
+      ['users','Users · 7','Opens Users and roles for this tenant','Same page as the Users board, preselected.'],
+      ['settings','Settings','Profile, journey template, quota, location rule, IP allowlist (bank environments)','Every change here needs a reason and lands in the audit log.']
+    ];
+    const t = this.state.tab;
+    const tabs = defs.map(d => ({ label: d[1], line: t === d[0] ? '#1d4ed8' : 'transparent', w: t === d[0] ? 600 : 500, fg: t === d[0] ? '#1a43b8' : '#4b5565', pick: () => this.setState({ tab: d[0] }) }));
+    const cur = defs.find(d => d[0] === t);
+    return { needsAdmin: !this.state.admin, hasAdmin: this.state.admin, addAdmin: () => this.setState({ admin: true }), tabs, isOverview: t === 'overview', isOther: t !== 'overview', otherTitle: cur[2], otherText: cur[3] };
+  }
+}
+</script>
+</body>
+</html>

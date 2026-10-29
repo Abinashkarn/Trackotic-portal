@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Empty states, loading and permission walls</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>body{margin:0;font-family:"Noto Sans",system-ui,sans-serif;color:#0f172a;background:#f3f5f9}a{color:#1a43b8}a:hover{color:#0f2f8a}button{font-family:inherit}/*sc-safety*/ input,select,textarea{min-width:0;max-width:100%;box-sizing:border-box} td,th,p,li{overflow-wrap:break-word} td:last-child,th:last-child{white-space:nowrap} button{white-space:normal;line-height:1.2}</style>
+</helmet>
+<div style="color:#0f172a;width:1280px;box-sizing:border-box;padding:24px;background:#f3f5f9;display:flex;flex-direction:column;gap:16px">
+  <div><h1 style="margin:0;font-size:22px;font-weight:600">Empty states, loading, permission walls</h1><div style="font-size:14px;color:#4b5565">Every list in the product has three non-happy states. Same shape everywhere: one line of what this is, one line of what to do, one button. No illustrations.</div></div>
+
+  <div style="display:grid;grid-template-columns:repeat(3, minmax(0, 1fr));gap:16px">
+    <sc-for list="{{cards}}" as="c" hint-placeholder-count="9">
+      <section style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;overflow:hidden;display:flex;flex-direction:column">
+        <div style="padding:8px 14px;border-bottom:1px solid #e2e6ed;font-size:12px;font-weight:600;letter-spacing:0.06em;color:#4b5565;display:flex;justify-content:space-between"><span>{{c.where}}</span><span style="color:{{c.tagColor}}">{{c.tag}}</span></div>
+        <div style="padding:36px 24px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;flex:1;justify-content:center;min-height:180px">
+          <span style="width:40px;height:40px;border-radius:9999px;background:{{c.iconBg}};color:{{c.iconFg}};display:inline-flex;align-items:center;justify-content:center;font-size:18px;font-weight:600">{{c.icon}}</span>
+          <div style="font-size:16px;font-weight:600">{{c.title}}</div>
+          <div style="font-size:14px;line-height:20px;color:#4b5565;max-width:300px">{{c.body}}</div>
+          <sc-if value="{{c.hasBtn}}" hint-placeholder-val="{{ true }}"><button style="margin-top:6px;min-height:40px;padding:6px 16px;border:1px solid {{c.btnBorder}};border-radius:8px;background:{{c.btnBg}};color:{{c.btnFg}};font-size:14px;font-weight:600;cursor:pointer">{{c.btn}}</button></sc-if>
+        </div>
+      </section>
+    </sc-for>
+  </div>
+
+  <section style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;padding:16px 20px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1fr);gap:20px;font-size:14px">
+    <div><div style="font-weight:600;margin-bottom:6px">Loading</div><div style="color:#4b5565;line-height:20px">Skeleton rows in the table's own shape (grey bars, 3–5 rows). Never a spinner over a blank page. Numbers on stat cards show "—" until loaded, never 0.</div></div>
+    <div><div style="font-weight:600;margin-bottom:6px">Error</div><div style="color:#4b5565;line-height:20px">Inline card, red dot, plain sentence, "Retry". Keep whatever was already on screen. Request id shown small for support.</div></div>
+    <div><div style="font-weight:600;margin-bottom:6px">Permission</div><div style="color:#4b5565;line-height:20px">Say who <em>can</em> do it, not just that you can't. On bank pods: never confirm or deny that a passport exists to an unauthorised IP — same 404 page as an invalid code.</div></div>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":900}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const mk = (where, tag, kind, title, body, btn) => {
+      const k = { empty:['#e8eefc','#1a43b8','○','EMPTY','#1a43b8'], loading:['#eef1f6','#4b5565','…','LOADING','#4b5565'], error:['#fdecec','#a61b1b','!','ERROR','#a61b1b'], perm:['#fef3e2','#92400e','⌀','NO ACCESS','#92400e'] }[kind];
+      return { where, tag: tag || k[3], tagColor: k[4], iconBg: k[0], iconFg: k[1], icon: k[2], title, body, hasBtn: !!btn, btn, btnBorder: kind === 'error' ? '#b91c1c' : '#1d4ed8', btnBg: kind === 'empty' ? '#1d4ed8' : '#fff', btnFg: kind === 'empty' ? '#fff' : (kind === 'error' ? '#b91c1c' : '#1a43b8') };
+    };
+    const cards = [
+      mk('TENANT · STOCK', null, 'empty', 'No passports yet', 'Track0tic issues your first batch when devices are allocated. Nothing to print until then.', 'Request stock'),
+      mk('FIELD · DEVICE', null, 'empty', 'Nothing on this device', 'Scan a passport to bind it. Cartons bind everything inside them.', 'Scan passport'),
+      mk('ADMIN · APPROVALS', null, 'empty', 'Queue is clear', 'Tenant requests land here. You will also get an email.', null),
+      mk('ANY TABLE', null, 'loading', 'Loading…', 'Skeleton rows, same column widths as the real table. Stat cards show "—".', null),
+      mk('FIELD · BIND', null, 'error', 'Could not reach Track0tic', 'Your last code was not bound. Move to signal and retry — the code stays on screen.', 'Retry'),
+      mk('ADMIN · REPORTS', null, 'error', 'Report timed out', 'Narrow the date range or pick one tenant. Request id 7f3a-…', 'Retry'),
+      mk('TENANT · USERS', null, 'perm', 'Only a tenant admin can add users', 'Ask admin@adroit.com, or Track0tic support can add them for you.', null),
+      mk('PUBLIC · /p/ IN BANK ENVIRONMENT', 'LOOKS LIKE 404', 'perm', 'Nothing here', 'Shown to any IP outside the branch allowlist — identical to an invalid code. No hint that a passport exists.', null),
+      mk('ADMIN · WRONG ENVIRONMENT', null, 'perm', 'This tenant lives in a dedicated environment', 'Muthoot is administered from its own AWS account. Sign in there.', 'Open Muthoot admin')
+    ];
+    return { cards };
+  }
+}
+</script>
+</body>
+</html>

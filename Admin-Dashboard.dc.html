@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Track0tic admin — dashboard</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+body{margin:0;font-family:"Noto Sans",system-ui,sans-serif;color:#0f172a;background:#f3f5f9}
+a{color:#1a43b8}a:hover{color:#0f2f8a}
+table{border-collapse:collapse}
+/*sc-safety*/ input,select,textarea{min-width:0;max-width:100%;box-sizing:border-box} td,th,p,li{overflow-wrap:break-word} td:last-child,th:last-child{white-space:nowrap} button{white-space:normal;line-height:1.2}</style>
+</helmet>
+<div style="color:#0f172a;display:flex;flex-wrap:wrap;min-height:900px;background:#f3f5f9">
+  <dc-import name="Admin-Sidebar" active="dashboard" hint-size="240px,820px"></dc-import>
+
+  <main style="color:#0f172a;flex:999 1 560px;min-width:0;padding:24px;box-sizing:border-box;display:flex;flex-direction:column;gap:20px">
+    <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px">
+      <div>
+        <h1 style="margin:0;font-size:22px;line-height:28px;font-weight:600">Good afternoon</h1>
+        <div style="font-size:14px;color:#4b5565">Tuesday 28 Oct · shared platform · 6 tenants live</div>
+      </div>
+      <div style="display:flex;gap:8px">
+        <a href="Admin-Receive.dc.html" style="color:#1a43b8;display:inline-flex;align-items:center;height:44px;padding:0 16px;border:1px solid #7a8696;border-radius:12px;background:#fff;font-size:14px;font-weight:500;text-decoration:none">Receive devices</a>
+        <a href="Admin-Tenants.dc.html" style="display:inline-flex;align-items:center;height:44px;padding:0 16px;border-radius:12px;background:#1d4ed8;color:#fff;font-size:14px;font-weight:600;text-decoration:none">Add tenant</a>
+      </div>
+    </div>
+
+    <section aria-label="Needs attention" style="display:grid;grid-template-columns:repeat(3, minmax(0, 1fr));gap:12px">
+      <a href="Admin-Alerts.dc.html" style="display:block;padding:16px;border-radius:12px;background:#fdecec;border:1px solid #e2e6ed;text-decoration:none;color:#0f172a">
+        <div style="font-size:13px;font-weight:500;color:#a61b1b;letter-spacing:0.02em">OPEN ALERTS</div>
+        <div style="font-size:32px;font-weight:600;line-height:40px">34</div>
+        <div style="font-size:13px;color:#4b5565">9 excursions · 21 offline · 4 bag opens</div>
+      </a>
+      <a href="Admin-Approvals.dc.html" style="display:block;padding:16px;border-radius:12px;background:#e8eefc;border:1px solid #e2e6ed;text-decoration:none;color:#0f172a">
+        <div style="font-size:13px;font-weight:500;color:#1a43b8;letter-spacing:0.02em">PENDING APPROVALS</div>
+        <div style="font-size:32px;font-weight:600;line-height:40px">2</div>
+        <div style="font-size:13px;color:#4b5565">1 reallocation · 1 BFSI user change</div>
+      </a>
+      <a href="Admin-Alerts.dc.html" style="display:block;padding:16px;border-radius:12px;background:#fef3e2;border:1px solid #e2e6ed;text-decoration:none;color:#0f172a">
+        <div style="font-size:13px;font-weight:500;color:#92400e;letter-spacing:0.02em">STALE HUB BINDINGS</div>
+        <div style="font-size:32px;font-weight:600;line-height:40px">3</div>
+        <div style="font-size:13px;color:#4b5565">passports past max storage, never scanned out</div>
+      </a>
+    </section>
+
+    <section style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;padding:16px 20px">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px">
+        <h2 style="margin:0;font-size:18px;font-weight:600">Devices — from the manufacturer to the customer</h2>
+        <a href="Admin-Inventory.dc.html" style="color:#1a43b8;font-size:14px;font-weight:500">Open inventory ›</a>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(6, minmax(0, 1fr));gap:8px">
+        <a href="Admin-Inventory.dc.html" style="padding:12px;border:1px solid #e2e6ed;border-radius:8px;text-decoration:none;color:#0f172a"><div style="font-size:13px;color:#4b5565">1 · Received</div><div style="font-size:24px;font-weight:600">3</div></a>
+        <a href="Admin-Inventory.dc.html" style="padding:12px;border:1px solid #e2e6ed;border-radius:8px;text-decoration:none;color:#0f172a"><div style="font-size:13px;color:#4b5565">2 · SIM bound</div><div style="font-size:24px;font-weight:600">5</div></a>
+        <a href="Admin-Inventory.dc.html" style="padding:12px;border:1px solid #e2e6ed;border-radius:8px;text-decoration:none;color:#0f172a"><div style="font-size:13px;color:#4b5565">3 · QC passed</div><div style="font-size:24px;font-weight:600">1</div></a>
+        <a href="Admin-Inventory.dc.html" style="padding:12px;border:1px solid #e2e6ed;border-radius:8px;text-decoration:none;color:#0f172a"><div style="font-size:13px;color:#4b5565">4 · Labelled</div><div style="font-size:24px;font-weight:600">6</div></a>
+        <a href="Admin-Inventory.dc.html" style="padding:12px;border:1px solid #e2e6ed;border-radius:8px;text-decoration:none;color:#0f172a"><div style="font-size:13px;color:#4b5565">5 · In stock</div><div style="font-size:24px;font-weight:600">6</div></a>
+        <a href="Admin-Inventory.dc.html" style="padding:12px;border:1px solid #1d4ed8;background:#e8eefc;border-radius:8px;text-decoration:none;color:#0f172a"><div style="font-size:13px;color:#1a43b8">6 · With customers</div><div style="font-size:24px;font-weight:600">9</div></a>
+      </div>
+      <div style="font-size:13px;color:#4b5565;margin-top:10px">By type with customers: HUB 2 · Pro 5 · Lite 2 · Lockbox 0 &nbsp;·&nbsp; QC failed → RMA: 2</div>
+    </section>
+
+    <div style="display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:12px">
+      <section style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;padding:16px 20px">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px">
+          <h2 style="margin:0;font-size:18px;font-weight:600">Passports</h2>
+          <a href="Admin-Issue.dc.html" style="color:#1a43b8;font-size:14px;font-weight:500">Issue ›</a>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3, minmax(0, 1fr));gap:8px;margin-bottom:12px">
+          <div><div style="font-size:13px;color:#4b5565">In stock</div><div style="font-size:24px;font-weight:600">71</div></div>
+          <div><div style="font-size:13px;color:#4b5565">On device</div><div style="font-size:24px;font-weight:600">18</div></div>
+          <div><div style="font-size:13px;color:#4b5565">Off device</div><div style="font-size:24px;font-weight:600">7</div></div>
+        </div>
+        <table style="width:100%;font-size:14px">
+          <tbody>
+            <tr style="border-top:1px solid #e2e6ed"><td style="padding:8px 0">Adroit Agencies</td><td style="padding:8px 0;color:#4b5565">4 books</td><td style="padding:8px 0;text-align:right;font-family:'IBM Plex Mono',monospace">71 / 24 / 7</td></tr>
+            <tr style="border-top:1px solid #e2e6ed"><td style="padding:8px 0">Apollo Pharmacy</td><td style="padding:8px 0;color:#4b5565">0 books</td><td style="padding:8px 0;text-align:right;font-family:'IBM Plex Mono',monospace">0 / 0 / 0</td></tr>
+            <tr style="border-top:1px solid #e2e6ed"><td style="padding:8px 0">Test Lab</td><td style="padding:8px 0;color:#4b5565">1 book</td><td style="padding:8px 0;text-align:right;font-family:'IBM Plex Mono',monospace">30 / 0 / 0</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;padding:16px 20px">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px">
+          <h2 style="margin:0;font-size:18px;font-weight:600">Latest events</h2>
+          <a href="Admin-AuditLog.dc.html" style="color:#1a43b8;font-size:14px;font-weight:500">Audit log ›</a>
+        </div>
+        <ul style="list-style:none;margin:0;padding:0;font-size:14px;display:flex;flex-direction:column">
+          <li style="display:flex;gap:10px;padding:8px 0;border-top:1px solid #e2e6ed"><span style="color:#4b5565;width:48px;flex:0 0 auto">16:28</span><span>Handover · <span style="font-family:'IBM Plex Mono',monospace">097FQYD7</span> at Apollo Nehru Place · Adroit</span></li>
+          <li style="display:flex;gap:10px;padding:8px 0;border-top:1px solid #e2e6ed"><span style="color:#4b5565;width:48px;flex:0 0 auto">15:57</span><span>Bind · carton <span style="font-family:'IBM Plex Mono',monospace">AWHK7ZRR</span> + 5 to TRK-HUB-900001</span></li>
+          <li style="display:flex;gap:10px;padding:8px 0;border-top:1px solid #e2e6ed"><span style="color:#4b5565;width:48px;flex:0 0 auto">15:45</span><span>Issued · 20 passports in 4 cartons · ADROIT-PB-0004</span></li>
+          <li style="display:flex;gap:10px;padding:8px 0;border-top:1px solid #e2e6ed"><span style="color:#4b5565;width:48px;flex:0 0 auto">14:10</span><span>User created · QA Field Tester · Adroit · by Platform admin</span></li>
+          <li style="display:flex;gap:10px;padding:8px 0;border-top:1px solid #e2e6ed"><span style="color:#4b5565;width:48px;flex:0 0 auto">09:02</span><span style="color:#a61b1b">Clock drift · TRK-PRO-000009 · −6 min · flagged</span></li>
+        </ul>
+      </section>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":900}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

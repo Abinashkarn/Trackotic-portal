@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Track0tic admin — issue passports</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+body{margin:0;font-family:"Noto Sans",system-ui,sans-serif;color:#0f172a;background:#f3f5f9}
+a{color:#1a43b8}a:hover{color:#0f2f8a}
+table{border-collapse:collapse}
+input,select,button{font-family:inherit}
+/*sc-safety*/ input,select,textarea{min-width:0;max-width:100%;box-sizing:border-box} td,th,p,li{overflow-wrap:break-word} td:last-child,th:last-child{white-space:nowrap} button{white-space:normal;line-height:1.2}</style>
+</helmet>
+<div style="color:#0f172a;display:flex;flex-wrap:wrap;min-height:900px;background:#f3f5f9">
+  <dc-import name="Admin-Sidebar" active="issue" hint-size="240px,820px"></dc-import>
+
+  <main style="color:#0f172a;flex:999 1 560px;min-width:0;padding:24px;box-sizing:border-box;display:flex;flex-direction:column;gap:20px">
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px">
+      <div>
+        <div style="font-size:13px;color:#4b5565">Sale &amp; supply</div>
+        <h1 style="margin:0;font-size:22px;line-height:28px;font-weight:600">Issue passports</h1>
+        <div style="font-size:14px;color:#4b5565;margin-top:2px">Track0tic is the issuer of every passport. A batch is a book; tenants receive, never mint.</div>
+      </div>
+      <div style="display:flex;gap:4px;padding:4px;background:#fff;border:1px solid #e2e6ed;border-radius:12px">
+        <span style="padding:8px 14px;border-radius:8px;background:#1d4ed8;color:#fff;font-size:14px;font-weight:600">Stock &amp; books</span>
+        <a href="#" style="color:#1a43b8;padding:8px 14px;border-radius:8px;font-size:14px;font-weight:500;text-decoration:none">Journeys</a>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:minmax(0, 380px) minmax(0, 1fr);gap:16px">
+
+      <section style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:14px;align-self:start">
+        <h2 style="margin:0;font-size:18px;font-weight:600">New book</h2>
+
+        <label style="display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:500">Tenant
+          <select onChange="{{setTenant}}" style="color:#0f172a;width:100%;height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:15px;background:#fff">
+            <option value="adroit">Adroit Agencies · pharma · distributor</option><option value="apollo">Apollo Pharmacy · pharma · pharmacy chain</option><option value="max">Max Pharmacy · pharma · pharmacy chain</option><option value="sun">Sun Pharma · pharma · manufacturer</option><option value="testlab">Test Lab · diagnostics · lab</option><option value="medplus">MedPlus · pharma · pharmacy chain</option>
+          </select>
+        </label>
+
+        <div style="display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:10px">
+          <label style="display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:500">Count
+            <input type="number" value="{{count}}" onChange="{{setCount}}" min="1" max="5000" style="color:#0f172a;height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:18px;font-family:'IBM Plex Mono',monospace">
+          </label>
+          <label style="display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:500">Profile
+            <select style="color:#0f172a;width:100%;height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:15px;background:#fff">
+              <option>2–8 °C · 30 d</option>
+              <option>15–25 °C · 90 d</option>
+              <option>−20 °C · 180 d</option>
+            </select>
+          </label>
+        </div>
+
+        <fieldset style="border:1px solid #e2e6ed;border-radius:8px;padding:12px;margin:0;display:flex;flex-direction:column;gap:10px">
+          <legend style="font-size:13px;color:#4b5565;padding:0 6px">Carton structure</legend>
+          <label style="display:flex;align-items:center;gap:10px;font-size:15px">
+            <input type="checkbox" checked="{{cartons}}" onChange="{{toggleCartons}}" style="color:#0f172a;width:20px;height:20px;margin:0">
+            Pack into cartons
+          </label>
+          <sc-if value="{{cartons}}" hint-placeholder-val="{{ true }}">
+            <label style="display:flex;align-items:center;gap:10px;font-size:15px">
+              <input type="number" value="{{per}}" onChange="{{setPer}}" min="2" max="100" style="color:#0f172a;width:72px;height:40px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:16px;font-family:'IBM Plex Mono',monospace">
+              passports per carton
+            </label>
+            <div style="padding:10px 12px;background:#e8eefc;border-radius:8px;font-size:14px;color:#1a43b8">
+              <strong>{{parents}} carton labels</strong> + <strong>{{count}} unit labels</strong> = {{total}} stickers. Scanning a carton binds everything inside it.
+            </div>
+          </sc-if>
+        </fieldset>
+
+        <button style="height:48px;border:0;border-radius:12px;background:#1d4ed8;color:#fff;font-size:16px;font-weight:600;cursor:pointer">Issue {{total}} passports to {{t.short}}</button>
+        <div style="font-size:13px;color:#4b5565">Labels print in book order: each carton, then its units. Print at 100 %, never fit-to-page.</div>
+      </section>
+
+      <section style="display:flex;flex-direction:column;gap:12px;min-width:0">
+        <div style="display:grid;grid-template-columns:repeat(3, minmax(0, 1fr));gap:12px">
+          <div style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;padding:14px 16px"><div style="font-size:13px;color:#4b5565">In stock · {{t.short}}</div><div style="font-size:28px;font-weight:600">{{t.stock}}</div></div>
+          <div style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;padding:14px 16px"><div style="font-size:13px;color:#4b5565">Books</div><div style="font-size:28px;font-weight:600">{{t.books}}</div></div>
+          <div style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;padding:14px 16px"><div style="font-size:13px;color:#4b5565">Scanned at least once</div><div style="font-size:28px;font-weight:600">{{t.scanned}}</div></div>
+        </div>
+
+        <div style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;overflow:hidden">
+          <div style="padding:14px 16px;border-bottom:1px solid #e2e6ed;display:flex;justify-content:space-between;align-items:center">
+            <h2 style="margin:0;font-size:18px;font-weight:600">Books issued to {{t.name}}</h2>
+            <a href="#" style="color:#1a43b8;font-size:14px;font-weight:500">All passports ›</a>
+          </div>
+          <div style="overflow-x:auto">
+          <table style="width:100%;font-size:14px;min-width:640px">
+            <thead>
+              <tr style="color:#4b5565;text-align:left;font-size:13px">
+                <th style="padding:10px 16px;font-weight:500">Book</th><th style="padding:10px 8px;font-weight:500">Issued</th><th style="padding:10px 8px;font-weight:500">Structure</th><th style="padding:10px 8px;font-weight:500">Profile</th><th style="padding:10px 8px;font-weight:500">In stock</th><th style="padding:10px 16px;font-weight:500;text-align:right">Print</th>
+              </tr>
+            </thead>
+            <tbody>
+              <sc-for list="{{t.rows}}" as="r" hint-placeholder-count="4">
+              <tr style="border-top:1px solid #e2e6ed;background:{{r.bg}}">
+                <td style="padding:12px 16px;font-family:'IBM Plex Mono',monospace;font-weight:600">{{r.book}}</td>
+                <td style="padding:12px 8px">{{r.issued}}<div style="font-size:12px;color:#4b5565">{{r.when}}</div></td>
+                <td style="padding:12px 8px">{{r.structure}}</td>
+                <td style="padding:12px 8px">{{r.profile}}</td>
+                <td style="padding:12px 8px">{{r.stock}} <span style="color:#4b5565">/ {{r.total}}</span></td>
+                <td style="padding:12px 16px;text-align:right;white-space:nowrap"><a href="#" style="color:#1a43b8;display:inline-flex;align-items:center;height:32px;padding:0 10px;border:1px solid #7a8696;border-radius:8px;font-size:13px;font-weight:500;text-decoration:none;margin-left:4px">{{r.pdf}}</a><a href="#" style="color:#1a43b8;display:inline-flex;align-items:center;height:32px;padding:0 10px;border:1px solid #7a8696;border-radius:8px;font-size:13px;font-weight:500;text-decoration:none;margin-left:4px">PDF micro</a><a href="#" style="color:#1a43b8;display:inline-flex;align-items:center;height:32px;padding:0 10px;border:1px solid #7a8696;border-radius:8px;font-size:13px;font-weight:500;text-decoration:none;margin-left:4px">ZPL</a></td>
+              </tr>
+              </sc-for>
+              <sc-if value="{{t.empty}}" hint-placeholder-val="{{ false }}"><tr><td colspan="6" style="padding:28px 16px;text-align:center;color:#4b5565;font-size:14px">No books issued to {{t.name}} yet — the first one you issue appears here.</td></tr></sc-if>
+            </tbody>
+          </table>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":900}}'>
+class Component extends DCLogic {
+  constructor(p){ super(p); this.state = { count: 20, per: 5, cartons: true, tenant: 'adroit' }; }
+  renderVals() {
+    const { count, per, cartons, tenant } = this.state;
+    const T = {
+      adroit:  { name:'Adroit Agencies', short:'Adroit', stock:71, books:4, scanned:7, rows:[
+        { book:'ADROIT-PB-0004', issued:'20 + 4 cartons', when:'21 Oct, 15:45', structure:'4 × 5', profile:'2–8 °C', stock:18, total:24, pdf:'PDF 25×15', bg:'#e8eefc' },
+        { book:'ADROIT-PB-0003', issued:'3', when:'21 Oct, 15:07', structure:'flat', profile:'—', stock:3, total:3, pdf:'PDF 25×15', bg:'#fff' },
+        { book:'ADROIT-PB-0002', issued:'30', when:'21 Oct, 14:51', structure:'flat', profile:'2–8 °C', stock:30, total:30, pdf:'PDF 25×15', bg:'#fff' },
+        { book:'ADROIT-PB-0001', issued:'20', when:'21 Oct, 14:23', structure:'flat', profile:'—', stock:20, total:20, pdf:'PDF 25×15', bg:'#fff' } ] },
+      apollo:  { name:'Apollo Pharmacy', short:'Apollo', stock:0, books:0, scanned:0, rows:[] },
+      testlab: { name:'Test Lab', short:'Test Lab', stock:3960, books:2, scanned:41, rows:[
+        { book:'TESTLAB-PB-0002', issued:'2,000 · tube size', when:'18 Oct, 10:10', structure:'flat · tube 25×12', profile:'Lab 2–8 · 4 h', stock:1996, total:2000, pdf:'PDF tube size', bg:'#e8eefc' },
+        { book:'TESTLAB-PB-0001', issued:'2,000 · tube size', when:'6 Oct, 09:40', structure:'flat · tube 25×12', profile:'Lab 2–8 · 4 h', stock:1964, total:2000, pdf:'PDF tube size', bg:'#fff' } ] }
+    };
+    const names = { max:'Max Pharmacy', sun:'Sun Pharma', medplus:'MedPlus' };
+    const base = T[tenant] || { name: names[tenant], short: names[tenant], stock: 0, books: 0, scanned: 0, rows: [] };
+    const t = { ...base, empty: base.rows.length === 0 };
+    const parents = cartons ? Math.ceil(count / Math.max(1, per)) : 0;
+    return {
+      t, count, per, cartons, parents, total: count + parents,
+      setTenant: (e) => this.setState({ tenant: e.target.value }),
+      setCount: (e) => this.setState({ count: Math.max(1, parseInt(e.target.value || '1', 10)) }),
+      setPer: (e) => this.setState({ per: Math.max(2, parseInt(e.target.value || '2', 10)) }),
+      toggleCartons: (e) => this.setState({ cartons: e.target.checked })
+    };
+  }
+}
+</script>
+</body>
+</html>

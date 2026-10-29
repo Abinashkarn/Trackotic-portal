@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Tenant portal — exceptions</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>body{margin:0;font-family:"Noto Sans",system-ui,sans-serif;color:#0f172a;background:#f3f5f9}a{color:#1a43b8}a:hover{color:#0f2f8a}table{border-collapse:collapse}input,select,button,textarea{font-family:inherit}/*sc-safety*/ input,select,textarea{min-width:0;max-width:100%;box-sizing:border-box} td,th,p,li{overflow-wrap:break-word} td:last-child,th:last-child{white-space:nowrap} button{white-space:normal;line-height:1.2}</style>
+</helmet>
+<div style="color:#0f172a;display:flex;flex-wrap:wrap;min-height:820px;background:#f3f5f9">
+  <nav aria-label="Adroit portal" style="width:220px;box-sizing:border-box;background:#fff;border-right:1px solid #e2e6ed;padding:16px 12px;display:flex;flex-direction:column;gap:2px;font-size:14px">
+    <div style="padding:4px 10px 14px;display:flex;flex-direction:column;gap:2px"><span style="font-size:16px;font-weight:600">Adroit Agencies</span><span style="font-size:12px;color:#4b5565">Track<span style="color:#e11d2e">0</span>tic<sup style="font-size:0.45em;font-weight:600;vertical-align:top;margin-left:1px;opacity:0.85">TM</sup> · pharma</span></div>
+    <a href="#" style="display:flex;align-items:center;height:36px;padding:0 10px;border-radius:8px;text-decoration:none;color:#0f172a">Dashboard</a>
+    <a href="#" style="display:flex;align-items:center;height:36px;padding:0 10px;border-radius:8px;text-decoration:none;color:#0f172a">Dispatcher</a>
+    <a href="#" style="display:flex;align-items:center;height:36px;padding:0 10px;border-radius:8px;text-decoration:none;color:#0f172a">Trips</a>
+    <div style="padding:12px 10px 4px;font-size:11px;letter-spacing:0.08em;color:#4b5565;font-weight:600">PASSPORTS</div>
+    <a href="Tenant-Stock.dc.html" style="display:flex;align-items:center;height:36px;padding:0 10px;border-radius:8px;text-decoration:none;color:#0f172a">Stock</a>
+    <a href="Tenant-Custody.dc.html" style="display:flex;align-items:center;height:36px;padding:0 10px;border-radius:8px;text-decoration:none;color:#0f172a">In custody</a>
+    <a href="Tenant-Custody.dc.html" style="display:flex;align-items:center;height:36px;padding:0 10px;border-radius:8px;text-decoration:none;color:#0f172a">Off device</a>
+    <div style="padding:12px 10px 4px;font-size:11px;letter-spacing:0.08em;color:#4b5565;font-weight:600">DEVICES</div>
+    <a href="Tenant-Devices.dc.html" style="display:flex;align-items:center;height:36px;padding:0 10px;border-radius:8px;text-decoration:none;color:#0f172a">My devices</a>
+    <a href="Tenant-Devices.dc.html" style="display:flex;align-items:center;height:36px;padding:0 10px;border-radius:8px;text-decoration:none;color:#0f172a">HUB cold room</a>
+    <div style="padding:12px 10px 4px;font-size:11px;letter-spacing:0.08em;color:#4b5565;font-weight:600">TEAM</div>
+    <a href="Tenant-Exceptions.dc.html" style="display:flex;align-items:center;justify-content:space-between;height:36px;padding:0 10px;border-radius:8px;text-decoration:none;color:#fff;background:#1d4ed8;font-weight:500"><span>Exceptions</span><span style="font-size:11px;font-weight:600;padding:1px 7px;border-radius:9999px;background:#b45309;color:#fff">3</span></a>
+    <a href="Tenant-Grants.dc.html" style="display:flex;align-items:center;height:36px;padding:0 10px;border-radius:8px;text-decoration:none;color:#0f172a">Visibility grants</a>
+    <a href="Tenant-Users.dc.html" style="display:flex;align-items:center;height:36px;padding:0 10px;border-radius:8px;text-decoration:none;color:#0f172a">Users</a>
+    <a href="#" style="display:flex;align-items:center;height:36px;padding:0 10px;border-radius:8px;text-decoration:none;color:#0f172a">Reports</a>
+  </nav>
+
+
+  <main style="color:#0f172a;flex:999 1 560px;min-width:0;padding:24px;box-sizing:border-box;display:flex;flex-direction:column;gap:20px">
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px">
+      <div><h1 style="margin:0;font-size:22px;line-height:28px;font-weight:600">Exceptions</h1><div style="font-size:14px;color:#4b5565;margin-top:2px">Things that drifted from the journey template or the temperature profile. Nothing here was blocked — it is for you to look at.</div></div>
+      <div style="display:flex;gap:6px;font-size:13px"><span style="padding:6px 12px;border-radius:9999px;background:#1d4ed8;color:#fff;font-weight:500">Open 3</span><span style="padding:6px 12px;border-radius:9999px;background:#eef1f6;color:#4b5565;font-weight:500">Resolved 7 d · 11</span></div>
+    </div>
+
+    <sc-for list="{{items}}" as="it" hint-placeholder-count="3">
+      <section style="background:#fff;border:1px solid #e2e6ed;border-left:4px solid {{it.accent}};border-radius:12px;padding:16px 20px;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:16px">
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><span style="padding:3px 10px;border-radius:9999px;background:{{it.bg}};color:{{it.fg}};font-size:12px;font-weight:600">{{it.kind}}</span><span style="font-size:13px;color:#4b5565">{{it.meta}}</span></div>
+          <h2 style="margin:0;font-size:17px;font-weight:600">{{it.title}}</h2>
+          <p style="margin:0;font-size:14px;line-height:20px;color:#4b5565">{{it.body}}</p>
+          <div style="font-size:13px;color:#4b5565">Affects: <span style="font-family:'IBM Plex Mono',monospace;color:#0f172a">{{it.subject}}</span></div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <sc-if value="{{it.open}}" hint-placeholder-val="{{ true }}">
+            <div style="font-size:13px;font-weight:600;color:#4b5565">What you can do</div>
+            <sc-for list="{{it.actions}}" as="a" hint-placeholder-count="2"><button onClick="{{a.go}}" style="height:40px;padding:0 12px;border:1px solid {{a.border}};border-radius:8px;background:{{a.bg}};color:{{a.fg}};font-size:13px;font-weight:600;cursor:pointer;text-align:left">{{a.label}}</button></sc-for>
+          </sc-if>
+          <sc-if value="{{it.closed}}" hint-placeholder-val="{{ false }}">
+            <div style="padding:12px;border-radius:8px;background:#e6f6ef;color:#047857;font-size:13px;font-weight:600">Resolved · {{it.how}}</div>
+            <div style="font-size:12px;color:#4b5565">Noted on the certificate as a tenant remark, with your name.</div>
+          </sc-if>
+        </div>
+      </section>
+    </sc-for>
+
+    <div style="font-size:13px;color:#4b5565;line-height:18px">Exceptions you cannot resolve yourself (void a passport, replace a label, return a device) go to Track0tic as a request and appear in their Approvals queue. You will get an SMS with the decision.</div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":820}}'>
+class Component extends DCLogic {
+  constructor(p){ super(p); this.state = { r: {} }; }
+  renderVals() {
+    const defs = [
+      { id:'a', kind:'EXCURSION OPEN', accent:'#b91c1c', bg:'#fdecec', fg:'#a61b1b', meta:'TRK-PRO-900012 · Staff Member 2 · since 15:48', title:'9.4 °C for 12 minutes and still above 8 °C', body:'8 passports on this logger. Door-seal pattern: temperature climbs each stop and does not recover. Profile 2–8 °C, grace 30 min — the legs will be graded "excursion" if this continues past 16:18.', subject:'KGVZA1FQ + 7', actions:[['Call Staff Member 2','call'],['Mark: ice packs replaced at 16:05','note'],['Ask Track0tic to check device','req']], how:'ice packs replaced, back in range 16:09' },
+      { id:'b', kind:'LEG OVER TEMPLATE', accent:'#b45309', bg:'#fef3e2', fg:'#92400e', meta:'TRK-PRO-900008 · Delhi Zone Manager · 14 h 20 open', title:'Delivery leg longer than 12 h', body:'5 passports bound yesterday 17:40 have not been handed over or bound onward. Logger still reporting, in range. Most likely the receiver forgot to acknowledge — or the vehicle is parked overnight.', subject:'Z8RK2QMA + 4', actions:[['Mark: delivered, receiver did not scan','note'],['Close leg now (handover without device)','close']], how:'closed as delivered to Max Pharmacy, 09:12' },
+      { id:'c', kind:'UNEXPECTED DEVICE', accent:'#1d4ed8', bg:'#e8eefc', fg:'#1a43b8', meta:'Apollo Pharmacy bound to their HUB · 21 Oct 16:40', title:'A passport you handed over was bound by another tenant', body:'This is normal — Apollo put 097FQYD7 into their own HUB. You see this leg only because you were the previous custodian. No action needed unless you did not expect Apollo to have it.', subject:'097FQYD7', actions:[['Dismiss · expected','note'],['Report: not handed to Apollo','req']], how:'dismissed' }
+    ];
+    const r = this.state.r;
+    const items = defs.map(d => ({ ...d, open: !r[d.id], closed: !!r[d.id],
+      actions: d.actions.map(a => ({ label: a[0], border: a[1] === 'req' ? '#7a8696' : '#1d4ed8', bg: a[1] === 'req' ? '#fff' : '#e8eefc', fg: a[1] === 'req' ? '#0f172a' : '#1a43b8', go: () => this.setState({ r: { ...r, [d.id]: true } }) })) }));
+    return { items };
+  }
+}
+</script>
+</body>
+</html>

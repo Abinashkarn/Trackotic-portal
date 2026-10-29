@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Label artwork — device, passport, carton, tube</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>body{margin:0;font-family:"Noto Sans",system-ui,sans-serif;color:#0f172a;background:#f3f5f9}/*sc-safety*/ input,select,textarea{min-width:0;max-width:100%;box-sizing:border-box} td,th,p,li{overflow-wrap:break-word} td:last-child,th:last-child{white-space:nowrap} button{white-space:normal;line-height:1.2}</style>
+</helmet>
+<div style="color:#0f172a;width:1280px;box-sizing:border-box;padding:24px;background:#f3f5f9;display:flex;flex-direction:column;gap:20px">
+  <div><h1 style="margin:0;font-size:22px;font-weight:600">Label artwork · actual proportions</h1><div style="font-size:14px;color:#4b5565">Shown at ~4 px/mm. QR encodes a full URL (<code>https://…/d/&lt;token&gt;</code> or <code>/p/&lt;token&gt;</code>), never a bare ID. Short code printed under every passport QR so it can be typed when the camera fails. Minimum QR module 0.5 mm; quiet zone 4 modules; error correction M (passport) / Q (device, outdoor).</div></div>
+
+  <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px">
+    <section style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;justify-content:space-between;align-items:baseline"><h2 style="margin:0;font-size:16px;font-weight:600">Device label · 60 × 30 mm</h2><span style="font-size:12px;color:#4b5565">polyester, laminated, −30 °C adhesive · one per device, permanent</span></div>
+      <div style="width:240px;height:120px;border:1px solid #0f172a;border-radius:6px;background:#fff;display:flex;padding:8px;box-sizing:border-box;gap:10px">
+        <div style="width:100px;height:100px;background:repeating-conic-gradient(#0f172a 0 25%,#fff 0 50%) 0 0/14px 14px;border:4px solid #fff;outline:1px solid #e2e6ed;flex:0 0 auto"></div>
+        <div style="display:flex;flex-direction:column;justify-content:space-between;flex:1;min-width:0">
+          <div><div style="font-size:9px;font-weight:600;letter-spacing:0.06em">TRACK<span style="color:#e11d2e">0</span>TIC<sup style="font-size:0.5em;margin-left:0">TM</sup></div><div style="font-size:8px;color:#4b5565">Scan to bind passports</div></div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:600;letter-spacing:0.02em">TRK-PRO-900001</div>
+          <div style="font-size:7px;color:#4b5565;line-height:9px">PRO logger · v1 · 2–8 °C<br>Do not remove. Label replaced? Scan shows it.</div>
+        </div>
+      </div>
+      <ul style="margin:0;padding-left:18px;font-size:13px;line-height:19px;color:#4b5565"><li>QR → <code>/d/&lt;20-char opaque token&gt;</code> · token rotates on label replacement (v2) — old sticker then resolves to "label replaced"</li><li>Human-readable TRK ID is for support calls only; never typed to bind</li><li>HUB: same label at 80 × 40 mm, placed at eye height inside the door frame</li><li>LOCKBOX (bank environments): no public text, QR + serial only</li></ul>
+    </section>
+
+    <section style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;justify-content:space-between;align-items:baseline"><h2 style="margin:0;font-size:16px;font-weight:600">Passport QR · standard · 40 × 25 mm</h2><span style="font-size:12px;color:#4b5565">paper or PP, tamper-evident slit, A4 sheet of 40 (5 × 8)</span></div>
+      <div style="display:flex;gap:16px;align-items:flex-start">
+        <div style="width:160px;height:100px;border:1px solid #0f172a;border-radius:4px;background:#fff;display:flex;padding:6px;box-sizing:border-box;gap:8px">
+          <div style="width:84px;height:84px;background:repeating-conic-gradient(#0f172a 0 25%,#fff 0 50%) 0 0/12px 12px;border:4px solid #fff;outline:1px solid #e2e6ed;flex:0 0 auto"></div>
+          <div style="display:flex;flex-direction:column;justify-content:space-between;flex:1;min-width:0">
+            <div style="font-size:6.5px;font-weight:600;letter-spacing:0.02em">TRACK<span style="color:#e11d2e">0</span>TIC<sup style="font-size:0.5em;margin-left:0">TM</sup><br><span style="font-weight:400;color:#4b5565">PASSPORT</span></div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600;letter-spacing:0.08em;line-height:14px">097F<br>QYD7</div>
+            <div style="font-size:6px;color:#4b5565;line-height:8px">Scan for cold-chain record</div>
+          </div>
+        </div>
+        <div style="width:160px;height:100px;border:1px solid #0f172a;border-radius:4px;background:#fff;display:flex;padding:6px;box-sizing:border-box;gap:8px;position:relative">
+          <div style="width:84px;height:84px;background:repeating-conic-gradient(#0f172a 0 25%,#fff 0 50%) 0 0/12px 12px;border:4px solid #fff;outline:1px solid #e2e6ed;flex:0 0 auto"></div>
+          <div style="display:flex;flex-direction:column;justify-content:space-between;flex:1;min-width:0">
+            <div style="font-size:6.5px;font-weight:600;letter-spacing:0.02em">TRACK<span style="color:#e11d2e">0</span>TIC<sup style="font-size:0.5em;margin-left:0">TM</sup><br><span style="font-weight:400;color:#4b5565">CARTON</span></div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600;letter-spacing:0.08em;line-height:14px">AWHK<br>7ZRR</div>
+            <div style="font-size:6px;color:#4b5565;line-height:8px">Binds everything inside</div>
+          </div>
+          <span style="position:absolute;right:-1px;top:-1px;padding:1px 5px;background:#0f172a;color:#fff;font-size:7px;font-weight:600;border-radius:0 4px 0 4px">CARTON</span>
+        </div>
+      </div>
+      <ul style="margin:0;padding-left:18px;font-size:13px;line-height:19px;color:#4b5565"><li>QR → <code>/p/&lt;token&gt;</code>; the 8-char short code is the typed fallback (unambiguous alphabet, no 0/O/1/I)</li><li>Carton label is the same passport type with a CARTON flag; the field app shows the count inside</li><li>Tenant may print from the tenant portal; print is logged (who, when, which codes)</li><li>Nothing about the product on the label — by design (v1)</li></ul>
+    </section>
+
+    <section style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;justify-content:space-between;align-items:baseline"><h2 style="margin:0;font-size:16px;font-weight:600">Passport QR · tube size · 25 × 12 mm wrap</h2><span style="font-size:12px;color:#4b5565">cryo-safe PP, wraps around a 13 mm tube</span></div>
+      <div style="width:200px;height:48px;border:1px solid #0f172a;border-radius:3px;background:#fff;display:flex;padding:4px;box-sizing:border-box;gap:6px;align-items:center">
+        <div style="width:38px;height:38px;background:repeating-conic-gradient(#0f172a 0 25%,#fff 0 50%) 0 0/8px 8px;border:3px solid #fff;outline:1px solid #e2e6ed;flex:0 0 auto"></div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;letter-spacing:0.08em">7PQ2M9XA</div>
+        <div style="font-size:6px;color:#4b5565;margin-left:auto;text-align:right;line-height:8px">T0<br>LAB</div>
+      </div>
+      <ul style="margin:0;padding-left:18px;font-size:13px;line-height:19px;color:#4b5565"><li>Smallest QR in the system — 15 × 15 mm, EC level L, code repeated in text</li><li>Printed on the collection route's portable printer or pre-printed books</li><li>Bench scanner at the lab reads it off a curved tube; app also accepts typed code</li></ul>
+    </section>
+
+    <section style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:12px">
+      <h2 style="margin:0;font-size:16px;font-weight:600">A4 passport sheet · 40 per page</h2>
+      <div style="width:210px;height:297px;border:1px solid #7a8696;background:#fff;display:grid;grid-template-columns:repeat(5,1fr);grid-template-rows:repeat(8,1fr);gap:2px;padding:10px 6px;box-sizing:border-box">
+        <sc-for list="{{cells}}" as="c" hint-placeholder-count="40"><div style="border:1px dashed #c7ced9;display:flex;align-items:center;gap:2px;padding:2px;box-sizing:border-box"><span style="width:14px;height:14px;background:repeating-conic-gradient(#0f172a 0 25%,#fff 0 50%) 0 0/4px 4px;flex:0 0 auto"></span><span style="font-family:'IBM Plex Mono',monospace;font-size:5px;line-height:6px">{{c}}</span></div></sc-for>
+      </div>
+      <ul style="margin:0;padding-left:18px;font-size:13px;line-height:19px;color:#4b5565"><li>Print at 100 % — a scale warning is on the PDF's first page</li><li>Sheet footer carries batch id, tenant, print date, code range</li><li>Reprinting a sheet does not issue new codes; it re-renders the same ones and logs the reprint</li></ul>
+    </section>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":900}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const alpha = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789';
+    let seed = 7;
+    const rnd = () => { seed = (seed * 9301 + 49297) % 233280; return seed / 233280; };
+    const cells = Array.from({ length: 40 }, () => Array.from({ length: 8 }, () => alpha[Math.floor(rnd() * alpha.length)]).join(''));
+    return { cells };
+  }
+}
+</script>
+</body>
+</html>

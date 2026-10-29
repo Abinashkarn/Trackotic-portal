@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Passport — not yet activated</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+body{margin:0;font-family:"Noto Sans",system-ui,sans-serif;color:#0f172a}
+a{color:#1a43b8}a:hover{color:#0f2f8a}
+/*sc-safety*/ input,select,textarea{min-width:0;max-width:100%;box-sizing:border-box} td,th,p,li{overflow-wrap:break-word} td:last-child,th:last-child{white-space:nowrap} button{white-space:normal;line-height:1.2}</style>
+</helmet>
+<div style="color:#0f172a;width:390px;height:844px;box-sizing:border-box;background:#ffffff;display:flex;flex-direction:column;position:relative;overflow:hidden">
+
+  <header style="height:56px;box-sizing:border-box;padding:0 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #e2e6ed">
+    <div style="font-size:18px;font-weight:600">Track<span style="color:#e11d2e">0</span>tic<sup style="font-size:0.45em;font-weight:600;vertical-align:top;margin-left:1px;opacity:0.85">TM</sup></div>
+    <span style="font-size:13px;font-weight:500;color:#4b5565;letter-spacing:0.02em">PASSPORT</span>
+  </header>
+
+  <main style="flex:1 1 auto;overflow:auto;padding:24px 20px 120px;box-sizing:border-box;display:flex;flex-direction:column;gap:16px;align-items:stretch">
+
+    <div style="text-align:center;padding:8px 0 0">
+      <div style="font-size:13px;font-weight:500;color:#4b5565;letter-spacing:0.02em">PASSPORT CODE</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:40px;line-height:48px;font-weight:600;letter-spacing:0.08em;margin-top:4px">018ED0NG</div>
+      <div style="display:inline-flex;align-items:center;gap:8px;margin-top:10px;padding:6px 12px;border-radius:9999px;background:#eef1f6;color:#4b5565;font-size:14px;font-weight:500">
+        <span style="width:8px;height:8px;border-radius:9999px;background:#7a8696"></span>Not yet activated
+      </div>
+    </div>
+
+    <div style="padding:16px;border:1px solid #e2e6ed;border-radius:12px;display:flex;flex-direction:column;gap:6px">
+      <div style="font-size:16px;font-weight:600">Valid Track0tic passport</div>
+      <p style="margin:0;font-size:15px;line-height:22px;color:#4b5565">This label is genuine but has not travelled yet. Its record starts the first time staff bind it to a Track0tic device.</p>
+      <div style="display:flex;gap:16px;margin-top:6px;font-size:14px">
+        <div><span style="color:#4b5565">Profile</span> <strong>2–8 °C</strong></div>
+        <div><span style="color:#4b5565">In carton</span> <strong style="font-family:'IBM Plex Mono',monospace">M14R8THZ</strong></div>
+      </div>
+    </div>
+
+    <div style="padding:14px 16px;background:#f3f5f9;border-radius:12px;font-size:14px;line-height:20px;color:#4b5565">
+      <strong style="color:#0f172a">Received a product with this label?</strong> That is unusual for a passport that was never bound. Keep it and tell the sender.
+    </div>
+  </main>
+
+  <div style="position:absolute;left:0;right:0;bottom:0;padding:12px 20px 24px;background:#fff;box-shadow:0 -2px 12px #0f172a14;display:flex;flex-direction:column;gap:8px">
+    <a href="Bind-Sheet.dc.html" style="display:flex;align-items:center;justify-content:center;height:56px;border-radius:12px;background:#1d4ed8;color:#fff;font-size:17px;font-weight:600;text-decoration:none">Bind to a device</a>
+    <div style="font-size:13px;color:#4b5565;text-align:center">Staff only · you will be asked to log in</div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Tenant portal — passports in custody</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>body{margin:0;font-family:"Noto Sans",system-ui,sans-serif;color:#0f172a;background:#f3f5f9}a{color:#1a43b8}a:hover{color:#0f2f8a}table{border-collapse:collapse}input,select,button,textarea{font-family:inherit}/*sc-safety*/ input,select,textarea{min-width:0;max-width:100%;box-sizing:border-box} td,th,p,li{overflow-wrap:break-word} td:last-child,th:last-child{white-space:nowrap} button{white-space:normal;line-height:1.2}</style>
+</helmet>
+<div style="color:#0f172a;display:flex;flex-wrap:wrap;min-height:820px;background:#f3f5f9">
+  <nav aria-label="Adroit portal" style="width:220px;box-sizing:border-box;background:#fff;border-right:1px solid #e2e6ed;padding:16px 12px;display:flex;flex-direction:column;gap:2px;font-size:14px">
+    <div style="padding:4px 10px 14px;display:flex;flex-direction:column;gap:2px"><span style="font-size:16px;font-weight:600">Adroit Agencies</span><span style="font-size:12px;color:#4b5565">Track<span style="color:#e11d2e">0</span>tic<sup style="font-size:0.45em;font-weight:600;vertical-align:top;margin-left:1px;opacity:0.85">TM</sup> · pharma</span></div>
+    <a href="#" style="display:flex;align-items:center;height:36px;padding:0 10px;border-radius:8px;text-decoration:none;color:#0f172a">Dashboard</a>
+    <a href="#" style="display:flex;align-items:center;height:36px;padding:0 10px;border-radius:8px;text-decoration:none;color:#0f172a">Dispatcher</a>
+    <a href="#" style="display:flex;align-items:center;height:36px;padding:0 10px;border-radius:8px;text-decoration:none;color:#0f172a">Trips</a>
+    <div style="padding:12px 10px 4px;font-size:11px;letter-spacing:0.08em;color:#4b5565;font-weight:600">PASSPORTS</div>
+    <a href="Tenant-Stock.dc.html" style="display:flex;align-items:center;height:36px;padding:0 10px;border-radius:8px;text-decoration:none;color:#0f172a">Stock</a>
+    <a href="Tenant-Custody.dc.html" style="display:flex;align-items:center;height:36px;padding:0 10px;border-radius:8px;text-decoration:none;color:#fff;background:#1d4ed8;font-weight:500">In custody</a>
+    <a href="Tenant-Custody.dc.html" style="display:flex;align-items:center;height:36px;padding:0 10px;border-radius:8px;text-decoration:none;color:#0f172a">Off device</a>
+    <div style="padding:12px 10px 4px;font-size:11px;letter-spacing:0.08em;color:#4b5565;font-weight:600">DEVICES</div>
+    <a href="Tenant-Devices.dc.html" style="display:flex;align-items:center;height:36px;padding:0 10px;border-radius:8px;text-decoration:none;color:#0f172a">My devices</a>
+    <a href="Tenant-Devices.dc.html" style="display:flex;align-items:center;height:36px;padding:0 10px;border-radius:8px;text-decoration:none;color:#0f172a">HUB cold room</a>
+    <div style="padding:12px 10px 4px;font-size:11px;letter-spacing:0.08em;color:#4b5565;font-weight:600">TEAM</div>
+    <a href="Tenant-Exceptions.dc.html" style="display:flex;align-items:center;justify-content:space-between;height:36px;padding:0 10px;border-radius:8px;text-decoration:none;color:#0f172a"><span>Exceptions</span><span style="font-size:11px;font-weight:600;padding:1px 7px;border-radius:9999px;background:#b45309;color:#fff">3</span></a>
+    <a href="Tenant-Grants.dc.html" style="display:flex;align-items:center;height:36px;padding:0 10px;border-radius:8px;text-decoration:none;color:#0f172a">Visibility grants</a>
+    <a href="Tenant-Users.dc.html" style="display:flex;align-items:center;height:36px;padding:0 10px;border-radius:8px;text-decoration:none;color:#0f172a">Users</a>
+    <a href="#" style="display:flex;align-items:center;height:36px;padding:0 10px;border-radius:8px;text-decoration:none;color:#0f172a">Reports</a>
+  </nav>
+
+
+  <main style="color:#0f172a;flex:999 1 560px;min-width:0;padding:24px;box-sizing:border-box;display:flex;flex-direction:column;gap:20px">
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px">
+      <div><h1 style="margin:0;font-size:22px;line-height:28px;font-weight:600">In custody</h1><div style="font-size:14px;color:#4b5565;margin-top:2px">Every passport currently ON one of your devices. You see your own legs and the one you received from — nothing earlier.</div></div>
+      <div style="display:flex;gap:8px"><input type="search" placeholder="Passport code" style="color:#0f172a;height:40px;border:1px solid #7a8696;border-radius:8px;padding:0 12px;font-size:14px;font-family:'IBM Plex Mono',monospace;width:200px"><button style="color:#0f172a;min-height:40px;padding:6px 14px;border:1px solid #7a8696;border-radius:8px;background:#fff;font-size:14px;font-weight:500;cursor:pointer">Export</button></div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(4, minmax(0, 1fr));gap:12px">
+      <div style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;padding:16px"><div style="font-size:13px;color:#4b5565">On your devices</div><div style="font-size:32px;font-weight:600;line-height:40px">212</div><div style="font-size:13px;color:#4b5565">6 HUB · 24 PRO</div></div>
+      <div style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;padding:16px"><div style="font-size:13px;color:#4b5565">In cold room</div><div style="font-size:32px;font-weight:600;line-height:40px">164</div><div style="font-size:13px;color:#4b5565">HUB-900004 Okhla</div></div>
+      <div style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;padding:16px"><div style="font-size:13px;color:#4b5565">Out for delivery</div><div style="font-size:32px;font-weight:600;line-height:40px">48</div><div style="font-size:13px;color:#4b5565">on 5 PRO loggers</div></div>
+      <div style="background:#e6f6ef;border:1px solid #e2e6ed;border-radius:12px;padding:16px"><div style="font-size:13px;color:#047857">All in range</div><div style="font-size:32px;font-weight:600;line-height:40px;color:#047857">211</div><div style="font-size:13px;color:#92400e">1 with an open excursion</div></div>
+    </div>
+
+    <div style="display:flex;gap:6px;font-size:13px;flex-wrap:wrap">
+      <sc-for list="{{chips}}" as="c" hint-placeholder-count="4"><button onClick="{{c.pick}}" style="padding:6px 12px;border:0;border-radius:9999px;background:{{c.bg}};color:{{c.fg}};font-weight:500;cursor:pointer;font-size:13px">{{c.label}}</button></sc-for>
+      <span style="margin-left:auto;color:#4b5565;align-self:center">Grouped by device · showing <strong style="color:#0f172a">{{cur}}</strong></span>
+    </div>
+
+    <section style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;overflow:hidden">
+      <div style="padding:12px 16px;border-bottom:1px solid #e2e6ed;display:flex;justify-content:space-between;align-items:center;background:#f3f5f9">
+        <div style="display:flex;gap:10px;align-items:center"><span style="font-family:'IBM Plex Mono',monospace;font-weight:600">TRK-PRO-900001</span><span style="font-size:13px;color:#4b5565">QA Field Tester · Nehru Place run · 4.1 °C now</span></div>
+        <div style="font-size:13px;color:#4b5565">16 passports · <a href="Carton-Handover.dc.html" style="color:#1a43b8">hand over</a></div>
+      </div>
+      <table style="width:100%;font-size:14px">
+        <thead><tr style="color:#4b5565;text-align:left;font-size:13px"><th style="padding:10px 16px;font-weight:500">Passport</th><th style="padding:10px 8px;font-weight:500">Carton</th><th style="padding:10px 8px;font-weight:500">Bound</th><th style="padding:10px 8px;font-weight:500">Received from</th><th style="padding:10px 8px;font-weight:500">This leg</th><th style="padding:10px 16px;font-weight:500;text-align:right">Certificate</th></tr></thead>
+        <tbody>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:10px 16px;font-family:'IBM Plex Mono',monospace">AWHK7ZRR</td><td style="padding:10px 8px">carton · 5 inside</td><td style="padding:10px 8px">15:57 · SCAN</td><td style="padding:10px 8px">HUB-900004 · own cold room</td><td style="padding:10px 8px">1 h 44 · <span style="padding:2px 8px;border-radius:9999px;background:#e6f6ef;color:#047857;font-size:12px;font-weight:500">in range</span></td><td style="padding:10px 16px;text-align:right"><a href="Cert-Staff.dc.html" style="color:#1a43b8">view</a></td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:10px 16px;font-family:'IBM Plex Mono',monospace">097FQYD7</td><td style="padding:10px 8px">in AWHK7ZRR</td><td style="padding:10px 8px">15:57 · <span style="padding:2px 8px;border-radius:9999px;background:#fef3e2;color:#92400e;font-size:12px;font-weight:500">TYPED</span></td><td style="padding:10px 8px">HUB-900004</td><td style="padding:10px 8px">1 h 44 · <span style="padding:2px 8px;border-radius:9999px;background:#e6f6ef;color:#047857;font-size:12px;font-weight:500">in range</span></td><td style="padding:10px 16px;text-align:right"><a href="Cert-Staff.dc.html" style="color:#1a43b8">view</a></td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:10px 16px;font-family:'IBM Plex Mono',monospace">T5YW4EZ1</td><td style="padding:10px 8px;color:#4b5565">loose</td><td style="padding:10px 8px">15:57 · SCAN</td><td style="padding:10px 8px">HUB-900004</td><td style="padding:10px 8px">1 h 44 · <span style="padding:2px 8px;border-radius:9999px;background:#e6f6ef;color:#047857;font-size:12px;font-weight:500">in range</span></td><td style="padding:10px 16px;text-align:right"><a href="Cert-Staff.dc.html" style="color:#1a43b8">view</a></td></tr>
+          <tr><td colspan="6" style="padding:8px 16px;font-size:13px;color:#4b5565">+ 13 more on this device</td></tr>
+        </tbody>
+      </table>
+      <div style="padding:12px 16px;border-top:1px solid #e2e6ed;border-bottom:1px solid #e2e6ed;display:flex;justify-content:space-between;align-items:center;background:#f3f5f9">
+        <div style="display:flex;gap:10px;align-items:center"><span style="font-family:'IBM Plex Mono',monospace;font-weight:600">TRK-PRO-900012</span><span style="font-size:13px;color:#4b5565">Staff Member 2 · Gurgaon run · <strong style="color:#a61b1b">9.4 °C · excursion 12 min</strong></span></div>
+        <div style="font-size:13px;color:#4b5565">8 passports · <a href="Tenant-Exceptions.dc.html" style="color:#1a43b8">see exception</a></div>
+      </div>
+      <table style="width:100%;font-size:14px">
+        <tbody>
+          <tr><td style="padding:10px 16px;font-family:'IBM Plex Mono',monospace">KGVZA1FQ</td><td style="padding:10px 8px">carton · 4 inside</td><td style="padding:10px 8px">14:10 · SCAN</td><td style="padding:10px 8px">HUB-900004</td><td style="padding:10px 8px">3 h 31 · <span style="padding:2px 8px;border-radius:9999px;background:#fdecec;color:#a61b1b;font-size:12px;font-weight:500">excursion open</span></td><td style="padding:10px 16px;text-align:right"><a href="Cert-Staff.dc.html" style="color:#1a43b8">view</a></td></tr>
+          <tr><td colspan="6" style="padding:8px 16px;font-size:13px;color:#4b5565">+ 7 more on this device</td></tr>
+        </tbody>
+      </table>
+      <div style="padding:12px 16px;border-top:1px solid #e2e6ed;display:flex;justify-content:space-between;align-items:center;background:#f3f5f9">
+        <div style="display:flex;gap:10px;align-items:center"><span style="font-family:'IBM Plex Mono',monospace;font-weight:600">TRK-HUB-900004</span><span style="font-size:13px;color:#4b5565">Okhla cold room · 3.8 °C · depot hub</span></div>
+        <div style="font-size:13px;color:#4b5565">164 passports · <a href="#" style="color:#1a43b8">expand</a></div>
+      </div>
+    </section>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":820}}'>
+class Component extends DCLogic {
+  constructor(p){ super(p); this.state = { pick: 'all' }; }
+  renderVals() {
+    const defs = [['all','All 212'],['pro','Out for delivery 48'],['hub','In cold room 164'],['exc','With open excursion 1'],['typed','Typed binds 19']];
+    const chips = defs.map(d => ({ label: d[1], bg: this.state.pick === d[0] ? '#1d4ed8' : '#eef1f6', fg: this.state.pick === d[0] ? '#fff' : '#4b5565', pick: () => this.setState({ pick: d[0] }) }));
+    return { chips, cur: defs.find(d => d[0] === this.state.pick)[1] };
+  }
+}
+</script>
+</body>
+</html>

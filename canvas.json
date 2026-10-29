@@ -1,0 +1,1001 @@
+{
+  "v": 3,
+  "createdOnFiles": {
+    "v": 1,
+    "at": "2026-10-28T07:40:00Z"
+  },
+  "title": "Track0tic QR — Admin & Field Wireframes",
+  "launch": {
+    "view": "canvas"
+  },
+  "pages": [],
+  "designSystems": [
+    {
+      "title": "Track0tic Design System",
+      "namespace": "track0tic",
+      "artifact": "https://claude.ai/artifact/8Vp3xUyfhUvKn7Z24MNErw",
+      "version": "1792506653-0e66",
+      "copiedAt": "2026-10-28T07:40:00Z"
+    }
+  ],
+  "boards": {
+    "Main.dc.html": {
+      "x": 470,
+      "y": 5070,
+      "w": 390,
+      "h": 844,
+      "title": "0 · Device QR — public view",
+      "is_interactive": true
+    },
+    "Field-Login.dc.html": {
+      "x": 0,
+      "y": 5070,
+      "w": 390,
+      "h": 844,
+      "title": "1 · Field sign-in",
+      "is_interactive": true
+    },
+    "Device-Staff.dc.html": {
+      "x": 940,
+      "y": 5070,
+      "w": 390,
+      "h": 844,
+      "title": "2 · Device page (staff) — bind",
+      "is_interactive": true
+    },
+    "Bind-Sheet.dc.html": {
+      "x": 1410,
+      "y": 5070,
+      "w": 390,
+      "h": 844,
+      "title": "3 · Bind — camera / typed",
+      "is_interactive": true
+    },
+    "Passport-Issued.dc.html": {
+      "x": 1880,
+      "y": 5070,
+      "w": 390,
+      "h": 844,
+      "title": "4 · Passport issued, not yet bound",
+      "is_interactive": true
+    },
+    "Passport-Public.dc.html": {
+      "x": 0,
+      "y": 6464,
+      "w": 390,
+      "h": 844,
+      "title": "6 · Patient scans → compliance PDF (phone)",
+      "is_interactive": true
+    },
+    "Passport-Staff.dc.html": {
+      "x": 2350,
+      "y": 5070,
+      "w": 390,
+      "h": 844,
+      "title": "5 · Passport journey (staff)",
+      "is_interactive": true
+    },
+    "Handover-Confirm.dc.html": {
+      "x": 3760,
+      "y": 5070,
+      "w": 390,
+      "h": 844,
+      "title": "7 · Handover confirm",
+      "is_interactive": true
+    },
+    "Admin-Dashboard.dc.html": {
+      "x": 0,
+      "y": 9284,
+      "w": 1280,
+      "h": 900,
+      "title": "A10 · Dashboard",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "Admin-Issue.dc.html": {
+      "x": 8160,
+      "y": 3620,
+      "w": 1280,
+      "h": 900,
+      "title": "A9 · Passport QR books & stock (detail of A3 step 3)",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "Admin-DeviceLabels.dc.html": {
+      "x": 5440,
+      "y": 2170,
+      "w": 1280,
+      "h": 900,
+      "title": "A3 · QR labels — tenant → print device QRs (= allocate) → generate passport QRs (print here / tenant prints / courier)",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "Admin-Tenants.dc.html": {
+      "x": 0,
+      "y": 3620,
+      "w": 1280,
+      "h": 900,
+      "title": "A5 · Create tenant (company only)",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "Admin-Users.dc.html": {
+      "x": 2720,
+      "y": 3620,
+      "w": 1280,
+      "h": 900,
+      "title": "T0 · Users & roles (staff view of tenant users)",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "Admin-Alerts.dc.html": {
+      "x": 2720,
+      "y": 9284,
+      "w": 1280,
+      "h": 900,
+      "title": "A11 · Alerts",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "Tenant-Stock.dc.html": {
+      "x": 9520,
+      "y": 3620,
+      "w": 1280,
+      "h": 820,
+      "title": "T1 · Tenant portal — passport stock & print",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "Admin-Sidebar.dc.html": {
+      "x": 0,
+      "y": 12128,
+      "w": 240,
+      "h": 820,
+      "title": "C1 · Admin sidebar (component)"
+    },
+    "Err-NotYourDevice.dc.html": {
+      "x": 5170,
+      "y": 5070,
+      "w": 390,
+      "h": 844,
+      "title": "F1 · Not your device"
+    },
+    "Err-InvalidCode.dc.html": {
+      "x": 5640,
+      "y": 5070,
+      "w": 390,
+      "h": 844,
+      "title": "F2 · Invalid code"
+    },
+    "Err-LabelReplaced.dc.html": {
+      "x": 6110,
+      "y": 5070,
+      "w": 390,
+      "h": 844,
+      "title": "F3 · Label replaced"
+    },
+    "Err-Void.dc.html": {
+      "x": 6580,
+      "y": 5070,
+      "w": 390,
+      "h": 844,
+      "title": "F4 · Passport cancelled"
+    },
+    "Bind-Offline.dc.html": {
+      "x": 4700,
+      "y": 5070,
+      "w": 390,
+      "h": 844,
+      "title": "F0 · Bind — no signal",
+      "is_interactive": true
+    },
+    "Carton-Handover.dc.html": {
+      "x": 2820,
+      "y": 5070,
+      "w": 390,
+      "h": 844,
+      "title": "F5 · Hand over by carton",
+      "is_interactive": true
+    },
+    "Receiver-Ack.dc.html": {
+      "x": 4230,
+      "y": 5070,
+      "w": 390,
+      "h": 844,
+      "title": "F6 · Receiver without a device",
+      "is_interactive": true
+    },
+    "Diag-Collect.dc.html": {
+      "x": 0,
+      "y": 10734,
+      "w": 390,
+      "h": 844,
+      "title": "V1 · Diagnostics — collection bag",
+      "is_interactive": true
+    },
+    "Diag-Bench.dc.html": {
+      "x": 470,
+      "y": 10734,
+      "w": 390,
+      "h": 844,
+      "title": "V2 · Diagnostics — lab bench",
+      "is_interactive": true
+    },
+    "BFSI-Passport.dc.html": {
+      "x": 940,
+      "y": 10734,
+      "w": 390,
+      "h": 844,
+      "title": "V3 · BFSI — packet on bank pod"
+    },
+    "Lockbox-Device.dc.html": {
+      "x": 1410,
+      "y": 10734,
+      "w": 390,
+      "h": 844,
+      "title": "V4 · BFSI — lockbox opening"
+    },
+    "Admin-Login.dc.html": {
+      "x": 0,
+      "y": 2170,
+      "w": 1280,
+      "h": 900,
+      "title": "A0 · Staff sign-in",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "Admin-Receive.dc.html": {
+      "x": 2720,
+      "y": 2170,
+      "w": 1280,
+      "h": 900,
+      "title": "A1 · Receive devices",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "Admin-QC.dc.html": {
+      "x": 4080,
+      "y": 2170,
+      "w": 1280,
+      "h": 900,
+      "title": "A2 · QC & firmware → TRK ID",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "Admin-Inventory.dc.html": {
+      "x": 6800,
+      "y": 2170,
+      "w": 1280,
+      "h": 900,
+      "title": "A4 · Inventory",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "Admin-DeviceDetail.dc.html": {
+      "x": 8160,
+      "y": 2170,
+      "w": 1280,
+      "h": 900,
+      "title": "A4a · Device detail",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "Admin-Allocate.dc.html": {
+      "x": 6800,
+      "y": 3620,
+      "w": 1280,
+      "h": 900,
+      "title": "A8 · Allocation record (detail of A3 step 2)",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "Admin-Approvals.dc.html": {
+      "x": 4080,
+      "y": 9284,
+      "w": 1280,
+      "h": 900,
+      "title": "A12 · Approvals",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "Admin-TenantDetail.dc.html": {
+      "x": 1360,
+      "y": 3620,
+      "w": 1280,
+      "h": 900,
+      "title": "A5a · Tenant page — add first admin, then everything else",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "Admin-Profiles.dc.html": {
+      "x": 4080,
+      "y": 3620,
+      "w": 1280,
+      "h": 900,
+      "title": "A6 · Temperature profiles",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "Admin-Journeys.dc.html": {
+      "x": 5440,
+      "y": 3620,
+      "w": 1280,
+      "h": 900,
+      "title": "A7 · Journey templates (dynamic chain)",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "Admin-StaffUsers.dc.html": {
+      "x": 13600,
+      "y": 9284,
+      "w": 1280,
+      "h": 900,
+      "title": "A16 · Staff users & roles",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "Admin-Reports.dc.html": {
+      "x": 10880,
+      "y": 9284,
+      "w": 1280,
+      "h": 900,
+      "title": "A14 · Reports",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "Admin-AuditLog.dc.html": {
+      "x": 12240,
+      "y": 9284,
+      "w": 1280,
+      "h": 900,
+      "title": "A15 · Audit log",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "Admin-VoidPassport.dc.html": {
+      "x": 5440,
+      "y": 9284,
+      "w": 1280,
+      "h": 900,
+      "title": "A13 · Void passport",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "Tenant-Custody.dc.html": {
+      "x": 6800,
+      "y": 9284,
+      "w": 1280,
+      "h": 820,
+      "title": "T2 · Tenant — in custody",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "Tenant-Exceptions.dc.html": {
+      "x": 8160,
+      "y": 9284,
+      "w": 1280,
+      "h": 820,
+      "title": "T3 · Tenant — exceptions",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "Tenant-Grants.dc.html": {
+      "x": 9520,
+      "y": 9284,
+      "w": 1280,
+      "h": 820,
+      "title": "T4 · Tenant — visibility grants",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "Empty-States.dc.html": {
+      "x": 320,
+      "y": 12128,
+      "w": 1280,
+      "h": 620,
+      "title": "C2 · Empty / loading / permission states",
+      "expand": "fill"
+    },
+    "Cert-Public.dc.html": {
+      "x": 470,
+      "y": 6464,
+      "w": 794,
+      "h": 2270,
+      "title": "D1 · Compliance report — public PDF · 6 states in props: retail-only / full-8 / gaps-only / gap+breach / journey-in-progress / not-yet-bound",
+      "print": "flow",
+      "paper": "a4"
+    },
+    "Cert-Staff.dc.html": {
+      "x": 1344,
+      "y": 6464,
+      "w": 794,
+      "h": 1123,
+      "title": "D2 · Compliance report — custodian copy",
+      "print": "flow",
+      "paper": "a4"
+    },
+    "Labels-Sheet.dc.html": {
+      "x": 10880,
+      "y": 3620,
+      "w": 900,
+      "h": 600,
+      "title": "D3 · Label artwork (device, passport, carton, tube, A4)"
+    },
+    "SMS-Copy.dc.html": {
+      "x": 1680,
+      "y": 12128,
+      "w": 600,
+      "h": 600,
+      "title": "D4 · SMS & notification copy"
+    },
+    "Flow-System.dc.html": {
+      "w": 4750,
+      "h": 1290,
+      "title": "F1 · End-to-end flow — who does what, in order (click any box → its screen)",
+      "is_interactive": true,
+      "x": 0,
+      "y": 330
+    },
+    "Flow-Scan.dc.html": {
+      "w": 2950,
+      "h": 1100,
+      "title": "F2 · What happens when any QR is scanned",
+      "is_interactive": true,
+      "x": 4830,
+      "y": 330
+    },
+    "Admin-Suppliers.dc.html": {
+      "w": 1280,
+      "h": 900,
+      "title": "A0a · Register device supplier / manufacturer",
+      "expand": "fill",
+      "is_interactive": true,
+      "y": 2170,
+      "x": 1360
+    },
+    "Carton-Split.dc.html": {
+      "w": 390,
+      "h": 844,
+      "title": "F5a · Split a carton (hand over some, keep the rest)",
+      "is_interactive": true,
+      "y": 5070,
+      "x": 3290
+    },
+    "Admin-Trips.dc.html": {
+      "w": 1280,
+      "h": 900,
+      "title": "A10a · Trips (existing module) + passports carried",
+      "expand": "fill",
+      "is_interactive": true,
+      "y": 9284,
+      "x": 1360
+    }
+  },
+  "order": [
+    "Flow-System.dc.html",
+    "Flow-Scan.dc.html",
+    "Admin-Login.dc.html",
+    "Admin-Suppliers.dc.html",
+    "Admin-Receive.dc.html",
+    "Admin-QC.dc.html",
+    "Admin-DeviceLabels.dc.html",
+    "Admin-Inventory.dc.html",
+    "Admin-DeviceDetail.dc.html",
+    "Admin-Tenants.dc.html",
+    "Admin-TenantDetail.dc.html",
+    "Admin-Users.dc.html",
+    "Admin-Profiles.dc.html",
+    "Admin-Journeys.dc.html",
+    "Admin-Allocate.dc.html",
+    "Admin-Issue.dc.html",
+    "Tenant-Stock.dc.html",
+    "Labels-Sheet.dc.html",
+    "Field-Login.dc.html",
+    "Main.dc.html",
+    "Device-Staff.dc.html",
+    "Bind-Sheet.dc.html",
+    "Passport-Issued.dc.html",
+    "Passport-Staff.dc.html",
+    "Carton-Handover.dc.html",
+    "Carton-Split.dc.html",
+    "Handover-Confirm.dc.html",
+    "Receiver-Ack.dc.html",
+    "Bind-Offline.dc.html",
+    "Err-NotYourDevice.dc.html",
+    "Err-InvalidCode.dc.html",
+    "Err-LabelReplaced.dc.html",
+    "Err-Void.dc.html",
+    "Passport-Public.dc.html",
+    "Cert-Public.dc.html",
+    "Cert-Staff.dc.html",
+    "Admin-Dashboard.dc.html",
+    "Admin-Trips.dc.html",
+    "Admin-Alerts.dc.html",
+    "Admin-Approvals.dc.html",
+    "Admin-VoidPassport.dc.html",
+    "Tenant-Custody.dc.html",
+    "Tenant-Exceptions.dc.html",
+    "Tenant-Grants.dc.html",
+    "Admin-Reports.dc.html",
+    "Admin-AuditLog.dc.html",
+    "Admin-StaffUsers.dc.html",
+    "Diag-Collect.dc.html",
+    "Diag-Bench.dc.html",
+    "BFSI-Passport.dc.html",
+    "Lockbox-Device.dc.html",
+    "Admin-Sidebar.dc.html",
+    "Empty-States.dc.html",
+    "SMS-Copy.dc.html"
+  ],
+  "notes": {
+    "t-flow": {
+      "x": 0,
+      "y": 0,
+      "text": "STEP 0 · READ THESE FIRST — F1 is the build order; every box links to its screen. F2 is the single resolver every QR goes through.",
+      "kind": "title1",
+      "maxW": 9000
+    },
+    "n-Flow-System.dc.html": {
+      "x": 0,
+      "y": 80,
+      "w": 620,
+      "text": "HOW TO READ: five swimlanes = who acts. Arrows = order. Every box links to its screen. Build in this order: Step 1 → 5. Refs (A1, T1, 6…) match board titles.",
+      "fill": "yellow"
+    },
+    "n-Flow-Scan.dc.html": {
+      "x": 4830,
+      "y": 80,
+      "w": 620,
+      "text": "THE ONE RESOLVER: every QR hits /d/<token> or /p/<token>. Server decides device vs passport, valid vs not, who you are → which screen. No other entry points.",
+      "fill": "yellow"
+    },
+    "t-s1": {
+      "x": 0,
+      "y": 1840,
+      "text": "STEP 1 · DEVICES IN (Track0tic admin) — register supplier → receive → QC (SIM bound, TRK ID) → QR labels: the label is printed at the moment the device is allocated to a tenant.",
+      "kind": "title1",
+      "maxW": 9000
+    },
+    "n-Admin-Login.dc.html": {
+      "x": 0,
+      "y": 1920,
+      "w": 620,
+      "text": "Staff only (Track0tic employees). Email + password; 2FA step shown but repo has none yet (phase 2). 5 failures → 15 min lock. Tenant users never log in here.",
+      "fill": "yellow"
+    },
+    "n-Admin-Suppliers.dc.html": {
+      "x": 1360,
+      "y": 1920,
+      "w": 620,
+      "text": "WHY: a device can only be received against a registered supplier + approved model. Keeps warranty/RMA, drives QC sampling by fail rate. Supplier is a record, NOT a tenant — no login. Warranty 12/18/24/36 m.",
+      "fill": "yellow"
+    },
+    "n-Admin-Receive.dc.html": {
+      "x": 2720,
+      "y": 1920,
+      "w": 620,
+      "text": "Creates devices as inactive · unlabelled. Serials pasted or CSV, or arrive by \"hello\" message from an allowed factory. No TRK ID yet. Partial receipt allowed. Batch id RB-####.",
+      "fill": "yellow"
+    },
+    "n-Admin-QC.dc.html": {
+      "x": 4080,
+      "y": 1920,
+      "w": 620,
+      "text": "Bench check per device: power, telemetry seen, firmware = target, probe ±0.3 °C, enclosure, battery. SIM BOUND recorded here (ICCID + M2M whitelist). PASS assigns TRK ID + queues label. FAIL → RMA to supplier.",
+      "fill": "yellow"
+    },
+    "n-Admin-DeviceLabels.dc.html": {
+      "x": 5440,
+      "y": 1920,
+      "w": 620,
+      "text": "THE ONE QR SCREEN (decided 29 Oct): 1 pick tenant → 2 device type + quantity → Print device QRs = allocation to that tenant (labels permanent, 60×30, /d/<token>) → 3 passport QR quantity + size + cartons + who prints → Generate book. Track0tic prints & couriers, or tenant prints from T1. Tenant top-up requests load into step 3. PDF default; ZPL = raw thermal-label-printer format, optional.",
+      "fill": "yellow"
+    },
+    "n-Admin-Inventory.dc.html": {
+      "x": 6800,
+      "y": 1920,
+      "w": 620,
+      "text": "Stages: awaiting QC → SIM bound → QC pass/unlabelled → in stock → allocated → maintenance/revoked. Click a stage card = filter. Bulk: allocate, print, maintenance, revoke.",
+      "fill": "yellow"
+    },
+    "n-Admin-DeviceDetail.dc.html": {
+      "x": 8160,
+      "y": 1920,
+      "w": 620,
+      "text": "One device: live temp, battery, drift (live rows only), passports on it (all legs — admin sees everything), identity, device_events timeline. Revoke = dead link on scan.",
+      "fill": "yellow"
+    },
+    "t-s2": {
+      "x": 0,
+      "y": 3290,
+      "text": "STEP 2 · TENANT & SALE (Track0tic admin → tenant portal) — create tenant → tenant page asks for first admin → profile & journey → allocate devices → issue passports → tenant prints.",
+      "kind": "title1",
+      "maxW": 9000
+    },
+    "n-Admin-Tenants.dc.html": {
+      "x": 0,
+      "y": 3370,
+      "w": 620,
+      "text": "Create COMPANY only. Vertical drives everything below it (categories, Hosted on, profile, journey, quota, print rights). Saves → opens tenant page which demands the first admin. BFSI → dedicated environment (Muthoot/Axis), never shared.",
+      "fill": "yellow"
+    },
+    "n-Admin-TenantDetail.dc.html": {
+      "x": 1360,
+      "y": 3370,
+      "w": 620,
+      "text": "Amber banner until first tenant admin exists — nothing can be allocated before that (server rule). Tabs: devices, passports, users, settings. Every setting change needs a reason → audit.",
+      "fill": "yellow"
+    },
+    "n-Admin-Users.dc.html": {
+      "x": 2720,
+      "y": 3370,
+      "w": 620,
+      "text": "Track0tic-side view of a tenant's users (ADMIN/OPS_SUPPORT may add/disable). Tenant admin normally does this in T6. Tenant dropdown drives all numbers + list.",
+      "fill": "yellow"
+    },
+    "n-Admin-Profiles.dc.html": {
+      "x": 4080,
+      "y": 3370,
+      "w": 620,
+      "text": "Profile = range + grace + cumulative limit → decides \"in range\". Applies to legs starting after save; closed legs never re-graded. Switches: alert custodian, previous custodian, ISSUING tenant.",
+      "fill": "yellow"
+    },
+    "n-Admin-Journeys.dc.html": {
+      "x": 5440,
+      "y": 3370,
+      "w": 620,
+      "text": "Template = EXPECTATION, never enforcement. Binds are never blocked. Chain is dynamic (2…n legs). Each leg gets its patient-PDF word: Storage / Transit / Not monitored. Deviations → Exceptions.",
+      "fill": "yellow"
+    },
+    "n-Admin-Allocate.dc.html": {
+      "x": 6800,
+      "y": 3370,
+      "w": 620,
+      "text": "Detail of A3 step 2: the allocation record (invoice, delivery note, specific TRK IDs). Writes devices.tenant_id + ALLOCATED event + audit. Devices stay inactive until first telemetry/bind.",
+      "fill": "yellow"
+    },
+    "n-Admin-Issue.dc.html": {
+      "x": 8160,
+      "y": 3370,
+      "w": 620,
+      "text": "Detail of A3 step 3: books issued per tenant, stock, prints. Track0tic MINTS every passport QR; tenants never do. Carton QR binds all inside. Tenant dropdown drives everything.",
+      "fill": "yellow"
+    },
+    "n-Tenant-Stock.dc.html": {
+      "x": 9520,
+      "y": 3370,
+      "w": 620,
+      "text": "Tenant portal. Books issued to this tenant; print at 100 %, PRINT is an audit event (who/when/which codes). Request more → Approvals. Cannot mint.",
+      "fill": "yellow"
+    },
+    "n-Labels-Sheet.dc.html": {
+      "x": 10880,
+      "y": 3370,
+      "w": 620,
+      "text": "ONE label type for everything that moves: PASSPORT QR — standard 40×25, tube size 25×12, carton flag. Device QR 60×30 (HUB 80×40). QR encodes full URL never bare id; 8-char short code under every passport QR.",
+      "fill": "yellow"
+    },
+    "t-s3": {
+      "x": 0,
+      "y": 4740,
+      "text": "STEP 3 · FIELD (phone, any tenant) — sign in → scan device → bind → hand over → next custodian repeats. Error and offline states follow.",
+      "kind": "title1",
+      "maxW": 9000
+    },
+    "n-Field-Login.dc.html": {
+      "x": 0,
+      "y": 4820,
+      "w": 390,
+      "text": "Any tenant user. Mobile + OTP only. Session 8 h. Location permission asked here, required for pharma binds.",
+      "fill": "yellow"
+    },
+    "n-Main.dc.html": {
+      "x": 470,
+      "y": 4820,
+      "w": 390,
+      "text": "Device QR scanned, NOT logged in: public device view — type, status, \"log in to bind\". Never shows passports or location.",
+      "fill": "yellow"
+    },
+    "n-Device-Staff.dc.html": {
+      "x": 940,
+      "y": 4820,
+      "w": 390,
+      "text": "Device QR scanned by a user of the OWNING tenant: live temp, what is on it, Bind / Hand over. Same page for HUB, PRO, LITE, LOCKBOX. Other tenant → F1 \"not your device\".",
+      "fill": "yellow"
+    },
+    "n-Bind-Sheet.dc.html": {
+      "x": 1410,
+      "y": 4820,
+      "w": 390,
+      "text": "Camera + typed 8-char code ALWAYS both. Each bind saved instantly. Carton = all inside. ONE DEVICE AT A TIME: a new bind releases the previous binding and closes that leg. Typed binds tagged TYPED.",
+      "fill": "yellow"
+    },
+    "n-Passport-Issued.dc.html": {
+      "x": 1880,
+      "y": 4820,
+      "w": 390,
+      "text": "Passport QR scanned by staff before first bind: ISSUED, no legs. Offer: bind to a device.",
+      "fill": "yellow"
+    },
+    "n-Passport-Staff.dc.html": {
+      "x": 2350,
+      "y": 4820,
+      "w": 390,
+      "text": "Passport QR scanned by custodian/staff: journey newest first — own legs + the one received from (grants widen). Hand over / Bind. Custodian PDF (D2).",
+      "fill": "yellow"
+    },
+    "n-Carton-Handover.dc.html": {
+      "x": 2820,
+      "y": 4820,
+      "w": 390,
+      "text": "Bulk handover at a stop: tick cartons (all inside) and loose units. Location captured. \"split\" → F5a when only part of a carton stays.",
+      "fill": "yellow"
+    },
+    "n-Carton-Split.dc.html": {
+      "x": 3290,
+      "y": 4820,
+      "w": 390,
+      "text": "Part of a carton stays: units that leave KEEP every step travelled inside the carton, then start their own leg; carton continues with the rest. Nothing reprinted. Scanning one unit's own QR = same.",
+      "fill": "yellow"
+    },
+    "n-Handover-Confirm.dc.html": {
+      "x": 3760,
+      "y": 4820,
+      "w": 390,
+      "text": "Closes the leg(s): location, count, receiver optional. Next custodian binding to own device is ALSO a handover (no need for this screen).",
+      "fill": "yellow"
+    },
+    "n-Receiver-Ack.dc.html": {
+      "x": 4230,
+      "y": 4820,
+      "w": 390,
+      "text": "Receiver with no device: acknowledge (optional, never a gate) so sender sees arrival; or bind to own device later. Sees own leg + the one received from.",
+      "fill": "yellow"
+    },
+    "n-Bind-Offline.dc.html": {
+      "x": 4700,
+      "y": 4820,
+      "w": 390,
+      "text": "No signal: last code kept on screen, NEVER auto-retried (no double binds). Earlier binds already saved server-side.",
+      "fill": "yellow"
+    },
+    "n-Err-NotYourDevice.dc.html": {
+      "x": 5170,
+      "y": 4820,
+      "w": 390,
+      "text": "Logged in, device belongs to another tenant → bind to your own device instead. Server returns 403 with tenant name hidden.",
+      "fill": "yellow"
+    },
+    "n-Err-InvalidCode.dc.html": {
+      "x": 5640,
+      "y": 4820,
+      "w": 390,
+      "text": "Unknown token / mistyped code. Same page for a non-existent passport. On bank environments this page = ALL unauthorised scans (never confirm existence).",
+      "fill": "yellow"
+    },
+    "n-Err-LabelReplaced.dc.html": {
+      "x": 6110,
+      "y": 4820,
+      "w": 390,
+      "text": "PHASE 2. Old device sticker after token rotation → \"label replaced\". Open passports unaffected.",
+      "fill": "yellow"
+    },
+    "n-Err-Void.dc.html": {
+      "x": 6580,
+      "y": 4820,
+      "w": 390,
+      "text": "Passport VOID (staff only, with reason): no history shown publicly; owning tenant keeps history; future binds rejected.",
+      "fill": "yellow"
+    },
+    "t-s4": {
+      "x": 0,
+      "y": 6134,
+      "text": "STEP 4 · PATIENT (public, no login) — scan passport → compliance PDF opens: whole chain anonymised, last leg in detail. D2 is what the custodian gets instead.",
+      "kind": "title1",
+      "maxW": 9000
+    },
+    "n-Passport-Public.dc.html": {
+      "x": 0,
+      "y": 6214,
+      "w": 390,
+      "text": "Patient scans → PDF opens INLINE (Content-Disposition inline), no landing page. Whole chain anonymised, last leg detailed. No names/places/TRK IDs. Bank environments: 404.",
+      "fill": "yellow"
+    },
+    "n-Cert-Public.dc.html": {
+      "x": 470,
+      "y": 6214,
+      "w": 620,
+      "text": "6 STATES in props: COMPLIANT · NOT COMPLIANT step N · COMPLIANT WHERE MONITORED (no device or missing readings) · JOURNEY IN PROGRESS (open leg, snapshot + generation time) · NOT YET IN A JOURNEY (never bound). Cached per closed leg; in-progress generated live.",
+      "fill": "yellow"
+    },
+    "n-Cert-Staff.dc.html": {
+      "x": 1344,
+      "y": 6214,
+      "w": 620,
+      "text": "Custodian copy: names, places, device ids for OWN legs + adjacent handovers. Legs close on device time (last_recorded_at), never phone clock. Not for public distribution.",
+      "fill": "yellow"
+    },
+    "t-s5": {
+      "x": 0,
+      "y": 8954,
+      "text": "STEP 5 · OPERATIONS (admin + tenant) — dashboard, alerts, approvals, void, custody lists, exceptions, grants, reports, audit, staff.",
+      "kind": "title1",
+      "maxW": 9000
+    },
+    "n-Admin-Dashboard.dc.html": {
+      "x": 0,
+      "y": 9034,
+      "w": 620,
+      "text": "Staff landing: alerts, approvals, stale HUB bindings, device pipeline (received → SIM bound → QC → labelled → stock → customers), passports, latest events.",
+      "fill": "yellow"
+    },
+    "n-Admin-Alerts.dc.html": {
+      "x": 2720,
+      "y": 9034,
+      "w": 620,
+      "text": "Excursion open/closed, silent device with open legs, leg over template, clock drift. Filter chips. Merge action per alert type.",
+      "fill": "yellow"
+    },
+    "n-Admin-Approvals.dc.html": {
+      "x": 4080,
+      "y": 9034,
+      "w": 620,
+      "text": "Tenant requests only Track0tic may grant. Each card states exactly what approving does. Decision + note → SMS to requester + audit. Label replacement cards are PHASE 2.",
+      "fill": "yellow"
+    },
+    "n-Admin-VoidPassport.dc.html": {
+      "x": 5440,
+      "y": 9034,
+      "w": 620,
+      "text": "Only way a passport leaves play. Reason (public) + note (internal) + typed code to confirm. Closes open leg with reason VOID. Irreversible.",
+      "fill": "yellow"
+    },
+    "n-Tenant-Custody.dc.html": {
+      "x": 6800,
+      "y": 9034,
+      "w": 620,
+      "text": "Tenant: every passport ON its devices, grouped by device. Own legs + received-from only. Links to custodian PDF.",
+      "fill": "yellow"
+    },
+    "n-Tenant-Exceptions.dc.html": {
+      "x": 8160,
+      "y": 9034,
+      "w": 620,
+      "text": "Drift from template/profile: excursion open, leg over template, unexpected device. Resolve with a remark (goes on certificate) or escalate to Track0tic → Approvals.",
+      "fill": "yellow"
+    },
+    "n-Tenant-Grants.dc.html": {
+      "x": 9520,
+      "y": 9034,
+      "w": 620,
+      "text": "Widen visibility for a partner on passports you share (never narrow, never public). Not on bank environments.",
+      "fill": "yellow"
+    },
+    "n-Admin-Reports.dc.html": {
+      "x": 10880,
+      "y": 9034,
+      "w": 620,
+      "text": "Issued, binds/day (SCAN vs TYPED), legs in range %, open legs over template, device health, public scans. Tenant + period filters must drive all cards (wireframe cards are static).",
+      "fill": "yellow"
+    },
+    "n-Admin-AuditLog.dc.html": {
+      "x": 12240,
+      "y": 9034,
+      "w": 620,
+      "text": "Append-only, 7 y. Every write incl. BIND, HANDOVER, VOID, ALLOCATE, ISSUE, PRINT, APPROVAL, LOGIN_FAIL, CRON. Who / from where / before-after.",
+      "fill": "yellow"
+    },
+    "n-Admin-StaffUsers.dc.html": {
+      "x": 13600,
+      "y": 9034,
+      "w": 620,
+      "text": "Track0tic staff roles: ADMIN · OPS_SUPPORT · WAREHOUSE · VIEWER with capability matrix. Invite by @trackotic.com email, 24 h link.",
+      "fill": "yellow"
+    },
+    "t-s6": {
+      "x": 0,
+      "y": 10404,
+      "text": "VERTICALS — same flow, different words: diagnostics (tube → bag → lab HUB) and BFSI pods (no public route, lockbox opening).",
+      "kind": "title1",
+      "maxW": 9000
+    },
+    "n-Diag-Collect.dc.html": {
+      "x": 0,
+      "y": 10484,
+      "w": 390,
+      "text": "Diagnostics: tube carries a PASSPORT QR (tube size). Phlebotomist scans tube at patient → binds to LITE bag. Oldest-tube timer vs 4 h template.",
+      "fill": "yellow"
+    },
+    "n-Diag-Bench.dc.html": {
+      "x": 470,
+      "y": 10484,
+      "w": 390,
+      "text": "Lab bench: scanning tube into lab HUB releases the bag binding automatically and closes that leg. CHECK flag when bag peaked or over 4 h.",
+      "fill": "yellow"
+    },
+    "n-BFSI-Passport.dc.html": {
+      "x": 940,
+      "y": 10484,
+      "w": 390,
+      "text": "Bank environment: passport QR on pouch/packet. Page opens only from allow-listed branch IP + signed-in custodian. No public certificate, no location shown.",
+      "fill": "yellow"
+    },
+    "n-Lockbox-Device.dc.html": {
+      "x": 1410,
+      "y": 10484,
+      "w": 390,
+      "text": "Lockbox = device QR like any other (bind pouches). Opening is extra: split code, two custodians. Firmware-dependent — parked until hardware team delivers.",
+      "fill": "yellow"
+    },
+    "t-s7": {
+      "x": 0,
+      "y": 11798,
+      "text": "SHARED PIECES — sidebar component, non-happy states, SMS copy.",
+      "kind": "title1",
+      "maxW": 9000
+    },
+    "n-Admin-Sidebar.dc.html": {
+      "x": 0,
+      "y": 11878,
+      "w": 240,
+      "text": "Component used by every admin page. Order = workflow: Devices → Tenants → Sale & supply → Operations → Admin. Active item passed as prop.",
+      "fill": "yellow"
+    },
+    "n-Empty-States.dc.html": {
+      "x": 320,
+      "y": 11878,
+      "w": 620,
+      "text": "Every list has empty / loading / error / no-access states in one shape: one line what, one line what to do, one button. Bank environments: unauthorised = 404 look-alike.",
+      "fill": "yellow"
+    },
+    "n-SMS-Copy.dc.html": {
+      "x": 1680,
+      "y": 11878,
+      "w": 600,
+      "text": "All SMS ≤160 GSM-7, DLT-registered templates, sender TRKOTC. Never a location or another tenant's name. Quiet hours except OTP/lockbox. Issuer alert names the step, never the custodian.",
+      "fill": "yellow"
+    },
+    "s-rules": {
+      "x": 0,
+      "y": 1660,
+      "w": 1100,
+      "text": "Rules carried from the spec: public pages never show location, tenant names or TRK ids. Passport never closes. Typed binds are tagged. Track0tic issues every passport. 28 Oct: the public scan opens the compliance PDF for the WHOLE chain (anonymised — Storage/Transit steps), last leg in detail. DECIDED 28 Oct: a passport is on ONE device at a time — a new bind releases the previous binding automatically (that leg closes). Any missing readings or missing device → verdict \"COMPLIANT WHERE MONITORED\" (D1 chain \"with-gap-and-breach\" shows both kinds of gap).",
+      "fill": "gray"
+    },
+    "s-chain": {
+      "x": 1180,
+      "y": 1660,
+      "w": 700,
+      "text": "Chain is dynamic: could be 2 steps (retail HUB → Pro → patient) or 8 (manufacturer HUB → Pro → CFA HUB → Pro → distributor HUB → Pro → retail HUB → Pro). Carton legs at the manufacturer are inherited by every unit inside. Verdict: COMPLIANT · NOT COMPLIANT at step N · COMPLIANT WHERE MONITORED (gap).",
+      "fill": "yellow"
+    },
+    "s-hindi": {
+      "x": 1960,
+      "y": 1660,
+      "w": 520,
+      "text": "Hindi: every field string exists in Hindi too (design system rule). Same layout, same sizes; the toggle sits in the app bar. Not drawn twice here — copy sheet to follow from the content team.",
+      "fill": "gray"
+    },
+    "s-gaps": {
+      "x": 2560,
+      "y": 1660,
+      "w": 900,
+      "fill": "pink",
+      "text": "PHASE 2 (not drawn): (e) device return / de-allocation page (today only via Approvals); (f) reference data admin page (sales categories, states, locations). DONE 29 Oct: journey-in-progress + not-yet-bound PDF states (D1), carton split (F5a), issuer alert SMS + profile switch."
+    },
+    "s-logo": {
+      "x": 3500,
+      "y": 1660,
+      "w": 520,
+      "fill": "blue",
+      "text": "BRAND (28 Oct): wordmark is Track0tic™ everywhere — the 0 is a zero in red (#e11d2e; #ff5a66 on dark), never the letter O, never blue; ™ superscript always follows. Applies to app bars, admin sidebar, PDFs, labels, SMS sender name text."
+    },
+    "n-Admin-Trips.dc.html": {
+      "x": 1360,
+      "y": 9034,
+      "w": 620,
+      "fill": "yellow",
+      "text": "EXISTING trips module, unchanged (trip · device · driver · vehicle · window · invoice report). New: passports bound to the trip's device during the trip are listed under it and on the invoice report. Trip ≠ passport leg: a passport bound mid-trip gets a leg from its bind time. Tenant filter drives everything."
+    }
+  }
+}

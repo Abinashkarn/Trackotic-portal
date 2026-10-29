@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Track0tic admin — temperature profiles</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>body{margin:0;font-family:"Noto Sans",system-ui,sans-serif;color:#0f172a;background:#f3f5f9}a{color:#1a43b8}a:hover{color:#0f2f8a}table{border-collapse:collapse}input,select,button{font-family:inherit}/*sc-safety*/ input,select,textarea{min-width:0;max-width:100%;box-sizing:border-box} td,th,p,li{overflow-wrap:break-word} td:last-child,th:last-child{white-space:nowrap} button{white-space:normal;line-height:1.2}</style>
+</helmet>
+<div style="color:#0f172a;display:flex;flex-wrap:wrap;min-height:900px;background:#f3f5f9">
+  <dc-import name="Admin-Sidebar" active="profiles" hint-size="240px,820px"></dc-import>
+  <main style="color:#0f172a;flex:999 1 560px;min-width:0;padding:24px;box-sizing:border-box;display:flex;flex-direction:column;gap:20px">
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px">
+      <div><div style="font-size:13px;color:#4b5565">3 · Sale &amp; supply</div><h1 style="margin:0;font-size:22px;line-height:28px;font-weight:600">Temperature profiles</h1></div>
+      <div style="font-size:13px;color:#4b5565">A profile decides when a leg is "in range" on the certificate. Assigned per tenant, overridable per passport batch.</div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:16px;align-items:start">
+      <section style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;overflow:hidden">
+        <table style="width:100%;font-size:14px">
+          <thead><tr style="color:#4b5565;text-align:left;font-size:13px"><th style="padding:10px 16px;font-weight:500">Profile</th><th style="padding:10px 8px;font-weight:500">Range</th><th style="padding:10px 8px;font-weight:500">Grace</th><th style="padding:10px 8px;font-weight:500">Used by</th><th style="padding:10px 16px;font-weight:500;text-align:right"></th></tr></thead>
+          <tbody>
+            <sc-for list="{{rows}}" as="r" hint-placeholder-count="5">
+              <tr onClick="{{r.pick}}" style="border-top:1px solid #e2e6ed;background:{{r.bg}};cursor:pointer"><td style="padding:12px 16px"><strong>{{r.name}}</strong><div style="font-size:12px;color:#4b5565">{{r.sub}}</div></td><td style="padding:12px 8px;font-family:'IBM Plex Mono',monospace">{{r.range}}</td><td style="padding:12px 8px">{{r.grace}}</td><td style="padding:12px 8px">{{r.used}}</td><td style="padding:12px 16px;text-align:right"><a href="#" style="color:#1a43b8">edit</a></td></tr>
+            </sc-for>
+          </tbody>
+        </table>
+        <div style="padding:12px 16px;border-top:1px solid #e2e6ed"><button style="color:#0f172a;min-height:40px;padding:6px 14px;border:1px solid #7a8696;border-radius:8px;background:#fff;font-size:14px;font-weight:500;cursor:pointer">+ New profile</button></div>
+      </section>
+
+      <section style="background:#fff;border:1px solid #1d4ed8;border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:14px">
+        <h2 style="margin:0;font-size:16px;font-weight:600">{{cur.name}}</h2>
+        <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px">
+          <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Min °C<input type="text" value="{{cur.min}}" style="color:#0f172a;height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px"></label>
+          <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Max °C<input type="text" value="{{cur.max}}" style="color:#0f172a;height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px"></label>
+          <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Grace before excursion<select style="color:#0f172a;width:100%;height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;background:#fff"><option>{{cur.grace}}</option><option>0 min</option><option>15 min</option><option>30 min</option><option>60 min</option></select></label>
+          <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Max cumulative out-of-range<select style="color:#0f172a;width:100%;height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;background:#fff"><option>{{cur.cum}}</option><option>none</option><option>30 min</option><option>2 h</option></select></label>
+        </div>
+        <div style="padding:12px 14px;border-radius:8px;background:#f3f5f9;font-size:13px;line-height:18px;color:#4b5565">
+          <strong style="color:#0f172a">Certificate wording when in range:</strong> "{{cur.ok}}"<br>
+          <strong style="color:#0f172a">When breached:</strong> "{{cur.bad}}"
+        </div>
+        <label style="display:flex;gap:8px;align-items:center;font-size:13px;color:#4b5565"><input type="checkbox" checked style="color:#0f172a;margin:0;width:16px;height:16px">Raise an alert to the custodian tenant on breach</label>
+        <label style="display:flex;gap:8px;align-items:center;font-size:13px;color:#4b5565"><input type="checkbox" style="color:#0f172a;margin:0;width:16px;height:16px">Also notify the previous custodian</label>
+        <label style="display:flex;gap:8px;align-items:center;font-size:13px;color:#4b5565"><input type="checkbox" checked style="color:#0f172a;margin:0;width:16px;height:16px">Also notify the tenant that issued the batch (manufacturer / first custodian) — SMS names the step, never the custodian</label>
+        <div style="display:flex;gap:10px;align-items:center">
+          <button style="min-height:44px;padding:6px 18px;border:0;border-radius:12px;background:#1d4ed8;color:#fff;font-size:14px;font-weight:600;cursor:pointer">Save profile</button>
+          <span style="font-size:12px;color:#4b5565">Changes apply to legs that start after saving. Closed legs are never re-graded.</span>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":900}}'>
+class Component extends DCLogic {
+  constructor(p){ super(p); this.state = { pick: 0 }; }
+  renderVals() {
+    const defs = [
+      { name:'Cold chain 2–8', sub:'default · vaccines, insulin, biologics', range:'2 – 8 °C', min:2, max:8, grace:'30 min', cum:'none', used:'Adroit, Apollo', ok:'Kept between 2–8 °C', bad:'Went outside 2–8 °C for {minutes} min' },
+      { name:'Frozen −25 to −15', sub:'frozen vaccines', range:'−25 – −15 °C', min:-25, max:-15, grace:'15 min', cum:'none', used:'—', ok:'Kept frozen', bad:'Thaw risk: above −15 °C for {minutes} min' },
+      { name:'Lab samples 2–8 · 4 h', sub:'diagnostics · time-to-lab limit', range:'2 – 8 °C', min:2, max:8, grace:'15 min', cum:'30 min', used:'Test Lab', ok:'Kept cold and reached the lab in time', bad:'Check sample: {reason}' },
+      { name:'Ambient 15–25', sub:'controlled room temperature', range:'15 – 25 °C', min:15, max:25, grace:'60 min', cum:'2 h', used:'—', ok:'Stored at room temperature', bad:'Exposed above 25 °C for {minutes} min' },
+      { name:'No temperature · custody only', sub:'BFSI packets', range:'—', min:'', max:'', grace:'—', cum:'—', used:'Muthoot, Axis (dedicated)', ok:'In custody', bad:'—' }
+    ];
+    const rows = defs.map((d, i) => ({ ...d, bg: i === this.state.pick ? '#e8eefc' : '#fff', pick: () => this.setState({ pick: i }) }));
+    return { rows, cur: defs[this.state.pick] };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Bind — no signal</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>body{margin:0;font-family:"Noto Sans",system-ui,sans-serif;color:#fff}a{color:#8fb0ff}a:hover{color:#fff}input,button{font-family:inherit}/*sc-safety*/ input,select,textarea{min-width:0;max-width:100%;box-sizing:border-box} td,th,p,li{overflow-wrap:break-word} td:last-child,th:last-child{white-space:nowrap} button{white-space:normal;line-height:1.2}</style>
+</helmet>
+<div style="width:390px;height:844px;box-sizing:border-box;background:#0b1220;color:#ffffff;display:flex;flex-direction:column;position:relative;overflow:hidden">
+  <header style="height:56px;box-sizing:border-box;padding:0 20px;display:flex;align-items:center;justify-content:space-between">
+    <div style="font-size:14px;color:#a3adbf">Binding to <span style="font-family:'IBM Plex Mono',monospace;color:#fff;font-weight:600">TRK-PRO-900001</span></div>
+    <span style="display:inline-flex;align-items:center;gap:6px;font-size:13px;color:#f87171"><span style="width:8px;height:8px;border-radius:9999px;background:#ef4444"></span>no signal</span>
+  </header>
+
+  <main style="flex:1 1 auto;overflow:auto;padding:8px 20px 140px;box-sizing:border-box;display:flex;flex-direction:column;gap:16px">
+    <div style="position:relative;height:200px;border-radius:16px;background:#000;overflow:hidden;display:flex;align-items:center;justify-content:center;opacity:0.5">
+      <div style="width:160px;height:160px;position:relative">
+        <span style="position:absolute;left:0;top:0;width:32px;height:32px;border-left:3px solid #fff;border-top:3px solid #fff"></span>
+        <span style="position:absolute;right:0;top:0;width:32px;height:32px;border-right:3px solid #fff;border-top:3px solid #fff"></span>
+        <span style="position:absolute;left:0;bottom:0;width:32px;height:32px;border-left:3px solid #fff;border-bottom:3px solid #fff"></span>
+        <span style="position:absolute;right:0;bottom:0;width:32px;height:32px;border-right:3px solid #fff;border-bottom:3px solid #fff"></span>
+      </div>
+    </div>
+
+    <div style="padding:16px;border-radius:12px;background:#2e1111;border:1px solid #273149;display:flex;flex-direction:column;gap:8px">
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="width:32px;height:32px;border-radius:9999px;background:#ef4444;color:#2a0808;display:inline-flex;align-items:center;justify-content:center;font-size:18px;font-weight:600;flex:0 0 auto">!</span>
+        <div style="font-size:18px;font-weight:600">Could not reach Track0tic</div>
+      </div>
+      <p style="margin:0;font-size:15px;line-height:22px;color:#eef2f8">The last code you entered was <strong style="font-family:'IBM Plex Mono',monospace">0M95C30P</strong>. It was <strong>not</strong> bound. Move to signal and tap Retry — the code stays here.</p>
+      <p style="margin:0;font-size:13px;line-height:18px;color:#a3adbf">We never retry on our own, so a passport is never bound twice by accident.</p>
+    </div>
+
+    <div style="display:flex;gap:8px">
+      <div style="flex:1 1 0;min-width:0;width:0;height:56px;border:1px solid #6b7a90;border-radius:8px;padding:0 12px;font-size:20px;font-family:'IBM Plex Mono',monospace;letter-spacing:0.12em;background:#172036;display:flex;align-items:center">0M95C30P</div>
+      <button onClick="{{retry}}" style="height:56px;padding:0 18px;border:0;border-radius:8px;background:#3b6cf0;color:#fff;font-size:16px;font-weight:600;cursor:pointer">{{retryLabel}}</button>
+    </div>
+
+    <sc-if value="{{ok}}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:12px;background:#0c2b22;border:1px solid #273149">
+        <span style="width:28px;height:28px;border-radius:9999px;background:#10b981;color:#06281c;display:inline-flex;align-items:center;justify-content:center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg></span>
+        <div><div style="font-family:'IBM Plex Mono',monospace;font-size:16px;font-weight:600">0M95C30P</div><div style="font-size:13px;color:#a3adbf">bound on retry · 16:41</div></div>
+      </div>
+    </sc-if>
+
+    <section style="display:flex;flex-direction:column;gap:8px">
+      <div style="font-size:16px;font-weight:600">Already bound this session <span style="color:#a3adbf;font-weight:500">· 3</span></div>
+      <div style="padding:12px 14px;border-radius:12px;background:#172036;border:1px solid #273149;font-size:14px;color:#a3adbf;display:flex;flex-direction:column;gap:6px">
+        <div style="display:flex;justify-content:space-between"><span style="font-family:'IBM Plex Mono',monospace;color:#fff">AWHK7ZRR</span><span>16:32 · saved</span></div>
+        <div style="display:flex;justify-content:space-between"><span style="font-family:'IBM Plex Mono',monospace;color:#fff">097FQYD7</span><span>16:33 · saved</span></div>
+        <div style="display:flex;justify-content:space-between"><span style="font-family:'IBM Plex Mono',monospace;color:#fff">KGVZA1FQ</span><span>16:35 · saved</span></div>
+      </div>
+      <div style="font-size:13px;color:#a3adbf">These are safe on the server. Only the one above is waiting.</div>
+    </section>
+  </main>
+
+  <div style="position:absolute;left:0;right:0;bottom:0;padding:12px 20px 24px;background:#0b1220;box-shadow:0 -2px 12px #00000099;display:flex;flex-direction:column;gap:8px">
+    <a href="Device-Staff.dc.html" style="display:flex;align-items:center;justify-content:center;height:56px;border-radius:12px;background:#fff;color:#0f172a;font-size:17px;font-weight:600;text-decoration:none">Done · 3 bound, 1 waiting</a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(p){ super(p); this.state = { ok: false }; }
+  renderVals() { return { ok: this.state.ok, retryLabel: this.state.ok ? 'Bound' : 'Retry', retry: () => this.setState({ ok: true }) }; }
+}
+</script>
+</body>
+</html>

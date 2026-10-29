@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Track0tic admin — QR labels: device QRs then passport QRs, one tenant, one flow</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>body{margin:0;font-family:"Noto Sans",system-ui,sans-serif;color:#0f172a;background:#f3f5f9}a{color:#1a43b8}a:hover{color:#0f2f8a}table{border-collapse:collapse}input,select,button{font-family:inherit}/*sc-safety*/ input,select,textarea{min-width:0;max-width:100%;box-sizing:border-box} td,th,p,li{overflow-wrap:break-word} td:last-child,th:last-child{white-space:nowrap} button{white-space:normal;line-height:1.2}</style>
+</helmet>
+<div style="color:#0f172a;display:flex;flex-wrap:wrap;min-height:900px;background:#f3f5f9">
+  <dc-import name="Admin-Sidebar" active="labels" hint-size="240px,820px"></dc-import>
+  <main style="color:#0f172a;flex:999 1 560px;min-width:0;padding:24px;box-sizing:border-box;display:flex;flex-direction:column;gap:18px">
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px">
+      <div><div style="font-size:13px;color:#4b5565">1 · Devices → 3 · Sale &amp; supply</div><h1 style="margin:0;font-size:22px;line-height:28px;font-weight:600">QR labels</h1><div style="font-size:14px;color:#4b5565;margin-top:2px">One flow: pick the tenant → print device QRs (that <em>is</em> the allocation) → generate passport QRs for the same tenant → print here or let the tenant print. Later top-ups come back to this screen.</div></div>
+      <div style="font-size:13px;color:#4b5565">Printer: <strong>PDF · A4</strong> (default) · <span title="Zebra Programming Language — raw format for a thermal label printer">ZPL</span> when a label printer is connected</div>
+    </div>
+
+    <!-- step rail -->
+    <ol style="list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3, minmax(0, 1fr));gap:8px;font-size:14px">
+      <li style="display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:8px;background:{{s1.bg}};border:1px solid {{s1.border}}"><span style="width:24px;height:24px;border-radius:9999px;background:{{s1.dot}};color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:600">{{s1.n}}</span><span style="font-weight:600">Tenant</span><span style="color:#4b5565">· {{t.name}}</span></li>
+      <li style="display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:8px;background:{{s2.bg}};border:1px solid {{s2.border}}"><span style="width:24px;height:24px;border-radius:9999px;background:{{s2.dot}};color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:600">{{s2.n}}</span><span style="font-weight:600">Device QRs</span><span style="color:#4b5565">· {{s2.sub}}</span></li>
+      <li style="display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:8px;background:{{s3.bg}};border:1px solid {{s3.border}}"><span style="width:24px;height:24px;border-radius:9999px;background:{{s3.dot}};color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:600">{{s3.n}}</span><span style="font-weight:600">Passport QRs</span><span style="color:#4b5565">· {{s3.sub}}</span></li>
+    </ol>
+
+    <div style="display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:16px;align-items:start">
+      <div style="display:flex;flex-direction:column;gap:14px">
+
+        <!-- STEP 1 tenant -->
+        <section style="background:#fff;border:1px solid {{s1.border}};border-radius:12px;padding:16px 20px;display:flex;flex-direction:column;gap:10px">
+          <div style="display:flex;justify-content:space-between;align-items:baseline"><h2 style="margin:0;font-size:16px;font-weight:600">1 · Which tenant?</h2><span style="font-size:13px;color:#4b5565">everything below is for this tenant only</span></div>
+          <select onChange="{{setTenant}}" style="color:#0f172a;width:100%;height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:15px;background:#fff">
+            <option value="adroit">Adroit Agencies · pharma · distributor</option><option value="apollo">Apollo Pharmacy · pharma · pharmacy chain</option><option value="max">Max Pharmacy · pharma · pharmacy chain</option><option value="sun">Sun Pharma · pharma · manufacturer</option><option value="testlab">Test Lab · diagnostics · lab</option><option value="medplus">MedPlus · pharma · pharmacy chain</option>
+          </select>
+          <div style="font-size:13px;color:#4b5565">{{t.has}}</div>
+        </section>
+
+        <!-- STEP 2 device QRs -->
+        <section style="background:#fff;border:1px solid {{s2.border}};border-radius:12px;padding:16px 20px;display:flex;flex-direction:column;gap:12px">
+          <div style="display:flex;justify-content:space-between;align-items:baseline"><h2 style="margin:0;font-size:16px;font-weight:600">2 · Device QRs for {{t.short}}</h2><span style="font-size:13px;color:#4b5565">printing a device QR allocates that device to the tenant</span></div>
+          <div style="display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,0.6fr);gap:10px;align-items:end">
+            <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Device type<select onChange="{{setType}}" style="color:#0f172a;width:100%;height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;background:#fff"><option value="PRO">PRO · GPS logger · 238 QC-passed in stock</option><option value="LITE">LITE · logger · 112 in stock</option><option value="HUB">HUB · cold room · 29 in stock</option><option value="LOCKBOX">LOCKBOX · 50 in stock (bank environments)</option></select></label>
+            <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Quantity<input type="text" value="{{dq}}" onChange="{{setDq}}" style="color:#0f172a;height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:16px;text-align:center"></label>
+          </div>
+          <div style="padding:10px 12px;border-radius:8px;background:#f3f5f9;font-size:13px;line-height:18px;color:#4b5565">Will take the next <strong style="color:#0f172a">{{dq}} × {{type}}</strong> from QC-passed stock: <span style="font-family:'IBM Plex Mono',monospace;color:#0f172a">{{firstId}} → {{lastId}}</span>. Each gets its permanent label (60 × 30 mm, QR → <code>/d/&lt;token&gt;</code>). Stick the label on before dispatch.</div>
+          <sc-if value="{{s2.open}}" hint-placeholder-val="{{ true }}">
+            <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+              <button onClick="{{printDevices}}" style="color:#fff;min-height:44px;padding:6px 18px;border:0;border-radius:12px;background:#1d4ed8;font-size:14px;font-weight:600;cursor:pointer">Print {{dq}} device QRs → allocate to {{t.short}}</button>
+              <button style="color:#0f172a;min-height:44px;padding:6px 14px;border:1px solid #7a8696;border-radius:12px;background:#fff;font-size:14px;font-weight:500;cursor:pointer">Pick specific TRK IDs</button>
+              <span style="font-size:12px;color:#4b5565">PDF opens; ZPL option when a label printer is connected</span>
+            </div>
+          </sc-if>
+          <sc-if value="{{s2.done}}" hint-placeholder-val="{{ false }}">
+            <div style="padding:10px 12px;border-radius:8px;background:#e6f6ef;color:#047857;font-size:13px;font-weight:600">Printed &amp; allocated · {{dq}} × {{type}} → {{t.name}} · audit #88150 · invoice/sale type recorded on the <a href="Admin-Allocate.dc.html" style="color:#047857">allocation record</a> · <a href="#" style="color:#047857">PDF again</a> · <a href="#" style="color:#047857">ZPL</a></div>
+          </sc-if>
+        </section>
+
+        <!-- STEP 3 passport QRs -->
+        <section style="background:#fff;border:1px solid {{s3.border}};border-radius:12px;padding:16px 20px;display:flex;flex-direction:column;gap:12px;opacity:{{s3.opacity}}">
+          <div style="display:flex;justify-content:space-between;align-items:baseline"><h2 style="margin:0;font-size:16px;font-weight:600">3 · Passport QRs for {{t.short}}</h2><span style="font-size:13px;color:#4b5565">Track0tic generates; tenant never mints</span></div>
+          <div style="display:grid;grid-template-columns:minmax(0,0.7fr) minmax(0,1fr) minmax(0,1.4fr);gap:10px;align-items:end">
+            <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Quantity<input type="text" value="{{pq}}" onChange="{{setPq}}" style="color:#0f172a;height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:16px;text-align:center"></label>
+            <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Label size<select style="color:#0f172a;width:100%;height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;background:#fff"><option>{{t.size}}</option><option>Standard 40 × 25</option><option>Tube 25 × 12</option></select></label>
+            <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Who prints<select onChange="{{setWho}}" style="color:#0f172a;width:100%;height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;background:#fff"><option value="here">Track0tic prints · courier to tenant</option><option value="tenant">Tenant prints from own portal</option></select></label>
+          </div>
+          <sc-if value="{{s3.open}}" hint-placeholder-val="{{ true }}">
+            <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+              <button onClick="{{genPassports}}" style="color:#fff;min-height:44px;padding:6px 18px;border:0;border-radius:12px;background:#1d4ed8;font-size:14px;font-weight:600;cursor:pointer">{{genLabel}}</button>
+              <span style="font-size:12px;color:#4b5565">Creates book {{nextBook}} · {{pq}} codes · appears in {{t.short}}'s portal immediately</span>
+            </div>
+          </sc-if>
+          <sc-if value="{{s3.done}}" hint-placeholder-val="{{ false }}">
+            <div style="padding:10px 12px;border-radius:8px;background:#e6f6ef;color:#047857;font-size:13px;font-weight:600">Book {{nextBook}} generated · {{pq}} passport QRs · {{doneWho}} · audit #88151</div>
+            <sc-if value="{{courier}}" hint-placeholder-val="{{ true }}">
+              <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) auto;gap:10px;align-items:end;padding:12px;border:1px solid #e2e6ed;border-radius:8px">
+                <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Courier · AWB<input type="text" placeholder="Delhivery · 2290 1234 5678" style="color:#0f172a;height:40px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px"></label>
+                <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Ship to<input type="text" value="{{t.addr}}" style="color:#0f172a;height:40px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px"></label>
+                <button style="color:#0f172a;min-height:40px;padding:6px 14px;border:1px solid #7a8696;border-radius:8px;background:#fff;font-size:14px;font-weight:500;cursor:pointer">Mark dispatched</button>
+              </div>
+            </sc-if>
+          </sc-if>
+        </section>
+      </div>
+
+      <!-- right column: this tenant's label history + requests -->
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <section style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:8px">
+          <div style="font-size:14px;font-weight:600">Label preview · device QR</div>
+          <div style="display:flex;gap:12px;align-items:center;padding:10px;border:1px dashed #7a8696;border-radius:8px">
+            <div style="width:72px;height:72px;background:repeating-conic-gradient(#0f172a 0 25%,#fff 0 50%) 0 0/12px 12px;border:4px solid #fff;outline:1px solid #e2e6ed;flex:0 0 auto"></div>
+            <div><div style="font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:600">{{firstId}}</div><div style="font-size:11px;color:#4b5565">60 × 30 mm · polyester · EC Q · /d/&lt;token&gt;</div><div style="font-size:11px;font-weight:600">Track<span style="color:#e11d2e">0</span>tic<sup style="font-size:0.5em;vertical-align:top">TM</sup></div></div>
+          </div>
+          <div style="font-size:12px;color:#4b5565">Scan test after printing: must open the device page. Token rotation (label replacement) — phase 2.</div>
+        </section>
+
+        <section style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;overflow:hidden">
+          <div style="padding:12px 16px;border-bottom:1px solid #e2e6ed;font-size:14px;font-weight:600">{{t.short}} · passport QR books</div>
+          <table style="width:100%;font-size:13px">
+            <thead><tr style="color:#4b5565;text-align:left;font-size:12px"><th style="padding:8px 12px;font-weight:500">Book</th><th style="padding:8px 6px;font-weight:500">Qty</th><th style="padding:8px 6px;font-weight:500">Printed by</th><th style="padding:8px 12px;font-weight:500;text-align:right">Status</th></tr></thead>
+            <tbody>
+              <sc-for list="{{t.books}}" as="b" hint-placeholder-count="3">
+                <tr style="border-top:1px solid #e2e6ed"><td style="padding:8px 12px;font-family:'IBM Plex Mono',monospace;font-weight:600">{{b.id}}</td><td style="padding:8px 6px">{{b.qty}}</td><td style="padding:8px 6px">{{b.by}}</td><td style="padding:8px 12px;text-align:right;color:{{b.color}}">{{b.status}}</td></tr>
+              </sc-for>
+              <sc-if value="{{t.noBooks}}" hint-placeholder-val="{{ false }}"><tr><td colspan="4" style="padding:16px 12px;color:#4b5565;text-align:center">No passport QRs yet for {{t.name}} — step 3 creates the first book.</td></tr></sc-if>
+            </tbody>
+          </table>
+        </section>
+
+        <section style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:8px;font-size:13px">
+          <div style="font-size:14px;font-weight:600">Open requests from tenants</div>
+          <div style="display:flex;justify-content:space-between;gap:8px"><span><strong>Adroit</strong> · 500 more passport QRs · wants courier</span><a href="#" onClick="{{reqAdroit}}">load into step 3 ›</a></div>
+          <div style="display:flex;justify-content:space-between;gap:8px"><span><strong>Test Lab</strong> · 2,000 tube-size · prints self</span><a href="#" onClick="{{reqTestlab}}">load ›</a></div>
+          <div style="font-size:12px;color:#4b5565">Requests come from the tenant portal ("Request more"). Loading one fills the tenant and quantities above; generating it closes the request.</div>
+        </section>
+      </div>
+    </div>
+
+    <div style="font-size:13px;color:#4b5565">Detail views: <a href="Admin-Allocate.dc.html">allocation record</a> (what step 2 writes) · <a href="Admin-Issue.dc.html">books &amp; stock</a> (what step 3 writes) · <a href="Tenant-Stock.dc.html">tenant portal · print</a>. Device QRs are permanent; passport QRs are consumed one unit each.</div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":900}}'>
+class Component extends DCLogic {
+  constructor(p){ super(p); this.state = { tenant: 'adroit', type: 'PRO', dq: 10, pq: 500, who: 'here', d2: false, d3: false }; }
+  renderVals() {
+    const T = {
+      adroit:  { name:'Adroit Agencies', short:'Adroit', has:'Has 30 devices · 4 books (71 passport QRs in stock) · prints own labels', size:'Standard 40 × 25', addr:'Okhla Ph-1, New Delhi', books:[ {id:'ADROIT-PB-0004',qty:'24',by:'Track0tic',status:'couriered 22 Oct',color:'#047857'}, {id:'ADROIT-PB-0003',qty:'3',by:'tenant',status:'printed',color:'#047857'}, {id:'ADROIT-PB-0002',qty:'30',by:'tenant',status:'printed',color:'#047857'}, {id:'ADROIT-PB-0001',qty:'20',by:'Track0tic',status:'couriered 3 Oct',color:'#047857'} ] },
+      apollo:  { name:'Apollo Pharmacy', short:'Apollo', has:'New tenant · 0 devices · 0 passport QRs · first admin added', size:'Standard 40 × 25', addr:'Select Citywalk, Saket, New Delhi', books:[] },
+      max:     { name:'Max Pharmacy', short:'Max', has:'Has 2 devices · 0 passport QRs', size:'Standard 40 × 25', addr:'Rohini, Delhi', books:[] },
+      sun:     { name:'Sun Pharma', short:'Sun Pharma', has:'Manufacturer · 0 devices yet', size:'Standard 40 × 25', addr:'Baddi, HP', books:[] },
+      testlab: { name:'Test Lab', short:'Test Lab', has:'Has 12 devices · 2 books (3,960 tube-size in stock) · prints own labels', size:'Tube 25 × 12', addr:'Lab 1, Okhla Ph-2', books:[ {id:'TESTLAB-PB-0002',qty:'2,000',by:'tenant',status:'printed',color:'#047857'}, {id:'TESTLAB-PB-0001',qty:'2,000',by:'tenant',status:'printed',color:'#047857'} ] },
+      medplus: { name:'MedPlus', short:'MedPlus', has:'Has 0 devices · 0 passport QRs', size:'Standard 40 × 25', addr:'Hyderabad', books:[] }
+    };
+    const s = this.state; const t = { ...T[s.tenant], noBooks: T[s.tenant].books.length === 0 };
+    const base = { PRO: 900240, LITE: 900388, HUB: 900041, LOCKBOX: 900601 }[s.type];
+    const pfx = { PRO:'TRK-PRO-', LITE:'TRK-LTE-', HUB:'TRK-HUB-', LOCKBOX:'TRK-BOX-' }[s.type];
+    const dq = Math.max(1, parseInt(s.dq || '1', 10)), pq = Math.max(1, parseInt(s.pq || '1', 10));
+    const step = (open, done, n) => ({ open, done, n: done ? '✓' : String(n), bg: done ? '#e6f6ef' : (open ? '#e8eefc' : '#fff'), border: done ? '#c6e7d6' : (open ? '#1d4ed8' : '#e2e6ed'), dot: done ? '#047857' : (open ? '#1d4ed8' : '#7a8696') });
+    const s1 = { ...step(false, true, 1) };
+    const s2 = { ...step(!s.d2, s.d2, 2), sub: s.d2 ? `${dq} × ${s.type} printed` : `${dq} × ${s.type}` };
+    const s3 = { ...step(!s.d3, s.d3, 3), sub: s.d3 ? `${pq} generated` : `${pq} codes`, opacity: 1 };
+    const nextBook = `${t.short.toUpperCase().replace(/ /g,'')}-PB-${String(T[s.tenant].books.length + 1).padStart(4,'0')}`;
+    return { t, s1, s2, s3, dq, pq, type: s.type, firstId: pfx + base, lastId: pfx + (base + dq - 1), nextBook,
+      genLabel: s.who === 'here' ? `Generate ${pq} passport QRs → print here → courier` : `Generate ${pq} passport QRs → tenant prints`,
+      doneWho: s.who === 'here' ? 'printed here · ready to courier' : 'visible in tenant portal · they print', courier: s.who === 'here',
+      setTenant: (e) => this.setState({ tenant: e.target.value, d2: false, d3: false }),
+      setType: (e) => this.setState({ type: e.target.value, d2: false }),
+      setDq: (e) => this.setState({ dq: e.target.value, d2: false }), setPq: (e) => this.setState({ pq: e.target.value, d3: false }),
+      setWho: (e) => this.setState({ who: e.target.value, d3: false }),
+      printDevices: () => this.setState({ d2: true }), genPassports: () => this.setState({ d3: true }),
+      reqAdroit: (e) => { e.preventDefault(); this.setState({ tenant: 'adroit', pq: 500, who: 'here', d3: false }); },
+      reqTestlab: (e) => { e.preventDefault(); this.setState({ tenant: 'testlab', pq: 2000, who: 'tenant', d3: false }); } };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Track0tic admin — create tenant</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>body{margin:0;font-family:"Noto Sans",system-ui,sans-serif;color:#0f172a;background:#f3f5f9}a{color:#1a43b8}a:hover{color:#0f2f8a}table{border-collapse:collapse}input,select,button,textarea{font-family:inherit}/*sc-safety*/ input,select,textarea{min-width:0;max-width:100%;box-sizing:border-box} td,th,p,li{overflow-wrap:break-word} td:last-child,th:last-child{white-space:nowrap} button{white-space:normal;line-height:1.2}</style>
+</helmet>
+<div style="color:#0f172a;display:flex;flex-wrap:wrap;min-height:900px;background:#f3f5f9">
+  <dc-import name="Admin-Sidebar" active="tenants" hint-size="240px,820px"></dc-import>
+  <main style="color:#0f172a;flex:999 1 560px;min-width:0;padding:24px;box-sizing:border-box;display:flex;flex-direction:column;gap:20px">
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px">
+      <div><div style="font-size:13px;color:#4b5565">2 · Tenants</div><h1 style="margin:0;font-size:22px;line-height:28px;font-weight:600">Tenants</h1></div>
+      <div style="display:flex;gap:8px"><input type="search" placeholder="Search tenants" style="color:#0f172a;height:40px;border:1px solid #7a8696;border-radius:8px;padding:0 12px;font-size:14px;width:240px"><button onClick="{{openForm}}" style="color:#fff;min-height:40px;padding:6px 14px;border:0;border-radius:8px;background:#1d4ed8;font-size:14px;font-weight:600;cursor:pointer">+ Create tenant</button></div>
+    </div>
+
+    <sc-if value="{{showForm}}" hint-placeholder-val="{{ true }}">
+    <section style="background:#fff;border:1px solid #1d4ed8;border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:16px">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px">
+        <h2 style="margin:0;font-size:18px;font-weight:600">Create tenant</h2>
+        <span style="font-size:13px;color:#4b5565">Company record only. Users are added on the tenant page right after — a tenant with no login cannot be used, so the page will prompt you.</span>
+      </div>
+
+      <div style="font-size:12px;font-weight:600;letter-spacing:0.06em;color:#4b5565">COMPANY</div>
+      <div style="display:grid;grid-template-columns:repeat(3, minmax(0, 1fr));gap:10px">
+        <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Legal name<input type="text" value="Apollo Pharmacy Ltd" style="color:#0f172a;height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px"></label>
+        <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Display name<input type="text" value="Apollo Pharmacy" style="color:#0f172a;height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px"></label>
+        <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">GSTIN<input type="text" value="07AAACA1234F1Z5" style="color:#0f172a;height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;font-family:'IBM Plex Mono',monospace"></label>
+        <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500;grid-column:1 / 3">Registered address<input type="text" value="Select Citywalk Mall, Saket, New Delhi 110017" style="color:#0f172a;height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px"></label>
+        <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Billing email<input type="email" value="accounts@apollopharmacy.in" style="color:#0f172a;height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px"></label>
+      </div>
+
+      <div style="font-size:12px;font-weight:600;letter-spacing:0.06em;color:#4b5565">WHAT KIND OF TENANT</div>
+      <div style="display:grid;grid-template-columns:repeat(4, minmax(0, 1fr));gap:10px">
+        <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Vertical<select onChange="{{setVertical}}" style="color:#0f172a;width:100%;height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;background:#fff"><option value="pharma">Pharma · product passports</option><option value="diag">Diagnostics · sample passports</option><option value="bfsi">BFSI · custody (dedicated environment)</option></select></label>
+        <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Sales category<select style="color:#0f172a;width:100%;height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;background:#fff"><sc-for list="{{v.cats}}" as="c" hint-placeholder-count="4"><option>{{c}}</option></sc-for></select></label>
+        <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Hosted on<select style="color:#0f172a;width:100%;height:44px;border:1px solid {{v.podBorder}};border-radius:8px;padding:0 10px;font-size:14px;background:#fff"><sc-for list="{{v.pods}}" as="pd" hint-placeholder-count="3"><option>{{pd}}</option></sc-for></select></label>
+        <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Seats<input type="text" value="25" style="color:#0f172a;height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px"></label>
+      </div>
+
+      <div style="font-size:12px;font-weight:600;letter-spacing:0.06em;color:#4b5565">DEFAULTS (can change later on the tenant page)</div>
+      <div style="display:grid;grid-template-columns:repeat(4, minmax(0, 1fr));gap:10px">
+        <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Temperature profile<select style="color:#0f172a;width:100%;height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;background:#fff"><sc-for list="{{v.profiles}}" as="pr" hint-placeholder-count="3"><option>{{pr}}</option></sc-for></select></label>
+        <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Journey template<select style="color:#0f172a;width:100%;height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;background:#fff"><sc-for list="{{v.journeys}}" as="j" hint-placeholder-count="3"><option>{{j}}</option></sc-for></select></label>
+        <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">{{v.quotaLabel}}<input type="text" value="{{v.quota}}" style="color:#0f172a;height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px"></label>
+        <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Location on bind<select style="color:#0f172a;width:100%;height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;background:#fff"><option>{{v.loc}}</option><option>{{v.locAlt}}</option></select></label>
+      </div>
+      <sc-if value="{{v.canPrint}}" hint-placeholder-val="{{ true }}"><label style="display:flex;gap:8px;align-items:center;font-size:13px;color:#4b5565"><input type="checkbox" checked style="margin:0;width:16px;height:16px">Tenant may print its own passport labels from the tenant portal</label></sc-if>
+      <sc-if value="{{v.isBfsi}}" hint-placeholder-val="{{ false }}"><div style="padding:12px 14px;border-radius:8px;background:#fef3e2;border:1px solid #f0c48a;font-size:13px;line-height:18px;color:#92400e"><strong>Dedicated environment.</strong> This tenant is created in the bank’s own environment you picked above, not on the shared platform. No public passport pages, no temperature profile — custody only. Branch IP allowlist and maker-checker are switched on by default and set up on the tenant page.</div></sc-if>
+
+      <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding-top:6px;border-top:1px solid #e2e6ed">
+        <a href="Admin-TenantDetail.dc.html" style="display:inline-flex;align-items:center;min-height:44px;padding:6px 18px;border-radius:12px;background:#1d4ed8;color:#fff;font-size:14px;font-weight:600;text-decoration:none">{{v.cta}}</a>
+        <button onClick="{{closeForm}}" style="color:#0f172a;min-height:44px;padding:6px 16px;border:1px solid #7a8696;border-radius:12px;background:#fff;font-size:14px;font-weight:500;cursor:pointer">Cancel</button>
+        <span style="font-size:13px;color:#4b5565">Saves the company and opens its page, which asks for the first admin user before anything else can happen. Audit-logged.</span>
+      </div>
+    </section>
+    </sc-if>
+
+    <section style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;overflow:hidden">
+      <div style="padding:14px 16px;border-bottom:1px solid #e2e6ed;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+        <h2 style="margin:0;font-size:18px;font-weight:600">Tenants · shared platform <span style="font-weight:500;color:#4b5565">· 6</span></h2>
+        <div style="display:flex;gap:6px;font-size:13px"><span style="padding:6px 12px;border-radius:9999px;background:#1d4ed8;color:#fff;font-weight:500">Active 5</span><span style="padding:6px 12px;border-radius:9999px;background:#fef3e2;color:#92400e;font-weight:500">No users yet 1</span><span style="padding:6px 12px;border-radius:9999px;background:#eef1f6;color:#4b5565;font-weight:500">Suspended 0</span></div>
+      </div>
+      <table style="width:100%;font-size:14px">
+        <thead><tr style="color:#4b5565;text-align:left;font-size:13px"><th style="padding:10px 16px;font-weight:500">Tenant</th><th style="padding:10px 8px;font-weight:500">Vertical</th><th style="padding:10px 8px;font-weight:500">Users</th><th style="padding:10px 8px;font-weight:500">Devices</th><th style="padding:10px 8px;font-weight:500">Passports</th><th style="padding:10px 8px;font-weight:500">Status</th><th style="padding:10px 16px;font-weight:500;text-align:right">Created</th></tr></thead>
+        <tbody>
+          <tr style="border-top:1px solid #e2e6ed;background:#fef3e2"><td style="padding:12px 16px"><a href="Admin-TenantDetail.dc.html"><strong>Apollo Pharmacy</strong></a><div style="font-size:12px;color:#4b5565">ten_apollo · pharmacy chain</div></td><td style="padding:12px 8px">Pharma</td><td style="padding:12px 8px;color:#92400e;font-weight:600">0 · add first admin</td><td style="padding:12px 8px">0</td><td style="padding:12px 8px">0</td><td style="padding:12px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#fef3e2;color:#92400e;font-size:12px;font-weight:500">no users yet</span></td><td style="padding:12px 16px;text-align:right">Today 15:31 · you</td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:12px 16px"><a href="Admin-TenantDetail.dc.html"><strong>Adroit Agencies</strong></a><div style="font-size:12px;color:#4b5565">ten_adroit · distributor</div></td><td style="padding:12px 8px">Pharma</td><td style="padding:12px 8px">7 / 25</td><td style="padding:12px 8px">30</td><td style="padding:12px 8px">2,400</td><td style="padding:12px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#e6f6ef;color:#047857;font-size:12px;font-weight:500">active</span></td><td style="padding:12px 16px;text-align:right">2 Oct</td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:12px 16px"><a href="Admin-TenantDetail.dc.html"><strong>Test Lab</strong></a><div style="font-size:12px;color:#4b5565">ten_testlab · diagnostics</div></td><td style="padding:12px 8px">Diagnostics</td><td style="padding:12px 8px">2 / 10</td><td style="padding:12px 8px">12</td><td style="padding:12px 8px">4,000</td><td style="padding:12px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#e6f6ef;color:#047857;font-size:12px;font-weight:500">active</span></td><td style="padding:12px 16px;text-align:right">6 Oct</td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:12px 16px"><a href="Admin-TenantDetail.dc.html"><strong>Max Pharmacy</strong></a><div style="font-size:12px;color:#4b5565">ten_max · pharmacy chain</div></td><td style="padding:12px 8px">Pharma</td><td style="padding:12px 8px">1 / 10</td><td style="padding:12px 8px">2</td><td style="padding:12px 8px">0</td><td style="padding:12px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#e6f6ef;color:#047857;font-size:12px;font-weight:500">active</span></td><td style="padding:12px 16px;text-align:right">14 Oct</td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td colspan="7" style="padding:10px 16px;font-size:13px;color:#4b5565">+ 2 more</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <div style="font-size:13px;color:#4b5565">Order of work: <strong>create tenant → add first admin (on the tenant page) → allocate devices → issue passports</strong>. BFSI tenants live in their bank’s dedicated environment; choose it under “Hosted on”.</div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":900}}'>
+class Component extends DCLogic {
+  constructor(p){ super(p); this.state = { form: true, vertical: 'pharma' }; }
+  renderVals() {
+    const V = {
+      pharma: { cats:['Pharmacy chain','Distributor / stockist','CFA','Manufacturer','3PL / logistics'], pods:['Shared platform · trackotic.com'], podBorder:'#7a8696', profiles:['Cold chain 2–8','Frozen −25 to −15','Ambient 15–25'], journeys:['Pharma · retail only','Pharma · depot to pharmacy','Pharma · manufacturer to patient'], quotaLabel:'Passport quota / month', quota:'2,000', loc:'Required', locAlt:'Optional', canPrint:true, isBfsi:false, cta:'Create tenant ›' },
+      diag:   { cats:['Diagnostics lab','Collection centre network','Hospital lab'], pods:['Shared platform · trackotic.com'], podBorder:'#7a8696', profiles:['Lab samples 2–8 · 4 h','Cold chain 2–8','Ambient 15–25'], journeys:['Diagnostics · home to lab'], quotaLabel:'Passport QR quota / month', quota:'5,000', loc:'Required', locAlt:'Optional', canPrint:true, isBfsi:false, cta:'Create tenant ›' },
+      bfsi:   { cats:['Gold loan NBFC','Bank · cash-in-transit','Bank · branch custody'], pods:['choose the bank’s dedicated environment…','Muthoot · dedicated','Axis Bank · dedicated'], podBorder:'#b45309', profiles:['No temperature · custody only'], journeys:['BFSI · custody'], quotaLabel:'Passport QR quota / month', quota:'10,000', loc:'Required (phone GPS, warning only)', locAlt:'Required (hard block)', canPrint:false, isBfsi:true, cta:'Create tenant in dedicated environment ›' }
+    };
+    const v = V[this.state.vertical];
+    return { v, setVertical: (e) => this.setState({ vertical: e.target.value }), showForm: this.state.form, openForm: () => this.setState({ form: true }), closeForm: () => this.setState({ form: false }) }; }
+}
+</script>
+</body>
+</html>

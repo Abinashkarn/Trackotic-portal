@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Track0tic admin — sign in</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>body{margin:0;font-family:"Noto Sans",system-ui,sans-serif;color:#0f172a}a{color:#1a43b8}a:hover{color:#0f2f8a}input,button{font-family:inherit}/*sc-safety*/ input,select,textarea{min-width:0;max-width:100%;box-sizing:border-box} td,th,p,li{overflow-wrap:break-word} td:last-child,th:last-child{white-space:nowrap} button{white-space:normal;line-height:1.2}</style>
+</helmet>
+<div style="color:#0f172a;display:flex;min-height:900px;background:#f3f5f9">
+  <aside style="flex:0 0 46%;background:#0b1220;color:#fff;padding:48px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between">
+    <div style="font-size:22px;font-weight:600">Track<span style="color:#ff5a66">0</span>tic<sup style="font-size:0.45em;font-weight:600;vertical-align:top;margin-left:1px;opacity:0.85">TM</sup> <span style="font-size:13px;color:#a3adbf;font-weight:500;margin-left:6px">platform admin</span></div>
+    <div style="display:flex;flex-direction:column;gap:20px;max-width:420px">
+      <div style="font-size:30px;line-height:38px;font-weight:600;letter-spacing:-0.01em">One label per device. One passport per unit. Every leg signed by a scan.</div>
+      <div style="display:flex;flex-direction:column;gap:10px;font-size:14px;color:#a3adbf">
+        <div style="display:flex;gap:10px"><span style="color:#8fb0ff">●</span>Shared platform · pharma + diagnostics</div>
+        <div style="display:flex;gap:10px"><span style="color:#8fb0ff">●</span>Dedicated environments · Muthoot, Axis (separate sign-in)</div>
+        <div style="display:flex;gap:10px"><span style="color:#8fb0ff">●</span>Staff sessions expire after 8 hours</div>
+      </div>
+    </div>
+    <div style="font-size:12px;color:#a3adbf">Shared platform · build 1.7.0 · ap-south-1</div>
+  </aside>
+
+  <main style="flex:1;display:flex;align-items:center;justify-content:center;padding:48px 24px;box-sizing:border-box">
+    <form style="width:100%;max-width:400px;background:#fff;border:1px solid #e2e6ed;border-radius:16px;padding:32px;box-sizing:border-box;display:flex;flex-direction:column;gap:16px">
+      <div>
+        <h1 style="margin:0;font-size:22px;font-weight:600">Sign in</h1>
+        <div style="font-size:14px;color:#4b5565;margin-top:4px">Staff accounts only. Tenant users sign in from the field app with an SMS code.</div>
+      </div>
+      <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:500">Work email<input type="email" placeholder="you@trackotic.com" style="color:#0f172a;height:48px;border:1px solid #7a8696;border-radius:8px;padding:0 12px;font-size:15px"></label>
+      <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:500">Password<input type="password" placeholder="••••••••••" style="color:#0f172a;height:48px;border:1px solid #7a8696;border-radius:8px;padding:0 12px;font-size:15px"></label>
+      <sc-if value="{{showOtp}}" hint-placeholder-val="{{ false }}">
+        <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:500">Code from authenticator<input type="text" placeholder="6 digits" style="color:#0f172a;height:48px;border:1px solid #1d4ed8;border-radius:8px;padding:0 12px;font-size:20px;font-family:'IBM Plex Mono',monospace;letter-spacing:0.2em"></label>
+      </sc-if>
+      <a href="Admin-Dashboard.dc.html" onClick="{{go}}" style="display:flex;align-items:center;justify-content:center;height:52px;border-radius:12px;background:#1d4ed8;color:#fff;font-size:16px;font-weight:600;text-decoration:none">{{cta}}</a>
+      <div style="display:flex;justify-content:space-between;font-size:13px"><a href="#" style="color:#1a43b8">Forgot password</a><a href="#" style="color:#1a43b8">Can't reach authenticator</a></div>
+      <div style="padding:10px 12px;border-radius:8px;background:#f3f5f9;font-size:12px;line-height:16px;color:#4b5565">Sign-in attempts are logged with IP and device. Five failures lock the account for 15 minutes.</div>
+    </form>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":900}}'>
+class Component extends DCLogic {
+  constructor(p){ super(p); this.state = { otp: false }; }
+  renderVals() {
+    return { showOtp: this.state.otp, cta: this.state.otp ? 'Sign in' : 'Continue',
+      go: (e) => { if (!this.state.otp) { e.preventDefault(); this.setState({ otp: true }); } } };
+  }
+}
+</script>
+</body>
+</html>

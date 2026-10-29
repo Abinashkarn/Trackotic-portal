@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>SMS and notification copy</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>body{margin:0;font-family:"Noto Sans",system-ui,sans-serif;color:#0f172a;background:#f3f5f9}table{border-collapse:collapse}/*sc-safety*/ input,select,textarea{min-width:0;max-width:100%;box-sizing:border-box} td,th,p,li{overflow-wrap:break-word} td:last-child,th:last-child{white-space:nowrap} button{white-space:normal;line-height:1.2}</style>
+</helmet>
+<div style="color:#0f172a;width:1280px;box-sizing:border-box;padding:24px;background:#f3f5f9;display:flex;flex-direction:column;gap:20px">
+  <div><h1 style="margin:0;font-size:22px;font-weight:600">SMS and notification copy</h1><div style="font-size:14px;color:#4b5565">All SMS ≤ 160 GSM-7 characters, sender id TRKOTC, DLT-registered templates. Never a passport's location or another tenant's name in an SMS. Codes expire in 10 minutes. Links are short and signed.</div></div>
+
+  <div style="display:grid;grid-template-columns:repeat(3, minmax(0, 1fr));gap:16px">
+    <sc-for list="{{msgs}}" as="m" hint-placeholder-count="12">
+      <section style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px"><div style="font-size:13px;font-weight:600">{{m.name}}</div><span style="font-size:11px;font-weight:600;letter-spacing:0.06em;color:{{m.chFg}}">{{m.channel}}</span></div>
+        <div style="font-size:12px;color:#4b5565">To: {{m.to}} · when: {{m.when}}</div>
+        <div style="padding:10px 12px;border-radius:12px 12px 12px 4px;background:#e8eefc;font-size:13px;line-height:18px;max-width:300px;white-space:pre-line">{{m.body}}</div>
+        <div style="font-size:11px;color:{{m.lenColor}}">{{m.len}} chars</div>
+      </section>
+    </sc-for>
+  </div>
+
+  <section style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;padding:16px 20px;font-size:14px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px">
+    <div><div style="font-weight:600;margin-bottom:6px">Rules</div><ul style="margin:0;padding-left:18px;color:#4b5565;line-height:20px"><li>One SMS per event, per person; excursions re-notify only when the state changes (open → closed)</li><li>Quiet hours 22:00–07:00 IST for everything except OTP and lockbox codes</li><li>Bank environments: no links in SMS at all; codes only</li><li>Email mirrors SMS for staff; tenants get email only for approvals and weekly reports</li></ul></div>
+    <div><div style="font-weight:600;margin-bottom:6px">Variables</div><div style="font-family:'IBM Plex Mono',monospace;font-size:12px;line-height:20px;color:#4b5565">{code} {name} {tenant} {trk} {n} {passport} {temp} {minutes} {link} {place} {reason} {part}</div><div style="color:#4b5565;margin-top:6px">{place} is only ever a place the recipient's own tenant already knows (their depot, their branch).</div></div>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":900}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const raw = [
+      ['Login OTP','SMS','field user','on sign-in', '{code} is your Track0tic sign-in code. Valid 10 min. Never share it. TRKOTC'],
+      ['Welcome','SMS','new tenant user','added by admin', 'Hi {name}, you have been added to {tenant} on Track0tic. Open {link} on your phone and sign in with your mobile number.'],
+      ['Handover received','SMS','sender (binder of last leg)','receiver acknowledges', 'Track0tic: {n} passports from {trk} were received at {place}. All legs closed in range. No action needed.'],
+      ['Excursion open','SMS','custodian tenant ops','profile breached past grace', 'Track0tic ALERT: {trk} at {temp} C for {minutes} min, {n} passports on it. Check the device. {link}'],
+      ['Excursion closed','SMS','same','back in range', 'Track0tic: {trk} back in range after {minutes} min. Legs will show the excursion on the certificate.'],
+      ['Device silent','SMS','custodian tenant ops','no telemetry 2 h with open legs', 'Track0tic: {trk} has not reported for 2 h and has {n} open passports. Battery or signal? {link}'],
+      ['Leg over template','SMS','tenant dispatcher','leg exceeds expected max', 'Track0tic: {n} passports on {trk} have been in transit {minutes} min, past the usual limit. Hand over or close the leg. {link}'],
+      ['Approval decided','SMS','tenant requester','staff decides', 'Track0tic: your request "{reason}" was {decision}. Details in your portal. {link}'],
+      ['Later leg failed · issuer alert','SMS','tenant that issued the batch (manufacturer / first custodian)','any later custodian’s leg graded out of range', 'Track0tic: a unit from your batch {batch} went out of range at a later step ({kind}, {minutes} min). Passport {passport}. Custodian not named here — see portal. {link}'],
+      ['Passport voided','SMS','owning tenant admin','void by staff', 'Track0tic: passport {passport} was cancelled ({reason}). Its history stays in your portal. Remove the label from circulation.'],
+      ['Low stock','SMS','tenant admin','< 2 weeks of passports left', 'Track0tic: {tenant} has about 2 weeks of passport labels left ({n}). Request more from your portal.'],
+      ['Lockbox code · part A','SMS','custodian 1 (bank environment)','opening requested', '{code} is part A of the opening code for box {trk}. Valid 5 min. Both custodians must be present. MUTHOOT'],
+      ['Lockbox code · part B','SMS','custodian 2 (bank environment)','same moment', '{code} is part B of the opening code for box {trk}. Valid 5 min. Both custodians must be present. MUTHOOT']
+    ];
+    const msgs = raw.map(r => { const len = r[4].length; return { name:r[0], channel:r[1], chFg: r[1] === 'SMS' ? '#1a43b8' : '#4b5565', to:r[2], when:r[3], body:r[4], len, lenColor: len > 160 ? '#b91c1c' : '#4b5565' }; });
+    return { msgs };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Track0tic admin — QC and firmware</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>body{margin:0;font-family:"Noto Sans",system-ui,sans-serif;color:#0f172a;background:#f3f5f9}a{color:#1a43b8}a:hover{color:#0f2f8a}table{border-collapse:collapse}input,select,button{font-family:inherit}/*sc-safety*/ input,select,textarea{min-width:0;max-width:100%;box-sizing:border-box} td,th,p,li{overflow-wrap:break-word} td:last-child,th:last-child{white-space:nowrap} button{white-space:normal;line-height:1.2}</style>
+</helmet>
+<div style="color:#0f172a;display:flex;flex-wrap:wrap;min-height:900px;background:#f3f5f9">
+  <dc-import name="Admin-Sidebar" active="qc" hint-size="240px,820px"></dc-import>
+  <main style="color:#0f172a;flex:999 1 560px;min-width:0;padding:24px;box-sizing:border-box;display:flex;flex-direction:column;gap:20px">
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px">
+      <div><div style="font-size:13px;color:#4b5565">1 · Devices</div><h1 style="margin:0;font-size:22px;line-height:28px;font-weight:600">QC and firmware · batch RB-0041 (HUB)</h1></div>
+      <div style="font-size:13px;color:#4b5565">Step 2 of 3 · SIM is bound here (ICCID recorded, M2M whitelist checked); a device gets its TRK ID and label only after PASS</div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(4, minmax(0, 1fr));gap:12px">
+      <div style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;padding:14px 16px"><div style="font-size:13px;color:#4b5565">In batch</div><div style="font-size:24px;font-weight:600">40</div></div>
+      <div style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;padding:14px 16px"><div style="font-size:13px;color:#4b5565">Passed</div><div style="font-size:24px;font-weight:600;color:#047857">28</div></div>
+      <div style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;padding:14px 16px"><div style="font-size:13px;color:#4b5565">Pending</div><div style="font-size:24px;font-weight:600;color:#92400e">12</div></div>
+      <div style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;padding:14px 16px"><div style="font-size:13px;color:#4b5565">Target firmware</div><div style="font-size:16px;font-weight:600;line-height:32px;font-family:'IBM Plex Mono',monospace">hub-2.4.1</div></div>
+    </div>
+
+    <section style="background:#fff;border:1px solid #1d4ed8;border-radius:12px;padding:16px 20px;display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px">
+        <h2 style="margin:0;font-size:16px;font-weight:600">Bench check · serial <span style="font-family:'IBM Plex Mono',monospace">867530041122344</span></h2>
+        <span style="font-size:13px;color:#4b5565">Plug in, wait for first telemetry, tick the checks</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3, minmax(0, 1fr));gap:10px;font-size:14px">
+        <label style="display:flex;gap:10px;align-items:center;padding:10px 12px;border:1px solid #e2e6ed;border-radius:8px"><input type="checkbox" checked style="color:#0f172a;width:18px;height:18px;margin:0">Powers on · LED</label>
+        <label style="display:flex;gap:10px;align-items:center;padding:10px 12px;border:1px solid #e2e6ed;border-radius:8px"><input type="checkbox" checked style="color:#0f172a;width:18px;height:18px;margin:0">Telemetry seen · 4.3 °C · 14 s ago</label>
+        <label style="display:flex;gap:10px;align-items:center;padding:10px 12px;border:1px solid #e2e6ed;border-radius:8px"><input type="checkbox" checked style="color:#0f172a;width:18px;height:18px;margin:0">Firmware hub-2.4.1</label>
+        <label style="display:flex;gap:10px;align-items:center;padding:10px 12px;border:1px solid #e2e6ed;border-radius:8px"><input type="checkbox" checked style="color:#0f172a;width:18px;height:18px;margin:0">SIM bound · ICCID 8991 0012 3456 7890 · M2M whitelist OK</label>
+        <label style="display:flex;gap:10px;align-items:center;padding:10px 12px;border:1px solid #e2e6ed;border-radius:8px"><input type="checkbox" style="color:#0f172a;width:18px;height:18px;margin:0">Probe within ±0.3 °C of reference</label>
+        <label style="display:flex;gap:10px;align-items:center;padding:10px 12px;border:1px solid #e2e6ed;border-radius:8px"><input type="checkbox" style="color:#0f172a;width:18px;height:18px;margin:0">Enclosure, seal, SIM</label>
+        <label style="display:flex;gap:10px;align-items:center;padding:10px 12px;border:1px solid #e2e6ed;border-radius:8px"><input type="checkbox" style="color:#0f172a;width:18px;height:18px;margin:0">Battery / mains hold</label>
+      </div>
+      <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+        <button style="min-height:44px;padding:6px 18px;border:0;border-radius:12px;background:#047857;color:#fff;font-size:14px;font-weight:600;cursor:pointer">Pass · assign TRK-HUB-900041</button>
+        <button style="min-height:44px;padding:6px 16px;border:1px solid #b91c1c;border-radius:12px;background:#fff;color:#b91c1c;font-size:14px;font-weight:600;cursor:pointer">Fail · return to supplier</button>
+        <button style="color:#0f172a;min-height:44px;padding:6px 16px;border:1px solid #7a8696;border-radius:12px;background:#fff;font-size:14px;font-weight:500;cursor:pointer">Skip for now</button>
+        <span style="font-size:13px;color:#4b5565">PASS writes a <code>device_events</code> row and queues the label in <a href="Admin-DeviceLabels.dc.html" style="color:#1a43b8">Device labels</a>.</span>
+      </div>
+    </section>
+
+    <section style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;overflow:hidden">
+      <div style="padding:14px 16px;border-bottom:1px solid #e2e6ed;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+        <h2 style="margin:0;font-size:18px;font-weight:600">Batch RB-0041</h2>
+        <div style="display:flex;gap:6px"><span style="padding:6px 12px;border-radius:9999px;background:#1d4ed8;color:#fff;font-size:13px;font-weight:500">Pending 12</span><span style="padding:6px 12px;border-radius:9999px;background:#eef1f6;color:#4b5565;font-size:13px;font-weight:500">Passed 28</span><span style="padding:6px 12px;border-radius:9999px;background:#eef1f6;color:#4b5565;font-size:13px;font-weight:500">Failed 0</span></div>
+      </div>
+      <table style="width:100%;font-size:14px">
+        <thead><tr style="color:#4b5565;text-align:left;font-size:13px"><th style="padding:10px 16px;font-weight:500">Serial</th><th style="padding:10px 8px;font-weight:500">SIM</th><th style="padding:10px 8px;font-weight:500">Firmware</th><th style="padding:10px 8px;font-weight:500">Last telemetry</th><th style="padding:10px 8px;font-weight:500">Result</th><th style="padding:10px 8px;font-weight:500">TRK ID</th><th style="padding:10px 16px;font-weight:500;text-align:right">Checked by</th></tr></thead>
+        <tbody>
+          <tr style="border-top:1px solid #e2e6ed;background:#e8eefc"><td style="padding:12px 16px;font-family:'IBM Plex Mono',monospace">867530041122344</td><td style="padding:12px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#e6f6ef;color:#047857;font-size:12px;font-weight:500">bound</span></td><td style="padding:12px 8px;font-family:'IBM Plex Mono',monospace">hub-2.4.1</td><td style="padding:12px 8px">14 s ago · 4.3 °C</td><td style="padding:12px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#fef3e2;color:#92400e;font-size:12px;font-weight:500">on bench</span></td><td style="padding:12px 8px;color:#4b5565">—</td><td style="padding:12px 16px;text-align:right">—</td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:12px 16px;font-family:'IBM Plex Mono',monospace">867530041122345</td><td style="padding:12px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#fef3e2;color:#92400e;font-size:12px;font-weight:500">not bound</span></td><td style="padding:12px 8px;font-family:'IBM Plex Mono',monospace;color:#b91c1c">hub-2.3.9</td><td style="padding:12px 8px;color:#4b5565">never</td><td style="padding:12px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#eef1f6;color:#4b5565;font-size:12px;font-weight:500">pending · update firmware</span></td><td style="padding:12px 8px;color:#4b5565">—</td><td style="padding:12px 16px;text-align:right">—</td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:12px 16px;font-family:'IBM Plex Mono',monospace">867530041122343</td><td style="padding:12px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#e6f6ef;color:#047857;font-size:12px;font-weight:500">bound</span></td><td style="padding:12px 8px;font-family:'IBM Plex Mono',monospace">hub-2.4.1</td><td style="padding:12px 8px">11 Oct 15:02</td><td style="padding:12px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#e6f6ef;color:#047857;font-size:12px;font-weight:500">PASS</span></td><td style="padding:12px 8px;font-family:'IBM Plex Mono',monospace"><a href="Admin-DeviceDetail.dc.html" style="color:#1a43b8">TRK-HUB-900040</a></td><td style="padding:12px 16px;text-align:right">11 Oct · Ops support</td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:12px 16px;font-family:'IBM Plex Mono',monospace">867530041122342</td><td style="padding:12px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#e6f6ef;color:#047857;font-size:12px;font-weight:500">bound</span></td><td style="padding:12px 8px;font-family:'IBM Plex Mono',monospace">hub-2.4.1</td><td style="padding:12px 8px">11 Oct 14:48</td><td style="padding:12px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#e6f6ef;color:#047857;font-size:12px;font-weight:500">PASS</span></td><td style="padding:12px 8px;font-family:'IBM Plex Mono',monospace"><a href="Admin-DeviceDetail.dc.html" style="color:#1a43b8">TRK-HUB-900039</a></td><td style="padding:12px 16px;text-align:right">11 Oct · Ops support</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":900}}'>
+class Component extends DCLogic { renderVals() { return {}; } }
+</script>
+</body>
+</html>

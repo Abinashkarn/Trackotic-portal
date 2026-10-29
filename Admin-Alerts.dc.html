@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Track0tic admin — alerts</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+body{margin:0;font-family:"Noto Sans",system-ui,sans-serif;color:#0f172a;background:#f3f5f9}
+a{color:#1a43b8}a:hover{color:#0f2f8a}
+table{border-collapse:collapse}
+input,select,button{font-family:inherit}
+/*sc-safety*/ input,select,textarea{min-width:0;max-width:100%;box-sizing:border-box} td,th,p,li{overflow-wrap:break-word} td:last-child,th:last-child{white-space:nowrap} button{white-space:normal;line-height:1.2}</style>
+</helmet>
+<div style="color:#0f172a;display:flex;flex-wrap:wrap;min-height:900px;background:#f3f5f9">
+  <dc-import name="Admin-Sidebar" active="alerts" hint-size="240px,820px"></dc-import>
+
+  <main style="color:#0f172a;flex:999 1 560px;min-width:0;padding:24px;box-sizing:border-box;display:flex;flex-direction:column;gap:20px">
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px">
+      <div>
+        <div style="font-size:13px;color:#4b5565">Operations</div>
+        <h1 style="margin:0;font-size:22px;line-height:28px;font-weight:600">Alerts</h1>
+        <div style="font-size:14px;color:#4b5565;margin-top:2px">Device alerts, passport alerts and QR exceptions in one list. Nothing closes by itself: people acknowledge or resolve.</div>
+      </div>
+      <a href="#" style="color:#1a43b8;display:inline-flex;align-items:center;height:40px;padding:0 14px;border:1px solid #7a8696;border-radius:12px;background:#fff;font-size:14px;font-weight:500;text-decoration:none">Run hourly checks now</a>
+    </div>
+
+    <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center">
+      <button onClick="{{all}}" style="height:36px;padding:0 14px;border-radius:9999px;border:1px solid {{bAll}};background:{{fAll}};color:{{cAll}};font-size:14px;font-weight:500;cursor:pointer">All open · 37</button>
+      <button onClick="{{dev}}" style="height:36px;padding:0 14px;border-radius:9999px;border:1px solid {{bDev}};background:{{fDev}};color:{{cDev}};font-size:14px;font-weight:500;cursor:pointer">Device · 30</button>
+      <button onClick="{{pp}}" style="height:36px;padding:0 14px;border-radius:9999px;border:1px solid {{bPp}};background:{{fPp}};color:{{cPp}};font-size:14px;font-weight:500;cursor:pointer">Passport · 4</button>
+      <button onClick="{{qr}}" style="height:36px;padding:0 14px;border-radius:9999px;border:1px solid {{bQr}};background:{{fQr}};color:{{cQr}};font-size:14px;font-weight:500;cursor:pointer">QR exceptions · 3</button>
+      <span style="width:1px;height:24px;background:#e2e6ed;margin:0 4px"></span>
+      <select style="color:#0f172a;height:36px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;background:#fff"><option>All tenants</option><option>Adroit Agencies</option><option>Test Lab</option></select>
+      <select style="color:#0f172a;height:36px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;background:#fff"><option>Open</option><option>Acknowledged</option><option>Resolved</option></select>
+    </div>
+
+    <section style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;overflow:hidden">
+      <div style="overflow-x:auto">
+      <table style="width:100%;font-size:14px;min-width:820px">
+        <thead><tr style="color:#4b5565;text-align:left;font-size:13px">
+          <th style="padding:10px 16px;font-weight:500">Kind</th><th style="padding:10px 8px;font-weight:500">Tenant</th><th style="padding:10px 8px;font-weight:500">Subject</th><th style="padding:10px 8px;font-weight:500">Raised</th><th style="padding:10px 8px;font-weight:500">What happened</th><th style="padding:10px 16px;font-weight:500;text-align:right">Action</th>
+        </tr></thead>
+        <tbody>
+          <sc-for list="{{rows}}" as="r" hint-placeholder-count="6">
+            <tr style="border-top:1px solid #e2e6ed">
+              <td style="padding:12px 16px"><span style="display:inline-block;padding:3px 8px;border-radius:9999px;background:{{r.bg}};color:{{r.fg}};font-size:12px;font-weight:600;white-space:nowrap">{{r.kind}}</span><div style="font-size:12px;color:#4b5565;margin-top:3px">{{r.source}}</div></td>
+              <td style="padding:12px 8px">{{r.tenant}}</td>
+              <td style="padding:12px 8px;font-family:'IBM Plex Mono',monospace;font-weight:500">{{r.subject}}</td>
+              <td style="padding:12px 8px;color:#4b5565;white-space:nowrap">{{r.when}}</td>
+              <td style="padding:12px 8px;color:#4b5565">{{r.detail}}</td>
+              <td style="padding:12px 16px;text-align:right"><button style="color:#0f172a;height:32px;padding:0 12px;border:1px solid #7a8696;border-radius:8px;background:#fff;font-size:13px;font-weight:500;cursor:pointer;white-space:nowrap">{{r.action}}</button></td>
+            </tr>
+          </sc-for>
+        </tbody>
+      </table>
+      </div>
+    </section>
+
+    <div style="font-size:13px;color:#4b5565">Acknowledge = seen, still open on the device. Resolve = the exception is handled and a note is kept; stale-binding and weight-mismatch resolves change custody records, so they ask for a reason.</div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":900}}'>
+class Component extends DCLogic {
+  constructor(p){ super(p); this.state = { f: 'all' }; }
+  renderVals() {
+    const f = this.state.f;
+    const all = [
+      { src:'device', kind:'TEMP BREACH', bg:'#fdecec', fg:'#a61b1b', source:'Device alert', tenant:'Adroit Agencies', subject:'ADR-DL-011', when:'today 08:52', detail:'9.4 °C for 14 min in transit · profile 2–8', action:'Acknowledge' },
+      { src:'qr', kind:'STALE HUB BINDING', bg:'#fef3e2', fg:'#92400e', source:'QR exception', tenant:'Adroit Agencies', subject:'5Y6HF1ZD', when:'today 07:00', detail:'31 days on TRK-HUB-900001, never scanned out', action:'Resolve…' },
+      { src:'device', kind:'OFFLINE', bg:'#eef1f6', fg:'#4b5565', source:'Device alert', tenant:'Adroit Agencies', subject:'ADR-DL-001', when:'today 06:30', detail:'No contact for 2 h · last fix Okhla', action:'Acknowledge' },
+      { src:'passport', kind:'LABEL REUSE', bg:'#fdecec', fg:'#a61b1b', source:'Passport alert', tenant:'Test Lab', subject:'Q2M9XA7K', when:'yesterday 18:10', detail:'Bound again 3 days after handover at a different site', action:'Acknowledge' },
+      { src:'qr', kind:'DEVICE HOME · OPEN BINDINGS', bg:'#fef3e2', fg:'#92400e', source:'QR exception', tenant:'Adroit Agencies', subject:'TRK-PRO-900001', when:'yesterday 17:40', detail:'Checked in at depot with 2 passports still bound', action:'Resolve…' },
+      { src:'device', kind:'BAG OPEN', bg:'#fef3e2', fg:'#92400e', source:'Device alert', tenant:'Adroit Agencies', subject:'ADR-DL-010', when:'yesterday 15:05', detail:'Lid open 6 min outside a geofence', action:'Acknowledge' },
+      { src:'qr', kind:'CLOCK DRIFT', bg:'#eef1f6', fg:'#4b5565', source:'QR exception', tenant:'Track0tic', subject:'TRK-PRO-000009', when:'yesterday 09:02', detail:'−6 min vs server · legs held provisional', action:'Resolve…' },
+      { src:'passport', kind:'SKIPPED STAGE', bg:'#fef3e2', fg:'#92400e', source:'Passport alert', tenant:'Adroit Agencies', subject:'KGVZA1FQ', when:'20 Oct 12:20', detail:'Went HUB → customer with no transit device', action:'Acknowledge' }
+    ];
+    const rows = f === 'all' ? all : all.filter(r => r.src === f);
+    const sel = (k) => f === k;
+    const b = (k) => sel(k) ? '#1d4ed8' : '#7a8696', fl = (k) => sel(k) ? '#1d4ed8' : '#ffffff', c = (k) => sel(k) ? '#ffffff' : '#0f172a';
+    return {
+      rows,
+      all: () => this.setState({ f: 'all' }), dev: () => this.setState({ f: 'device' }), pp: () => this.setState({ f: 'passport' }), qr: () => this.setState({ f: 'qr' }),
+      bAll: b('all'), fAll: fl('all'), cAll: c('all'),
+      bDev: b('device'), fDev: fl('device'), cDev: c('device'),
+      bPp: b('passport'), fPp: fl('passport'), cPp: c('passport'),
+      bQr: b('qr'), fQr: fl('qr'), cQr: c('qr')
+    };
+  }
+}
+</script>
+</body>
+</html>

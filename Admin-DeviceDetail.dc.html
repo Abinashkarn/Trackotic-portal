@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Track0tic admin — device detail</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>body{margin:0;font-family:"Noto Sans",system-ui,sans-serif;color:#0f172a;background:#f3f5f9}a{color:#1a43b8}a:hover{color:#0f2f8a}table{border-collapse:collapse}input,select,button{font-family:inherit}/*sc-safety*/ input,select,textarea{min-width:0;max-width:100%;box-sizing:border-box} td,th,p,li{overflow-wrap:break-word} td:last-child,th:last-child{white-space:nowrap} button{white-space:normal;line-height:1.2}</style>
+</helmet>
+<div style="color:#0f172a;display:flex;flex-wrap:wrap;min-height:900px;background:#f3f5f9">
+  <dc-import name="Admin-Sidebar" active="inventory" hint-size="240px,820px"></dc-import>
+  <main style="color:#0f172a;flex:999 1 560px;min-width:0;padding:24px;box-sizing:border-box;display:flex;flex-direction:column;gap:20px">
+    <div style="font-size:13px;color:#4b5565"><a href="Admin-Inventory.dc.html" style="color:#1a43b8">Inventory</a> › TRK-PRO-900001</div>
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:12px">
+      <div>
+        <h1 style="margin:0;font-size:26px;line-height:32px;font-weight:600;font-family:'IBM Plex Mono',monospace">TRK-PRO-900001</h1>
+        <div style="display:flex;gap:8px;align-items:center;margin-top:6px;font-size:14px;color:#4b5565">PRO · GPS logger · <span style="padding:2px 8px;border-radius:9999px;background:#e6f6ef;color:#047857;font-size:12px;font-weight:500">active</span> · Adroit Agencies · Okhla depot</div>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <a href="Admin-DeviceLabels.dc.html" style="display:inline-flex;align-items:center;height:40px;padding:0 14px;border:1px solid #7a8696;border-radius:8px;background:#fff;font-size:14px;font-weight:500;text-decoration:none;color:#0f172a">Reprint label (v2) · phase 2</a>
+        <button style="color:#0f172a;min-height:40px;padding:6px 14px;border:1px solid #7a8696;border-radius:8px;background:#fff;font-size:14px;font-weight:500;cursor:pointer">Mark maintenance</button>
+        <button style="min-height:40px;padding:6px 14px;border:1px solid #b91c1c;border-radius:8px;background:#fff;color:#b91c1c;font-size:14px;font-weight:600;cursor:pointer">Revoke</button>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(5, minmax(0, 1fr));gap:12px">
+      <div style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;padding:14px 16px"><div style="font-size:13px;color:#4b5565">Now</div><div style="font-size:24px;font-weight:600;color:#047857">4.1 °C</div><div style="font-size:12px;color:#4b5565">2 min ago · in range</div></div>
+      <div style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;padding:14px 16px"><div style="font-size:13px;color:#4b5565">On device</div><div style="font-size:24px;font-weight:600">16</div><div style="font-size:12px;color:#4b5565">passports · 3 cartons</div></div>
+      <div style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;padding:14px 16px"><div style="font-size:13px;color:#4b5565">Battery</div><div style="font-size:24px;font-weight:600">71%</div><div style="font-size:12px;color:#4b5565">~6 days</div></div>
+      <div style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;padding:14px 16px"><div style="font-size:13px;color:#4b5565">Clock drift</div><div style="font-size:24px;font-weight:600">+3 s</div><div style="font-size:12px;color:#4b5565">live rows only</div></div>
+      <div style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;padding:14px 16px"><div style="font-size:13px;color:#4b5565">Firmware</div><div style="font-size:18px;font-weight:600;font-family:'IBM Plex Mono',monospace;line-height:32px">pro-3.1.0</div><div style="font-size:12px;color:#4b5565">current</div></div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:16px;align-items:start">
+      <section style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;padding:16px 20px;display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;justify-content:space-between;align-items:baseline"><h2 style="margin:0;font-size:16px;font-weight:600">Last 24 h · °C</h2><span style="font-size:13px;color:#4b5565">profile 2–8 °C · 1 excursion, 6 min</span></div>
+        <svg viewBox="0 0 600 160" width="100%" height="160" role="img" aria-label="Temperature over 24 hours">
+          <rect x="0" y="40" width="600" height="80" fill="#e6f6ef"/>
+          <line x1="0" y1="40" x2="600" y2="40" stroke="#e2e6ed"/><line x1="0" y1="120" x2="600" y2="120" stroke="#e2e6ed"/>
+          <text x="4" y="36" font-size="11" fill="#4b5565">8°</text><text x="4" y="134" font-size="11" fill="#4b5565">2°</text>
+          <polyline fill="none" stroke="#1d4ed8" stroke-width="2" points="0,88 40,86 80,90 120,84 160,80 200,82 240,78 260,30 280,26 300,70 340,84 380,86 420,88 460,90 500,86 540,88 600,90"/>
+          <rect x="252" y="20" width="56" height="20" fill="#fdecec" opacity="0.8"/>
+          <text x="256" y="16" font-size="11" fill="#a61b1b">9.4° · 06:12 · 6 min</text>
+        </svg>
+        <div style="display:flex;gap:16px;font-size:13px;color:#4b5565"><span>Min 3.2°</span><span>Max 9.4°</span><span>Mean 4.6°</span><span>Readings 288 / 288</span><span style="margin-left:auto"><a href="#" style="color:#1a43b8">Telemetry log</a></span></div>
+      </section>
+
+      <section style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;padding:16px 20px;display:flex;flex-direction:column;gap:10px;font-size:14px">
+        <h2 style="margin:0;font-size:16px;font-weight:600">Identity</h2>
+        <div style="display:flex;justify-content:space-between"><span style="color:#4b5565">Serial / IMEI</span><span style="font-family:'IBM Plex Mono',monospace">867530041122001</span></div>
+        <div style="display:flex;justify-content:space-between"><span style="color:#4b5565">Device token</span><span style="font-family:'IBM Plex Mono',monospace">/d/K8…Q2 <a href="#" style="color:#1a43b8;font-size:12px">rotate</a></span></div>
+        <div style="display:flex;justify-content:space-between"><span style="color:#4b5565">Label</span><span>v1 · printed 12 Oct · scanned 212×</span></div>
+        <div style="display:flex;justify-content:space-between"><span style="color:#4b5565">Received</span><span>RB-0039 · 28 Sep</span></div>
+        <div style="display:flex;justify-content:space-between"><span style="color:#4b5565">QC pass</span><span>30 Sep · Ops support</span></div>
+        <div style="display:flex;justify-content:space-between"><span style="color:#4b5565">Allocated</span><span>2 Oct · Adroit · INV-2026-118</span></div>
+        <div style="display:flex;justify-content:space-between"><span style="color:#4b5565">Depot hub</span><span>no</span></div>
+      </section>
+    </div>
+
+    <section style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;overflow:hidden">
+      <div style="padding:14px 16px;border-bottom:1px solid #e2e6ed;display:flex;justify-content:space-between;align-items:center"><h2 style="margin:0;font-size:18px;font-weight:600">Passports on this device <span style="font-weight:500;color:#4b5565">· 16</span></h2><span style="font-size:13px;color:#4b5565">Admin sees all legs; tenants see only theirs</span></div>
+      <table style="width:100%;font-size:14px">
+        <thead><tr style="color:#4b5565;text-align:left;font-size:13px"><th style="padding:10px 16px;font-weight:500">Passport</th><th style="padding:10px 8px;font-weight:500">Bound</th><th style="padding:10px 8px;font-weight:500">By</th><th style="padding:10px 8px;font-weight:500">Method</th><th style="padding:10px 8px;font-weight:500">Carton</th><th style="padding:10px 16px;font-weight:500;text-align:right">Leg so far</th></tr></thead>
+        <tbody>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:12px 16px;font-family:'IBM Plex Mono',monospace">AWHK7ZRR</td><td style="padding:12px 8px">Today 15:57</td><td style="padding:12px 8px">QA Field Tester</td><td style="padding:12px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#e8eefc;color:#1a43b8;font-size:12px;font-weight:500">SCAN</span></td><td style="padding:12px 8px">carton · 5 inside</td><td style="padding:12px 16px;text-align:right">1 h 40 · in range</td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:12px 16px;font-family:'IBM Plex Mono',monospace">097FQYD7</td><td style="padding:12px 8px">Today 15:57</td><td style="padding:12px 8px">QA Field Tester</td><td style="padding:12px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#fef3e2;color:#92400e;font-size:12px;font-weight:500">TYPED</span></td><td style="padding:12px 8px">AWHK7ZRR</td><td style="padding:12px 16px;text-align:right">1 h 40 · in range</td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:12px 16px;font-family:'IBM Plex Mono',monospace">T5YW4EZ1</td><td style="padding:12px 8px">Today 15:57</td><td style="padding:12px 8px">QA Field Tester</td><td style="padding:12px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#e8eefc;color:#1a43b8;font-size:12px;font-weight:500">SCAN</span></td><td style="padding:12px 8px;color:#4b5565">loose</td><td style="padding:12px 16px;text-align:right">1 h 40 · in range</td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td colspan="6" style="padding:10px 16px;font-size:13px;color:#4b5565">+ 13 more · <a href="#" style="color:#1a43b8">show all</a></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;padding:16px 20px;display:flex;flex-direction:column;gap:8px;font-size:14px">
+      <h2 style="margin:0;font-size:16px;font-weight:600">Device events</h2>
+      <div style="display:flex;gap:12px"><span style="width:120px;color:#4b5565;flex:0 0 auto">Today 06:18</span><span>Excursion closed · 9.4 °C peak · 6 min · alert #4411 raised</span></div>
+      <div style="display:flex;gap:12px"><span style="width:120px;color:#4b5565;flex:0 0 auto">9 Oct 10:02</span><span>Label v1 confirmed intact at field check · Delhi Zone Manager</span></div>
+      <div style="display:flex;gap:12px"><span style="width:120px;color:#4b5565;flex:0 0 auto">2 Oct 14:30</span><span>Allocated to Adroit Agencies · INV-2026-118 · Platform admin</span></div>
+      <div style="display:flex;gap:12px"><span style="width:120px;color:#4b5565;flex:0 0 auto">30 Sep 11:45</span><span>QC PASS · TRK ID assigned · firmware pro-3.0.4</span></div>
+    </section>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":900}}'>
+class Component extends DCLogic { renderVals() { return {}; } }
+</script>
+</body>
+</html>

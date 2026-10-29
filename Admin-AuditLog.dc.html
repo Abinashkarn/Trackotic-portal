@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Track0tic admin — audit log</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>body{margin:0;font-family:"Noto Sans",system-ui,sans-serif;color:#0f172a;background:#f3f5f9}a{color:#1a43b8}a:hover{color:#0f2f8a}table{border-collapse:collapse}input,select,button{font-family:inherit}/*sc-safety*/ input,select,textarea{min-width:0;max-width:100%;box-sizing:border-box} td,th,p,li{overflow-wrap:break-word} td:last-child,th:last-child{white-space:nowrap} button{white-space:normal;line-height:1.2}</style>
+</helmet>
+<div style="color:#0f172a;display:flex;flex-wrap:wrap;min-height:900px;background:#f3f5f9">
+  <dc-import name="Admin-Sidebar" active="audit" hint-size="240px,820px"></dc-import>
+  <main style="color:#0f172a;flex:999 1 560px;min-width:0;padding:24px;box-sizing:border-box;display:flex;flex-direction:column;gap:20px">
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px">
+      <div><div style="font-size:13px;color:#4b5565">5 · Admin</div><h1 style="margin:0;font-size:22px;line-height:28px;font-weight:600">Audit log</h1></div>
+      <div style="font-size:13px;color:#4b5565">Append-only. Every write by staff or a tenant user, with who, from where, and the before/after.</div>
+    </div>
+
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+      <input type="search" placeholder="Search: passport, TRK ID, user, tenant, request id" style="color:#0f172a;height:40px;border:1px solid #7a8696;border-radius:8px;padding:0 12px;font-size:14px;flex:1;min-width:280px">
+      <select style="color:#0f172a;max-width:100%;height:40px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;background:#fff"><option>All actions</option><option>BIND</option><option>HANDOVER</option><option>VOID</option><option>ALLOCATE</option><option>USER_*</option><option>LOGIN</option><option>APPROVAL</option></select>
+      <select style="color:#0f172a;max-width:100%;height:40px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;background:#fff"><option>Anyone</option><option>Staff only</option><option>Tenant users only</option><option>System / cron</option></select>
+      <select style="color:#0f172a;max-width:100%;height:40px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;background:#fff"><option>Last 24 h</option><option>7 days</option><option>30 days</option></select>
+      <button style="color:#0f172a;min-height:40px;padding:6px 14px;border:1px solid #7a8696;border-radius:8px;background:#fff;font-size:14px;font-weight:500;cursor:pointer">Export</button>
+    </div>
+
+    <section style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;overflow:hidden">
+      <table style="width:100%;font-size:14px">
+        <thead><tr style="color:#4b5565;text-align:left;font-size:13px"><th style="padding:10px 16px;font-weight:500">When (IST)</th><th style="padding:10px 8px;font-weight:500">Action</th><th style="padding:10px 8px;font-weight:500">Who</th><th style="padding:10px 8px;font-weight:500">Subject</th><th style="padding:10px 8px;font-weight:500">Detail</th><th style="padding:10px 16px;font-weight:500;text-align:right">Id</th></tr></thead>
+        <tbody>
+          <sc-for list="{{rows}}" as="r" hint-placeholder-count="10">
+            <tr style="border-top:1px solid #e2e6ed">
+              <td style="padding:10px 16px;white-space:nowrap;color:#4b5565">{{r.when}}</td>
+              <td style="padding:10px 8px"><span style="padding:2px 8px;border-radius:9999px;background:{{r.bg}};color:{{r.fg}};font-size:12px;font-weight:600;font-family:'IBM Plex Mono',monospace">{{r.action}}</span></td>
+              <td style="padding:10px 8px">{{r.who}}<div style="font-size:12px;color:#4b5565">{{r.from}}</div></td>
+              <td style="padding:10px 8px;font-family:'IBM Plex Mono',monospace">{{r.subject}}</td>
+              <td style="padding:10px 8px;color:#4b5565">{{r.detail}}</td>
+              <td style="padding:10px 16px;text-align:right;font-family:'IBM Plex Mono',monospace;color:#4b5565">{{r.id}}</td>
+            </tr>
+          </sc-for>
+        </tbody>
+      </table>
+      <div style="padding:12px 16px;border-top:1px solid #e2e6ed;font-size:13px;color:#4b5565;display:flex;justify-content:space-between"><span>Rows cannot be edited or deleted, including by ADMIN. Retention 7 years.</span><span>1–10 of 18,402 · <a href="#" style="color:#1a43b8">Next</a></span></div>
+    </section>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":900}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const pal = { BIND:['#e8eefc','#1a43b8'], HANDOVER:['#e8eefc','#1a43b8'], VOID:['#fdecec','#a61b1b'], APPROVAL:['#e6f6ef','#047857'], ALLOCATE:['#eef1f6','#4b5565'], USER_ADD:['#eef1f6','#4b5565'], LOGIN_FAIL:['#fef3e2','#92400e'], CRON:['#eef1f6','#4b5565'], LABEL_V2:['#eef1f6','#4b5565'], ISSUE:['#eef1f6','#4b5565'], PRINT:['#eef1f6','#4b5565'] };
+    const raw = [
+      ['Today 16:41','BIND','QA Field Tester · Adroit','field app · +91 90***** 0011','0M95C30P → TRK-PRO-900001','TYPED · retry after offline · lat/long captured','88140'],
+      ['Today 16:31','HANDOVER','Priya N · Apollo','field app','097FQYD7','receipt acknowledged, no device · leg PRO closed','88139'],
+      ['Today 16:28','HANDOVER','QA Field Tester · Adroit','field app','15 passports off TRK-PRO-900001','at Apollo Nehru Place · 3 cartons','88138'],
+      ['Today 15:02','LOGIN_FAIL','ops@trackotic.com','103.x.x.80','staff login','3rd failure · 2 left before lockout','88136'],
+      ['Today 14:22','PRINT','Renamed by admin · Adroit','tenant portal','batch PB-0219 · sheet 1–2','48 passport QRs · PDF 25×15 · reprint no','88136'],
+      ['Today 14:20','ISSUE','Renamed by admin · Adroit','tenant portal','48 passports · batch PB-0219','issued from tenant portal','88135'],
+      ['Today 11:02','APPROVAL','Platform admin','admin · 103.x.x.12','request #4412','approved · void Q2M9XA7K · reason: label on second product','88131'],
+      ['Today 11:02','VOID','Platform admin','admin','Q2M9XA7K','ON_DEVICE → VOID · certificate history kept','88130'],
+      ['Today 06:00','CRON','system','platform scheduler','finalize_legs','31 legs marked FINAL by last_recorded_at · 0 errors','88102'],
+      ['21 Oct 14:30','ALLOCATE','Platform admin','admin','10 × PRO → Adroit Agencies','INV-2026-118 · DN-2026-0412','88120'],
+      ['21 Oct 10:15','USER_ADD','Ops support','admin','QA Field Tester · Adroit','role FIELD · scope Okhla depot · welcome SMS sent','88097']
+    ];
+    const rows = raw.map(r => ({ when:r[0], action:r[1], who:r[2], from:r[3], subject:r[4], detail:r[5], id:r[6], bg:(pal[r[1]]||pal.CRON)[0], fg:(pal[r[1]]||pal.CRON)[1] }));
+    return { rows };
+  }
+}
+</script>
+</body>
+</html>

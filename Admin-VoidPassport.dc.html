@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Track0tic admin — void a passport</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>body{margin:0;font-family:"Noto Sans",system-ui,sans-serif;color:#0f172a;background:#f3f5f9}a{color:#1a43b8}a:hover{color:#0f2f8a}input,select,button,textarea{font-family:inherit}/*sc-safety*/ input,select,textarea{min-width:0;max-width:100%;box-sizing:border-box} td,th,p,li{overflow-wrap:break-word} td:last-child,th:last-child{white-space:nowrap} button{white-space:normal;line-height:1.2}</style>
+</helmet>
+<div style="color:#0f172a;display:flex;flex-wrap:wrap;min-height:900px;background:#f3f5f9">
+  <dc-import name="Admin-Sidebar" active="issue" hint-size="240px,820px"></dc-import>
+  <main style="color:#0f172a;flex:999 1 560px;min-width:0;padding:24px;box-sizing:border-box;display:flex;flex-direction:column;gap:20px;align-items:center">
+    <div style="width:100%;font-size:13px;color:#4b5565"><a href="Admin-Issue.dc.html" style="color:#1a43b8">Passports</a> › Q2M9XA7K › Void</div>
+
+    <section style="width:100%;max-width:720px;background:#fff;border:1px solid #e2e6ed;border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:18px">
+      <div style="display:flex;gap:14px;align-items:flex-start">
+        <span style="width:44px;height:44px;border-radius:9999px;background:#fdecec;color:#a61b1b;display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></span>
+        <div>
+          <h1 style="margin:0;font-size:22px;font-weight:600">Void passport <span style="font-family:'IBM Plex Mono',monospace">Q2M9XA7K</span></h1>
+          <div style="font-size:14px;color:#4b5565;margin-top:4px">Adroit Agencies · batch PB-0203 · currently <strong>ON_DEVICE</strong> TRK-PRO-900001 since 15:57 today</div>
+        </div>
+      </div>
+
+      <div style="padding:14px 16px;border-radius:8px;background:#fef3e2;font-size:14px;line-height:20px;color:#92400e">
+        <strong>Void is permanent and the only way a passport leaves play.</strong> There is no "closed" state — a passport that is simply finished just stays OFF_DEVICE. Void only when the label itself must stop vouching for anything.
+      </div>
+
+      <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:500">Reason (shown to anyone who scans it)
+        <select onChange="{{setReason}}" style="color:#0f172a;height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;background:#fff">
+          <option>Choose…</option>
+          <option>Label found on a second product</option>
+          <option>Label damaged beyond scanning</option>
+          <option>Issued in error / duplicate</option>
+          <option>Product recalled by manufacturer</option>
+          <option>Other (explain)</option>
+        </select>
+      </label>
+      <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:500">Internal note (staff and the owning tenant only)
+        <textarea rows="3" placeholder="Ticket, who reported it, what was found" style="color:#0f172a;border:1px solid #7a8696;border-radius:8px;padding:10px;font-size:14px;resize:vertical"></textarea>
+      </label>
+
+      <div style="padding:14px 16px;border-radius:8px;background:#f3f5f9;font-size:14px;line-height:20px">
+        <strong>What happens</strong>
+        <ul style="margin:6px 0 0;padding-left:18px;color:#4b5565">
+          <li>Status → <code>VOID</code>; the open leg on TRK-PRO-900001 is closed with reason VOID</li>
+          <li>Public page shows "This passport was cancelled" — no history, no location</li>
+          <li>Adroit's portal keeps the full certificate history up to now</li>
+          <li>Any future bind of this code returns "passport void" to the scanner</li>
+          <li>Audit row with your name · Adroit's admin gets an SMS</li>
+        </ul>
+      </div>
+
+      <label style="display:flex;gap:10px;align-items:flex-start;font-size:14px;line-height:20px"><input type="checkbox" onChange="{{tick}}" style="color:#0f172a;margin:2px 0 0;width:18px;height:18px;flex:0 0 auto">I have confirmed with the tenant that this label should stop vouching for the product. Type the code to confirm:</label>
+      <input type="text" placeholder="Q2M9XA7K" onChange="{{typed}}" style="color:#0f172a;height:48px;border:1px solid #7a8696;border-radius:8px;padding:0 12px;font-size:18px;font-family:'IBM Plex Mono',monospace;letter-spacing:0.1em;max-width:260px">
+
+      <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+        <button onClick="{{go}}" disabled="{{disabled}}" style="height:48px;padding:0 20px;border:0;border-radius:12px;background:{{btnBg}};color:#fff;font-size:15px;font-weight:600;cursor:pointer">Void this passport</button>
+        <a href="Admin-Issue.dc.html" style="color:#1a43b8;font-size:14px;font-weight:500">Cancel</a>
+        <sc-if value="{{done}}" hint-placeholder-val="{{ false }}">
+          <span style="padding:8px 12px;border-radius:8px;background:#fdecec;color:#a61b1b;font-size:13px;font-weight:600">Voided · audit #88130 · Adroit notified · <a href="Err-Void.dc.html" style="color:#1a43b8">see public page</a></span>
+        </sc-if>
+      </div>
+    </section>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":900}}'>
+class Component extends DCLogic {
+  constructor(p){ super(p); this.state = { reason: false, tick: false, code: '', done: false }; }
+  renderVals() {
+    const ready = this.state.reason && this.state.tick && this.state.code.trim().toUpperCase() === 'Q2M9XA7K';
+    return { disabled: !ready || this.state.done, btnBg: ready && !this.state.done ? '#b91c1c' : '#c7ced9', done: this.state.done,
+      setReason: (e) => this.setState({ reason: e.target.selectedIndex > 0 }),
+      tick: (e) => this.setState({ tick: e.target.checked }),
+      typed: (e) => this.setState({ code: e.target.value }),
+      go: () => this.setState({ done: true }) };
+  }
+}
+</script>
+</body>
+</html>

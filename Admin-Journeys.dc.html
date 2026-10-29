@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Track0tic admin — journey templates</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>body{margin:0;font-family:"Noto Sans",system-ui,sans-serif;color:#0f172a;background:#f3f5f9}a{color:#1a43b8}a:hover{color:#0f2f8a}input,select,button{font-family:inherit}/*sc-safety*/ input,select,textarea{min-width:0;max-width:100%;box-sizing:border-box} td,th,p,li{overflow-wrap:break-word} td:last-child,th:last-child{white-space:nowrap} button{white-space:normal;line-height:1.2}</style>
+</helmet>
+<div style="color:#0f172a;display:flex;flex-wrap:wrap;min-height:900px;background:#f3f5f9">
+  <dc-import name="Admin-Sidebar" active="journeys" hint-size="240px,820px"></dc-import>
+  <main style="color:#0f172a;flex:999 1 560px;min-width:0;padding:24px;box-sizing:border-box;display:flex;flex-direction:column;gap:20px">
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px">
+      <div><div style="font-size:13px;color:#4b5565">2 · Tenants</div><h1 style="margin:0;font-size:22px;line-height:28px;font-weight:600">Journey templates</h1></div>
+      <div style="font-size:13px;color:#4b5565;max-width:560px;text-align:right">A template is <strong>expectation, not enforcement</strong>. Binds are never blocked by it; it only decides what counts as an exception. The chain itself is dynamic — a passport may travel 2 legs or 8; the patient’s PDF lists whatever legs actually happened, each as Storage or Transit.</div>
+    </div>
+
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <sc-for list="{{tpls}}" as="t" hint-placeholder-count="4">
+        <button onClick="{{t.pick}}" style="height:40px;padding:0 14px;border:1px solid {{t.border}};border-radius:9999px;background:{{t.bg}};color:{{t.fg}};font-size:14px;font-weight:500;cursor:pointer">{{t.name}}</button>
+      </sc-for>
+      <button style="min-height:40px;padding:6px 14px;border:1px dashed #7a8696;border-radius:9999px;background:#fff;color:#4b5565;font-size:14px;font-weight:500;cursor:pointer">+ New template</button>
+    </div>
+
+    <section style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:16px">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px">
+        <h2 style="margin:0;font-size:18px;font-weight:600">{{cur.name}} <span style="font-weight:500;color:#4b5565;font-size:14px">· {{cur.sub}}</span></h2>
+        <span style="font-size:13px;color:#4b5565">Used by {{cur.used}}</span>
+      </div>
+
+      <div style="display:flex;align-items:stretch;gap:0;overflow-x:auto;padding:4px 0">
+        <sc-for list="{{cur.legs}}" as="l" hint-placeholder-count="4">
+          <div style="display:flex;align-items:center">
+            <div style="width:200px;flex:0 0 auto;border:1px solid #e2e6ed;border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:6px;background:#fff">
+              <div style="font-size:11px;font-weight:600;letter-spacing:0.08em;color:#4b5565">LEG {{l.n}}</div>
+              <div style="font-size:15px;font-weight:600">{{l.name}}</div>
+              <div style="font-size:13px;color:#4b5565">Device: <strong style="color:#0f172a">{{l.dev}}</strong></div>
+              <div style="font-size:13px;color:#4b5565">Expected ≤ <strong style="color:#0f172a">{{l.max}}</strong></div>
+              <div style="font-size:12px;color:#1a43b8">On patient PDF: "{{l.pub}}"</div>
+            </div>
+            <sc-if value="{{l.arrow}}" hint-placeholder-val="{{ true }}">
+              <svg width="36" height="24" viewBox="0 0 36 24" fill="none" stroke="#7a8696" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12h30M24 5l8 7-8 7"/></svg>
+            </sc-if>
+          </div>
+        </sc-for>
+      </div>
+
+      <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px">
+        <div style="padding:14px 16px;border-radius:8px;background:#f3f5f9;font-size:14px;line-height:20px">
+          <strong>Counts as an exception</strong>
+          <ul style="margin:6px 0 0;padding-left:18px;color:#4b5565">
+            <li>A leg open longer than its expected maximum</li>
+            <li>A bind to a device model the template doesn't expect at that position</li>
+            <li>A leg closed by <code>/handover</code> with no next device, before the last leg</li>
+            <li>Same passport re-bound by another tenant with no handover scan — allowed (the new bind releases the old one) but flagged here</li>
+          </ul>
+        </div>
+        <div style="padding:14px 16px;border-radius:8px;background:#f3f5f9;font-size:14px;line-height:20px">
+          <strong>Never does</strong>
+          <ul style="margin:6px 0 0;padding-left:18px;color:#4b5565">
+            <li>Refuse a bind — any tenant may bind to its own device</li>
+            <li>Show tenant names, TRK IDs or locations on the patient’s PDF</li><li>Limit how many legs a passport can have — binds add legs, the template just names them</li>
+            <li>Re-grade a leg that is already closed</li>
+          </ul>
+          <div style="margin-top:8px"><button style="min-height:40px;padding:6px 14px;border:0;border-radius:8px;background:#1d4ed8;color:#fff;font-size:14px;font-weight:600;cursor:pointer">Save template</button></div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":900}}'>
+class Component extends DCLogic {
+  constructor(p){ super(p); this.state = { pick: 0 }; }
+  renderVals() {
+    const mk = (legs) => legs.map((l, i) => ({ ...l, n: i + 1, arrow: i < legs.length - 1 }));
+    const defs = [
+      { name:'Pharma · retail only', sub:'2 legs · smallest chain', used:'Apollo (own HUB)', legs: mk([
+        { name:'Retail fridge', dev:'HUB', max:'60 days', pub:'Storage' },
+        { name:'Home delivery', dev:'PRO / LITE', max:'4 h', pub:'Transit' } ]) },
+      { name:'Pharma · depot to pharmacy', sub:'3 legs', used:'Adroit Agencies', legs: mk([
+        { name:'Cold room', dev:'HUB', max:'30 days', pub:'Storage' },
+        { name:'Delivery', dev:'PRO / LITE', max:'12 h', pub:'Transit' },
+        { name:'Pharmacy', dev:'none · handover', max:'—', pub:'Not monitored' } ]) },
+      { name:'Pharma · manufacturer to patient', sub:'8 legs · full chain, carton legs inherited', used:'—', legs: mk([
+        { name:'Factory cold room', dev:'HUB · carton', max:'90 days', pub:'Storage' },
+        { name:'To CFA', dev:'PRO · carton', max:'48 h', pub:'Transit' },
+        { name:'CFA cold room', dev:'HUB · carton', max:'60 days', pub:'Storage' },
+        { name:'To distributor', dev:'PRO', max:'24 h', pub:'Transit' },
+        { name:'Distributor cold room', dev:'HUB', max:'30 days', pub:'Storage' },
+        { name:'To retail', dev:'PRO / LITE', max:'12 h', pub:'Transit' },
+        { name:'Retail fridge', dev:'HUB', max:'60 days', pub:'Storage' },
+        { name:'To patient', dev:'PRO / LITE', max:'4 h', pub:'Transit' } ]) },
+      { name:'Diagnostics · home to lab', sub:'2 legs', used:'Test Lab', legs: mk([
+        { name:'Collection', dev:'LITE bag', max:'4 h', pub:'Transit' },
+        { name:'Lab fridge', dev:'HUB', max:'—', pub:'Storage' } ]) },
+      { name:'BFSI · custody', sub:'n legs · bank environments only', used:'Muthoot, Axis', legs: mk([
+        { name:'Vault', dev:'LOCKBOX', max:'—', pub:'(no public page)' },
+        { name:'Transfer', dev:'LOCKBOX', max:'24 h', pub:'(no public page)' },
+        { name:'Branch', dev:'LOCKBOX', max:'—', pub:'(no public page)' } ]) }
+    ];
+    const tpls = defs.map((d, i) => ({ name: d.name, border: i === this.state.pick ? '#1d4ed8' : '#7a8696', bg: i === this.state.pick ? '#1d4ed8' : '#fff', fg: i === this.state.pick ? '#fff' : '#0f172a', pick: () => this.setState({ pick: i }) }));
+    return { tpls, cur: defs[this.state.pick] };
+  }
+}
+</script>
+</body>
+</html>

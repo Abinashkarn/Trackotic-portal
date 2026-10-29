@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Temperature compliance report (PDF) — public, dynamic chain</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>body{margin:0;font-family:"Noto Sans",system-ui,sans-serif;color:#0f172a;background:#e2e6ed}table{border-collapse:collapse}/*sc-safety*/ input,select,textarea{min-width:0;max-width:100%;box-sizing:border-box} td,th,p,li{overflow-wrap:break-word} td:last-child,th:last-child{white-space:nowrap} button{white-space:normal;line-height:1.2}</style>
+</helmet>
+<div style="color:#0f172a;display:flex;flex-direction:column;gap:24px;width:794px">
+
+<!-- PAGE 1 -->
+<div style="width:794px;height:1123px;box-sizing:border-box;background:#fff;padding:48px 56px;display:flex;flex-direction:column;gap:18px;position:relative">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start">
+    <div><div style="font-size:24px;font-weight:600">Track<span style="color:#e11d2e">0</span>tic<sup style="font-size:0.45em;font-weight:600;vertical-align:top;margin-left:1px;opacity:0.85">TM</sup></div><div style="font-size:12px;color:#4b5565;letter-spacing:0.06em">TEMPERATURE COMPLIANCE REPORT · PUBLIC</div></div>
+    <div style="text-align:right;font-size:12px;color:#4b5565;line-height:17px">Passport <span style="font-family:'IBM Plex Mono',monospace;font-weight:600;color:#0f172a;font-size:14px">097FQYD7</span><br>Generated 21 Oct 2026, 17:02 IST · Report <span style="font-family:'IBM Plex Mono',monospace">RPT-7F3A19</span></div>
+  </div>
+
+  <div style="padding:18px 22px;border-radius:14px;background:{{vBg}};display:flex;gap:16px;align-items:center">
+    <span style="width:52px;height:52px;border-radius:9999px;background:{{vFg}};color:#fff;display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;font-size:26px;font-weight:600">{{vIcon}}</span>
+    <div><div style="font-size:26px;line-height:32px;font-weight:600;color:{{vFg}}">{{verdict}}</div><div style="font-size:14px;color:#4b5565">{{vSub}}</div></div>
+    <div style="margin-left:auto;text-align:right;font-size:12px;color:#4b5565;line-height:17px">Required range<br><strong style="font-size:18px;color:#0f172a">2 – 8 °C</strong></div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px">
+    <div style="border:1px solid #e2e6ed;border-radius:10px;padding:12px 14px"><div style="font-size:12px;color:#4b5565">Journey steps</div><div style="font-size:22px;font-weight:600">{{nLegs}}</div><div style="font-size:11px;color:#4b5565">{{nMon}} monitored</div></div>
+    <div style="border:1px solid #e2e6ed;border-radius:10px;padding:12px 14px"><div style="font-size:12px;color:#4b5565">Lowest recorded</div><div style="font-size:22px;font-weight:600">{{gMin}} °C</div></div>
+    <div style="border:1px solid #e2e6ed;border-radius:10px;padding:12px 14px"><div style="font-size:12px;color:#4b5565">Highest recorded</div><div style="font-size:22px;font-weight:600">{{gMax}} °C</div></div>
+    <div style="border:1px solid #e2e6ed;border-radius:10px;padding:12px 14px"><div style="font-size:12px;color:#4b5565">Time out of range</div><div style="font-size:22px;font-weight:600;color:{{breachColor}}">{{breach}}</div></div>
+  </div>
+
+  <div>
+    <div style="font-size:14px;font-weight:600;margin-bottom:6px">Journey · every step this unit's label was tracked on</div>
+    <table style="width:100%;font-size:12px">
+      <thead><tr style="color:#4b5565;text-align:left"><th style="padding:6px 8px;border-bottom:1px solid #e2e6ed;font-weight:500">Step</th><th style="padding:6px 8px;border-bottom:1px solid #e2e6ed;font-weight:500">Kind</th><th style="padding:6px 8px;border-bottom:1px solid #e2e6ed;font-weight:500">When</th><th style="padding:6px 8px;border-bottom:1px solid #e2e6ed;font-weight:500">Duration</th><th style="padding:6px 8px;border-bottom:1px solid #e2e6ed;font-weight:500">Min / max</th><th style="padding:6px 8px;border-bottom:1px solid #e2e6ed;font-weight:500">Out of range</th><th style="padding:6px 8px;border-bottom:1px solid #e2e6ed;font-weight:500">Result</th></tr></thead>
+      <tbody>
+        <sc-for list="{{legs}}" as="l" hint-placeholder-count="8">
+          <tr style="background:{{l.rowBg}}"><td style="padding:7px 8px;border-bottom:1px solid #e2e6ed;font-weight:600">{{l.n}}</td><td style="padding:7px 8px;border-bottom:1px solid #e2e6ed">{{l.kind}}</td><td style="padding:7px 8px;border-bottom:1px solid #e2e6ed;color:#4b5565">{{l.when}}</td><td style="padding:7px 8px;border-bottom:1px solid #e2e6ed">{{l.dur}}</td><td style="padding:7px 8px;border-bottom:1px solid #e2e6ed;font-family:'IBM Plex Mono',monospace">{{l.range}}</td><td style="padding:7px 8px;border-bottom:1px solid #e2e6ed">{{l.out}}</td><td style="padding:7px 8px;border-bottom:1px solid #e2e6ed;font-weight:600;color:{{l.color}}">{{l.result}}</td></tr>
+        </sc-for>
+      </tbody>
+    </table>
+    <div style="font-size:11px;color:#4b5565;margin-top:4px">Storage = kept in a monitored cold room or fridge. Transit = travelled with a logger. Steps inside a sealed carton are inherited from the carton's label. Who held the product, and where, is not shown on this report.</div>
+  </div>
+
+  <div style="border:1px solid #e2e6ed;border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:6px">
+    <div style="display:flex;justify-content:space-between;align-items:baseline"><div style="font-size:14px;font-weight:600">{{lastTitle}}</div><div style="font-size:11px;color:#4b5565">{{lastWhen}} · one reading per minute</div></div>
+    <sc-if value="{{hasLegs}}" hint-placeholder-val="{{ true }}">
+    <svg viewBox="0 0 660 170" width="100%" height="170" role="img" aria-label="temperature">
+          <rect x="{{last.g.padL}}" y="{{last.g.y8}}" width="{{last.g.bw}}" height="{{last.g.bh}}" fill="#e6f6ef"/>
+          <rect x="{{last.g.hx}}" y="6" width="{{last.g.hw}}" height="88" fill="#fef3e2" stroke="#f0c48a" stroke-dasharray="3 2"/><text x="{{last.g.hlx}}" y="16" font-size="9" fill="#92400e" font-weight="600">no readings</text>
+          <text x="2" y="{{last.g.y15t}}" font-size="9" fill="#4b5565">15°</text><text x="2" y="{{last.g.y8t}}" font-size="9" fill="#4b5565">8°</text><text x="2" y="{{last.g.y2t}}" font-size="9" fill="#4b5565">2°</text><text x="2" y="{{last.g.ym5t}}" font-size="9" fill="#4b5565">-5°</text>
+          <line x1="{{last.g.padL}}" y1="{{last.g.y8}}" x2="{{last.g.xr}}" y2="{{last.g.y8}}" stroke="#047857" stroke-dasharray="3 3" stroke-width="0.8"/>
+          <line x1="{{last.g.padL}}" y1="{{last.g.y2}}" x2="{{last.g.xr}}" y2="{{last.g.y2}}" stroke="#047857" stroke-dasharray="3 3" stroke-width="0.8"/>
+          <polyline fill="none" stroke="#1d4ed8" stroke-width="1.6" points="{{last.g.pts}}"/>
+          <path fill="none" stroke="#b91c1c" stroke-width="2.6" d="{{last.g.red}}"/>
+          <text x="{{last.g.lx}}" y="{{last.g.ly}}" font-size="9" fill="#a61b1b" font-weight="600">{{last.g.label}}</text>
+          <text x="{{last.g.padL}}" y="{{last.g.by}}" font-size="9" fill="#4b5565">{{last.g.s}}</text><text x="{{last.g.xr}}" y="{{last.g.by}}" font-size="9" fill="#4b5565" text-anchor="end">{{last.g.e}}</text>
+        </svg>
+    </sc-if>
+    <sc-if value="{{noLegs}}" hint-placeholder-val="{{ false }}"><div style="height:120px;display:flex;align-items:center;justify-content:center;border:1px dashed #c7ced9;border-radius:8px;font-size:13px;color:#4b5565">No device has recorded this label yet · the first graph appears after the first bind</div></sc-if>
+    <div style="display:flex;gap:14px;font-size:11px;color:#4b5565"><span><span style="display:inline-block;width:10px;height:10px;background:#e6f6ef;border:1px solid #c6e7d6;vertical-align:middle"></span> allowed 2–8 °C</span><span><span style="display:inline-block;width:14px;height:2px;background:#1d4ed8;vertical-align:middle"></span> recorded</span><span><span style="display:inline-block;width:14px;height:3px;background:#b91c1c;vertical-align:middle"></span> out of range</span></div>
+  </div>
+
+  <div style="margin-top:auto;display:flex;justify-content:space-between;align-items:flex-end;font-size:10px;color:#4b5565;line-height:15px">
+    <div style="max-width:520px">Measured by Track0tic loggers that travelled or sat with this unit. Each step closes from device telemetry, not from a phone clock. No product, patient, handler or location details are included. Verification token <span style="font-family:'IBM Plex Mono',monospace">9tL8PZ3s…zIlXc</span> — scan the label again to confirm this report is current. Suspect tampering? trackotic.com/report</div>
+    <div style="text-align:right">© 2026 SentinelX Technology Pvt Ltd<br>Page 1 of 2</div>
+  </div>
+</div>
+
+<!-- PAGE 2 -->
+<div style="width:794px;height:1123px;box-sizing:border-box;background:#fff;padding:48px 56px;display:flex;flex-direction:column;gap:14px;position:relative">
+  <div style="display:flex;justify-content:space-between;align-items:baseline"><div style="font-size:16px;font-weight:600">Every step, same scale</div><div style="font-size:11px;color:#4b5565">Passport <span style="font-family:'IBM Plex Mono',monospace">097FQYD7</span> · −5 to 15 °C axis on all graphs</div></div>
+  <sc-if value="{{noLegs}}" hint-placeholder-val="{{ false }}"><div style="padding:40px;text-align:center;border:1px dashed #c7ced9;border-radius:12px;color:#4b5565;font-size:14px">Nothing to show yet.</div></sc-if>
+  <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px">
+    <sc-for list="{{legs}}" as="l" hint-placeholder-count="8">
+      <div style="border:1px solid #e2e6ed;border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:4px;background:{{l.cardBg}}">
+        <div style="display:flex;justify-content:space-between;font-size:12px"><strong>Step {{l.n}} · {{l.kind}}</strong><span style="font-weight:600;color:{{l.color}}">{{l.result}}</span></div>
+        <div style="font-size:11px;color:#4b5565">{{l.when}} · {{l.dur}} · {{l.readings}}</div>
+        <sc-if value="{{l.gap}}" hint-placeholder-val="{{ false }}"><div style="height:110px;display:flex;align-items:center;justify-content:center;font-size:11px;color:#92400e;border:1px dashed #f0c48a;border-radius:6px">no readings · between devices</div></sc-if>
+        <sc-if value="{{l.mon}}" hint-placeholder-val="{{ true }}"><svg viewBox="0 0 320 110" width="100%" height="110" role="img" aria-label="temperature">
+          <rect x="{{l.g.padL}}" y="{{l.g.y8}}" width="{{l.g.bw}}" height="{{l.g.bh}}" fill="#e6f6ef"/>
+          <rect x="{{l.g.hx}}" y="6" width="{{l.g.hw}}" height="88" fill="#fef3e2" stroke="#f0c48a" stroke-dasharray="3 2"/><text x="{{l.g.hlx}}" y="16" font-size="9" fill="#92400e" font-weight="600">no readings</text>
+          <text x="2" y="{{l.g.y15t}}" font-size="9" fill="#4b5565">15°</text><text x="2" y="{{l.g.y8t}}" font-size="9" fill="#4b5565">8°</text><text x="2" y="{{l.g.y2t}}" font-size="9" fill="#4b5565">2°</text><text x="2" y="{{l.g.ym5t}}" font-size="9" fill="#4b5565">-5°</text>
+          <line x1="{{l.g.padL}}" y1="{{l.g.y8}}" x2="{{l.g.xr}}" y2="{{l.g.y8}}" stroke="#047857" stroke-dasharray="3 3" stroke-width="0.8"/>
+          <line x1="{{l.g.padL}}" y1="{{l.g.y2}}" x2="{{l.g.xr}}" y2="{{l.g.y2}}" stroke="#047857" stroke-dasharray="3 3" stroke-width="0.8"/>
+          <polyline fill="none" stroke="#1d4ed8" stroke-width="1.6" points="{{l.g.pts}}"/>
+          <path fill="none" stroke="#b91c1c" stroke-width="2.6" d="{{l.g.red}}"/>
+          <text x="{{l.g.lx}}" y="{{l.g.ly}}" font-size="9" fill="#a61b1b" font-weight="600">{{l.g.label}}</text>
+          <text x="{{l.g.padL}}" y="{{l.g.by}}" font-size="9" fill="#4b5565">{{l.g.s}}</text><text x="{{l.g.xr}}" y="{{l.g.by}}" font-size="9" fill="#4b5565" text-anchor="end">{{l.g.e}}</text>
+        </svg></sc-if>
+      </div>
+    </sc-for>
+  </div>
+  <div style="margin-top:auto;display:flex;justify-content:space-between;align-items:flex-end;font-size:10px;color:#4b5565;line-height:15px">
+    <div style="max-width:520px">A step marked "not monitored" means the unit was between devices (for example on a shelf without a Track0tic fridge). "No readings" inside a step means the device was offline for that time. Either way the verdict becomes COMPLIANT WHERE MONITORED — the gap is shown, never hidden.</div>
+    <div style="text-align:right">© 2026 SentinelX Technology Pvt Ltd<br>Page 2 of 2</div>
+  </div>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"chain":{"editor":"enum","options":["retail-only","full-8-legs","with-gaps-only","with-gap-and-breach","journey-in-progress","not-yet-bound"],"default":"full-8-legs"},"$preview":{"width":794,"height":2270}}'>
+class Component extends DCLogic {
+  // Deterministic pseudo-random series generator
+  series(seed, n, base, amp, breachAt, breachPeak) {
+    let s = seed; const r = () => { s = (s * 9301 + 49297) % 233280; return s / 233280; };
+    const out = []; let v = base;
+    for (let i = 0; i < n; i++) {
+      v = v + (r() - 0.5) * amp + (base - v) * 0.15;
+      let t = v;
+      if (breachAt && i >= breachAt[0] && i <= breachAt[1]) { const k = (i - breachAt[0]) / (breachAt[1] - breachAt[0]); t = base + (breachPeak - base) * Math.sin(k * Math.PI); }
+      out.push(Math.round(t * 10) / 10);
+    }
+    return out;
+  }
+  g(vals, w, h, s, e, hole) {
+    const lo = -5, hi = 15, padL = 30, padB = 16, padT = 6;
+    const X = i => +(padL + (i / (vals.length - 1)) * (w - padL - 6)).toFixed(1);
+    const Y = v => +(padT + (1 - (v - lo) / (hi - lo)) * (h - padT - padB)).toFixed(1);
+    const pts = vals.map((v, i) => (hole && i > hole[0] && i < hole[1]) ? '' : `${X(i)},${Y(v)}`).filter(Boolean).join(' ');
+    let red = '';
+    for (let i = 1; i < vals.length; i++) {
+      const o = v => v > 8 || v < 2;
+      if (o(vals[i]) || o(vals[i - 1])) red += `M${X(i - 1)} ${Y(vals[i - 1])} L${X(i)} ${Y(vals[i])} `;
+    }
+    const mx = Math.max(...vals), mi = Math.min(...vals);
+    let label = '', lx = 0, ly = -20;
+    if (mx > 8) { const i = vals.indexOf(mx); label = `${mx} °C`; lx = Math.min(X(i), w - 60); ly = Math.max(Y(mx) - 4, 9); }
+    else if (mi < 2) { const i = vals.indexOf(mi); label = `${mi} °C`; lx = Math.min(X(i), w - 60); ly = Math.min(Y(mi) + 11, h - padB - 1); }
+    return { hx: hole ? X(hole[0]) : -99, hw: hole ? (X(hole[1]) - X(hole[0])).toFixed(1) : 0, hlx: hole ? X(hole[0]) + 4 : -99, padL, y8: Y(8), y2: Y(2), bw: w - padL - 6, bh: +(Y(2) - Y(8)).toFixed(1), xr: w - 6, y15t: Y(15) + 3, y8t: Y(8) + 3, y2t: Y(2) + 3, ym5t: Y(-5) + 3, pts, red: red || 'M0 0', label, lx, ly, by: h - 3, s, e };
+  }
+  renderVals() {
+    const chain = this.props.chain ?? 'full-8-legs';
+    const L = (kind, when, dur, readings, seed, base, amp, breach, peak, s, e) => ({ kind, when, dur, readings, vals: this.series(seed, 40, base, amp, breach, peak), s, e });
+    const GAP = (when, dur) => ({ kind: 'Not monitored', when, dur, readings: 'no device', vals: null, gap: true });
+    let defs;
+    if (chain === 'retail-only') defs = [
+      L('Storage', '19–21 Oct', '2 d 4 h', '3,120 readings', 3, 4.2, 0.6, null, 0, '19 Oct 11:10', '21 Oct 15:20'),
+      L('Transit', '21 Oct', '41 min', '41 readings', 7, 4.8, 0.9, null, 0, '15:47', '16:28')
+    ];
+    else if (chain === 'with-gaps-only') defs = [
+      L('Storage', '1–12 Oct', '11 d', '15,840 readings', 11, 4.0, 0.5, null, 0, '1 Oct', '12 Oct'),
+      L('Transit', '12 Oct', '6 h 10', '370 readings', 12, 5.0, 1.0, null, 0, '08:05', '14:15'),
+      GAP('12 Oct', '3 h 20'),
+      Object.assign(L('Storage', '12–21 Oct', '8 d 7 h', '11,700 of 11,940 readings', 16, 4.1, 0.4, null, 0, '12 Oct', '21 Oct'), { hole: [14, 22] }),
+      L('Transit', '21 Oct', '41 min', '41 readings', 7, 4.8, 0.9, null, 0, '15:47', '16:28')
+    ];
+    else if (chain === 'with-gap-and-breach') defs = [
+      L('Storage', '1–12 Oct', '11 d', '15,840 readings', 11, 4.0, 0.5, null, 0, '1 Oct', '12 Oct'),
+      L('Transit', '12 Oct', '6 h 10', '370 readings', 12, 5.0, 1.0, [18, 26], 11.4, '08:05', '14:15'),
+      L('Storage', '12–20 Oct', '8 d 2 h', '11,640 readings', 13, 4.3, 0.5, null, 0, '12 Oct', '20 Oct'),
+      GAP('20 Oct', '3 h 20'),
+      L('Transit', '20–21 Oct', '14 h', '840 readings', 15, 5.2, 0.8, null, 0, '20 Oct 18:00', '21 Oct 08:00'),
+      Object.assign(L('Storage', '21 Oct', '7 h', '300 of 420 readings', 16, 4.1, 0.4, null, 0, '08:10', '15:20'), { hole: [14, 22] }),
+      L('Transit', '21 Oct', '41 min', '41 readings', 7, 4.8, 0.9, null, 0, '15:47', '16:28')
+    ];
+    else if (chain === 'journey-in-progress') defs = [
+      Object.assign(L('Storage', '27 Oct → now', '1 d 19 h so far', '2,580 readings so far', 16, 4.1, 0.4, null, 0, '27 Oct 15:20', 'now'), { open: true })
+    ];
+    else if (chain === 'not-yet-bound') defs = [];
+    else defs = [
+      L('Storage', '1–12 Oct', '11 d', '15,840 readings', 11, 4.0, 0.5, null, 0, '1 Oct', '12 Oct'),
+      L('Transit', '12 Oct', '6 h 10', '370 readings', 12, 5.0, 1.0, null, 0, '08:05', '14:15'),
+      L('Storage', '12–17 Oct', '5 d 1 h', '7,300 readings', 13, 4.3, 0.5, null, 0, '12 Oct', '17 Oct'),
+      L('Transit', '17 Oct', '3 h 05', '185 readings', 14, 5.4, 0.9, null, 0, '09:00', '12:05'),
+      L('Storage', '17–20 Oct', '3 d 6 h', '4,680 readings', 21, 3.9, 0.5, null, 0, '17 Oct', '20 Oct'),
+      L('Transit', '20 Oct', '1 h 50', '110 readings', 15, 5.2, 0.8, null, 0, '18:00', '19:50'),
+      L('Storage', '20–21 Oct', '19 h', '1,140 readings', 16, 4.1, 0.4, null, 0, '20 Oct 20:00', '21 Oct 15:20'),
+      L('Transit', '21 Oct', '41 min', '41 readings', 7, 4.8, 0.9, null, 0, '15:47', '16:28')
+    ];
+    let gMin = 99, gMax = -99, breachMin = 0, nMon = 0, failStep = 0, hasGap = false;
+    const legs = defs.map((d, i) => {
+      const n = i + 1;
+      if (d.gap) { hasGap = true; return { n, kind: d.kind, when: d.when, dur: d.dur, readings: d.readings, range: '—', out: '—', result: 'NOT MONITORED', color: '#92400e', rowBg: '#fef3e2', cardBg: '#fffaf0', gap: true, mon: false, g: this.g([4,4], 320, 110, '', '') }; }
+      nMon++;
+      const mi = Math.min(...d.vals), mx = Math.max(...d.vals);
+      gMin = Math.min(gMin, mi); gMax = Math.max(gMax, mx);
+      const outPts = d.vals.filter(v => v < 2 || v > 8).length;
+      const outMin = Math.round(outPts * (d.readings.startsWith('41') ? 1 : 9)); // scaled demo minutes
+      breachMin += outMin;
+      const ok = outPts === 0;
+      if (!ok && !failStep) failStep = n;
+      if (d.hole) hasGap = true;
+      return { n, kind: d.kind, when: d.when, dur: d.dur, readings: d.readings, range: `${mi.toFixed(1)} / ${mx.toFixed(1)}`, out: ok ? 'none' : `${outMin} min`, result: !ok ? 'OUT OF RANGE' : (d.open ? 'IN RANGE · SO FAR' : (d.hole ? 'IN RANGE · 2 h NO READINGS' : 'IN RANGE')), color: !ok ? '#a61b1b' : (d.open ? '#1a43b8' : (d.hole ? '#92400e' : '#047857')), rowBg: !ok ? '#fdecec' : (d.hole ? '#fffaf0' : '#fff'), cardBg: !ok ? '#fff5f5' : (d.hole ? '#fffaf0' : '#fff'), gap: false, mon: true, g: this.g(d.vals, 320, 110, d.s, d.e, d.hole) };
+    });
+    const empty = defs.length === 0;
+    const last = empty ? { kind:'—', when:'—', s:'', e:'', vals:[4,4] } : defs[defs.length - 1];
+    const inProgress = !empty && !!last.open;
+    let verdict, vSub, vBg, vFg, vIcon;
+    if (empty) { verdict = 'NOT YET IN A JOURNEY'; vSub = 'This label has been issued but has not been attached to a monitored device yet. There is nothing to report. If you received a product with this label, ask the seller — it was not tracked.'; vBg = '#eef1f6'; vFg = '#4b5565'; vIcon = '·'; }
+    else if (inProgress && !failStep) { verdict = 'JOURNEY IN PROGRESS · in range so far'; vSub = `This unit is still on step ${defs.length} (${last.kind.toLowerCase()}). Readings up to the moment you scanned are shown; the step has not closed yet, so this is a snapshot generated 29 Oct 2026, 11:40 IST, not a final report. Scan again later for the final version.`; vBg = '#e8eefc'; vFg = '#1a43b8'; vIcon = '…'; }
+    else     if (failStep) { verdict = `NOT COMPLIANT · step ${failStep}`; vSub = `Went outside 2–8 °C during step ${failStep} (${defs[failStep - 1].kind.toLowerCase()}). Ask your pharmacist before use.`; vBg = '#fdecec'; vFg = '#b91c1c'; vIcon = '!'; }
+    else if (hasGap) { verdict = 'COMPLIANT WHERE MONITORED'; vSub = `In range whenever readings exist · ${defs.length - nMon ? (defs.length - nMon) + ' step with no device' : ''}${defs.length - nMon && defs.some(d => d.hole) ? ' · ' : ''}${defs.some(d => d.hole) ? 'readings missing for part of a step' : ''} — shown below, never hidden.`; vBg = '#fef3e2'; vFg = '#b45309'; vIcon = '✓'; }
+    else { verdict = 'COMPLIANT'; vSub = `Kept between 2 °C and 8 °C on all ${defs.length} steps of its journey.`; vBg = '#e6f6ef'; vFg = '#047857'; vIcon = '✓'; }
+    return { legs, nLegs: defs.length, nMon, gMin: empty ? '—' : gMin.toFixed(1), gMax: empty ? '—' : gMax.toFixed(1), breach: breachMin ? `${breachMin} min` : '0 min', breachColor: breachMin ? '#a61b1b' : '#0f172a',
+      verdict, vSub, vBg, vFg, vIcon, lastN: defs.length, lastKind: last.kind, lastTitle: empty ? 'No readings yet' : (inProgress ? `Step ${defs.length} · ${last.kind} · still open — readings so far` : `Step ${defs.length} · ${last.kind} · the leg that reached you`), lastWhen: empty ? '' : `${last.when} · ${last.s} → ${last.e}`, hasLegs: !empty, noLegs: empty, last: { g: this.g(last.vals, 660, 170, last.s, last.e, last.hole) } };
+  }
+}
+</script>
+</body>
+</html>
