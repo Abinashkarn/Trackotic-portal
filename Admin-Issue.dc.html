@@ -91,7 +91,7 @@ input,select,button{font-family:inherit}
             <a href="#" style="color:#1a43b8;font-size:14px;font-weight:500">All passports ›</a>
           </div>
           <div style="overflow-x:auto">
-          <table style="width:100%;font-size:14px;min-width:640px">
+          <table style="width:100%;font-size:14px">
             <thead>
               <tr style="color:#4b5565;text-align:left;font-size:13px">
                 <th style="padding:10px 16px;font-weight:500">Book</th><th style="padding:10px 8px;font-weight:500">Issued</th><th style="padding:10px 8px;font-weight:500">Structure</th><th style="padding:10px 8px;font-weight:500">Profile</th><th style="padding:10px 8px;font-weight:500">In stock</th><th style="padding:10px 16px;font-weight:500;text-align:right">Print</th>
@@ -105,7 +105,7 @@ input,select,button{font-family:inherit}
                 <td style="padding:12px 8px">{{r.structure}}</td>
                 <td style="padding:12px 8px">{{r.profile}}</td>
                 <td style="padding:12px 8px">{{r.stock}} <span style="color:#4b5565">/ {{r.total}}</span></td>
-                <td style="padding:12px 16px;text-align:right;white-space:nowrap"><a href="#" style="color:#1a43b8;display:inline-flex;align-items:center;height:32px;padding:0 10px;border:1px solid #7a8696;border-radius:8px;font-size:13px;font-weight:500;text-decoration:none;margin-left:4px">{{r.pdf}}</a><a href="#" style="color:#1a43b8;display:inline-flex;align-items:center;height:32px;padding:0 10px;border:1px solid #7a8696;border-radius:8px;font-size:13px;font-weight:500;text-decoration:none;margin-left:4px">PDF micro</a><a href="#" style="color:#1a43b8;display:inline-flex;align-items:center;height:32px;padding:0 10px;border:1px solid #7a8696;border-radius:8px;font-size:13px;font-weight:500;text-decoration:none;margin-left:4px">ZPL</a></td>
+                <td style="padding:12px 16px;text-align:right;white-space:normal"><div style="display:flex;flex-wrap:wrap;gap:4px;justify-content:flex-end"><a href="#" style="color:#1a43b8;display:inline-flex;align-items:center;height:32px;padding:0 10px;border:1px solid #7a8696;border-radius:8px;font-size:13px;font-weight:500;text-decoration:none;margin-left:4px">{{r.pdf}}</a><a href="#" style="color:#1a43b8;display:inline-flex;align-items:center;height:32px;padding:0 10px;border:1px solid #7a8696;border-radius:8px;font-size:13px;font-weight:500;text-decoration:none;margin-left:4px">PDF micro</a><a href="#" style="color:#1a43b8;display:inline-flex;align-items:center;height:32px;padding:0 10px;border:1px solid #7a8696;border-radius:8px;font-size:13px;font-weight:500;text-decoration:none;margin-left:4px">ZPL</a></div></td>
               </tr>
               </sc-for>
               <sc-if value="{{t.empty}}" hint-placeholder-val="{{ false }}"><tr><td colspan="6" style="padding:28px 16px;text-align:center;color:#4b5565;font-size:14px">No books issued to {{t.name}} yet — the first one you issue appears here.</td></tr></sc-if>
