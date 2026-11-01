@@ -43,11 +43,11 @@
     const live=document.querySelector('x-dc');
     const helmet=xdc.querySelector('helmet'); if(helmet){ Array.from(helmet.childNodes).forEach(c=>document.head.appendChild(document.importNode(c,true))); helmet.remove(); }
     const tpl=document.createElement('div'); Array.from(xdc.childNodes).forEach(c=>tpl.appendChild(document.importNode(c,true))); 
-    let props={}, enums=[]; try{ const dp=JSON.parse(sc.getAttribute('data-props')||'{}'); for(const k in dp){ if(k==='$preview')continue; if(dp[k]&&typeof dp[k]==='object'&&'default' in dp[k]) props[k]=dp[k].default; if(dp[k]&&dp[k].editor==='enum') enums.push([k,dp[k].options]); } }catch(e){}
+    let props={}, enums=[], preview=null; try{ const dp=JSON.parse(sc.getAttribute('data-props')||'{}'); preview=dp.$preview||null; for(const k in dp){ if(k==='$preview')continue; if(dp[k]&&typeof dp[k]==='object'&&'default' in dp[k]) props[k]=dp[k].default; if(dp[k]&&dp[k].editor==='enum') enums.push([k,dp[k].options]); } }catch(e){}
     for(const [k,v] of q.entries()){ if(k==='embed')continue; props[k]=v; }
     let Comp; try{ Comp=new Function('DCLogic', sc.textContent+'\nreturn Component;')(DCLogic); }catch(e){ console.error('dc script',e); Comp=class extends DCLogic{renderVals(){return{}}}; }
     const inst=new Comp(props); const root=document.createElement('div'); root.id='dc-root'; if(live) live.replaceWith(root); else document.body.appendChild(root);
-    const rerender=()=>{ let vals={}; try{ vals=inst.renderVals()||{}; }catch(e){ console.error('renderVals',e); } const frag=document.createDocumentFragment(); renderChildren(tpl,{},vals,frag); root.replaceChildren(frag); const nxt=q.get('next'); if(nxt&&/^[\w-]+\.dc\.html$/.test(nxt)){ root.querySelectorAll('a[href="Device-Staff.dc.html"]').forEach(a=>a.setAttribute('href',nxt)); } };
+    const rerender=()=>{ let vals={}; try{ vals=inst.renderVals()||{}; }catch(e){ console.error('renderVals',e); } const frag=document.createDocumentFragment(); renderChildren(tpl,{},vals,frag); root.replaceChildren(frag); const first=root.firstElementChild; if(first&&preview&&preview.width&&!q.get('embed')&&!/(^|;)\s*width\s*:/.test(first.getAttribute('style')||'')){ first.style.width=preview.width+'px'; first.style.boxSizing='border-box'; } const nxt=q.get('next'); if(nxt&&/^[\w-]+\.dc\.html$/.test(nxt)){ root.querySelectorAll('a[href="Device-Staff.dc.html"]').forEach(a=>a.setAttribute('href',nxt)); } };
     inst.__rerender=rerender; rerender();
     // next= : on the login screen, send the main button to the screen the user came from (demo: scan → login → passport journey)
     // ---- zoom / fit for boards wider than the window (flowcharts, admin pages on phones) ----
