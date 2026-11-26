@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Track0tic portal — staff login</title>
+<script src="./support.js?v=6"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>body{margin:0}a{color:#1a43b8}a:hover{color:#0f2f8a}</style>
+</helmet>
+<div style="min-height:900px;box-sizing:border-box;background:#f3f5f9;color:#0f172a;font-family:'Noto Sans',system-ui,sans-serif;display:flex;align-items:center;justify-content:center;padding:24px">
+  <div style="width:100%;max-width:960px;display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:24px;align-items:stretch">
+    <section style="background:#0f172a;color:#eef2f8;border-radius:16px;padding:40px;display:flex;flex-direction:column;gap:20px;min-height:520px">
+      <div style="font-size:28px;font-weight:600">Track<span style="color:#ff5a66">0</span>tic<sup style="font-size:0.4em;vertical-align:top;margin-left:2px">TM</sup> <span style="font-size:16px;font-weight:400;color:#a3adbf">portal</span></div>
+      <p style="margin:0;font-size:16px;line-height:24px;color:#a3adbf">Devices in, tested, SIM fitted, labelled for a tenant, dispatched. Tenants created and given their portal. Everything you do here is written to the audit log with your name.</p>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px">
+        <div style="display:flex;align-items:center;gap:10px;font-size:14px"><span style="width:26px;height:26px;border-radius:9999px;background:#4b5565;display:inline-flex;align-items:center;justify-content:center;font-weight:600;font-size:12px">1</span>Received</div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:14px"><span style="width:26px;height:26px;border-radius:9999px;background:#b45309;display:inline-flex;align-items:center;justify-content:center;font-weight:600;font-size:12px">2</span>QC</div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:14px"><span style="width:26px;height:26px;border-radius:9999px;background:#1d4ed8;display:inline-flex;align-items:center;justify-content:center;font-weight:600;font-size:12px">3</span>SIM bound · ready</div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:14px"><span style="width:26px;height:26px;border-radius:9999px;background:#047857;display:inline-flex;align-items:center;justify-content:center;font-weight:600;font-size:12px">4</span>Labelled · allocated → 5 dispatched</div>
+      </div>
+      <div style="margin-top:auto;font-size:13px;color:#a3adbf">UAT · apiuat.trackotic.com · v2 wireframe</div>
+    </section>
+
+    <section style="background:#ffffff;border:1px solid #e2e6ed;border-radius:16px;padding:40px;display:flex;flex-direction:column;gap:18px">
+      <h1 style="margin:0;font-size:22px;line-height:28px;font-weight:600">Sign in</h1>
+      <div style="display:flex;gap:6px;padding:4px;border-radius:12px;background:#eef1f6">
+        <button onClick="{{pickEmail}}" style="flex:1 1 0;min-height:40px;border:0;border-radius:8px;background:{{tab.email}};color:{{tabFg.email}};font-size:14px;font-weight:600;cursor:pointer;font-family:inherit">Email &amp; password</button>
+        <button onClick="{{pickOtp}}" style="flex:1 1 0;min-height:40px;border:0;border-radius:8px;background:{{tab.otp}};color:{{tabFg.otp}};font-size:14px;font-weight:600;cursor:pointer;font-family:inherit">Mobile OTP</button>
+      </div>
+      <sc-if value="{{isEmail}}" hint-placeholder-val="{{ true }}">
+        <label style="display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:500">Work email<input type="email" value="meena.t@trackotic.com" style="height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 12px;font-size:15px;font-family:inherit;color:#0f172a"></label>
+        <label style="display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:500">Password<input type="password" value="••••••••••" style="height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 12px;font-size:15px;font-family:inherit;color:#0f172a"></label>
+      </sc-if>
+      <sc-if value="{{isOtp}}" hint-placeholder-val="{{ false }}">
+        <label style="display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:500">Mobile<input type="tel" value="+91 98100 22310" style="height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 12px;font-size:15px;font-family:'IBM Plex Mono',monospace;color:#0f172a"></label>
+        <div style="font-size:13px;color:#4b5565;line-height:18px">A 6-digit code goes by SMS. Floor staff use this on the phone; the code lasts 5 minutes.</div>
+      </sc-if>
+      <a href="{{homeHref}}" onClick="{{pickCur}}" style="display:inline-flex;align-items:center;justify-content:center;min-height:48px;border-radius:12px;background:#1d4ed8;color:#ffffff;font-size:15px;font-weight:600;text-decoration:none">{{cta}}</a>
+      <div style="display:flex;justify-content:space-between;font-size:13px"><a href="#" style="color:#1a43b8">Forgot password</a><span style="color:#4b5565">Lands on the home of your role</span></div>
+      <div style="padding-top:6px;border-top:1px solid #e2e6ed;display:flex;flex-direction:column;gap:8px">
+        <div style="font-size:13px;font-weight:600;letter-spacing:0.06em;color:#4b5565">DEMO · SIGN IN AS ANY ROLE</div>
+        <div style="display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:6px">
+          <sc-for list="{{roles}}" as="r" hint-placeholder-count="8"><a href="{{r.home}}" onClick="{{r.pick}}" style="display:flex;flex-direction:column;gap:2px;padding:8px 10px;border-radius:8px;border:1px solid #e2e6ed;background:#f8fafc;text-decoration:none;color:#0f172a"><span style="font-size:13px;font-weight:600">{{r.name}}</span><span style="font-size:12px;color:#4b5565">{{r.user}} · {{r.cred}}</span></a></sc-for>
+        </div>
+        <div style="font-size:12px;color:#4b5565">Demo credentials are fixed: password <span style="font-family:'IBM Plex Mono',monospace">Track0tic#2026</span>, OTP <span style="font-family:'IBM Plex Mono',monospace">482917</span>. The role you pick stays for the whole demo (sidebar, homes) until you log out.</div>
+      </div>
+      <div style="margin-top:auto;padding:12px 14px;border-radius:12px;background:#fef3e2;border:1px solid #f0c48a;font-size:13px;line-height:19px;color:#92400e"><strong>Office roles sign in only from an allowed IP.</strong> Admin, Ops head, QC, Assembly and Sales head from the office network; Support and Sales field from anywhere. A wrong network shows "Sign in from the office network or ask Admin to add this IP", never a blank error.</div>
+    </section>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":900}}'>
+class Component extends DCLogic {
+  constructor(p){ super(p); this.state = { mode: 'email', role: 'qc' }; }
+  renderVals() {
+    const m = this.state.mode;
+    const R = [ ['admin','Admin','Abinash K','email'], ['opshead','Ops head','Vikram S','email'], ['assembly','Ops – Assembly','Sunil R','mobile OTP'], ['qc','Ops – QC','Meena T','mobile OTP'], ['support','Ops – Support','Rahul D','email or OTP'], ['saleshead','Sales head','Neha G','email'], ['salesscoped','Sales scoped head','Pooja M','email or OTP'], ['sales','Sales (field)','Karan V','mobile OTP'] ];
+    const HOME = { admin:'Home-Admin.dc.html', opshead:'Home-Admin.dc.html', assembly:'Home-OpsAssembly.dc.html', qc:'Home-OpsQC.dc.html', support:'Home-OpsSupport.dc.html', saleshead:'Home-Sales.dc.html', salesscoped:'Home-Sales.dc.html', sales:'Home-Sales.dc.html' };
+    const set = (k) => () => { try { localStorage.setItem('t0role', k); } catch (e) {} };
+    const roles = R.map(r => ({ code: r[0], name: r[1], user: r[2], cred: r[3], home: HOME[r[0]], pick: set(r[0]) }));
+    return { roles, homeHref: HOME[this.state.role], pickCur: set(this.state.role), isEmail: m === 'email', isOtp: m === 'otp', cta: m === 'email' ? 'Sign in' : 'Send code',
+      tab: { email: m === 'email' ? '#ffffff' : 'transparent', otp: m === 'otp' ? '#ffffff' : 'transparent' },
+      tabFg: { email: m === 'email' ? '#0f172a' : '#4b5565', otp: m === 'otp' ? '#0f172a' : '#4b5565' },
+      pickEmail: () => this.setState({ mode: 'email' }), pickOtp: () => this.setState({ mode: 'otp' }) };
+  }
+}
+</script>
+</body>
+</html>

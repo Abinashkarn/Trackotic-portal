@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Track0tic portal — 3 · Fit SIM</title>
+<script src="./support.js?v=6"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>body{margin:0}a{color:#1a43b8}a:hover{color:#0f2f8a}table{border-collapse:collapse}button,input,select{font-family:inherit}</style>
+</helmet>
+<div style="display:flex;flex-wrap:wrap;min-height:900px;background:#f3f5f9;color:#0f172a;font-family:'Noto Sans',system-ui,sans-serif">
+  <dc-import name="Sidebar" role="assembly" active="sim" hint-size="240px,900px"></dc-import>
+  <main style="flex:999 1 560px;min-width:0;padding:0 0 24px;box-sizing:border-box;display:flex;flex-direction:column;gap:20px">
+    <div style="background:#e8eefc;border-bottom:3px solid #1d4ed8;padding:20px 28px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px">
+      <div style="display:flex;align-items:center;gap:14px"><span style="width:44px;height:44px;border-radius:9999px;background:#1d4ed8;color:#ffffff;display:inline-flex;align-items:center;justify-content:center;font-weight:600;font-size:20px">3</span><div><div style="font-size:13px;font-weight:600;letter-spacing:0.06em;color:#1a43b8">STAGE 3 · SIM BOUND · BLUE</div><h1 style="margin:0;font-size:24px;line-height:30px;font-weight:600">Fit the M2M SIM and wait for the first heartbeat</h1></div></div>
+      <div style="font-size:14px;color:#1a43b8">After this the device is <strong>ready · in stock</strong>. Next: <span style="padding:2px 8px;border-radius:9999px;background:#e6f6ef;color:#047857;font-weight:600">4 QR labels</span> for a tenant</div>
+    </div>
+
+    <div style="padding:0 28px;display:grid;grid-template-columns:minmax(0, 1.2fr) minmax(0, 1fr);gap:16px;align-items:start">
+      <section style="background:#ffffff;border:2px solid #1d4ed8;border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:18px">
+        <div style="display:flex;align-items:center;gap:14px;padding:14px;border-radius:12px;border:1px solid {{s1.border}};background:{{s1.bg}}">
+          <span style="width:36px;height:36px;border-radius:9999px;background:{{s1.disc}};color:#ffffff;display:inline-flex;align-items:center;justify-content:center;font-weight:600;font-size:16px">A</span>
+          <div style="flex:1 1 auto"><div style="font-size:16px;font-weight:600">Scan the device QR (or type the TRK ID)</div><div style="font-size:14px;color:#4b5565">Must be stage 2 · passed. Anything else is refused with the reason.</div></div>
+          <input type="text" value="{{trk}}" onChange="{{setTrk}}" style="width:200px;height:48px;border:1px solid #7a8696;border-radius:8px;padding:0 12px;font-size:16px;font-family:'IBM Plex Mono',monospace;color:#0f172a">
+        </div>
+        <div style="display:flex;align-items:center;gap:14px;padding:14px;border-radius:12px;border:1px solid {{s2.border}};background:{{s2.bg}}">
+          <span style="width:36px;height:36px;border-radius:9999px;background:{{s2.disc}};color:#ffffff;display:inline-flex;align-items:center;justify-content:center;font-weight:600;font-size:16px">B</span>
+          <div style="flex:1 1 auto"><div style="font-size:16px;font-weight:600">Scan the SIM barcode (ICCID)</div><div style="font-size:14px;color:#4b5565">From the Airtel M2M pool · the SIM must be unused</div></div>
+          <input type="text" value="{{iccid}}" onChange="{{setIccid}}" style="width:260px;height:48px;border:1px solid #7a8696;border-radius:8px;padding:0 12px;font-size:16px;font-family:'IBM Plex Mono',monospace;color:#0f172a">
+        </div>
+        <div style="display:flex;align-items:center;gap:14px;padding:14px;border-radius:12px;border:1px solid {{s3.border}};background:{{s3.bg}}">
+          <span style="width:36px;height:36px;border-radius:9999px;background:{{s3.disc}};color:#ffffff;display:inline-flex;align-items:center;justify-content:center;font-weight:600;font-size:16px">C</span>
+          <div style="flex:1 1 auto"><div style="font-size:16px;font-weight:600">Power on · wait for the first heartbeat</div><div style="font-size:14px;color:#4b5565">{{hbText}}</div></div>
+          <button onClick="{{bind}}" style="min-height:48px;padding:0 20px;border:0;border-radius:12px;background:#1d4ed8;color:#ffffff;font-size:15px;font-weight:600;cursor:pointer">{{cta}}</button>
+        </div>
+        <sc-if value="{{bound}}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;align-items:center;gap:12px;padding:14px;border-radius:12px;background:#e8eefc;border:1px solid #c7d4fb"><span style="width:36px;height:36px;border-radius:9999px;background:#1d4ed8;color:#ffffff;display:inline-flex;align-items:center;justify-content:center;font-weight:600;font-size:18px">✓</span><div style="font-size:15px"><strong>{{trk}} is 3 · SIM bound · ready.</strong> Heartbeat 11:21:08 · 4.1 V · fix ok · SIM {{iccid}} marked used · audit #88322. Next device: scan again.</div></div>
+        </sc-if>
+        <div style="font-size:13px;color:#4b5565">No heartbeat in 3 minutes → the screen says what to check (SIM seated, antenna, power) and offers "Mark faulty". A device is never 'ready' without a heartbeat.</div>
+      </section>
+
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <section style="background:#ffffff;border:1px solid #e2e6ed;border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:10px">
+          <h2 style="margin:0;font-size:18px;font-weight:600">Waiting for a SIM · 38</h2>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;font-size:14px"><span style="padding:6px 12px;border-radius:9999px;background:#fef3e2;color:#92400e;font-weight:600">34 Pro</span><span style="padding:6px 12px;border-radius:9999px;background:#fef3e2;color:#92400e;font-weight:600">4 HUB</span><span style="padding:6px 12px;border-radius:9999px;background:#eef1f6;color:#4b5565;font-weight:600">oldest 2 d</span></div>
+          <div style="font-size:14px;color:#4b5565">All passed QC today or yesterday. Trackers and Lockboxes come with the SIM fitted at the factory — they skip this stage.</div>
+        </section>
+        <section style="background:#ffffff;border:1px solid #e2e6ed;border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:10px">
+          <h2 style="margin:0;font-size:18px;font-weight:600">SIM pool · Airtel M2M</h2>
+          <div style="display:flex;gap:20px;font-size:15px"><span><strong style="font-size:24px">212</strong> unused</span><span><strong style="font-size:24px">1,024</strong> in devices</span><span><strong style="font-size:24px">6</strong> faulty</span></div>
+          <div style="font-size:14px;color:#4b5565">Reorder at 100 · plan 50 MB / month · ICCID range 8991 … uploaded by Admin in Reference data.</div>
+        </section>
+        <section style="background:#ffffff;border:1px solid #e2e6ed;border-radius:16px;overflow:hidden">
+          <div style="padding:14px 20px;border-bottom:1px solid #e2e6ed;font-size:18px;font-weight:600">Fitted today · 12</div>
+          <table style="width:100%;font-size:14px">
+            <tbody>
+              <tr style="border-top:1px solid #e2e6ed"><td style="padding:10px 20px;font-family:'IBM Plex Mono',monospace">TRK-PRO-900400</td><td style="padding:10px 8px;font-family:'IBM Plex Mono',monospace;color:#4b5565">8991…4471</td><td style="padding:10px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#e8eefc;color:#1a43b8;font-size:12px;font-weight:600">3 · heartbeat 11:02</span></td></tr>
+              <tr style="border-top:1px solid #e2e6ed"><td style="padding:10px 20px;font-family:'IBM Plex Mono',monospace">TRK-PRO-900399</td><td style="padding:10px 8px;font-family:'IBM Plex Mono',monospace;color:#4b5565">8991…4470</td><td style="padding:10px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#e8eefc;color:#1a43b8;font-size:12px;font-weight:600">3 · heartbeat 10:48</span></td></tr>
+              <tr style="border-top:1px solid #e2e6ed"><td style="padding:10px 20px;font-family:'IBM Plex Mono',monospace">TRK-HUB-900061</td><td style="padding:10px 8px;font-family:'IBM Plex Mono',monospace;color:#4b5565">8991…4469</td><td style="padding:10px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#fdecec;color:#a61b1b;font-size:12px;font-weight:600">! no heartbeat · faults</span></td></tr>
+            </tbody>
+          </table>
+        </section>
+      </div>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":900}}'>
+class Component extends DCLogic {
+  constructor(p){ super(p); this.state = { trk: 'TRK-PRO-900402', iccid: '89910000000000044721', bound: false }; }
+  renderVals() {
+    const s = this.state; const hasTrk = s.trk.length > 6; const hasSim = s.iccid.length > 10;
+    const step = (ok, active) => ({ border: ok ? '#c7d4fb' : active ? '#1d4ed8' : '#e2e6ed', bg: ok ? '#e8eefc' : '#ffffff', disc: ok ? '#1d4ed8' : active ? '#1d4ed8' : '#7a8696' });
+    return { trk: s.trk, iccid: s.iccid, bound: s.bound, s1: step(hasTrk, true), s2: step(hasSim, hasTrk), s3: step(s.bound, hasTrk && hasSim),
+      hbText: s.bound ? 'Heartbeat received at 11:21:08' : 'Listening on mqttuat … device sends its first message within 2 minutes of power-on',
+      cta: s.bound ? 'Bound ✓' : 'Bind SIM → wait for heartbeat',
+      setTrk: (e) => this.setState({ trk: e.target.value, bound: false }), setIccid: (e) => this.setState({ iccid: e.target.value, bound: false }), bind: () => this.setState({ bound: true }) };
+  }
+}
+</script>
+</body>
+</html>

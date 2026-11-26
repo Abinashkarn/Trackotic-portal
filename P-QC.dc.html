@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Phone — QC checklist for the scanned device</title>
+<script src="./support.js?v=6"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>body{margin:0}a{color:#1a43b8;text-decoration:none}a:hover{color:#0f2f8a}button{font-family:inherit}</style>
+</helmet>
+<div style="width:390px;height:844px;box-sizing:border-box;background:#ffffff;color:#0f172a;font-family:'Noto Sans',system-ui,sans-serif;display:flex;flex-direction:column;position:relative">
+  <div style="background:#fef3e2;border-bottom:3px solid #b45309;padding:16px 20px;display:flex;align-items:center;gap:12px"><a href="P-Scan.dc.html" style="font-size:15px;font-weight:500;color:#92400e">‹</a><span style="width:36px;height:36px;border-radius:9999px;background:#b45309;color:#ffffff;display:inline-flex;align-items:center;justify-content:center;font-weight:600;font-size:16px">2</span><div style="flex:1 1 auto"><div style="font-size:12px;font-weight:600;letter-spacing:0.06em;color:#92400e">QC · ON BENCH</div><div style="font-size:18px;font-weight:600;font-family:'IBM Plex Mono',monospace">867530041122331</div></div><span style="font-size:13px;color:#92400e">Pro · RB-0042</span></div>
+  <div style="flex:1 1 auto;overflow:auto;padding:16px 20px 120px;display:flex;flex-direction:column;gap:10px">
+    <div style="font-size:15px;color:#4b5565">Tap Pass or Fail for each check. {{left}} left.</div>
+    <sc-for list="{{checks}}" as="c" hint-placeholder-count="6">
+      <div style="display:flex;flex-direction:column;gap:8px;padding:12px;border-radius:12px;border:1px solid #e2e6ed;background:{{c.bg}}">
+        <div style="display:flex;justify-content:space-between;gap:8px"><span style="font-size:16px;font-weight:600">{{c.label}}</span><span style="font-size:14px;font-family:'IBM Plex Mono',monospace;color:#4b5565">{{c.reading}}</span></div>
+        <div style="font-size:13px;color:#4b5565">{{c.hint}}</div>
+        <div style="display:flex;gap:8px"><button onClick="{{c.pass}}" style="flex:1;min-height:48px;border:1px solid #7a8696;border-radius:10px;background:{{c.passBg}};color:{{c.passFg}};font-size:16px;font-weight:600;cursor:pointer">Pass</button><button onClick="{{c.fail}}" style="flex:1;min-height:48px;border:1px solid #7a8696;border-radius:10px;background:{{c.failBg}};color:{{c.failFg}};font-size:16px;font-weight:600;cursor:pointer">Fail</button></div>
+      </div>
+    </sc-for>
+    <div style="display:flex;justify-content:space-between;padding:12px;border-radius:12px;background:#f3f5f9;font-size:14px"><span style="font-weight:600">Firmware</span><span style="font-family:'IBM Plex Mono',monospace">pro-3.1.0 · flashed ✓</span></div>
+  </div>
+  <div style="position:absolute;left:0;right:0;bottom:0;padding:12px 20px 20px;background:#ffffff;box-shadow:0 -2px 12px #0f172a14;display:flex;flex-direction:column;gap:8px">
+    <sc-if value="{{allPass}}" hint-placeholder-val="{{ false }}"><button onClick="{{finish}}" style="min-height:56px;border:0;border-radius:12px;background:#1d4ed8;color:#ffffff;font-size:17px;font-weight:600;cursor:pointer">All passed → mint TRK ID</button></sc-if>
+    <sc-if value="{{anyFail}}" hint-placeholder-val="{{ false }}"><button onClick="{{finish}}" style="min-height:56px;border:0;border-radius:12px;background:#b91c1c;color:#ffffff;font-size:17px;font-weight:600;cursor:pointer">Mark faulty</button></sc-if>
+    <sc-if value="{{pending}}" hint-placeholder-val="{{ true }}"><span style="min-height:56px;display:inline-flex;align-items:center;justify-content:center;border-radius:12px;background:#eef1f6;color:#4b5565;font-size:17px;font-weight:600">{{left}} checks left</span></sc-if>
+    <sc-if value="{{done}}" hint-placeholder-val="{{ false }}"><div style="min-height:56px;display:flex;align-items:center;justify-content:center;border-radius:12px;background:{{doneBg}};color:{{doneFg}};font-size:15px;font-weight:600;text-align:center;padding:0 12px">{{doneText}}</div></sc-if>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(p){ super(p); this.state = { res: {}, done: false }; }
+  renderVals() {
+    const CH = [ { k:'power', label:'Powers on · charges', hint:'LED green within 10 s', reading:'4.1 V' }, { k:'temp', label:'Temperature vs reference', hint:'within ±0.5 °C', reading:'21.3 / 21.1' }, { k:'gps', label:'GPS fix', hint:'at the window · under 2 min', reading:'48 s' }, { k:'modem', label:'Modem registers', hint:'test SIM · IMEI reads back', reading:'ok' }, { k:'lid', label:'Lid / bag event', hint:'open → close seen', reading:'2 events' }, { k:'seal', label:'Casing · seal · screws', hint:'no damage', reading:'—' } ];
+    const res = this.state.res;
+    const checks = CH.map(c => { const r = res[c.k]; return { ...c, bg: r === 'p' ? '#e8eefc' : r === 'f' ? '#fdecec' : '#ffffff', passBg: r === 'p' ? '#1d4ed8' : '#ffffff', passFg: r === 'p' ? '#ffffff' : '#0f172a', failBg: r === 'f' ? '#b91c1c' : '#ffffff', failFg: r === 'f' ? '#ffffff' : '#0f172a', pass: () => this.setState({ res: { ...res, [c.k]: 'p' }, done: false }), fail: () => this.setState({ res: { ...res, [c.k]: 'f' }, done: false }) }; });
+    const vals = CH.map(c => res[c.k]); const anyFail = vals.includes('f'); const allPass = vals.every(v => v === 'p'); const left = vals.filter(v => !v).length; const d = this.state.done;
+    return { checks, left, allPass: allPass && !d, anyFail: anyFail && !d, pending: !allPass && !anyFail && !d, done: d, doneBg: anyFail ? '#fdecec' : '#e8eefc', doneFg: anyFail ? '#a61b1b' : '#1a43b8', doneText: anyFail ? '! Faulty · in the faults list · scan the next device' : '3 · TRK-PRO-900402 minted · waiting for SIM · scan the next device', finish: () => this.setState({ done: true }) };
+  }
+}
+</script>
+</body>
+</html>

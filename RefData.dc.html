@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Track0tic portal — reference data</title>
+<script src="./support.js?v=6"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>body{margin:0}a{color:#1a43b8}a:hover{color:#0f2f8a}table{border-collapse:collapse}button,input,select{font-family:inherit}</style>
+</helmet>
+<div style="display:flex;flex-wrap:wrap;min-height:900px;background:#f3f5f9;color:#0f172a;font-family:'Noto Sans',system-ui,sans-serif">
+  <dc-import name="Sidebar" role="admin" active="ref" hint-size="240px,900px"></dc-import>
+  <main style="flex:999 1 560px;min-width:0;padding:24px;box-sizing:border-box;display:flex;flex-direction:column;gap:18px">
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px">
+      <div><div style="font-size:13px;color:#4b5565">5 · Admin</div><h1 style="margin:0;font-size:22px;line-height:28px;font-weight:600">Reference data · the lists every dropdown reads</h1></div>
+      <span style="font-size:13px;color:#4b5565">Admin only · each change audit-logged · a value in use can be retired, never deleted</span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3, minmax(0, 1fr));gap:14px">
+      <section style="background:#ffffff;border:1px solid #e2e6ed;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:8px">
+        <h2 style="margin:0;font-size:16px;font-weight:600">Device types</h2>
+        <table style="width:100%;font-size:13px"><tbody>
+          <tr><td style="padding:5px 0;font-weight:600">HUB</td><td style="padding:5px 4px;color:#4b5565">static · mains · temp, humidity</td><td style="padding:5px 0;text-align:right;font-family:'IBM Plex Mono',monospace">TRK-HUB-</td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:5px 0;font-weight:600">Pro</td><td style="padding:5px 4px;color:#4b5565">running · GPS, bag events · returnable</td><td style="padding:5px 0;text-align:right;font-family:'IBM Plex Mono',monospace">TRK-PRO-</td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:5px 0;font-weight:600">Lite</td><td style="padding:5px 4px;color:#4b5565">running · sent out, returned later</td><td style="padding:5px 0;text-align:right;font-family:'IBM Plex Mono',monospace">TRK-LIT-</td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:5px 0;font-weight:600">Lockbox</td><td style="padding:5px 4px;color:#4b5565">BFSI · geofence lock · SIM from factory</td><td style="padding:5px 0;text-align:right;font-family:'IBM Plex Mono',monospace">TRK-LBX-</td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:5px 0;font-weight:600">Tracker</td><td style="padding:5px 4px;color:#4b5565">van, fixed · GPS + KM · SIM from factory</td><td style="padding:5px 0;text-align:right;font-family:'IBM Plex Mono',monospace">TRK-TRK-</td></tr>
+        </tbody></table>
+        <div style="font-size:12px;color:#4b5565">Per type: QC checklist, sensors, which stages apply (Tracker and Lockbox skip 3 · Fit SIM).</div>
+      </section>
+      <section style="background:#ffffff;border:1px solid #e2e6ed;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:8px">
+        <h2 style="margin:0;font-size:16px;font-weight:600">Verticals → customer types</h2>
+        <div style="font-size:13px;line-height:20px"><strong>Pharma:</strong> pharmacy chain · distributor / stockist · CFA · manufacturer · 3PL<br><strong>Diagnostics:</strong> lab · collection network · hospital lab · IVF<br><strong>BFSI:</strong> bank cash-in-transit · gold-loan NBFC · fintech<br><strong>Vaccines &amp; biologicals:</strong> vaccines · biologicals · blood bank<br><strong>Food &amp; FMCG:</strong> food · FMCG</div>
+        <div style="font-size:12px;color:#4b5565">Each customer type carries its default portal type and device list.</div>
+      </section>
+      <section style="background:#ffffff;border:1px solid #e2e6ed;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:8px">
+        <h2 style="margin:0;font-size:16px;font-weight:600">Portal types</h2>
+        <div style="display:flex;flex-direction:column;gap:4px;font-size:13px">
+          <div style="display:flex;justify-content:space-between"><span><strong>Pharmacy chain</strong></span><span style="color:#4b5565">HUB · Pro · Lite · passports</span></div>
+          <div style="display:flex;justify-content:space-between"><span><strong>Distributor</strong></span><span style="color:#4b5565">HUB · Pro · passports</span></div>
+          <div style="display:flex;justify-content:space-between"><span><strong>Device only</strong></span><span style="color:#4b5565">scan page + alerts · passports</span></div>
+          <div style="display:flex;justify-content:space-between"><span><strong>Lab · device only</strong></span><span style="color:#4b5565">Pro · Lite · tube passports · data push switch</span></div>
+          <div style="display:flex;justify-content:space-between"><span><strong>Full lab</strong></span><span style="color:#4b5565">+ pickups, bench, custody</span></div>
+          <div style="display:flex;justify-content:space-between"><span><strong>Cash-van</strong></span><span style="color:#4b5565">Tracker · no passports · maker-checker</span></div>
+          <div style="display:flex;justify-content:space-between"><span><strong>Lockbox</strong></span><span style="color:#4b5565">Lockbox · no passports · dedicated option</span></div>
+        </div>
+        <div style="font-size:12px;color:#4b5565">Each portal type names its role templates, journey templates and public-report rule.</div>
+      </section>
+      <section style="background:#ffffff;border:1px solid #e2e6ed;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:8px">
+        <h2 style="margin:0;font-size:16px;font-weight:600">Label sizes &amp; printers</h2>
+        <div style="font-size:13px;line-height:20px">Device label: <strong>60 × 30 mm</strong> polyester, EC Q<br>Passport: <strong>40 × 25</strong> standard · <strong>25 × 15</strong> PFS / tube · <strong>60 × 40</strong> box / carton<br>Printers: PDF A4 (default) · ZPL 203 dpi when a label printer is connected</div>
+        <div style="font-size:12px;color:#4b5565">A tenant's allowed sizes are set at creation; the tenant picks per product.</div>
+      </section>
+      <section style="background:#ffffff;border:1px solid #e2e6ed;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:8px">
+        <h2 style="margin:0;font-size:16px;font-weight:600">SIM providers · warranty terms</h2>
+        <div style="font-size:13px;line-height:20px">Airtel M2M · 50 MB / month · ICCID range upload (CSV)<br>Vodafone M2M · backup pool · 0 unused<br>Warranty terms offered: 12 · 24 · 36 months (from receive date)</div>
+        <div style="font-size:12px;color:#4b5565">Reorder alert when a pool drops under 100.</div>
+      </section>
+      <section style="background:#ffffff;border:1px solid #e2e6ed;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:8px">
+        <h2 style="margin:0;font-size:16px;font-weight:600">Approval thresholds · access</h2>
+        <div style="font-size:13px;line-height:20px">Allocation above <strong>50</strong> devices · passport batch above <strong>10,000</strong> · tenant create / change <strong>on</strong> · contract change <strong>on</strong> · label reprint <strong>on</strong> · scrap <strong>on</strong> · BFSI action <strong>always</strong></div>
+        <div style="font-size:13px;line-height:20px">Office IP allowlist: 10.0.4.0/24 (Okhla) · 49.36.x.x (Noida) · idle logout 30 min desk, 8 h floor</div>
+      </section>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":900}}'>
+class Component extends DCLogic { renderVals() { return {}; } }
+</script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sidebar — role-aware navigation</title>
+<script src="./support.js?v=6"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&display=swap">
+<style>body{margin:0}a{color:#eef2f8;text-decoration:none}a:hover{color:#ffffff}</style>
+</helmet>
+<nav aria-label="Portal" style="width:240px;min-height:900px;box-sizing:border-box;background:#0f172a;color:#eef2f8;font-family:'Noto Sans',system-ui,sans-serif;display:flex;flex-direction:column;padding:16px 12px 20px;gap:4px;font-size:14px">
+  <div style="display:flex;align-items:baseline;gap:6px;padding:4px 8px 10px">
+    <span style="font-size:18px;font-weight:600">Track<span style="color:#ff5a66">0</span>tic<sup style="font-size:0.45em;font-weight:600;vertical-align:top;margin-left:1px;opacity:0.85">TM</sup></span>
+    <span style="font-size:12px;color:#a3adbf">portal</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;background:#172036;border:1px solid #273149;margin-bottom:10px">
+    <span style="width:28px;height:28px;border-radius:9999px;background:{{roleColor}};color:#ffffff;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:600">{{roleInitials}}</span>
+    <div style="display:flex;flex-direction:column;min-width:0"><span style="font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{userName}}</span><span style="font-size:12px;color:#a3adbf">{{roleName}}</span></div>
+  </div>
+
+  <sc-if value="{{floor}}" hint-placeholder-val="{{ false }}">
+    <a href="P-Scan.dc.html" style="display:flex;align-items:center;justify-content:center;gap:8px;height:48px;border-radius:12px;background:#1d4ed8;color:#ffffff;font-weight:600;font-size:15px;margin-bottom:6px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3M7 12h10"/></svg>Scan</a>
+    <sc-for list="{{tiles}}" as="t" hint-placeholder-count="3">
+      <a href="{{t.href}}" style="display:flex;align-items:center;gap:10px;min-height:56px;padding:8px 10px;border-radius:12px;background:{{t.bg}};border:2px solid {{t.border}};color:#eef2f8;margin-bottom:4px">
+        <span style="width:30px;height:30px;border-radius:9999px;background:{{t.disc}};color:#ffffff;display:inline-flex;align-items:center;justify-content:center;font-weight:600;font-size:14px;flex:0 0 auto">{{t.n}}</span>
+        <span style="flex:1 1 auto;display:flex;flex-direction:column;min-width:0"><span style="font-weight:600;font-size:14px">{{t.label}}</span><span style="font-size:12px;color:#a3adbf">{{t.sub}}</span></span>
+        <span style="font-size:16px;font-weight:600;color:{{t.countColor}}">{{t.count}}</span>
+      </a>
+    </sc-for>
+  </sc-if>
+
+  <sc-if value="{{desk}}" hint-placeholder-val="{{ true }}">
+    <a href="{{homeHref}}" style="display:flex;align-items:center;height:36px;padding:0 10px;border-radius:8px;font-weight:500;background:{{bg.home}}">Home</a>
+    <sc-for list="{{groups}}" as="g" hint-placeholder-count="5">
+      <div style="padding:12px 10px 4px;font-size:11px;letter-spacing:0.08em;color:#a3adbf;font-weight:600">{{g.label}}</div>
+      <sc-for list="{{g.items}}" as="i" hint-placeholder-count="3">
+        <a href="{{i.href}}" style="display:flex;align-items:center;gap:8px;height:34px;padding:0 10px 0 14px;border-radius:8px;background:{{i.bg}}"><span style="width:8px;height:8px;border-radius:9999px;background:{{i.dot}};flex:0 0 auto"></span><span style="flex:1 1 auto">{{i.label}}</span><sc-if value="{{i.badge}}" hint-placeholder-val="{{ false }}"><span style="font-size:11px;font-weight:600;padding:1px 7px;border-radius:9999px;background:{{i.badgeBg}};color:#ffffff">{{i.badge}}</span></sc-if></a>
+      </sc-for>
+    </sc-for>
+  </sc-if>
+
+  <div style="margin-top:auto;padding:12px 10px 0;border-top:1px solid #273149;display:flex;justify-content:space-between;align-items:center;font-size:13px;color:#a3adbf">
+    <span>{{ipNote}}</span>
+    <a href="Login.dc.html" onClick="{{logout}}" aria-label="Log out" style="color:#a3adbf"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 17l5-5-5-5M15 12H3M21 3v18"/></svg></a>
+  </div>
+</nav>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"role":{"editor":"enum","options":["admin","opshead","assembly","qc","support","saleshead","salesscoped","sales"],"default":"admin"},"active":{"editor":"text","default":"home"},"$preview":{"width":240,"height":900}}'>
+class Component extends DCLogic {
+  renderVals() {
+    let role = this.props.role ?? 'admin'; try { const r = localStorage.getItem('t0role'); if (r) role = r; } catch (e) {}
+    const a = this.props.active ?? 'home';
+    const C = { grey:'#4b5565', amber:'#b45309', blue:'#1d4ed8', green:'#047857', red:'#b91c1c', none:'#3a465c' };
+    const R = {
+      admin:    { name:'Admin', user:'Abinash K', color:'#1d4ed8', ip:'Office IP · ok', home:'Home-Admin.dc.html' },
+      opshead:  { name:'Ops head', user:'Vikram S', color:'#1d4ed8', ip:'Office IP · ok', home:'Home-Admin.dc.html' },
+      assembly: { name:'Ops – Assembly', user:'Sunil R', color:'#047857', ip:'Floor · office IP', home:'Home-OpsAssembly.dc.html' },
+      qc:       { name:'Ops – QC', user:'Meena T', color:'#b45309', ip:'Bench · office IP', home:'Home-OpsQC.dc.html' },
+      support:  { name:'Ops – Support', user:'Rahul D', color:'#4b5565', ip:'Any network', home:'Home-OpsSupport.dc.html' },
+      saleshead:{ name:'Sales head', user:'Neha G', color:'#4b5565', ip:'Office IP · ok', home:'Home-Sales.dc.html' },
+      salesscoped:{ name:'Sales scoped head', user:'Pooja M', color:'#4b5565', ip:'Any network', home:'Home-Sales.dc.html' },
+      sales:    { name:'Sales (field)', user:'Karan V', color:'#4b5565', ip:'Any network', home:'Home-Sales.dc.html' }
+    };
+    const r = R[role] || R.admin;
+    const floor = role === 'assembly' || role === 'qc' || role === 'support';
+    const T = {
+      assembly: [ { n:'1', label:'Receive', sub:'boxes from supplier', count:'2', c:'grey', href:'Receive.dc.html', key:'receive' },
+                  { n:'3', label:'Fit SIM', sub:'QC-passed, no SIM', count:'38', c:'blue', href:'SIM.dc.html', key:'sim' },
+                  { n:'5', label:'Pack & dispatch', sub:'allocated, not sent', count:'16', c:'green', href:'Dispatch.dc.html', key:'dispatch' } ],
+      qc:       [ { n:'2', label:'QC bench', sub:'received, untested', count:'117', c:'amber', href:'QC.dc.html', key:'qc' },
+                  { n:'!', label:'Faults', sub:'failed · returned', count:'4', c:'red', href:'Returns.dc.html', key:'returns' } ],
+      support:  [ { n:'!', label:'Alerts', sub:'open across tenants', count:'34', c:'red', href:'Alerts.dc.html', key:'alerts' },
+                  { n:'U', label:'Tenant users', sub:'OTP resend · unlock', count:'3', c:'blue', href:'TenantUsers.dc.html', key:'tusers' },
+                  { n:'L', label:'Label requests', sub:'replace · reprint', count:'2', c:'amber', href:'Approvals.dc.html', key:'approvals' } ]
+    };
+    const tiles = (T[role] || []).map(t => ({ ...t, disc: C[t.c], bg: a === t.key ? '#1c2742' : '#172036', border: a === t.key ? C[t.c] : '#273149', countColor: t.count === '0' ? '#a3adbf' : '#ffffff' }));
+    const item = (key, label, href, c, badge, badgeBg) => ({ label, href, dot: C[c], bg: a === key ? '#1d4ed8' : 'transparent', badge: badge || false, badgeBg: badgeBg || '#ef4444' });
+    const all = [
+      { label:'1 · DEVICES', items:[ item('suppliers','Suppliers','Suppliers.dc.html','none'), item('receive','Receive','Receive.dc.html','grey'), item('qc','QC & firmware','QC.dc.html','amber'), item('sim','Fit SIM','SIM.dc.html','blue'), item('inventory','Inventory','Inventory.dc.html','none'), item('labels','QR labels = allocate','QRLabels.dc.html','green'), item('dispatch','Pack & dispatch','Dispatch.dc.html','green'), item('returns','Faulty & returned','Returns.dc.html','red') ] },
+      { label:'2 · TENANTS', items:[ item('tenants','Tenants','Tenants.dc.html','none'), item('tusers','Tenant users','TenantUsers.dc.html','none'), item('journeys','Journey templates','Journeys.dc.html','none'), item('profiles','Temperature profiles','Profiles.dc.html','none') ] },
+      { label:'3 · SALE & SUPPLY', items:[ item('allocate','Allocations','Allocate.dc.html','none'), item('passports','Passport QRs & rolls','Passports.dc.html','none') ] },
+      { label:'4 · OPERATIONS', items:[ item('trips','Trips / duties','Trips.dc.html','none'), item('alerts','Alerts','Alerts.dc.html','red','34'), item('approvals','Approvals','Approvals.dc.html','none','2','#3b6cf0') ] },
+      { label:'5 · ADMIN', items:[ item('staff','Staff users','StaffUsers.dc.html','none'), item('reports','Reports','Reports.dc.html','none'), item('audit','Audit log','AuditLog.dc.html','none'), item('ref','Reference data','RefData.dc.html','none') ] }
+    ];
+    const salesGroups = [ all[1], all[2], { label:'4 · OPERATIONS', items:[ all[3].items[2] ] }, { label:'5 · ADMIN', items:[ all[4].items[1] ] } ];
+    const isSales = role === 'sales' || role === 'saleshead' || role === 'salesscoped';
+    const groups = isSales ? salesGroups : role === 'opshead' ? all.slice(0, 5).map(g => g.label.startsWith('5') ? { label: g.label, items: g.items.slice(0, 3) } : g) : all;
+    return { floor, desk: !floor, tiles, groups, homeHref: r.home, bg: { home: a === 'home' ? '#1d4ed8' : 'transparent' },
+      roleName: r.name, userName: r.user, roleColor: r.color, roleInitials: r.user.split(' ').map(w => w[0]).join(''), ipNote: r.ip, logout: () => { try { localStorage.removeItem('t0role'); } catch (e) {} } };
+  }
+}
+</script>
+</body>
+</html>

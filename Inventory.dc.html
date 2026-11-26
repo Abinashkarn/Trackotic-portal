@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Track0tic portal — Inventory by stage</title>
+<script src="./support.js?v=6"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>body{margin:0}a{color:#1a43b8}a:hover{color:#0f2f8a}table{border-collapse:collapse}button,input,select{font-family:inherit}</style>
+</helmet>
+<div style="display:flex;flex-wrap:wrap;min-height:900px;background:#f3f5f9;color:#0f172a;font-family:'Noto Sans',system-ui,sans-serif">
+  <dc-import name="Sidebar" role="opshead" active="inventory" hint-size="240px,900px"></dc-import>
+  <main style="flex:999 1 560px;min-width:0;padding:24px;box-sizing:border-box;display:flex;flex-direction:column;gap:18px">
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px">
+      <div><div style="font-size:13px;color:#4b5565">1 · Devices</div><h1 style="margin:0;font-size:22px;line-height:28px;font-weight:600">Inventory · Track0tic's own devices</h1></div>
+      <div style="display:flex;gap:8px"><input type="search" placeholder="TRK ID, serial, IMEI, SIM" style="height:40px;width:280px;border:1px solid #7a8696;border-radius:8px;padding:0 12px;font-size:14px;color:#0f172a"><button style="min-height:40px;padding:0 14px;border:1px solid #7a8696;border-radius:8px;background:#ffffff;font-size:14px;font-weight:500;cursor:pointer;color:#0f172a">Export</button></div>
+    </div>
+
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <sc-for list="{{stages}}" as="s" hint-placeholder-count="6">
+        <button onClick="{{s.pick}}" style="display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 14px;border-radius:9999px;border:2px solid {{s.border}};background:{{s.bg}};color:{{s.fg}};font-size:14px;font-weight:600;cursor:pointer"><span style="width:22px;height:22px;border-radius:9999px;background:{{s.disc}};color:#ffffff;display:inline-flex;align-items:center;justify-content:center;font-size:12px">{{s.n}}</span>{{s.label}} <span style="font-weight:500">{{s.count}}</span></button>
+      </sc-for>
+    </div>
+
+    <section style="background:#ffffff;border:1px solid #e2e6ed;border-radius:12px;padding:14px 16px;display:grid;grid-template-columns:repeat(6, minmax(0, 1fr));gap:8px;font-size:13px">
+      <div style="font-weight:600;color:#4b5565">Model × stage</div><div style="text-align:center;color:#4b5565">1 grey</div><div style="text-align:center;color:#92400e">2 amber</div><div style="text-align:center;color:#1a43b8">3 blue</div><div style="text-align:center;color:#047857">4–5 green</div><div style="text-align:center;color:#a61b1b">! red</div>
+      <div style="font-weight:600">Pro</div><div style="text-align:center">77</div><div style="text-align:center">41</div><div style="text-align:center;font-weight:600">238</div><div style="text-align:center">6</div><div style="text-align:center">2</div>
+      <div style="font-weight:600">HUB</div><div style="text-align:center">28</div><div style="text-align:center">0</div><div style="text-align:center;font-weight:600">29</div><div style="text-align:center">10</div><div style="text-align:center">1</div>
+      <div style="font-weight:600">Lite</div><div style="text-align:center">12</div><div style="text-align:center">0</div><div style="text-align:center;font-weight:600">112</div><div style="text-align:center">0</div><div style="text-align:center">0</div>
+      <div style="font-weight:600">Tracker · Lockbox</div><div style="text-align:center">0</div><div style="text-align:center">0</div><div style="text-align:center;font-weight:600">0 · 0</div><div style="text-align:center">0</div><div style="text-align:center">1</div>
+    </section>
+
+    <section style="background:#ffffff;border:1px solid #e2e6ed;border-radius:12px;overflow:hidden">
+      <div style="padding:12px 16px;border-bottom:1px solid #e2e6ed;display:flex;justify-content:space-between;align-items:center;font-size:14px"><span><strong>{{title}}</strong> · {{total}} devices</span><span style="color:#4b5565">sorted oldest in stage first</span></div>
+      <div style="overflow-x:auto">
+      <table style="width:100%;font-size:14px;min-width:760px">
+        <thead><tr style="text-align:left;color:#4b5565;font-size:13px"><th style="padding:8px 16px;font-weight:500">Stage</th><th style="padding:8px;font-weight:500">TRK ID</th><th style="padding:8px;font-weight:500">Model</th><th style="padding:8px;font-weight:500">Serial / IMEI</th><th style="padding:8px;font-weight:500">SIM</th><th style="padding:8px;font-weight:500">Tenant</th><th style="padding:8px;font-weight:500">Last heartbeat</th><th style="padding:8px 16px;font-weight:500;text-align:right">In stage</th></tr></thead>
+        <tbody>
+          <sc-for list="{{rows}}" as="r" hint-placeholder-count="8">
+            <tr style="border-top:1px solid #e2e6ed">
+              <td style="padding:10px 16px"><span style="display:inline-flex;align-items:center;gap:6px;padding:2px 8px 2px 4px;border-radius:9999px;background:{{r.bg}};color:{{r.fg}};font-size:12px;font-weight:600"><span style="width:18px;height:18px;border-radius:9999px;background:{{r.disc}};color:#ffffff;display:inline-flex;align-items:center;justify-content:center;font-size:11px">{{r.n}}</span>{{r.stage}}</span></td>
+              <td style="padding:10px 8px;font-family:'IBM Plex Mono',monospace"><a href="DeviceDetail.dc.html">{{r.trk}}</a></td>
+              <td style="padding:10px 8px">{{r.model}}</td>
+              <td style="padding:10px 8px;font-family:'IBM Plex Mono',monospace;color:#4b5565">{{r.serial}}</td>
+              <td style="padding:10px 8px;font-family:'IBM Plex Mono',monospace;color:#4b5565">{{r.sim}}</td>
+              <td style="padding:10px 8px">{{r.tenant}}</td>
+              <td style="padding:10px 8px;color:#4b5565">{{r.hb}}</td>
+              <td style="padding:10px 16px;text-align:right;color:#4b5565;white-space:nowrap">{{r.age}}</td>
+            </tr>
+          </sc-for>
+        </tbody>
+      </table>
+      </div>
+      <div style="padding:10px 16px;font-size:13px;color:#4b5565;border-top:1px solid #e2e6ed">Devices with tenants (1,012) are listed under each tenant, not here — Inventory is Track0tic's stock only.</div>
+    </section>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":900}}'>
+class Component extends DCLogic {
+  constructor(p){ super(p); this.state = { f: 'all' }; }
+  renderVals() {
+    const C = { '1': { disc:'#4b5565', bg:'#eef1f6', fg:'#4b5565', label:'Received' }, '2': { disc:'#b45309', bg:'#fef3e2', fg:'#92400e', label:'QC' }, '3': { disc:'#1d4ed8', bg:'#e8eefc', fg:'#1a43b8', label:'SIM bound · ready' }, '4': { disc:'#047857', bg:'#e6f6ef', fg:'#047857', label:'Labelled · allocated' }, '5': { disc:'#047857', bg:'#e6f6ef', fg:'#047857', label:'Dispatched · GRN pending' }, '!': { disc:'#b91c1c', bg:'#fdecec', fg:'#a61b1b', label:'Fault' } };
+    const ALL = [
+      { n:'1', trk:'—', model:'Pro', serial:'867530041122340', sim:'—', tenant:'—', hb:'never', age:'3 d' },
+      { n:'2', trk:'—', model:'Pro', serial:'867530041122331', sim:'—', tenant:'—', hb:'never', age:'on bench' },
+      { n:'3', trk:'TRK-PRO-900240', model:'Pro', serial:'867530041122240', sim:'8991…4401', tenant:'—', hb:'11:20 · stock shelf', age:'9 d' },
+      { n:'3', trk:'TRK-PRO-900241', model:'Pro', serial:'867530041122241', sim:'8991…4402', tenant:'—', hb:'11:19 · stock shelf', age:'9 d' },
+      { n:'3', trk:'TRK-HUB-900062', model:'HUB', serial:'356938035643811', sim:'8991…4410', tenant:'—', hb:'11:21 · stock shelf', age:'2 d' },
+      { n:'4', trk:'TRK-PRO-900250', model:'Pro', serial:'867530041122250', sim:'8991…4420', tenant:'Apollo Pharmacy · label printed', hb:'10:02', age:'1 d' },
+      { n:'5', trk:'TRK-HUB-900050', model:'HUB', serial:'356938035643790', sim:'8991…4380', tenant:'Apollo Pharmacy · DN-0411 · courier', hb:'yesterday', age:'2 d' },
+      { n:'!', trk:'TRK-PRO-900001', model:'Pro', serial:'867530041122001', sim:'8991…4001', tenant:'back from Adroit', hb:'20 Nov', age:'4 d' }
+    ];
+    const f = this.state.f;
+    const counts = { all: 571, '1': 117, '2': 41, '3': 379, '4': 16, '5': 14, '!': 4 };
+    const stages = [ { n:'A', key:'all', label:'All stock', c:{ disc:'#0f172a', bg:'#ffffff', fg:'#0f172a' } }, ...['1','2','3','4','5','!'].map(k => ({ n:k, key:k, label:C[k].label, c:C[k] })) ].map(s => ({ n:s.n, label:s.label, count:counts[s.key], disc:s.c.disc, bg: f === s.key ? s.c.bg : '#ffffff', fg: s.c.fg, border: f === s.key ? s.c.disc : '#e2e6ed', pick: () => this.setState({ f: s.key }) }));
+    const rows = ALL.filter(r => f === 'all' || r.n === f).map(r => ({ ...r, stage: C[r.n].label, disc: C[r.n].disc, bg: C[r.n].bg, fg: C[r.n].fg }));
+    return { stages, rows, total: counts[f], title: f === 'all' ? 'All stock' : C[f].label };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Track0tic portal — approvals, two-person rule</title>
+<script src="./support.js?v=6"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>body{margin:0}a{color:#1a43b8}a:hover{color:#0f2f8a}table{border-collapse:collapse}button,input,select,textarea{font-family:inherit}</style>
+</helmet>
+<div style="display:flex;flex-wrap:wrap;min-height:900px;background:#f3f5f9;color:#0f172a;font-family:'Noto Sans',system-ui,sans-serif">
+  <dc-import name="Sidebar" role="admin" active="approvals" hint-size="240px,900px"></dc-import>
+  <main style="flex:999 1 560px;min-width:0;padding:24px;box-sizing:border-box;display:flex;flex-direction:column;gap:18px">
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px">
+      <div><div style="font-size:13px;color:#4b5565">4 · Operations</div><h1 style="margin:0;font-size:22px;line-height:28px;font-weight:600">Approvals · two-person rule</h1></div>
+      <div style="font-size:13px;color:#4b5565">Thresholds in Reference data: allocation &gt; 50 · passport batch &gt; 10,000 · tenant create / change · contract change · label reprint · scrap · every BFSI action</div>
+    </div>
+    <div style="display:grid;grid-template-columns:minmax(0, 1fr) minmax(0, 1.1fr);gap:16px;align-items:start">
+      <section style="background:#ffffff;border:1px solid #e2e6ed;border-radius:12px;overflow:hidden">
+        <div style="padding:12px 16px;border-bottom:1px solid #e2e6ed;display:flex;gap:8px;font-size:13px"><span style="padding:5px 10px;border-radius:9999px;background:#1d4ed8;color:#ffffff;font-weight:600">For me · 4</span><span style="padding:5px 10px;border-radius:9999px;background:#ffffff;border:1px solid #e2e6ed;color:#4b5565;font-weight:600">Raised by me · 1</span><span style="padding:5px 10px;border-radius:9999px;background:#ffffff;border:1px solid #e2e6ed;color:#4b5565;font-weight:600">Decided · 30 d</span></div>
+        <div style="display:flex;flex-direction:column">
+          <sc-for list="{{items}}" as="i" hint-placeholder-count="4">
+            <button onClick="{{i.pick}}" style="display:flex;align-items:center;gap:12px;padding:12px 16px;border:0;border-left:4px solid {{i.edge}};border-bottom:1px solid #e2e6ed;background:{{i.bg}};text-align:left;cursor:pointer;color:#0f172a">
+              <span style="padding:2px 8px;border-radius:9999px;background:{{i.pillBg}};color:{{i.pillFg}};font-size:12px;font-weight:600;white-space:nowrap">{{i.kind}}</span>
+              <span style="flex:1 1 auto;font-size:14px">{{i.what}}<span style="display:block;font-size:12px;color:#4b5565">maker {{i.maker}} · {{i.age}}</span></span>
+            </button>
+          </sc-for>
+        </div>
+      </section>
+      <section style="background:#ffffff;border:2px solid #1d4ed8;border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:12px">
+        <div><span style="padding:2px 8px;border-radius:9999px;background:{{cur.pillBg}};color:{{cur.pillFg}};font-size:12px;font-weight:600">{{cur.kind}}</span><div style="font-size:18px;font-weight:600;margin-top:8px">{{cur.what}}</div><div style="font-size:14px;color:#4b5565">Raised by {{cur.maker}} · {{cur.age}} · rule: {{cur.rule}}</div></div>
+        <div style="display:flex;flex-direction:column;gap:6px;padding:12px;border-radius:8px;background:#f3f5f9;font-size:14px">
+          <sc-for list="{{cur.facts}}" as="f" hint-placeholder-count="4"><div style="display:flex;justify-content:space-between;gap:12px"><span style="color:#4b5565">{{f.k}}</span><span style="text-align:right">{{f.v}}</span></div></sc-for>
+        </div>
+        <div style="font-size:13px;color:#4b5565">{{cur.why}}</div>
+        <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Reason (required either way)<textarea rows="2" style="border:1px solid #7a8696;border-radius:8px;padding:8px 10px;font-size:14px;color:#0f172a">{{cur.reason}}</textarea></label>
+        <sc-if value="{{open}}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex;gap:8px;flex-wrap:wrap"><button onClick="{{approve}}" style="min-height:44px;padding:0 18px;border:0;border-radius:12px;background:#047857;color:#ffffff;font-size:14px;font-weight:600;cursor:pointer">Approve</button><button onClick="{{reject}}" style="min-height:44px;padding:0 18px;border:1px solid #b91c1c;border-radius:12px;background:#ffffff;color:#a61b1b;font-size:14px;font-weight:600;cursor:pointer">Reject</button><span style="font-size:13px;color:#4b5565;align-self:center">The maker cannot approve their own request — the button is hidden for them.</span></div>
+        </sc-if>
+        <sc-if value="{{decided}}" hint-placeholder-val="{{ false }}">
+          <div style="padding:10px 12px;border-radius:8px;background:{{decBg}};color:{{decFg}};font-size:14px;font-weight:600">{{decText}}</div>
+        </sc-if>
+      </section>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":900}}'>
+class Component extends DCLogic {
+  constructor(p){ super(p); this.state = { cur: 0, dec: {} }; }
+  renderVals() {
+    const K = { TENANT:{ bg:'#e8eefc', fg:'#1a43b8' }, ALLOCATION:{ bg:'#e6f6ef', fg:'#047857' }, REPRINT:{ bg:'#fef3e2', fg:'#92400e' }, BFSI:{ bg:'#1e293b', fg:'#ffffff' } };
+    const I = [
+      { kind:'TENANT', what:'Create tenant Demo Diagnostics · lab device-only', maker:'Pooja M (Sales scoped head)', age:'2 h', rule:'tenant_change', facts:[['Vertical · type','Diagnostics · lab'],['Portal type','Device only · data push off'],['Devices in use','Pro · Lite'],['First admin','Arun K · +91 98*** 1122'],['Seats','10']], why:'Approving creates the tenant and sends the welcome SMS to the first admin. Rejecting leaves nothing behind except the audit row.', reason:'' },
+      { kind:'ALLOCATION', what:'Allocate 120 × Pro to Apollo Pharmacy', maker:'Vikram S (Ops head)', age:'yesterday', rule:'allocation_units > 50', facts:[['Tenant','Apollo Pharmacy · pharmacy chain'],['Stock after','118 Pro ready'],['Plan','MVP 25 stores South Delhi'],['Labels','print after approval · QR labels']], why:'On approval the 120 device QRs become printable on QR labels; printing is what allocates.', reason:'Matches PO APL-2026-114' },
+      { kind:'REPRINT', what:'Reprint label TRK-PRO-900001 · sticker torn', maker:'Rahul D (Support)', age:'1 d', rule:'label reprint', facts:[['Tenant','Adroit Agencies'],['Old token','/d/8f2k… dies on print'],['Device state','! in faults · field return']], why:'Device is in faults; reprint should wait until repair → retest. Reject with that reason.', reason:'' },
+      { kind:'BFSI', what:'Muthoot · add branch approver Sanjay R', maker:'Rahul D (Support)', age:'3 h', rule:'bfsi_action · maker-checker', facts:[['Tenant','Muthoot Finance · dedicated'],['Role','Branch approver · Pitampura'],['KYC','staff id MF-4471 · verified']], why:'All BFSI writes by Support need a checker. Approving creates the user in the dedicated environment.', reason:'' }
+    ];
+    const s = this.state; const cur0 = I[s.cur]; const d = s.dec[s.cur];
+    const items = I.map((x, i) => ({ ...x, pillBg: K[x.kind].bg, pillFg: K[x.kind].fg, bg: i === s.cur ? '#e8eefc' : '#ffffff', edge: i === s.cur ? '#1d4ed8' : 'transparent', pick: () => this.setState({ cur: i }) }));
+    const cur = { ...cur0, pillBg: K[cur0.kind].bg, pillFg: K[cur0.kind].fg, facts: cur0.facts.map(f => ({ k: f[0], v: f[1] })) };
+    return { items, cur, open: !d, decided: !!d, decBg: d === 'a' ? '#e6f6ef' : '#fdecec', decFg: d === 'a' ? '#047857' : '#a61b1b', decText: d === 'a' ? 'Approved · 11:32 · Abinash K · audit #88351 · maker notified' : 'Rejected · 11:32 · Abinash K · audit #88351 · maker notified with your reason',
+      approve: () => this.setState({ dec: { ...s.dec, [s.cur]: 'a' } }), reject: () => this.setState({ dec: { ...s.dec, [s.cur]: 'r' } }) };
+  }
+}
+</script>
+</body>
+</html>

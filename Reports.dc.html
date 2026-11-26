@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Track0tic portal — reports</title>
+<script src="./support.js?v=6"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>body{margin:0}a{color:#1a43b8}a:hover{color:#0f2f8a}table{border-collapse:collapse}button,input,select{font-family:inherit}</style>
+</helmet>
+<div style="display:flex;flex-wrap:wrap;min-height:900px;background:#f3f5f9;color:#0f172a;font-family:'Noto Sans',system-ui,sans-serif">
+  <dc-import name="Sidebar" role="admin" active="reports" hint-size="240px,900px"></dc-import>
+  <main style="flex:999 1 560px;min-width:0;padding:24px;box-sizing:border-box;display:flex;flex-direction:column;gap:18px">
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px">
+      <div><div style="font-size:13px;color:#4b5565">5 · Admin</div><h1 style="margin:0;font-size:22px;line-height:28px;font-weight:600">Reports</h1></div>
+      <div style="display:flex;gap:8px"><select style="height:40px;border:1px solid #7a8696;border-radius:8px;padding:0 12px;font-size:14px;background:#ffffff;color:#0f172a"><option>Nov 2026</option><option>Oct 2026</option><option>Last 90 days</option></select><button style="min-height:40px;padding:0 14px;border:1px solid #7a8696;border-radius:8px;background:#ffffff;font-size:14px;font-weight:500;cursor:pointer;color:#0f172a">Excel</button><button style="min-height:40px;padding:0 14px;border:1px solid #7a8696;border-radius:8px;background:#ffffff;font-size:14px;font-weight:500;cursor:pointer;color:#0f172a">CSV</button><button style="min-height:40px;padding:0 14px;border:1px solid #7a8696;border-radius:8px;background:#ffffff;font-size:14px;font-weight:500;cursor:pointer;color:#0f172a">PDF</button></div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3, minmax(0, 1fr));gap:14px">
+      <section style="background:#ffffff;border:1px solid #e2e6ed;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:10px">
+        <h2 style="margin:0;font-size:16px;font-weight:600">Stock by stage · today</h2>
+        <div style="display:flex;flex-direction:column;gap:6px;font-size:13px">
+          <div style="display:flex;align-items:center;gap:8px"><span style="width:90px;color:#4b5565">1 received</span><span style="height:18px;width:30%;background:#4b5565;border-radius:4px"></span><span>117</span></div>
+          <div style="display:flex;align-items:center;gap:8px"><span style="width:90px;color:#92400e">2 QC</span><span style="height:18px;width:11%;background:#b45309;border-radius:4px"></span><span>41</span></div>
+          <div style="display:flex;align-items:center;gap:8px"><span style="width:90px;color:#1a43b8">3 ready</span><span style="height:18px;width:100%;background:#1d4ed8;border-radius:4px"></span><span>379</span></div>
+          <div style="display:flex;align-items:center;gap:8px"><span style="width:90px;color:#047857">4–5 out</span><span style="height:18px;width:8%;background:#047857;border-radius:4px"></span><span>30</span></div>
+          <div style="display:flex;align-items:center;gap:8px"><span style="width:90px;color:#a61b1b">! faults</span><span style="height:18px;width:2%;background:#b91c1c;border-radius:4px"></span><span>4</span></div>
+        </div>
+        <div style="font-size:13px;color:#4b5565">Floor time this month: receive → dispatch <strong style="color:#0f172a">4.2 days</strong> average · target 3.</div>
+      </section>
+      <section style="background:#ffffff;border:1px solid #e2e6ed;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:10px">
+        <h2 style="margin:0;font-size:16px;font-weight:600">Devices with tenants</h2>
+        <table style="width:100%;font-size:13px">
+          <thead><tr style="text-align:left;color:#4b5565"><th style="padding:4px 0;font-weight:500">Tenant</th><th style="padding:4px;font-weight:500">HUB</th><th style="padding:4px;font-weight:500">Pro</th><th style="padding:4px;font-weight:500">Lite</th><th style="padding:4px;font-weight:500">Other</th><th style="padding:4px 0;font-weight:500;text-align:right">GRN pending</th></tr></thead>
+          <tbody>
+            <tr style="border-top:1px solid #e2e6ed"><td style="padding:6px 0">Apollo</td><td style="padding:6px 4px">10</td><td style="padding:6px 4px">20</td><td style="padding:6px 4px">9</td><td style="padding:6px 4px">—</td><td style="padding:6px 0;text-align:right;color:#92400e">9</td></tr>
+            <tr style="border-top:1px solid #e2e6ed"><td style="padding:6px 0">Adroit</td><td style="padding:6px 4px">6</td><td style="padding:6px 4px">24</td><td style="padding:6px 4px">—</td><td style="padding:6px 4px">—</td><td style="padding:6px 0;text-align:right">0</td></tr>
+            <tr style="border-top:1px solid #e2e6ed"><td style="padding:6px 0">Axis Bank</td><td style="padding:6px 4px">—</td><td style="padding:6px 4px">—</td><td style="padding:6px 4px">—</td><td style="padding:6px 4px">6 Tracker</td><td style="padding:6px 0;text-align:right">0</td></tr>
+            <tr style="border-top:1px solid #e2e6ed"><td style="padding:6px 0">Test Lab</td><td style="padding:6px 4px">—</td><td style="padding:6px 4px">10</td><td style="padding:6px 4px">2</td><td style="padding:6px 4px">—</td><td style="padding:6px 0;text-align:right">0</td></tr>
+            <tr style="border-top:1px solid #e2e6ed"><td style="padding:6px 0">Muthoot</td><td style="padding:6px 4px">—</td><td style="padding:6px 4px">—</td><td style="padding:6px 4px">—</td><td style="padding:6px 4px">4 Lockbox</td><td style="padding:6px 0;text-align:right">0</td></tr>
+          </tbody>
+        </table>
+      </section>
+      <section style="background:#ffffff;border:1px solid #e2e6ed;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:10px">
+        <h2 style="margin:0;font-size:16px;font-weight:600">Passports · issued vs used</h2>
+        <div style="display:flex;flex-direction:column;gap:6px;font-size:13px">
+          <div style="display:flex;justify-content:space-between"><span>Apollo</span><span><strong>0</strong> / 1,000</span></div>
+          <div style="display:flex;justify-content:space-between"><span>Adroit</span><span><strong>2,329</strong> / 2,400</span></div>
+          <div style="display:flex;justify-content:space-between"><span>Test Lab</span><span><strong>2,580</strong> / 4,000</span></div>
+          <div style="display:flex;justify-content:space-between"><span>Max Pharmacy</span><span><strong>0</strong> / 0</span></div>
+        </div>
+        <div style="font-size:13px;color:#4b5565">Journeys this month: 1,214 · compliant 1,189 · not compliant 11 · where-monitored 14. Public report scans: 3,402.</div>
+      </section>
+    </div>
+    <section style="background:#ffffff;border:1px solid #e2e6ed;border-radius:12px;overflow:hidden">
+      <div style="padding:12px 16px;border-bottom:1px solid #e2e6ed;font-size:16px;font-weight:600">All reports</div>
+      <table style="width:100%;font-size:14px">
+        <tbody>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:9px 16px;font-weight:500">Stock by model × stage</td><td style="padding:9px 8px;color:#4b5565">daily snapshot · ageing per stage · faults by supplier</td><td style="padding:9px 16px;text-align:right"><a href="#">run</a></td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:9px 16px;font-weight:500">Devices per tenant</td><td style="padding:9px 8px;color:#4b5565">allocated, dispatched, GRN done, heartbeat health, battery</td><td style="padding:9px 16px;text-align:right"><a href="#">run</a></td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:9px 16px;font-weight:500">Passports issued / used / void</td><td style="padding:9px 8px;color:#4b5565">per tenant and book · who printed · label sizes</td><td style="padding:9px 16px;text-align:right"><a href="#">run</a></td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:9px 16px;font-weight:500">Alerts per tenant</td><td style="padding:9px 8px;color:#4b5565">by kind · time to close · who closed</td><td style="padding:9px 16px;text-align:right"><a href="#">run</a></td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:9px 16px;font-weight:500">Floor SLA</td><td style="padding:9px 8px;color:#4b5565">receive → QC → SIM → label → dispatch, days per step, per operator</td><td style="padding:9px 16px;text-align:right"><a href="#">run</a></td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:9px 16px;font-weight:500">SIM pool &amp; data use</td><td style="padding:9px 8px;color:#4b5565">unused, in devices, faulty, MB per device per month</td><td style="padding:9px 16px;text-align:right"><a href="#">run</a></td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:9px 16px;font-weight:500">Approvals log</td><td style="padding:9px 8px;color:#4b5565">maker, checker, time to decide, rejections with reason</td><td style="padding:9px 16px;text-align:right"><a href="#">run</a></td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":900}}'>
+class Component extends DCLogic { renderVals() { return {}; } }
+</script>
+</body>
+</html>

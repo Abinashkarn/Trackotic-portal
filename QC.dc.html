@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Track0tic portal — 2 · QC and firmware</title>
+<script src="./support.js?v=6"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>body{margin:0}a{color:#1a43b8}a:hover{color:#0f2f8a}table{border-collapse:collapse}button,select,input{font-family:inherit}</style>
+</helmet>
+<div style="display:flex;flex-wrap:wrap;min-height:900px;background:#f3f5f9;color:#0f172a;font-family:'Noto Sans',system-ui,sans-serif">
+  <dc-import name="Sidebar" role="qc" active="qc" hint-size="240px,900px"></dc-import>
+  <main style="flex:999 1 560px;min-width:0;padding:0 0 24px;box-sizing:border-box;display:flex;flex-direction:column;gap:20px">
+    <div style="background:#fef3e2;border-bottom:3px solid #b45309;padding:20px 28px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px">
+      <div style="display:flex;align-items:center;gap:14px"><span style="width:44px;height:44px;border-radius:9999px;background:#b45309;color:#ffffff;display:inline-flex;align-items:center;justify-content:center;font-weight:600;font-size:20px">2</span><div><div style="font-size:13px;font-weight:600;letter-spacing:0.06em;color:#92400e">STAGE 2 · QC · AMBER</div><h1 style="margin:0;font-size:24px;line-height:30px;font-weight:600">Test the device on the bench</h1></div></div>
+      <div style="display:flex;gap:10px;align-items:center"><span style="font-size:14px;color:#92400e">Pass → <span style="padding:2px 8px;border-radius:9999px;background:#e8eefc;color:#1a43b8;font-weight:600">3 SIM</span> · Fail → <span style="padding:2px 8px;border-radius:9999px;background:#fdecec;color:#a61b1b;font-weight:600">! faults</span></span><a href="P-Scan.dc.html" style="display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border-radius:12px;background:#1d4ed8;color:#ffffff;font-size:14px;font-weight:600;text-decoration:none">Scan device</a></div>
+    </div>
+
+    <div style="padding:0 28px;display:grid;grid-template-columns:minmax(0, 1fr) minmax(0, 1.2fr);gap:16px;align-items:start">
+      <section style="background:#ffffff;border:1px solid #e2e6ed;border-radius:16px;overflow:hidden">
+        <div style="padding:14px 18px;border-bottom:1px solid #e2e6ed;display:flex;justify-content:space-between;align-items:center"><h2 style="margin:0;font-size:18px;font-weight:600">Queue · 117</h2><select style="height:36px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;background:#ffffff;color:#0f172a"><option>All models</option><option>Pro · 77</option><option>HUB · 28</option><option>Lite · 12</option></select></div>
+        <div style="display:flex;flex-direction:column">
+          <sc-for list="{{queue}}" as="q" hint-placeholder-count="6">
+            <button onClick="{{q.pick}}" style="display:flex;align-items:center;gap:12px;padding:12px 18px;border:0;border-left:4px solid {{q.edge}};border-bottom:1px solid #e2e6ed;background:{{q.bg}};text-align:left;cursor:pointer;color:#0f172a">
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:14px;font-weight:600">{{q.serial}}</span>
+              <span style="flex:1 1 auto;font-size:14px;color:#4b5565">{{q.model}} · {{q.box}}</span>
+              <span style="font-size:13px;color:#92400e;font-weight:500">{{q.age}}</span>
+            </button>
+          </sc-for>
+          <div style="padding:10px 18px;font-size:13px;color:#4b5565">+ 111 more · oldest first</div>
+        </div>
+      </section>
+
+      <section style="background:#ffffff;border:2px solid #b45309;border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:16px">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap">
+          <div><div style="font-size:13px;color:#4b5565">On the bench</div><div style="font-size:24px;font-weight:600;font-family:'IBM Plex Mono',monospace">{{cur.serial}}</div><div style="font-size:14px;color:#4b5565">{{cur.model}} · {{cur.box}} · received {{cur.recv}} · supplier warranty 36 m</div></div>
+          <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px"><span style="padding:4px 10px;border-radius:9999px;background:#fef3e2;color:#92400e;font-size:13px;font-weight:600">2 · ON BENCH</span><span style="font-size:13px;color:#4b5565">Meena T · bench 2 · 11:12</span></div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <sc-for list="{{checks}}" as="c" hint-placeholder-count="6">
+            <div style="display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:12px;border:1px solid #e2e6ed;background:{{c.bg}}">
+              <span style="flex:1 1 auto;font-size:15px;font-weight:500">{{c.label}}<span style="font-weight:400;color:#4b5565"> · {{c.hint}}</span></span>
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:14px;color:#4b5565">{{c.reading}}</span>
+              <button onClick="{{c.pass}}" aria-label="Pass {{c.label}}" style="min-width:64px;min-height:40px;border:1px solid #7a8696;border-radius:8px;background:{{c.passBg}};color:{{c.passFg}};font-size:14px;font-weight:600;cursor:pointer">Pass</button>
+              <button onClick="{{c.fail}}" aria-label="Fail {{c.label}}" style="min-width:64px;min-height:40px;border:1px solid #7a8696;border-radius:8px;background:{{c.failBg}};color:{{c.failFg}};font-size:14px;font-weight:600;cursor:pointer">Fail</button>
+            </div>
+          </sc-for>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;padding:12px;border-radius:12px;background:#f3f5f9;font-size:14px"><span style="font-weight:600">Firmware</span><span style="font-family:'IBM Plex Mono',monospace">pro-3.1.0</span><span style="color:#4b5565">approved build · flashed 11:14 · reboot ok</span><a href="#" style="margin-left:auto;font-weight:500">re-flash</a></div>
+        <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding-top:4px;border-top:1px solid #e2e6ed">
+          <sc-if value="{{allPass}}" hint-placeholder-val="{{ false }}"><button onClick="{{finish}}" style="min-height:52px;padding:0 22px;border:0;border-radius:12px;background:#1d4ed8;color:#ffffff;font-size:16px;font-weight:600;cursor:pointer">All passed → mint TRK ID, send to Fit SIM</button></sc-if>
+          <sc-if value="{{anyFail}}" hint-placeholder-val="{{ false }}"><button onClick="{{finish}}" style="min-height:52px;padding:0 22px;border:0;border-radius:12px;background:#b91c1c;color:#ffffff;font-size:16px;font-weight:600;cursor:pointer">Mark faulty → faults list</button></sc-if>
+          <sc-if value="{{pending}}" hint-placeholder-val="{{ true }}"><span style="min-height:52px;display:inline-flex;align-items:center;padding:0 22px;border-radius:12px;background:#eef1f6;color:#4b5565;font-size:16px;font-weight:600">{{left}} checks left</span></sc-if>
+          <sc-if value="{{done}}" hint-placeholder-val="{{ false }}"><span style="padding:8px 12px;border-radius:8px;background:{{doneBg}};color:{{doneFg}};font-size:14px;font-weight:600">{{doneText}}</span></sc-if>
+          <span style="font-size:13px;color:#4b5565;margin-left:auto">Same checklist on the phone (P-QC) · every result is audit-logged</span>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":900}}'>
+class Component extends DCLogic {
+  constructor(p){ super(p); this.state = { cur: 0, res: {}, done: false }; }
+  renderVals() {
+    const Q = [ { serial:'867530041122331', model:'Pro', box:'RB-0042', age:'3 d', recv:'14 Nov' }, { serial:'867530041122332', model:'Pro', box:'RB-0042', age:'3 d', recv:'14 Nov' }, { serial:'867530041122333', model:'Pro', box:'RB-0042', age:'3 d', recv:'14 Nov' }, { serial:'356938035643809', model:'HUB', box:'RB-0041', age:'2 d', recv:'11 Nov' }, { serial:'356938035643810', model:'HUB', box:'RB-0041', age:'2 d', recv:'11 Nov' }, { serial:'861536030196001', model:'Lite', box:'RB-0043', age:'1 d', recv:'24 Nov' } ];
+    const CH = [ { k:'power', label:'Powers on, battery charges', hint:'LED green within 10 s', reading:'4.1 V' }, { k:'temp', label:'Temperature sensor vs reference', hint:'within ±0.5 °C', reading:'21.3 / 21.1 °C' }, { k:'gps', label:'GPS fix outdoors or on the window', hint:'fix within 2 min', reading:'fix 48 s' }, { k:'modem', label:'Modem registers (test SIM)', hint:'IMEI reads back', reading:'ok' }, { k:'lid', label:'Lid / bag event', hint:'open → close seen', reading:'2 events' }, { k:'seal', label:'Casing, seal, screws', hint:'no damage', reading:'—' } ];
+    const s = this.state; const res = s.res;
+    const queue = Q.map((q, i) => ({ ...q, pick: () => this.setState({ cur: i, res: {}, done: false }), bg: i === s.cur ? '#fef3e2' : '#ffffff', edge: i === s.cur ? '#b45309' : 'transparent' }));
+    const checks = CH.map(c => { const r = res[c.k]; return { ...c, bg: r === 'p' ? '#e8eefc' : r === 'f' ? '#fdecec' : '#ffffff', passBg: r === 'p' ? '#1d4ed8' : '#ffffff', passFg: r === 'p' ? '#ffffff' : '#0f172a', failBg: r === 'f' ? '#b91c1c' : '#ffffff', failFg: r === 'f' ? '#ffffff' : '#0f172a',
+      pass: () => this.setState({ res: { ...res, [c.k]: 'p' }, done: false }), fail: () => this.setState({ res: { ...res, [c.k]: 'f' }, done: false }) }; });
+    const vals = CH.map(c => res[c.k]); const anyFail = vals.includes('f'); const allPass = vals.every(v => v === 'p'); const left = vals.filter(v => !v).length;
+    return { queue, cur: Q[s.cur], checks, allPass: allPass && !s.done, anyFail: anyFail && !s.done, pending: !allPass && !anyFail && !s.done, left, done: s.done,
+      doneBg: anyFail ? '#fdecec' : '#e8eefc', doneFg: anyFail ? '#a61b1b' : '#1a43b8', doneText: anyFail ? '! Marked faulty · reason: sensor drift · in faults list · audit #88310' : '3 · PASSED · TRK-PRO-900402 minted · waiting for SIM · audit #88310',
+      finish: () => this.setState({ done: true }) };
+  }
+}
+</script>
+</body>
+</html>

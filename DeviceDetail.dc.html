@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Track0tic portal — device page with lifecycle</title>
+<script src="./support.js?v=6"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>body{margin:0}a{color:#1a43b8}a:hover{color:#0f2f8a}table{border-collapse:collapse}button{font-family:inherit}</style>
+</helmet>
+<div style="display:flex;flex-wrap:wrap;min-height:900px;background:#f3f5f9;color:#0f172a;font-family:'Noto Sans',system-ui,sans-serif">
+  <dc-import name="Sidebar" role="opshead" active="inventory" hint-size="240px,900px"></dc-import>
+  <main style="flex:999 1 560px;min-width:0;padding:24px;box-sizing:border-box;display:flex;flex-direction:column;gap:18px">
+    <div style="font-size:13px;color:#4b5565"><a href="Inventory.dc.html">Inventory</a> › TRK-PRO-900250</div>
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:12px">
+      <div>
+        <h1 style="margin:0;font-size:26px;line-height:32px;font-weight:600;font-family:'IBM Plex Mono',monospace">TRK-PRO-900250</h1>
+        <div style="display:flex;gap:8px;align-items:center;margin-top:8px;flex-wrap:wrap"><span style="display:inline-flex;align-items:center;gap:6px;padding:4px 10px 4px 4px;border-radius:9999px;background:#e6f6ef;color:#047857;font-size:13px;font-weight:600"><span style="width:22px;height:22px;border-radius:9999px;background:#047857;color:#ffffff;display:inline-flex;align-items:center;justify-content:center;font-size:12px">4</span>LABELLED · ALLOCATED</span><span style="font-size:14px;color:#4b5565">Pro · running, GPS · allocated to <a href="TenantDetail.dc.html">Apollo Pharmacy</a> yesterday · not yet dispatched</span></div>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <a href="Dispatch.dc.html" style="display:inline-flex;align-items:center;min-height:40px;padding:0 14px;border-radius:8px;background:#047857;color:#ffffff;font-size:14px;font-weight:600;text-decoration:none">Pack for Apollo</a>
+        <button style="min-height:40px;padding:0 14px;border:1px solid #7a8696;border-radius:8px;background:#ffffff;font-size:14px;font-weight:500;cursor:pointer;color:#0f172a">Reprint label (approval)</button>
+        <button style="min-height:40px;padding:0 14px;border:1px solid #7a8696;border-radius:8px;background:#ffffff;font-size:14px;font-weight:500;cursor:pointer;color:#0f172a">De-allocate (reason)</button>
+        <button style="min-height:40px;padding:0 14px;border:1px solid #b91c1c;border-radius:8px;background:#ffffff;font-size:14px;font-weight:500;cursor:pointer;color:#a61b1b">Mark faulty</button>
+      </div>
+    </div>
+
+    <section style="background:#ffffff;border:1px solid #e2e6ed;border-radius:12px;padding:18px 20px;display:flex;flex-direction:column;gap:12px">
+      <h2 style="margin:0;font-size:16px;font-weight:600">Lifecycle</h2>
+      <div style="display:grid;grid-template-columns:repeat(5, minmax(0, 1fr));gap:8px">
+        <div style="display:flex;flex-direction:column;gap:6px;padding:12px;border-radius:12px;background:#eef1f6;border:1px solid #e2e6ed"><span style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:#4b5565"><span style="width:24px;height:24px;border-radius:9999px;background:#4b5565;color:#ffffff;display:inline-flex;align-items:center;justify-content:center;font-size:12px">1</span>RECEIVED</span><span style="font-size:14px">14 Nov 10:12 · Sunil R</span><span style="font-size:13px;color:#4b5565">RB-0042 · Shenzhen Coldtrace · PO-2026-0931</span></div>
+        <div style="display:flex;flex-direction:column;gap:6px;padding:12px;border-radius:12px;background:#fef3e2;border:1px solid #f0c48a"><span style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:#92400e"><span style="width:24px;height:24px;border-radius:9999px;background:#b45309;color:#ffffff;display:inline-flex;align-items:center;justify-content:center;font-size:12px">2</span>QC PASSED</span><span style="font-size:14px">17 Nov 15:40 · Meena T</span><span style="font-size:13px;color:#92400e">6 / 6 checks · pro-3.1.0 · TRK ID minted</span></div>
+        <div style="display:flex;flex-direction:column;gap:6px;padding:12px;border-radius:12px;background:#e8eefc;border:1px solid #c7d4fb"><span style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:#1a43b8"><span style="width:24px;height:24px;border-radius:9999px;background:#1d4ed8;color:#ffffff;display:inline-flex;align-items:center;justify-content:center;font-size:12px">3</span>SIM BOUND</span><span style="font-size:14px">18 Nov 09:05 · Sunil R</span><span style="font-size:13px;color:#1a43b8">8991…4420 · first heartbeat 09:06:41</span></div>
+        <div style="display:flex;flex-direction:column;gap:6px;padding:12px;border-radius:12px;background:#e6f6ef;border:2px solid #047857"><span style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:#047857"><span style="width:24px;height:24px;border-radius:9999px;background:#047857;color:#ffffff;display:inline-flex;align-items:center;justify-content:center;font-size:12px">4</span>LABELLED · ALLOCATED</span><span style="font-size:14px">25 Nov 10:02 · Vikram S</span><span style="font-size:13px;color:#047857">Apollo Pharmacy · label v1 · PRINT event · scan test ok</span></div>
+        <div style="display:flex;flex-direction:column;gap:6px;padding:12px;border-radius:12px;background:#ffffff;border:1px dashed #7a8696"><span style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:#4b5565"><span style="width:24px;height:24px;border-radius:9999px;background:#ffffff;border:2px solid #7a8696;color:#4b5565;display:inline-flex;align-items:center;justify-content:center;font-size:12px">5</span>DISPATCHED</span><span style="font-size:14px;color:#4b5565">not yet</span><span style="font-size:13px;color:#4b5565">then tenant GRN · then in the tenant's hands</span></div>
+      </div>
+    </section>
+
+    <div style="display:grid;grid-template-columns:minmax(0, 1fr) minmax(0, 1fr);gap:16px">
+      <section style="background:#ffffff;border:1px solid #e2e6ed;border-radius:12px;padding:18px 20px;display:flex;flex-direction:column;gap:10px;font-size:14px">
+        <h2 style="margin:0;font-size:16px;font-weight:600">Identity</h2>
+        <div style="display:flex;justify-content:space-between;gap:12px"><span style="color:#4b5565">Model</span><span>Pro · logger, GPS, bag events</span></div>
+        <div style="display:flex;justify-content:space-between;gap:12px"><span style="color:#4b5565">Serial / IMEI</span><span style="font-family:'IBM Plex Mono',monospace">867530041122250</span></div>
+        <div style="display:flex;justify-content:space-between;gap:12px"><span style="color:#4b5565">SIM (ICCID)</span><span style="font-family:'IBM Plex Mono',monospace">89910000000000044420 · Airtel M2M</span></div>
+        <div style="display:flex;justify-content:space-between;gap:12px"><span style="color:#4b5565">Firmware</span><span style="font-family:'IBM Plex Mono',monospace">pro-3.1.0 · approved</span></div>
+        <div style="display:flex;justify-content:space-between;gap:12px"><span style="color:#4b5565">Supplier · warranty</span><span>Shenzhen Coldtrace · 36 m · to 14 Nov 2029</span></div>
+        <div style="display:flex;justify-content:space-between;gap:12px"><span style="color:#4b5565">QR label</span><span>v1 · printed 25 Nov · token /d/8f2k… · <a href="P-LabelCheck.dc.html">scan test ok</a></span></div>
+        <div style="display:flex;justify-content:space-between;gap:12px"><span style="color:#4b5565">Tenant</span><span><a href="TenantDetail.dc.html">Apollo Pharmacy</a> · will be named by Site ID after GRN</span></div>
+      </section>
+      <section style="background:#ffffff;border:1px solid #e2e6ed;border-radius:12px;padding:18px 20px;display:flex;flex-direction:column;gap:10px;font-size:14px">
+        <h2 style="margin:0;font-size:16px;font-weight:600">Health</h2>
+        <div style="display:grid;grid-template-columns:repeat(3, minmax(0, 1fr));gap:8px">
+          <div style="padding:10px;border-radius:8px;background:#f3f5f9"><div style="font-size:12px;color:#4b5565">Last heartbeat</div><div style="font-weight:600">11:20 today</div></div>
+          <div style="padding:10px;border-radius:8px;background:#f3f5f9"><div style="font-size:12px;color:#4b5565">Battery</div><div style="font-weight:600">96 % · 4.1 V</div></div>
+          <div style="padding:10px;border-radius:8px;background:#f3f5f9"><div style="font-size:12px;color:#4b5565">Temperature now</div><div style="font-weight:600">22.4 °C · stock shelf</div></div>
+        </div>
+        <h2 style="margin:6px 0 0;font-size:16px;font-weight:600">Events</h2>
+        <div style="display:flex;flex-direction:column;gap:6px;font-size:13px;color:#4b5565">
+          <div>25 Nov 10:02 · PRINT label v1 · Vikram S · QR labels · audit #88290</div>
+          <div>25 Nov 10:02 · ALLOCATED to Apollo Pharmacy · batch of 120 (approval #A-118 by Abinash K)</div>
+          <div>18 Nov 09:06 · first heartbeat · mqttuat</div>
+          <div>17 Nov 15:40 · QC pass · bench 2</div>
+          <div>14 Nov 10:12 · RECEIVED · RB-0042</div>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":900}}'>
+class Component extends DCLogic { renderVals() { return {}; } }
+</script>
+</body>
+</html>

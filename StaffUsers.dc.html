@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Track0tic portal — staff users and the 8 roles</title>
+<script src="./support.js?v=6"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>body{margin:0}a{color:#1a43b8}a:hover{color:#0f2f8a}table{border-collapse:collapse}button,input,select{font-family:inherit}</style>
+</helmet>
+<div style="display:flex;flex-wrap:wrap;min-height:900px;background:#f3f5f9;color:#0f172a;font-family:'Noto Sans',system-ui,sans-serif">
+  <dc-import name="Sidebar" role="admin" active="staff" hint-size="240px,900px"></dc-import>
+  <main style="flex:999 1 560px;min-width:0;padding:24px;box-sizing:border-box;display:flex;flex-direction:column;gap:18px">
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px">
+      <div><div style="font-size:13px;color:#4b5565">5 · Admin</div><h1 style="margin:0;font-size:22px;line-height:28px;font-weight:600">Staff users · Track0tic's own people</h1></div>
+      <button style="min-height:40px;padding:0 14px;border:0;border-radius:8px;background:#1d4ed8;color:#ffffff;font-size:14px;font-weight:600;cursor:pointer">+ Add staff user</button>
+    </div>
+    <section style="background:#ffffff;border:1px solid #e2e6ed;border-radius:12px;overflow:hidden">
+      <div style="padding:12px 16px;border-bottom:1px solid #e2e6ed;font-size:16px;font-weight:600">The 8 roles · who may create whom · where they may sign in</div>
+      <div style="overflow-x:auto">
+      <table style="width:100%;font-size:14px;min-width:900px">
+        <thead><tr style="text-align:left;color:#4b5565;font-size:13px"><th style="padding:8px 16px;font-weight:500">Role</th><th style="padding:8px;font-weight:500">Home</th><th style="padding:8px;font-weight:500">Sees</th><th style="padding:8px;font-weight:500">May create</th><th style="padding:8px;font-weight:500">Sign-in</th><th style="padding:8px 16px;font-weight:500;text-align:right">People</th></tr></thead>
+        <tbody>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:9px 16px;font-weight:600">Admin</td><td style="padding:9px 8px">Dashboard</td><td style="padding:9px 8px">everything</td><td style="padding:9px 8px">any role</td><td style="padding:9px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#eef1f6;color:#4b5565;font-size:12px;font-weight:600">office IP</span></td><td style="padding:9px 16px;text-align:right">1</td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:9px 16px;font-weight:600">Ops head</td><td style="padding:9px 8px">Dashboard</td><td style="padding:9px 8px">floor, tenants, approvals</td><td style="padding:9px 8px">Assembly · QC · Support</td><td style="padding:9px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#eef1f6;color:#4b5565;font-size:12px;font-weight:600">office IP</span></td><td style="padding:9px 16px;text-align:right">1</td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:9px 16px;font-weight:600">Ops – Assembly</td><td style="padding:9px 8px">Tiles</td><td style="padding:9px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#eef1f6;color:#4b5565;font-size:12px;font-weight:600">1</span> <span style="padding:2px 8px;border-radius:9999px;background:#e8eefc;color:#1a43b8;font-size:12px;font-weight:600">3</span> <span style="padding:2px 8px;border-radius:9999px;background:#e6f6ef;color:#047857;font-size:12px;font-weight:600">5</span></td><td style="padding:9px 8px">—</td><td style="padding:9px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#eef1f6;color:#4b5565;font-size:12px;font-weight:600">office IP</span></td><td style="padding:9px 16px;text-align:right">2</td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:9px 16px;font-weight:600">Ops – QC</td><td style="padding:9px 8px">Tiles</td><td style="padding:9px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#fef3e2;color:#92400e;font-size:12px;font-weight:600">2</span> <span style="padding:2px 8px;border-radius:9999px;background:#fdecec;color:#a61b1b;font-size:12px;font-weight:600">!</span></td><td style="padding:9px 8px">—</td><td style="padding:9px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#eef1f6;color:#4b5565;font-size:12px;font-weight:600">office IP</span></td><td style="padding:9px 16px;text-align:right">2</td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:9px 16px;font-weight:600">Ops – Support</td><td style="padding:9px 8px">Tiles</td><td style="padding:9px 8px">alerts, tenant users, label requests</td><td style="padding:9px 8px">—</td><td style="padding:9px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#e6f6ef;color:#047857;font-size:12px;font-weight:600">any</span></td><td style="padding:9px 16px;text-align:right">2</td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:9px 16px;font-weight:600">Sales head</td><td style="padding:9px 8px">Sales home</td><td style="padding:9px 8px">all tenants · approves tenant changes</td><td style="padding:9px 8px">Sales scoped head · Sales</td><td style="padding:9px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#eef1f6;color:#4b5565;font-size:12px;font-weight:600">office IP</span></td><td style="padding:9px 16px;text-align:right">1</td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:9px 16px;font-weight:600">Sales scoped head</td><td style="padding:9px 8px">Sales home</td><td style="padding:9px 8px">region's tenants · makes tenant requests</td><td style="padding:9px 8px">Sales scoped head · Sales</td><td style="padding:9px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#e6f6ef;color:#047857;font-size:12px;font-weight:600">any</span></td><td style="padding:9px 16px;text-align:right">1</td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:9px 16px;font-weight:600">Sales (field)</td><td style="padding:9px 8px">Sales home</td><td style="padding:9px 8px">own tenants · requests · read</td><td style="padding:9px 8px">—</td><td style="padding:9px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#e6f6ef;color:#047857;font-size:12px;font-weight:600">any</span></td><td style="padding:9px 16px;text-align:right">3</td></tr>
+        </tbody>
+      </table>
+      </div>
+    </section>
+    <section style="background:#ffffff;border:1px solid #e2e6ed;border-radius:12px;overflow:hidden">
+      <div style="padding:12px 16px;border-bottom:1px solid #e2e6ed;display:flex;justify-content:space-between;align-items:center"><span style="font-size:16px;font-weight:600">People · 13</span><input type="search" placeholder="Search staff" style="height:36px;width:220px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;color:#0f172a"></div>
+      <table style="width:100%;font-size:14px">
+        <tbody>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:9px 16px"><strong>Abinash K</strong><div style="font-size:12px;color:#4b5565">abinash@trackotic.com</div></td><td style="padding:9px 8px">Admin</td><td style="padding:9px 8px;color:#4b5565">all scopes</td><td style="padding:9px 8px;color:#4b5565">today 11:10 · office</td><td style="padding:9px 16px;text-align:right"><a href="#">edit</a></td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:9px 16px"><strong>Vikram S</strong><div style="font-size:12px;color:#4b5565">vikram.s@trackotic.com</div></td><td style="padding:9px 8px">Ops head</td><td style="padding:9px 8px;color:#4b5565">Okhla floor</td><td style="padding:9px 8px;color:#4b5565">today 10:02 · office</td><td style="padding:9px 16px;text-align:right"><a href="#">edit</a></td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:9px 16px"><strong>Meena T</strong><div style="font-size:12px;color:#4b5565">+91 98*** 2210 · OTP</div></td><td style="padding:9px 8px">Ops – QC</td><td style="padding:9px 8px;color:#4b5565">bench 2</td><td style="padding:9px 8px;color:#4b5565">today 09:00 · office</td><td style="padding:9px 16px;text-align:right"><a href="#">edit</a></td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:9px 16px"><strong>Sunil R</strong><div style="font-size:12px;color:#4b5565">+91 98*** 7781 · OTP</div></td><td style="padding:9px 8px">Ops – Assembly</td><td style="padding:9px 8px;color:#4b5565">Okhla floor</td><td style="padding:9px 8px;color:#4b5565">today 08:58 · office</td><td style="padding:9px 16px;text-align:right"><a href="#">edit</a></td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:9px 16px"><strong>Pooja M</strong><div style="font-size:12px;color:#4b5565">pooja.m@trackotic.com</div></td><td style="padding:9px 8px">Sales scoped head</td><td style="padding:9px 8px;color:#4b5565">Delhi NCR</td><td style="padding:9px 8px;color:#4b5565">today 10:40 · mobile</td><td style="padding:9px 16px;text-align:right"><a href="#">edit</a></td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td colspan="5" style="padding:9px 16px;font-size:13px;color:#4b5565">+ 8 more · floor staff sign in by mobile OTP; desk staff by email + password; 2FA for Admin and Ops head.</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":900}}'>
+class Component extends DCLogic { renderVals() { return {}; } }
+</script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Track0tic portal — journey templates per portal type</title>
+<script src="./support.js?v=6"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>body{margin:0}a{color:#1a43b8}a:hover{color:#0f2f8a}button,select{font-family:inherit}</style>
+</helmet>
+<div style="display:flex;flex-wrap:wrap;min-height:900px;background:#f3f5f9;color:#0f172a;font-family:'Noto Sans',system-ui,sans-serif">
+  <dc-import name="Sidebar" role="admin" active="journeys" hint-size="240px,900px"></dc-import>
+  <main style="flex:999 1 560px;min-width:0;padding:24px;box-sizing:border-box;display:flex;flex-direction:column;gap:18px">
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px">
+      <div><div style="font-size:13px;color:#4b5565">2 · Tenants</div><h1 style="margin:0;font-size:22px;line-height:28px;font-weight:600">Journey templates · one set per portal type</h1></div>
+      <button style="min-height:40px;padding:0 14px;border:0;border-radius:8px;background:#1d4ed8;color:#ffffff;font-size:14px;font-weight:600;cursor:pointer">+ New template</button>
+    </div>
+    <div style="padding:12px 14px;border-radius:12px;background:#e8eefc;border:1px solid #c7d4fb;font-size:13px;line-height:19px;color:#1e3a8a">A template says which legs a passport may have and what each leg needs (scan in, scan out, OTP, location). Chains are <strong>dynamic</strong>: a journey can start at any leg and end at any later one. A carton's legs are inherited by every passport inside it. The public report shows every monitored leg: COMPLIANT · NOT COMPLIANT (leg n) · COMPLIANT WHERE MONITORED · JOURNEY IN PROGRESS · NOT YET IN A JOURNEY.</div>
+
+    <div style="display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:14px">
+      <section style="background:#ffffff;border:1px solid #e2e6ed;border-radius:12px;padding:16px 18px;display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;justify-content:space-between;align-items:baseline"><h2 style="margin:0;font-size:16px;font-weight:600">Pharmacy chain · DC → store → customer</h2><span style="font-size:12px;color:#4b5565">Apollo · default</span></div>
+        <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:13px">
+          <span style="padding:6px 10px;border-radius:8px;background:#eef1f6;font-weight:600">DC cold room · HUB</span><span style="color:#7a8696">→</span><span style="padding:6px 10px;border-radius:8px;background:#e8eefc;font-weight:600;color:#1a43b8">Pro box · carrier</span><span style="color:#7a8696">→</span><span style="padding:6px 10px;border-radius:8px;background:#eef1f6;font-weight:600">Store fridge · HUB</span><span style="color:#7a8696">→</span><span style="padding:6px 10px;border-radius:8px;background:#e8eefc;font-weight:600;color:#1a43b8">Pro · home delivery</span><span style="color:#7a8696">→</span><span style="padding:6px 10px;border-radius:8px;background:#e6f6ef;font-weight:600;color:#047857">Customer · delivered</span>
+        </div>
+        <div style="font-size:13px;color:#4b5565;line-height:19px">Packet / box passport at DC store-out; item passports at store-in; store → store and DC → DC are the same legs repeated; Lite leg when a courier carries. Delivered = confirmation only (no OTP in MVP). Return remark stays inside the portal.</div>
+        <div style="display:flex;gap:8px"><a href="#" style="font-size:13px;font-weight:500">edit legs</a><a href="#" style="font-size:13px;font-weight:500">preview public report</a></div>
+      </section>
+      <section style="background:#ffffff;border:1px solid #e2e6ed;border-radius:12px;padding:16px 18px;display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;justify-content:space-between;align-items:baseline"><h2 style="margin:0;font-size:16px;font-weight:600">Distributor · depot → pharmacy</h2><span style="font-size:12px;color:#4b5565">Adroit · default</span></div>
+        <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:13px">
+          <span style="padding:6px 10px;border-radius:8px;background:#eef1f6;font-weight:600">Depot · HUB</span><span style="color:#7a8696">→</span><span style="padding:6px 10px;border-radius:8px;background:#e8eefc;font-weight:600;color:#1a43b8">Pro · driver</span><span style="color:#7a8696">→</span><span style="padding:6px 10px;border-radius:8px;background:#e6f6ef;font-weight:600;color:#047857">Pharmacy · delivered scan</span>
+        </div>
+        <div style="font-size:13px;color:#4b5565;line-height:19px">Variants: manufacturer → patient (carton legs inherited), retail only. Receiver acknowledgement by scan; handover confirm screen.</div>
+        <div style="display:flex;gap:8px"><a href="#" style="font-size:13px;font-weight:500">edit legs</a><a href="#" style="font-size:13px;font-weight:500">preview public report</a></div>
+      </section>
+      <section style="background:#ffffff;border:1px solid #e2e6ed;border-radius:12px;padding:16px 18px;display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;justify-content:space-between;align-items:baseline"><h2 style="margin:0;font-size:16px;font-weight:600">Diagnostics · home / centre → lab · lab → lab</h2><span style="font-size:12px;color:#4b5565">Lab device-only · Full lab</span></div>
+        <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:13px">
+          <span style="padding:6px 10px;border-radius:8px;background:#e8eefc;font-weight:600;color:#1a43b8">Collect · Pro bag</span><span style="color:#7a8696">→</span><span style="padding:6px 10px;border-radius:8px;background:#eef1f6;font-weight:600">Lab bench · receive or reject</span><span style="color:#7a8696">→</span><span style="padding:6px 10px;border-radius:8px;background:#e8eefc;font-weight:600;color:#1a43b8">Lite · to other lab</span><span style="color:#7a8696">→</span><span style="padding:6px 10px;border-radius:8px;background:#e6f6ef;font-weight:600;color:#047857">Received</span>
+        </div>
+        <div style="font-size:13px;color:#4b5565;line-height:19px">Tube passport per sample; one Pro bag per temperature; breach → the lab decides within its excursion limit. Max duration 4 h on the sample profile.</div>
+        <div style="display:flex;gap:8px"><a href="#" style="font-size:13px;font-weight:500">edit legs</a><a href="#" style="font-size:13px;font-weight:500">preview public report</a></div>
+      </section>
+      <section style="background:#ffffff;border:1px solid #e2e6ed;border-radius:12px;padding:16px 18px;display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;justify-content:space-between;align-items:baseline"><h2 style="margin:0;font-size:16px;font-weight:600">BFSI · duty / run (cash-van) · custody (lockbox)</h2><span style="font-size:12px;color:#4b5565">Axis · Muthoot</span></div>
+        <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:13px">
+          <span style="padding:6px 10px;border-radius:8px;background:#eef1f6;font-weight:600">Branch / chest · geofence</span><span style="color:#7a8696">→</span><span style="padding:6px 10px;border-radius:8px;background:#e8eefc;font-weight:600;color:#1a43b8">Van · Tracker · crew</span><span style="color:#7a8696">→</span><span style="padding:6px 10px;border-radius:8px;background:#eef1f6;font-weight:600">Stops · receiver OTP</span><span style="color:#7a8696">→</span><span style="padding:6px 10px;border-radius:8px;background:#1e293b;font-weight:600;color:#ffffff">Sealed · lockbox</span><span style="color:#7a8696">→</span><span style="padding:6px 10px;border-radius:8px;background:#e6f6ef;font-weight:600;color:#047857">Received at vault</span>
+        </div>
+        <div style="font-size:13px;color:#4b5565;line-height:19px">No temperature, no public page. Device QR only. Gate pass per duty; odometer vs GPS reconciliation; lockbox unlock only inside the branch geofence.</div>
+        <div style="display:flex;gap:8px"><a href="#" style="font-size:13px;font-weight:500">edit legs</a><span style="font-size:13px;color:#4b5565">no public report</span></div>
+      </section>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":900}}'>
+class Component extends DCLogic { renderVals() { return {}; } }
+</script>
+</body>
+</html>

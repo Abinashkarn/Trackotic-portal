@@ -2,71 +2,86 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Device QR — public view</title>
-<script src="./support.js?v=5"></script>
+<title>Track0tic portal — read me, stage colours, roles, build order</title>
+<script src="./support.js?v=6"></script>
 </head>
 <body>
 <x-dc>
 <helmet>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
-<style>
-body{margin:0;font-family:"Noto Sans",system-ui,sans-serif;color:#0f172a}
-a{color:#1a43b8}a:hover{color:#0f2f8a}
-/*sc-safety*/ input,select,textarea{min-width:0;max-width:100%;box-sizing:border-box} td,th,p,li{overflow-wrap:break-word} td:last-child,th:last-child{white-space:nowrap} button{white-space:normal;line-height:1.2}</style>
+<style>body{margin:0}a{color:#1a43b8}a:hover{color:#0f2f8a}</style>
 </helmet>
-<div style="color:#0f172a;width:390px;height:844px;box-sizing:border-box;background:#ffffff;display:flex;flex-direction:column;position:relative;overflow:hidden">
+<div style="width:1920px;height:1080px;box-sizing:border-box;padding:48px 56px;background:#ffffff;color:#0f172a;font-family:'Noto Sans',system-ui,sans-serif;display:flex;flex-direction:column;gap:28px">
+  <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px">
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <div style="font-size:13px;letter-spacing:0.08em;font-weight:600;color:#4b5565">TRACK0TIC PORTAL · WIREFRAMES V2 · 26 NOV 2026</div>
+      <h1 style="margin:0;font-size:40px;line-height:48px;font-weight:600">Track<span style="color:#ff5a66">0</span>tic<sup style="font-size:0.4em;vertical-align:top;margin-left:2px">TM</sup> portal — the platform side</h1>
+      <p style="margin:0;font-size:18px;line-height:28px;color:#4b5565;max-width:1100px">Where Track0tic staff receive devices, test them, fit SIMs, print the QR labels that allocate them, dispatch them, and create every tenant — Apollo Pharmacy, Axis Bank, labs, Muthoot, Adroit — deciding there which portal each tenant gets. Built for the floor first: an operator sees three tiles and a Scan button, never a menu.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:6px;font-size:14px;line-height:20px;color:#4b5565;text-align:right">
+      <div>Pages: 0 roles · 1 operator floor · 2 tenants &amp; sale · 3 operations · 4 admin · 5 phone</div>
+      <div>Design system: Track0tic (tokens) · desktop 1280 · phone 390</div>
+      <div>Reference only: the Emergent build (its menu order and field names where they were right)</div>
+    </div>
+  </div>
 
-  <header style="height:56px;box-sizing:border-box;padding:0 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #e2e6ed">
-    <div style="font-size:18px;font-weight:600;letter-spacing:-0.01em">Track<span style="color:#e11d2e">0</span>tic<sup style="font-size:0.45em;font-weight:600;vertical-align:top;margin-left:1px;opacity:0.85">TM</sup></div>
-    <span style="font-size:13px;font-weight:500;color:#4b5565;letter-spacing:0.02em">DEVICE</span>
-  </header>
+  <div style="display:grid;grid-template-columns:repeat(3, minmax(0, 1fr));gap:32px;flex:1 1 auto;min-height:0">
 
-  <main style="flex:1 1 auto;overflow:auto;padding:24px 20px 120px;box-sizing:border-box;display:flex;flex-direction:column;gap:16px">
-
-    <div style="display:flex;align-items:center;gap:10px;padding:12px 14px;background:#e6f6ef;border:1px solid #e2e6ed;border-radius:12px">
-      <span style="width:28px;height:28px;border-radius:9999px;background:#047857;color:#fff;display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>
-      </span>
-      <div>
-        <div style="font-size:16px;font-weight:600;color:#047857">Genuine Track0tic device</div>
-        <div style="font-size:13px;color:#4b5565">Verified against the Track0tic registry just now</div>
+    <section style="border:1px solid #e2e6ed;border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:14px;background:#ffffff">
+      <h2 style="margin:0;font-size:20px;line-height:26px;font-weight:600">Stage colours — one colour, one word, one number, everywhere</h2>
+      <p style="margin:0;font-size:14px;line-height:20px;color:#4b5565">Sidebar tile, queue card, status pill, device page timeline and the printed delivery note all use the same five. Colour never stands alone: the word and the number are always printed with it.</p>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-top:4px">
+        <div style="display:flex;align-items:center;gap:14px;padding:12px 14px;border-radius:12px;background:#eef1f6;border:1px solid #e2e6ed"><span style="width:36px;height:36px;border-radius:9999px;background:#4b5565;color:#ffffff;display:inline-flex;align-items:center;justify-content:center;font-weight:600;font-size:16px">1</span><div style="flex:1 1 auto"><div style="font-weight:600;font-size:16px">RECEIVED <span style="font-weight:400;color:#4b5565">· grey</span></div><div style="font-size:13px;color:#4b5565">In the building, not tested. No TRK ID yet.</div></div></div>
+        <div style="display:flex;align-items:center;gap:14px;padding:12px 14px;border-radius:12px;background:#fef3e2;border:1px solid #f0c48a"><span style="width:36px;height:36px;border-radius:9999px;background:#b45309;color:#ffffff;display:inline-flex;align-items:center;justify-content:center;font-weight:600;font-size:16px">2</span><div style="flex:1 1 auto"><div style="font-weight:600;font-size:16px">QC <span style="font-weight:400;color:#92400e">· amber</span></div><div style="font-size:13px;color:#92400e">On the bench: checklist, firmware. Pass mints the TRK ID.</div></div></div>
+        <div style="display:flex;align-items:center;gap:14px;padding:12px 14px;border-radius:12px;background:#e8eefc;border:1px solid #c7d4fb"><span style="width:36px;height:36px;border-radius:9999px;background:#1d4ed8;color:#ffffff;display:inline-flex;align-items:center;justify-content:center;font-weight:600;font-size:16px">3</span><div style="flex:1 1 auto"><div style="font-weight:600;font-size:16px">SIM BOUND · READY <span style="font-weight:400;color:#1a43b8">· blue</span></div><div style="font-size:13px;color:#1a43b8">SIM fitted, first heartbeat seen. Sellable stock.</div></div></div>
+        <div style="display:flex;align-items:center;gap:14px;padding:12px 14px;border-radius:12px;background:#e6f6ef;border:1px solid #9fd8bd"><span style="width:36px;height:36px;border-radius:9999px;background:#047857;color:#ffffff;display:inline-flex;align-items:center;justify-content:center;font-weight:600;font-size:16px">4</span><div style="flex:1 1 auto"><div style="font-weight:600;font-size:16px">LABELLED · ALLOCATED <span style="font-weight:400;color:#047857">· green</span></div><div style="font-size:13px;color:#047857">QR printed for a tenant = allocated. Then 5 · dispatched, GRN by tenant.</div></div></div>
+        <div style="display:flex;align-items:center;gap:14px;padding:12px 14px;border-radius:12px;background:#fdecec;border:1px solid #f3b4b4"><span style="width:36px;height:36px;border-radius:9999px;background:#b91c1c;color:#ffffff;display:inline-flex;align-items:center;justify-content:center;font-weight:600;font-size:16px">!</span><div style="flex:1 1 auto"><div style="font-weight:600;font-size:16px">FAULT · RETURNED <span style="font-weight:400;color:#a61b1b">· red</span></div><div style="font-size:13px;color:#a61b1b">QC fail, field return, recall. Repair → back to 2; scrap → wiped.</div></div></div>
       </div>
-    </div>
+    </section>
 
-    <div style="padding:20px 16px;border:1px solid #e2e6ed;border-radius:12px;display:flex;flex-direction:column;gap:6px">
-      <div style="font-size:13px;font-weight:500;color:#4b5565;letter-spacing:0.02em">HUB · COLD ROOM LOGGER</div>
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:28px;font-weight:600;letter-spacing:0.02em">TRK-HUB-900001</div>
-      <div style="display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:8px;margin-top:10px">
-        <div style="padding:10px 12px;background:#f3f5f9;border-radius:8px">
-          <div style="font-size:13px;color:#4b5565">Operated by</div>
-          <div style="font-size:15px;font-weight:600">Adroit Agencies</div>
-        </div>
-        <div style="padding:10px 12px;background:#f3f5f9;border-radius:8px">
-          <div style="font-size:13px;color:#4b5565">Last seen</div>
-          <div style="font-size:15px;font-weight:600">4 min ago</div>
-        </div>
+    <section style="border:1px solid #e2e6ed;border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:14px;background:#ffffff">
+      <h2 style="margin:0;font-size:20px;line-height:26px;font-weight:600">Who sees what — role decides the home</h2>
+      <p style="margin:0;font-size:14px;line-height:20px;color:#4b5565">Eight staff roles. Floor roles get tiles and a Scan button; desk roles get the sidebar. Office-bound roles sign in only from an allowed IP.</p>
+      <table style="border-collapse:collapse;width:100%;font-size:14px;line-height:20px">
+        <thead><tr style="text-align:left;color:#4b5565;font-size:13px"><th style="padding:8px 8px 8px 0;font-weight:500;border-bottom:1px solid #e2e6ed">Role</th><th style="padding:8px;font-weight:500;border-bottom:1px solid #e2e6ed">Home</th><th style="padding:8px;font-weight:500;border-bottom:1px solid #e2e6ed">Stages / areas</th><th style="padding:8px 0 8px 8px;font-weight:500;border-bottom:1px solid #e2e6ed">IP</th></tr></thead>
+        <tbody>
+          <tr><td style="padding:9px 8px 9px 0;border-bottom:1px solid #e2e6ed;font-weight:500">Ops – Assembly</td><td style="padding:9px 8px;border-bottom:1px solid #e2e6ed">Tiles</td><td style="padding:9px 8px;border-bottom:1px solid #e2e6ed"><span style="padding:2px 8px;border-radius:9999px;background:#eef1f6;color:#4b5565;font-size:12px;font-weight:600">1 RECEIVE</span> <span style="padding:2px 8px;border-radius:9999px;background:#e8eefc;color:#1a43b8;font-size:12px;font-weight:600">3 SIM</span> <span style="padding:2px 8px;border-radius:9999px;background:#e6f6ef;color:#047857;font-size:12px;font-weight:600">5 PACK</span></td><td style="padding:9px 0 9px 8px;border-bottom:1px solid #e2e6ed">office</td></tr>
+          <tr><td style="padding:9px 8px 9px 0;border-bottom:1px solid #e2e6ed;font-weight:500">Ops – QC</td><td style="padding:9px 8px;border-bottom:1px solid #e2e6ed">Tiles</td><td style="padding:9px 8px;border-bottom:1px solid #e2e6ed"><span style="padding:2px 8px;border-radius:9999px;background:#fef3e2;color:#92400e;font-size:12px;font-weight:600">2 QC</span> <span style="padding:2px 8px;border-radius:9999px;background:#fdecec;color:#a61b1b;font-size:12px;font-weight:600">! FAULTS</span></td><td style="padding:9px 0 9px 8px;border-bottom:1px solid #e2e6ed">office</td></tr>
+          <tr><td style="padding:9px 8px 9px 0;border-bottom:1px solid #e2e6ed;font-weight:500">Ops – Support</td><td style="padding:9px 8px;border-bottom:1px solid #e2e6ed">Tiles</td><td style="padding:9px 8px;border-bottom:1px solid #e2e6ed">Alerts · tenant users · label requests</td><td style="padding:9px 0 9px 8px;border-bottom:1px solid #e2e6ed">any</td></tr>
+          <tr><td style="padding:9px 8px 9px 0;border-bottom:1px solid #e2e6ed;font-weight:500">Ops head</td><td style="padding:9px 8px;border-bottom:1px solid #e2e6ed">Dashboard</td><td style="padding:9px 8px;border-bottom:1px solid #e2e6ed">All floor stages, approvals, staff of ops</td><td style="padding:9px 0 9px 8px;border-bottom:1px solid #e2e6ed">office</td></tr>
+          <tr><td style="padding:9px 8px 9px 0;border-bottom:1px solid #e2e6ed;font-weight:500">Sales (field)</td><td style="padding:9px 8px;border-bottom:1px solid #e2e6ed">Sales home</td><td style="padding:9px 8px;border-bottom:1px solid #e2e6ed">My tenants · requests · allocations (read)</td><td style="padding:9px 0 9px 8px;border-bottom:1px solid #e2e6ed">any</td></tr>
+          <tr><td style="padding:9px 8px 9px 0;border-bottom:1px solid #e2e6ed;font-weight:500">Sales scoped head</td><td style="padding:9px 8px;border-bottom:1px solid #e2e6ed">Sales home</td><td style="padding:9px 8px;border-bottom:1px solid #e2e6ed">Region's tenants · create tenant (maker)</td><td style="padding:9px 0 9px 8px;border-bottom:1px solid #e2e6ed">any</td></tr>
+          <tr><td style="padding:9px 8px 9px 0;border-bottom:1px solid #e2e6ed;font-weight:500">Sales head</td><td style="padding:9px 8px;border-bottom:1px solid #e2e6ed">Sales home</td><td style="padding:9px 8px;border-bottom:1px solid #e2e6ed">All tenants · approves tenant changes</td><td style="padding:9px 0 9px 8px;border-bottom:1px solid #e2e6ed">office</td></tr>
+          <tr><td style="padding:9px 8px 9px 0;font-weight:500">Admin</td><td style="padding:9px 8px">Dashboard</td><td style="padding:9px 8px">Everything · staff users · reference data · audit</td><td style="padding:9px 0 9px 8px">office</td></tr>
+        </tbody>
+      </table>
+      <div style="margin-top:auto;padding:12px 14px;border-radius:12px;background:#f3f5f9;font-size:13px;line-height:19px;color:#4b5565">Two-person rule (maker → checker): create or change a tenant, contract change, allocation above 50 devices, passport batch above 10,000, label reprint, any BFSI action. Pending items sit on the checker's home.</div>
+    </section>
+
+    <section style="border:1px solid #e2e6ed;border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:14px;background:#ffffff">
+      <h2 style="margin:0;font-size:20px;line-height:26px;font-weight:600">Build order — one device, start to tenant</h2>
+      <p style="margin:0;font-size:14px;line-height:20px;color:#4b5565">Read the pages in this order. Each box is a screen on page 1; the tenant must exist (page 2) before stage 4.</p>
+      <div style="display:flex;flex-direction:column;gap:0;margin-top:4px">
+        <div style="display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:12px;border:1px solid #e2e6ed;background:#eef1f6"><span style="width:28px;height:28px;border-radius:9999px;background:#4b5565;color:#ffffff;display:inline-flex;align-items:center;justify-content:center;font-weight:600;font-size:14px">1</span><div style="flex:1 1 auto"><div style="font-weight:600;font-size:15px">Receive devices</div><div style="font-size:13px;color:#4b5565">from a registered supplier · serial / IMEI list</div></div><span style="font-size:12px;color:#4b5565">Assembly</span></div>
+        <div style="height:18px;width:2px;background:#7a8696;margin-left:27px"></div>
+        <div style="display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:12px;border:1px solid #f0c48a;background:#fef3e2"><span style="width:28px;height:28px;border-radius:9999px;background:#b45309;color:#ffffff;display:inline-flex;align-items:center;justify-content:center;font-weight:600;font-size:14px">2</span><div style="flex:1 1 auto"><div style="font-weight:600;font-size:15px">QC &amp; firmware</div><div style="font-size:13px;color:#92400e">checklist on the phone · pass mints TRK ID · fail → red</div></div><span style="font-size:12px;color:#92400e">QC</span></div>
+        <div style="height:18px;width:2px;background:#7a8696;margin-left:27px"></div>
+        <div style="display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:12px;border:1px solid #c7d4fb;background:#e8eefc"><span style="width:28px;height:28px;border-radius:9999px;background:#1d4ed8;color:#ffffff;display:inline-flex;align-items:center;justify-content:center;font-weight:600;font-size:14px">3</span><div style="flex:1 1 auto"><div style="font-weight:600;font-size:15px">Fit SIM · first heartbeat</div><div style="font-size:13px;color:#1a43b8">scan device, scan SIM · device goes 'ready · in stock'</div></div><span style="font-size:12px;color:#1a43b8">Assembly</span></div>
+        <div style="height:18px;width:2px;background:#7a8696;margin-left:27px"></div>
+        <div style="display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:12px;border:1px solid #9fd8bd;background:#e6f6ef"><span style="width:28px;height:28px;border-radius:9999px;background:#047857;color:#ffffff;display:inline-flex;align-items:center;justify-content:center;font-weight:600;font-size:14px">4</span><div style="flex:1 1 auto"><div style="font-weight:600;font-size:15px">QR labels = allocate</div><div style="font-size:13px;color:#047857">tenant → type + qty → print device QRs → passport QRs · needs a tenant with an admin</div></div><span style="font-size:12px;color:#047857">Ops head / Sales</span></div>
+        <div style="height:18px;width:2px;background:#7a8696;margin-left:27px"></div>
+        <div style="display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:12px;border:1px solid #9fd8bd;background:#e6f6ef"><span style="width:28px;height:28px;border-radius:9999px;background:#047857;color:#ffffff;display:inline-flex;align-items:center;justify-content:center;font-weight:600;font-size:14px">5</span><div style="flex:1 1 auto"><div style="font-weight:600;font-size:15px">Pack &amp; dispatch</div><div style="font-size:13px;color:#047857">carton scan · delivery note · courier · tenant GRNs by category</div></div><span style="font-size:12px;color:#047857">Assembly</span></div>
       </div>
-    </div>
-
-    <div style="padding:16px;border:1px solid #e2e6ed;border-radius:12px;display:flex;flex-direction:column;gap:8px">
-      <div style="font-size:16px;font-weight:600">What this label does</div>
-      <p style="margin:0;font-size:15px;line-height:22px;color:#4b5565">Staff scan it to bind product passports to this device. Readings, locations and the passports on it are visible only after login.</p>
-    </div>
-
-    <p style="margin:0;font-size:13px;color:#4b5565;text-align:center">Not staff? Nothing to do here — scan the <strong>passport</strong> label on the product instead.</p>
-  </main>
-
-  <div style="position:absolute;left:0;right:0;bottom:0;padding:12px 20px 24px;background:#fff;box-shadow:0 -2px 12px #0f172a14;display:flex;flex-direction:column;gap:8px">
-    <a href="Field-Login.dc.html" style="display:flex;align-items:center;justify-content:center;height:56px;border-radius:12px;background:#1d4ed8;color:#fff;font-size:17px;font-weight:600;text-decoration:none">Log in to bind</a>
-    <div style="font-size:13px;color:#4b5565;text-align:center">Mobile number + one-time code · no app needed</div>
+      <div style="margin-top:auto;display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:10px;font-size:13px;line-height:19px;color:#4b5565">
+        <div style="padding:10px 12px;border-radius:8px;background:#f3f5f9"><strong style="color:#0f172a">Tenant side, never here:</strong> GRN of received devices, binding passports, work orders, gate passes, their own users.</div>
+        <div style="padding:10px 12px;border-radius:8px;background:#f3f5f9"><strong style="color:#0f172a">Phase 2, drawn but not built:</strong> label replacement with token rotation, field device return, lab data push to a LIS.</div>
+      </div>
+    </section>
   </div>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
-class Component extends DCLogic {
-  renderVals() { return {}; }
-}
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1920,"height":1080}}'>
+class Component extends DCLogic { renderVals() { return {}; } }
 </script>
 </body>
 </html>

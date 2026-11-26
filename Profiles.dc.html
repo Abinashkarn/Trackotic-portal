@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Track0tic portal — temperature profiles</title>
+<script src="./support.js?v=6"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>body{margin:0}a{color:#1a43b8}a:hover{color:#0f2f8a}table{border-collapse:collapse}button,input,select{font-family:inherit}</style>
+</helmet>
+<div style="display:flex;flex-wrap:wrap;min-height:900px;background:#f3f5f9;color:#0f172a;font-family:'Noto Sans',system-ui,sans-serif">
+  <dc-import name="Sidebar" role="admin" active="profiles" hint-size="240px,900px"></dc-import>
+  <main style="flex:999 1 560px;min-width:0;padding:24px;box-sizing:border-box;display:flex;flex-direction:column;gap:18px">
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px">
+      <div><div style="font-size:13px;color:#4b5565">2 · Tenants</div><h1 style="margin:0;font-size:22px;line-height:28px;font-weight:600">Temperature profiles · product-wise, dynamic</h1></div>
+      <button style="min-height:40px;padding:0 14px;border:0;border-radius:8px;background:#1d4ed8;color:#ffffff;font-size:14px;font-weight:600;cursor:pointer">+ New profile</button>
+    </div>
+    <div style="padding:12px 14px;border-radius:12px;background:#e8eefc;border:1px solid #c7d4fb;font-size:13px;line-height:19px;color:#1e3a8a">A tenant gets a <strong>default</strong> profile at creation; a pharmacy-chain or lab tenant picks the profile <strong>per product at bind</strong> (a −20 vaccine and a 2–8 insulin can travel in different Pro boxes on the same day). Grace = minutes out of range before an excursion counts. The public report prints the range that applied.</div>
+    <section style="background:#ffffff;border:1px solid #e2e6ed;border-radius:12px;overflow:hidden">
+      <div style="overflow-x:auto">
+      <table style="width:100%;font-size:14px;min-width:860px">
+        <thead><tr style="text-align:left;color:#4b5565;font-size:13px"><th style="padding:10px 16px;font-weight:500">Profile</th><th style="padding:10px 8px;font-weight:500">Range</th><th style="padding:10px 8px;font-weight:500">Grace</th><th style="padding:10px 8px;font-weight:500">Max duration</th><th style="padding:10px 8px;font-weight:500">Humidity</th><th style="padding:10px 8px;font-weight:500">Used by</th><th style="padding:10px 8px;font-weight:500">Default for</th><th style="padding:10px 16px;font-weight:500;text-align:right">Edit</th></tr></thead>
+        <tbody>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:10px 16px"><strong>Cold chain 2–8</strong></td><td style="padding:10px 8px;font-family:'IBM Plex Mono',monospace">2.0 – 8.0 °C</td><td style="padding:10px 8px">30 min</td><td style="padding:10px 8px">—</td><td style="padding:10px 8px">—</td><td style="padding:10px 8px">Adroit · Apollo · Test Lab</td><td style="padding:10px 8px">Distributor · Pharmacy chain</td><td style="padding:10px 16px;text-align:right"><a href="#">edit</a></td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:10px 16px"><strong>Frozen −25 to −15</strong></td><td style="padding:10px 8px;font-family:'IBM Plex Mono',monospace">−25.0 – −15.0 °C</td><td style="padding:10px 8px">15 min</td><td style="padding:10px 8px">—</td><td style="padding:10px 8px">—</td><td style="padding:10px 8px">Apollo (vaccines)</td><td style="padding:10px 8px">—</td><td style="padding:10px 16px;text-align:right"><a href="#">edit</a></td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:10px 16px"><strong>Ultra-cold −80</strong></td><td style="padding:10px 8px;font-family:'IBM Plex Mono',monospace">−90.0 – −60.0 °C</td><td style="padding:10px 8px">5 min</td><td style="padding:10px 8px">6 h</td><td style="padding:10px 8px">—</td><td style="padding:10px 8px">—</td><td style="padding:10px 8px">—</td><td style="padding:10px 16px;text-align:right"><a href="#">edit</a></td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:10px 16px"><strong>Lab samples 2–8 · 4 h</strong></td><td style="padding:10px 8px;font-family:'IBM Plex Mono',monospace">2.0 – 8.0 °C</td><td style="padding:10px 8px">10 min</td><td style="padding:10px 8px">4 h</td><td style="padding:10px 8px">—</td><td style="padding:10px 8px">Test Lab · Demo Diagnostics</td><td style="padding:10px 8px">Lab device-only · Full lab</td><td style="padding:10px 16px;text-align:right"><a href="#">edit</a></td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:10px 16px"><strong>Ambient 15–25</strong></td><td style="padding:10px 8px;font-family:'IBM Plex Mono',monospace">15.0 – 25.0 °C</td><td style="padding:10px 8px">60 min</td><td style="padding:10px 8px">—</td><td style="padding:10px 8px">≤ 60 %</td><td style="padding:10px 8px">Adroit</td><td style="padding:10px 8px">—</td><td style="padding:10px 16px;text-align:right"><a href="#">edit</a></td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:10px 16px"><strong>No temperature · custody only</strong></td><td style="padding:10px 8px;font-family:'IBM Plex Mono',monospace">—</td><td style="padding:10px 8px">—</td><td style="padding:10px 8px">—</td><td style="padding:10px 8px">—</td><td style="padding:10px 8px">Axis Bank · Muthoot</td><td style="padding:10px 8px">Cash-van · Lockbox</td><td style="padding:10px 16px;text-align:right"><span style="color:#4b5565">fixed</span></td></tr>
+        </tbody>
+      </table>
+      </div>
+      <div style="padding:12px 16px;border-top:1px solid #e2e6ed;font-size:13px;color:#4b5565">Editing a profile never rewrites past reports — each leg stores the range that applied. A profile in use cannot be deleted, only retired.</div>
+    </section>
+    <section style="background:#ffffff;border:1px solid #e2e6ed;border-radius:12px;padding:16px 18px;display:grid;grid-template-columns:repeat(4, minmax(0, 1fr));gap:10px;align-items:end">
+      <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500;grid-column:1 / 5"><span>New profile</span></label>
+      <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Name<input type="text" placeholder="e.g. Insulin 2–8 · 24 h" style="height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;color:#0f172a"></label>
+      <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Min / max °C<div style="display:flex;gap:6px"><input type="text" value="2.0" style="width:50%;height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;font-family:'IBM Plex Mono',monospace;color:#0f172a"><input type="text" value="8.0" style="width:50%;height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;font-family:'IBM Plex Mono',monospace;color:#0f172a"></div></label>
+      <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Grace minutes<input type="text" value="30" style="height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;color:#0f172a"></label>
+      <button style="min-height:44px;padding:0 16px;border:0;border-radius:12px;background:#1d4ed8;color:#ffffff;font-size:14px;font-weight:600;cursor:pointer">Save profile</button>
+    </section>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":900}}'>
+class Component extends DCLogic { renderVals() { return {}; } }
+</script>
+</body>
+</html>

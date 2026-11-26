@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Track0tic portal — suppliers and factories</title>
+<script src="./support.js?v=6"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>body{margin:0}a{color:#1a43b8}a:hover{color:#0f2f8a}table{border-collapse:collapse}button,input,select{font-family:inherit}</style>
+</helmet>
+<div style="display:flex;flex-wrap:wrap;min-height:900px;background:#f3f5f9;color:#0f172a;font-family:'Noto Sans',system-ui,sans-serif">
+  <dc-import name="Sidebar" role="opshead" active="suppliers" hint-size="240px,900px"></dc-import>
+  <main style="flex:999 1 560px;min-width:0;padding:24px;box-sizing:border-box;display:flex;flex-direction:column;gap:18px">
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px">
+      <div><div style="font-size:13px;color:#4b5565">1 · Devices</div><h1 style="margin:0;font-size:22px;line-height:28px;font-weight:600">Suppliers / factories</h1></div>
+      <span style="font-size:13px;color:#4b5565">Picked on Receive · warranty starts on the receive date</span>
+    </div>
+    <div style="display:grid;grid-template-columns:minmax(0, 1fr) minmax(0, 1fr);gap:16px;align-items:start">
+      <section style="background:#ffffff;border:1px solid #1d4ed8;border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:12px">
+        <h2 style="margin:0;font-size:16px;font-weight:600">Register a supplier</h2>
+        <div style="display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:10px">
+          <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500;grid-column:1 / 3">Company<input type="text" value="Shenzhen Coldtrace Ltd" style="height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;color:#0f172a"></label>
+          <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Kind<select style="height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;background:#ffffff;color:#0f172a"><option>Factory · imports</option><option>In-house assembly</option><option>Component vendor</option></select></label>
+          <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Warranty<select style="height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;background:#ffffff;color:#0f172a"><option>36 months</option><option>24 months</option><option>12 months</option></select></label>
+          <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Contact<input type="text" value="Li Wei · li.wei@coldtrace.cn" style="height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;color:#0f172a"></label>
+          <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">GSTIN / IEC<input type="text" value="IEC 0516901234" style="height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;font-family:'IBM Plex Mono',monospace;color:#0f172a"></label>
+          <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500;grid-column:1 / 3">Models supplied<div style="display:flex;gap:6px;flex-wrap:wrap;padding-top:4px"><span style="padding:6px 12px;border-radius:9999px;background:#e8eefc;color:#1a43b8;font-size:13px;font-weight:600">Pro</span><span style="padding:6px 12px;border-radius:9999px;background:#e8eefc;color:#1a43b8;font-size:13px;font-weight:600">Lite</span><span style="padding:6px 12px;border-radius:9999px;background:#ffffff;border:1px solid #7a8696;color:#4b5565;font-size:13px;font-weight:500">HUB</span><span style="padding:6px 12px;border-radius:9999px;background:#ffffff;border:1px solid #7a8696;color:#4b5565;font-size:13px;font-weight:500">Tracker</span><span style="padding:6px 12px;border-radius:9999px;background:#ffffff;border:1px solid #7a8696;color:#4b5565;font-size:13px;font-weight:500">Lockbox</span></div></label>
+          <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500;grid-column:1 / 3">Firmware comes<select style="height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;background:#ffffff;color:#0f172a"><option>Blank · we flash at QC</option><option>Factory-flashed · we verify at QC</option></select></label>
+        </div>
+        <div style="display:flex;gap:10px;align-items:center"><button style="min-height:44px;padding:0 18px;border:0;border-radius:12px;background:#1d4ed8;color:#ffffff;font-size:14px;font-weight:600;cursor:pointer">Save supplier</button><span style="font-size:13px;color:#4b5565">Audit-logged · editable by Admin and Ops head</span></div>
+      </section>
+      <section style="background:#ffffff;border:1px solid #e2e6ed;border-radius:16px;overflow:hidden">
+        <div style="padding:14px 16px;border-bottom:1px solid #e2e6ed;font-size:16px;font-weight:600">Registered · 3</div>
+        <table style="width:100%;font-size:14px">
+          <thead><tr style="text-align:left;color:#4b5565;font-size:13px"><th style="padding:8px 16px;font-weight:500">Supplier</th><th style="padding:8px;font-weight:500">Models</th><th style="padding:8px;font-weight:500">Warranty</th><th style="padding:8px;font-weight:500">Received</th><th style="padding:8px 16px;font-weight:500;text-align:right">Fail rate</th></tr></thead>
+          <tbody>
+            <tr style="border-top:1px solid #e2e6ed"><td style="padding:10px 16px"><strong>Shenzhen Coldtrace</strong><div style="font-size:12px;color:#4b5565">factory · Li Wei</div></td><td style="padding:10px 8px">Pro · Lite</td><td style="padding:10px 8px">36 m</td><td style="padding:10px 8px">820 · 5 POs</td><td style="padding:10px 16px;text-align:right;color:#047857">1.2 %</td></tr>
+            <tr style="border-top:1px solid #e2e6ed"><td style="padding:10px 16px"><strong>In-house · Noida</strong><div style="font-size:12px;color:#4b5565">assembly · Anil D</div></td><td style="padding:10px 8px">HUB · Lockbox</td><td style="padding:10px 8px">24 m</td><td style="padding:10px 8px">96 · 4 batches</td><td style="padding:10px 16px;text-align:right;color:#92400e">4.1 %</td></tr>
+            <tr style="border-top:1px solid #e2e6ed"><td style="padding:10px 16px"><strong>Teltonika (via distributor)</strong><div style="font-size:12px;color:#4b5565">factory · SIM fitted</div></td><td style="padding:10px 8px">Tracker</td><td style="padding:10px 8px">24 m</td><td style="padding:10px 8px">8 · 1 PO</td><td style="padding:10px 16px;text-align:right;color:#047857">0 %</td></tr>
+          </tbody>
+        </table>
+        <div style="padding:12px 16px;border-top:1px solid #e2e6ed;font-size:13px;color:#4b5565">Fail rate = QC fails ÷ received, last 90 days. Click a supplier for its POs and the devices still under warranty.</div>
+      </section>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":900}}'>
+class Component extends DCLogic { renderVals() { return {}; } }
+</script>
+</body>
+</html>

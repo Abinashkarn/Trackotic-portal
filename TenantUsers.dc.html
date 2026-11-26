@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Track0tic portal — tenant users and roles</title>
+<script src="./support.js?v=6"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>body{margin:0}a{color:#1a43b8}a:hover{color:#0f2f8a}table{border-collapse:collapse}button,input,select{font-family:inherit}</style>
+</helmet>
+<div style="display:flex;flex-wrap:wrap;min-height:900px;background:#f3f5f9;color:#0f172a;font-family:'Noto Sans',system-ui,sans-serif">
+  <dc-import name="Sidebar" role="support" active="tusers" hint-size="240px,900px"></dc-import>
+  <main style="flex:999 1 560px;min-width:0;padding:24px;box-sizing:border-box;display:flex;flex-direction:column;gap:18px">
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px">
+      <div><div style="font-size:13px;color:#4b5565">2 · Tenants</div><h1 style="margin:0;font-size:22px;line-height:28px;font-weight:600">Tenant users &amp; roles</h1></div>
+      <div style="display:flex;gap:8px;align-items:center"><select style="height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 12px;font-size:14px;background:#ffffff;color:#0f172a"><option>Adroit Agencies · 7 / 25 seats</option><option>Apollo Pharmacy · 1 / 500</option><option>Axis Bank · 4 / 100</option><option>Test Lab · 2 / 10</option><option>Muthoot Finance · 3 / 50 · dedicated</option></select><button style="min-height:44px;padding:0 14px;border:0;border-radius:8px;background:#1d4ed8;color:#ffffff;font-size:14px;font-weight:600;cursor:pointer">+ Add user</button><button style="min-height:44px;padding:0 14px;border:1px solid #7a8696;border-radius:8px;background:#ffffff;font-size:14px;font-weight:500;cursor:pointer;color:#0f172a">Import Excel</button></div>
+    </div>
+    <div style="padding:12px 14px;border-radius:12px;background:#e8eefc;border:1px solid #c7d4fb;font-size:13px;line-height:19px;color:#1e3a8a">Staff can <strong>add, resend welcome, unlock, reset password</strong> for a tenant's users — never see a password, never change a role below tenant admin's say-so. On a BFSI tenant every write by Support goes maker → checker. Roles come from the tenant's own templates (portal type decides which exist).</div>
+    <section style="background:#ffffff;border:1px solid #e2e6ed;border-radius:12px;overflow:hidden">
+      <div style="padding:12px 16px;border-bottom:1px solid #e2e6ed;display:flex;gap:8px;flex-wrap:wrap;font-size:13px"><span style="padding:5px 10px;border-radius:9999px;background:#1d4ed8;color:#ffffff;font-weight:600">All 7</span><span style="padding:5px 10px;border-radius:9999px;background:#ffffff;border:1px solid #e2e6ed;color:#4b5565;font-weight:600">Invited 1</span><span style="padding:5px 10px;border-radius:9999px;background:#fdecec;color:#a61b1b;font-weight:600">Locked 1</span><span style="padding:5px 10px;border-radius:9999px;background:#ffffff;border:1px solid #e2e6ed;color:#4b5565;font-weight:600">Field 3</span><span style="padding:5px 10px;border-radius:9999px;background:#ffffff;border:1px solid #e2e6ed;color:#4b5565;font-weight:600">Office 4</span></div>
+      <div style="overflow-x:auto">
+      <table style="width:100%;font-size:14px;min-width:860px">
+        <thead><tr style="text-align:left;color:#4b5565;font-size:13px"><th style="padding:10px 16px;font-weight:500">User</th><th style="padding:10px 8px;font-weight:500">Role</th><th style="padding:10px 8px;font-weight:500">Site</th><th style="padding:10px 8px;font-weight:500">Login</th><th style="padding:10px 8px;font-weight:500">Last sign-in</th><th style="padding:10px 8px;font-weight:500">State</th><th style="padding:10px 16px;font-weight:500;text-align:right">Staff actions</th></tr></thead>
+        <tbody>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:10px 16px"><strong>Priya Nair</strong><div style="font-size:12px;color:#4b5565">+91 98100 22310 · priya.n@adroit.in</div></td><td style="padding:10px 8px">Tenant admin</td><td style="padding:10px 8px">all</td><td style="padding:10px 8px">OTP · email</td><td style="padding:10px 8px;color:#4b5565">today 09:12</td><td style="padding:10px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#e6f6ef;color:#047857;font-size:12px;font-weight:600">active</span></td><td style="padding:10px 16px;text-align:right"><a href="#">reset password</a></td></tr>
+          <tr style="border-top:1px solid #e2e6ed;background:#fdecec"><td style="padding:10px 16px"><strong>Ramesh K</strong><div style="font-size:12px;color:#4b5565">+91 98110 44210</div></td><td style="padding:10px 8px">Field · driver</td><td style="padding:10px 8px">Okhla depot</td><td style="padding:10px 8px">OTP</td><td style="padding:10px 8px;color:#4b5565">yesterday</td><td style="padding:10px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#b91c1c;color:#ffffff;font-size:12px;font-weight:600">locked · 5 wrong OTPs</span></td><td style="padding:10px 16px;text-align:right"><a href="#" style="font-weight:600">unlock</a> · <a href="#">resend OTP</a></td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:10px 16px"><strong>Sunita D</strong><div style="font-size:12px;color:#4b5565">+91 98100 77821 · sunita.d@adroit.in</div></td><td style="padding:10px 8px">Manager</td><td style="padding:10px 8px">Okhla depot</td><td style="padding:10px 8px">OTP · email</td><td style="padding:10px 8px;color:#4b5565">today 10:40</td><td style="padding:10px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#e6f6ef;color:#047857;font-size:12px;font-weight:600">active</span></td><td style="padding:10px 16px;text-align:right"><a href="#">reset password</a></td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:10px 16px"><strong>Amit S</strong><div style="font-size:12px;color:#4b5565">+91 99100 33102</div></td><td style="padding:10px 8px">Field · driver</td><td style="padding:10px 8px">Okhla depot</td><td style="padding:10px 8px">OTP</td><td style="padding:10px 8px;color:#4b5565">today 08:55</td><td style="padding:10px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#e6f6ef;color:#047857;font-size:12px;font-weight:600">active</span></td><td style="padding:10px 16px;text-align:right"><a href="#">resend OTP</a></td></tr>
+          <tr style="border-top:1px solid #e2e6ed;background:#fef3e2"><td style="padding:10px 16px"><strong>QA Field Tester</strong><div style="font-size:12px;color:#4b5565">+91 90000 00001 · added by staff 20 Oct</div></td><td style="padding:10px 8px">Field · driver</td><td style="padding:10px 8px">—</td><td style="padding:10px 8px">OTP</td><td style="padding:10px 8px;color:#4b5565">never</td><td style="padding:10px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#fef3e2;color:#92400e;font-size:12px;font-weight:600">invited · not signed in</span></td><td style="padding:10px 16px;text-align:right"><a href="#">resend welcome</a> · <a href="#" style="color:#a61b1b">remove</a></td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td colspan="7" style="padding:10px 16px;font-size:13px;color:#4b5565">+ 2 more</td></tr>
+        </tbody>
+      </table>
+      </div>
+    </section>
+    <section style="background:#ffffff;border:1px solid #e2e6ed;border-radius:12px;padding:16px 18px;display:flex;flex-direction:column;gap:8px">
+      <h2 style="margin:0;font-size:16px;font-weight:600">Role templates for this portal type · Distributor</h2>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;font-size:13px"><span style="padding:6px 12px;border-radius:9999px;background:#eef1f6;color:#0f172a;font-weight:600">Tenant admin</span><span style="padding:6px 12px;border-radius:9999px;background:#eef1f6;color:#0f172a;font-weight:600">Manager</span><span style="padding:6px 12px;border-radius:9999px;background:#eef1f6;color:#0f172a;font-weight:600">QA / compliance</span><span style="padding:6px 12px;border-radius:9999px;background:#eef1f6;color:#0f172a;font-weight:600">Operator</span><span style="padding:6px 12px;border-radius:9999px;background:#eef1f6;color:#0f172a;font-weight:600">Field · driver</span><span style="padding:6px 12px;border-radius:9999px;background:#eef1f6;color:#0f172a;font-weight:600">Viewer</span></div>
+      <div style="font-size:13px;color:#4b5565">Pharmacy chain adds Super admin, DC ops, Store ops, Carrier. Cash-van adds Bank operator, Bank admin, Crew. Lockbox adds Collector, Branch approver. Templates live in Reference data; the tenant admin clones and edits them in its own portal.</div>
+    </section>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":900}}'>
+class Component extends DCLogic { renderVals() { return {}; } }
+</script>
+</body>
+</html>

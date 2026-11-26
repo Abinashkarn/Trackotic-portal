@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Track0tic portal — 4 · QR labels = allocate</title>
+<script src="./support.js?v=6"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>body{margin:0}a{color:#1a43b8}a:hover{color:#0f2f8a}table{border-collapse:collapse}button,input,select{font-family:inherit}</style>
+</helmet>
+<div style="display:flex;flex-wrap:wrap;min-height:900px;background:#f3f5f9;color:#0f172a;font-family:'Noto Sans',system-ui,sans-serif">
+  <dc-import name="Sidebar" role="opshead" active="labels" hint-size="240px,900px"></dc-import>
+  <main style="flex:999 1 560px;min-width:0;padding:0 0 24px;box-sizing:border-box;display:flex;flex-direction:column;gap:18px">
+    <div style="background:#e6f6ef;border-bottom:3px solid #047857;padding:20px 28px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px">
+      <div style="display:flex;align-items:center;gap:14px"><span style="width:44px;height:44px;border-radius:9999px;background:#047857;color:#ffffff;display:inline-flex;align-items:center;justify-content:center;font-weight:600;font-size:20px">4</span><div><div style="font-size:13px;font-weight:600;letter-spacing:0.06em;color:#047857">STAGE 4 · LABELLED = ALLOCATED · GREEN</div><h1 style="margin:0;font-size:24px;line-height:30px;font-weight:600">QR labels — printing a device QR allocates it to the tenant</h1></div></div>
+      <div style="font-size:14px;color:#047857">Printer: <strong>PDF · A4</strong> (default) · ZPL when a label printer is connected · every print is an audit event</div>
+    </div>
+
+    <div style="padding:0 28px;display:flex;gap:10px;flex-wrap:wrap">
+      <div style="flex:1 1 0;display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:12px;border:2px solid {{st1.border}};background:{{st1.bg}}"><span style="width:28px;height:28px;border-radius:9999px;background:{{st1.disc}};color:#ffffff;display:inline-flex;align-items:center;justify-content:center;font-weight:600;font-size:14px">1</span><span style="font-weight:600">Tenant</span><span style="color:#4b5565">· {{t.name}}</span></div>
+      <div style="flex:1 1 0;display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:12px;border:2px solid {{st2.border}};background:{{st2.bg}}"><span style="width:28px;height:28px;border-radius:9999px;background:{{st2.disc}};color:#ffffff;display:inline-flex;align-items:center;justify-content:center;font-weight:600;font-size:14px">2</span><span style="font-weight:600">Device QRs</span><span style="color:#4b5565">· {{qty}} × {{type}}</span></div>
+      <div style="flex:1 1 0;display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:12px;border:2px solid {{st3.border}};background:{{st3.bg}}"><span style="width:28px;height:28px;border-radius:9999px;background:{{st3.disc}};color:#ffffff;display:inline-flex;align-items:center;justify-content:center;font-weight:600;font-size:14px">3</span><span style="font-weight:600">Passport QRs</span><span style="color:#4b5565">· {{t.pass}}</span></div>
+    </div>
+
+    <div style="padding:0 28px;display:grid;grid-template-columns:minmax(0, 1.1fr) minmax(0, 0.9fr);gap:16px;align-items:start">
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <section style="background:#ffffff;border:1px solid #e2e6ed;border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:10px">
+          <div style="display:flex;justify-content:space-between;align-items:baseline"><h2 style="margin:0;font-size:16px;font-weight:600">1 · Which tenant?</h2><span style="font-size:13px;color:#4b5565">everything below is for this tenant only</span></div>
+          <select onChange="{{setTenant}}" style="height:48px;border:1px solid #7a8696;border-radius:8px;padding:0 12px;font-size:15px;background:#ffffff;color:#0f172a"><option value="apollo">Apollo Pharmacy · pharmacy chain portal</option><option value="adroit">Adroit Agencies · distributor portal</option><option value="axis">Axis Bank · cash-van portal</option><option value="testlab">Test Lab · lab device-only</option><option value="muthoot">Muthoot Finance · lockbox portal · dedicated</option></select>
+          <div style="font-size:14px;color:#4b5565">{{t.has}}</div>
+          <sc-if value="{{t.noAdmin}}" hint-placeholder-val="{{ false }}"><div style="padding:10px 12px;border-radius:8px;background:#fef3e2;border:1px solid #f0c48a;font-size:14px;color:#92400e"><strong>No first admin yet.</strong> You can print, but nothing reaches the tenant portal until <a href="TenantDetail.dc.html" style="color:#92400e">an admin is added</a>.</div></sc-if>
+        </section>
+
+        <section style="background:#ffffff;border:2px solid #047857;border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:12px">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px"><h2 style="margin:0;font-size:16px;font-weight:600">2 · Device QRs for {{t.short}}</h2><span style="font-size:13px;color:#4b5565">printing allocates · only this tenant's device categories</span></div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <sc-for list="{{types}}" as="d" hint-placeholder-count="3"><button onClick="{{d.pick}}" style="display:inline-flex;flex-direction:column;align-items:flex-start;gap:2px;min-height:56px;padding:8px 14px;border-radius:12px;border:2px solid {{d.border}};background:{{d.bg}};cursor:pointer;color:#0f172a;text-align:left"><span style="font-size:15px;font-weight:600">{{d.name}}</span><span style="font-size:12px;color:#4b5565">{{d.stock}} ready in stock</span></button></sc-for>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-end;flex-wrap:wrap">
+            <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Quantity<input type="text" value="{{qty}}" onChange="{{setQty}}" style="width:110px;height:48px;border:1px solid #7a8696;border-radius:8px;padding:0 12px;font-size:18px;text-align:center;color:#0f172a"></label>
+            <div style="flex:1 1 240px;padding:10px 12px;border-radius:8px;background:#f3f5f9;font-size:13px;line-height:19px;color:#4b5565">Takes the next <strong style="color:#0f172a">{{qty}} × {{type}}</strong> from ready stock (oldest first): <span style="font-family:'IBM Plex Mono',monospace">{{range}}</span> · or <a href="Allocate.dc.html">pick specific TRK IDs</a>. Label 60 × 30 mm, QR → /d/‹token›.</div>
+          </div>
+          <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+            <button onClick="{{print2}}" style="min-height:52px;padding:0 20px;border:0;border-radius:12px;background:#047857;color:#ffffff;font-size:16px;font-weight:600;cursor:pointer">Print {{qty}} device QRs → allocate to {{t.short}}</button>
+            <sc-if value="{{needsApproval}}" hint-placeholder-val="{{ false }}"><span style="padding:6px 10px;border-radius:8px;background:#e8eefc;color:#1a43b8;font-size:13px;font-weight:600">above 50 → goes to Approvals first</span></sc-if>
+            <sc-if value="{{done2}}" hint-placeholder-val="{{ false }}"><span style="padding:6px 10px;border-radius:8px;background:#e6f6ef;color:#047857;font-size:13px;font-weight:600">PDF opened · {{qty}} devices now 4 · green · PRINT + ALLOCATED events · scan-test each sticker on the phone</span></sc-if>
+          </div>
+        </section>
+
+        <section style="background:#ffffff;border:1px solid #e2e6ed;border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:12px">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px"><h2 style="margin:0;font-size:16px;font-weight:600">3 · Passport QRs for {{t.short}}</h2><span style="font-size:13px;color:#4b5565">{{t.passNote}}</span></div>
+          <sc-if value="{{t.passports}}" hint-placeholder-val="{{ true }}">
+            <div style="display:grid;grid-template-columns:minmax(0, 0.6fr) minmax(0, 1fr) minmax(0, 1.2fr);gap:10px">
+              <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Quantity<input type="text" value="1000" style="height:48px;border:1px solid #7a8696;border-radius:8px;padding:0 12px;font-size:16px;text-align:center;color:#0f172a"></label>
+              <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Label size<select style="height:48px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;background:#ffffff;color:#0f172a"><sc-for list="{{t.sizes}}" as="sz" hint-placeholder-count="3"><option>{{sz}}</option></sc-for></select></label>
+              <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Who prints<select style="height:48px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;background:#ffffff;color:#0f172a"><option>Track0tic prints · courier to tenant</option><option>Tenant prints from its portal</option></select></label>
+            </div>
+            <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+              <button onClick="{{print3}}" style="min-height:48px;padding:0 18px;border:0;border-radius:12px;background:#1d4ed8;color:#ffffff;font-size:15px;font-weight:600;cursor:pointer">Generate 1,000 passport QRs → print here · courier</button>
+              <sc-if value="{{done3}}" hint-placeholder-val="{{ false }}"><span style="padding:6px 10px;border-radius:8px;background:#e8eefc;color:#1a43b8;font-size:13px;font-weight:600">Book {{t.book}} · 1,000 codes · in the tenant's portal now · courier AWB on Dispatch</span></sc-if>
+              <span style="font-size:13px;color:#4b5565">Track0tic generates; the tenant never mints. Above 10,000 → Approvals.</span>
+            </div>
+          </sc-if>
+          <sc-if value="{{t.noPassports}}" hint-placeholder-val="{{ false }}"><div style="padding:12px;border-radius:8px;background:#eef1f6;font-size:14px;color:#4b5565">This portal type uses device QRs only — no passport QRs. Step 3 is skipped.</div></sc-if>
+        </section>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <section style="background:#ffffff;border:1px solid #e2e6ed;border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:10px">
+          <h2 style="margin:0;font-size:16px;font-weight:600">Label preview · device QR</h2>
+          <div style="display:flex;align-items:center;gap:14px;padding:14px;border:1px dashed #7a8696;border-radius:8px;background:#ffffff">
+            <div style="width:72px;height:72px;background:repeating-conic-gradient(#0f172a 0 25%, #ffffff 0 50%) 0 0 / 12px 12px;flex:0 0 auto" role="img" aria-label="QR code placeholder"></div>
+            <div style="display:flex;flex-direction:column;gap:2px"><span style="font-family:'IBM Plex Mono',monospace;font-size:15px;font-weight:600">{{range1}}</span><span style="font-size:11px;color:#4b5565">60 × 30 mm · polyester · EC Q · /d/‹token›</span><span style="font-size:12px;font-weight:600">Track<span style="color:#ff5a66">0</span>tic<sup style="font-size:0.6em">TM</sup></span></div>
+          </div>
+          <div style="font-size:13px;color:#4b5565">After printing, scan one sticker with the phone: it must open that device's page (<a href="P-LabelCheck.dc.html">label scan test</a>). Reprint needs approval; the old token dies.</div>
+        </section>
+        <section style="background:#ffffff;border:1px solid #e2e6ed;border-radius:16px;overflow:hidden">
+          <div style="padding:12px 16px;border-bottom:1px solid #e2e6ed;font-size:16px;font-weight:600">{{t.short}} · what they have</div>
+          <table style="width:100%;font-size:14px">
+            <tbody>
+              <sc-for list="{{t.rows}}" as="r" hint-placeholder-count="3"><tr style="border-top:1px solid #e2e6ed"><td style="padding:9px 16px;font-weight:500">{{r.k}}</td><td style="padding:9px 8px">{{r.v}}</td><td style="padding:9px 16px;text-align:right"><span style="padding:2px 8px;border-radius:9999px;background:{{r.bg}};color:{{r.fg}};font-size:12px;font-weight:600">{{r.s}}</span></td></tr></sc-for>
+            </tbody>
+          </table>
+        </section>
+        <section style="background:#ffffff;border:1px solid #e2e6ed;border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:8px">
+          <h2 style="margin:0;font-size:16px;font-weight:600">Open requests from tenant portals</h2>
+          <div style="display:flex;justify-content:space-between;gap:8px;font-size:14px"><span><strong>Adroit</strong> · 500 passport QRs · 40 × 25 · wants courier</span><a href="#" style="font-weight:500">load into step 3 ›</a></div>
+          <div style="display:flex;justify-content:space-between;gap:8px;font-size:14px"><span><strong>Apollo</strong> · 15 more Pro (email)</span><a href="#" style="font-weight:500">load into step 2 ›</a></div>
+          <div style="font-size:13px;color:#4b5565">Loading a request fills the tenant and quantities above; generating closes it.</div>
+        </section>
+      </div>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":900}}'>
+class Component extends DCLogic {
+  constructor(p){ super(p); this.state = { tenant: 'apollo', type: 'Pro', qty: 20, d2: false, d3: false }; }
+  renderVals() {
+    const S = { g:{ bg:'#e6f6ef', fg:'#047857' }, a:{ bg:'#fef3e2', fg:'#92400e' }, b:{ bg:'#e8eefc', fg:'#1a43b8' }, n:{ bg:'#eef1f6', fg:'#4b5565' } };
+    const T = {
+      apollo:  { name:'Apollo Pharmacy', short:'Apollo', has:'Pharmacy chain portal · 10 HUB, 20 Pro, 9 Lite allocated · GRN pending 9 Lite · 1,000 passports · prints own labels', noAdmin:true, types:[['HUB',29],['Pro',238],['Lite',112]], passports:true, pass:'1,000 issued', passNote:'tenant prints too · sizes by product', sizes:['Standard 40 × 25','Small PFS 25 × 15','Box 60 × 40'], book:'APOLLO-PB-0002', rows:[{k:'HUB',v:'10 · 10 GRN done',s:'5 · with tenant',c:'g'},{k:'Pro',v:'20 · 20 GRN done',s:'5 · with tenant',c:'g'},{k:'Lite',v:'9 · GRN pending',s:'5 · sent',c:'a'},{k:'Passports',v:'1,000 · 0 used',s:'book 0001',c:'b'}] },
+      adroit:  { name:'Adroit Agencies', short:'Adroit', has:'Distributor portal · 6 HUB, 24 Pro · 71 passport QRs left of 2,400 · prints own labels', noAdmin:false, types:[['HUB',29],['Pro',238]], passports:true, pass:'2,400 issued', passNote:'4 books so far', sizes:['Standard 40 × 25','Micro 25 × 15'], book:'ADROIT-PB-0005', rows:[{k:'HUB',v:'6',s:'5 · with tenant',c:'g'},{k:'Pro',v:'24',s:'5 · with tenant',c:'g'},{k:'Passports',v:'2,400 · 71 left',s:'4 books',c:'b'}] },
+      axis:    { name:'Axis Bank', short:'Axis', has:'Cash-van portal · 6 Tracker on vans · device QR only', noAdmin:false, types:[['Tracker',0]], passports:false, pass:'not used', passNote:'', sizes:[], book:'', rows:[{k:'Tracker',v:'6 · fixed in vans',s:'5 · with tenant',c:'g'},{k:'Passports',v:'—',s:'n/a',c:'n'}] },
+      testlab: { name:'Test Lab', short:'Test Lab', has:'Lab device-only · 10 Pro, 2 Lite · 1,420 tube passports left · prints own', noAdmin:false, types:[['Pro',238],['Lite',112]], passports:true, pass:'4,000 issued', passNote:'tube size', sizes:['Tube 25 × 15','Standard 40 × 25'], book:'TESTLAB-PB-0003', rows:[{k:'Pro',v:'10',s:'5 · with tenant',c:'g'},{k:'Lite',v:'2',s:'5 · with tenant',c:'g'},{k:'Passports',v:'4,000 · 1,420 left',s:'2 books',c:'b'}] },
+      muthoot: { name:'Muthoot Finance', short:'Muthoot', has:'Lockbox portal · dedicated environment · 4 Lockbox · allocate from its own admin', noAdmin:false, types:[['Lockbox',0]], passports:false, pass:'not used', passNote:'', sizes:[], book:'', rows:[{k:'Lockbox',v:'4',s:'dedicated',c:'n'}] }
+    };
+    const s = this.state; const t0 = T[s.tenant]; const names = t0.types.map(x => x[0]); const type = names.includes(s.type) ? s.type : names[0];
+    const stock = (t0.types.find(x => x[0] === type) || [type, 0])[1];
+    const t = { ...t0, noPassports: !t0.passports, rows: t0.rows.map(r => ({ ...r, bg: S[r.c].bg, fg: S[r.c].fg })) };
+    const types = t0.types.map(x => ({ name: x[0], stock: x[1], border: x[0] === type ? '#047857' : '#e2e6ed', bg: x[0] === type ? '#e6f6ef' : '#ffffff', pick: () => this.setState({ type: x[0], d2: false }) }));
+    const q = Number(s.qty) || 0; const base = { Pro: 900240, HUB: 900062, Lite: 900500, Tracker: 900900, Lockbox: 900950 }[type] || 900000; const pre = 'TRK-' + type.toUpperCase().slice(0, 3) + '-';
+    const st = (on, done) => ({ border: done ? '#047857' : on ? '#047857' : '#e2e6ed', bg: done ? '#e6f6ef' : '#ffffff', disc: done || on ? '#047857' : '#7a8696' });
+    return { t, types, type, qty: q, range: pre + base + ' → ' + pre + (base + Math.max(q - 1, 0)), range1: pre + base, needsApproval: q > 50 && !s.d2, done2: s.d2, done3: s.d3,
+      st1: st(true, true), st2: st(true, s.d2), st3: st(s.d2, s.d3),
+      setTenant: (e) => this.setState({ tenant: e.target.value, d2: false, d3: false }), setQty: (e) => this.setState({ qty: e.target.value, d2: false }), print2: () => this.setState({ d2: true }), print3: () => this.setState({ d3: true }) };
+  }
+}
+</script>
+</body>
+</html>

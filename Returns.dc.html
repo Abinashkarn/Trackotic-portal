@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Track0tic portal — faulty and returned devices</title>
+<script src="./support.js?v=6"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>body{margin:0}a{color:#1a43b8}a:hover{color:#0f2f8a}table{border-collapse:collapse}button,select{font-family:inherit}</style>
+</helmet>
+<div style="display:flex;flex-wrap:wrap;min-height:900px;background:#f3f5f9;color:#0f172a;font-family:'Noto Sans',system-ui,sans-serif">
+  <dc-import name="Sidebar" role="qc" active="returns" hint-size="240px,900px"></dc-import>
+  <main style="flex:999 1 560px;min-width:0;padding:0 0 24px;box-sizing:border-box;display:flex;flex-direction:column;gap:18px">
+    <div style="background:#fdecec;border-bottom:3px solid #b91c1c;padding:20px 28px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px">
+      <div style="display:flex;align-items:center;gap:14px"><span style="width:44px;height:44px;border-radius:9999px;background:#b91c1c;color:#ffffff;display:inline-flex;align-items:center;justify-content:center;font-weight:600;font-size:20px">!</span><div><div style="font-size:13px;font-weight:600;letter-spacing:0.06em;color:#a61b1b">FAULT · RETURNED · RED</div><h1 style="margin:0;font-size:24px;line-height:30px;font-weight:600">Decide what happens to each faulty device</h1></div></div>
+      <div style="font-size:14px;color:#a61b1b">Repair → back to <span style="padding:2px 8px;border-radius:9999px;background:#fef3e2;color:#92400e;font-weight:600">2 QC</span> · Scrap → wiped, label voided, SIM freed · Warranty claim → supplier</div>
+    </div>
+    <div style="padding:0 28px;display:flex;flex-direction:column;gap:14px">
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <span style="padding:8px 14px;border-radius:9999px;background:#fdecec;color:#a61b1b;font-size:14px;font-weight:600;border:2px solid #b91c1c">All · 4</span>
+        <span style="padding:8px 14px;border-radius:9999px;background:#ffffff;color:#4b5565;font-size:14px;font-weight:600;border:2px solid #e2e6ed">QC fail · 2</span>
+        <span style="padding:8px 14px;border-radius:9999px;background:#ffffff;color:#4b5565;font-size:14px;font-weight:600;border:2px solid #e2e6ed">Field return · 2</span>
+        <span style="padding:8px 14px;border-radius:9999px;background:#ffffff;color:#4b5565;font-size:14px;font-weight:600;border:2px solid #e2e6ed">Recalled · 0</span>
+        <span style="padding:8px 14px;border-radius:9999px;background:#ffffff;color:#4b5565;font-size:14px;font-weight:600;border:2px solid #e2e6ed">Under warranty claim · 1</span>
+      </div>
+      <section style="background:#ffffff;border:1px solid #e2e6ed;border-radius:16px;overflow:hidden">
+        <table style="width:100%;font-size:14px">
+          <thead><tr style="text-align:left;color:#4b5565;font-size:13px"><th style="padding:10px 16px;font-weight:500">Device</th><th style="padding:10px 8px;font-weight:500">Why it is here</th><th style="padding:10px 8px;font-weight:500">From</th><th style="padding:10px 8px;font-weight:500">Warranty</th><th style="padding:10px 8px;font-weight:500">Decision</th><th style="padding:10px 16px;font-weight:500;text-align:right">Since</th></tr></thead>
+          <tbody>
+            <tr style="border-top:1px solid #e2e6ed"><td style="padding:12px 16px"><span style="font-family:'IBM Plex Mono',monospace;font-weight:600">867530041122330</span><div style="font-size:12px;color:#4b5565">Pro · no TRK ID yet</div></td><td style="padding:12px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#fdecec;color:#a61b1b;font-size:12px;font-weight:600">QC FAIL</span> sensor drift 1.8 °C</td><td style="padding:12px 8px">bench 2 · Meena T</td><td style="padding:12px 8px;color:#047857">yes · Coldtrace to 2029</td><td style="padding:12px 8px"><select style="height:40px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;background:#ffffff;color:#0f172a"><option>Choose…</option><option>Repair → retest</option><option>Warranty claim → supplier</option><option>Scrap · wipe</option></select></td><td style="padding:12px 16px;text-align:right;color:#4b5565">today</td></tr>
+            <tr style="border-top:1px solid #e2e6ed"><td style="padding:12px 16px"><span style="font-family:'IBM Plex Mono',monospace;font-weight:600">TRK-HUB-900061</span><div style="font-size:12px;color:#4b5565">HUB · SIM 8991…4469</div></td><td style="padding:12px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#fdecec;color:#a61b1b;font-size:12px;font-weight:600">NO HEARTBEAT</span> after SIM fit</td><td style="padding:12px 8px">Fit SIM · Sunil R</td><td style="padding:12px 8px;color:#047857">yes · in-house</td><td style="padding:12px 8px"><select style="height:40px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;background:#ffffff;color:#0f172a"><option>Repair → retest</option><option>Choose…</option><option>Scrap · wipe</option></select></td><td style="padding:12px 16px;text-align:right;color:#4b5565">today</td></tr>
+            <tr style="border-top:1px solid #e2e6ed"><td style="padding:12px 16px"><span style="font-family:'IBM Plex Mono',monospace;font-weight:600">TRK-PRO-900001</span><div style="font-size:12px;color:#4b5565">Pro · label v1 torn</div></td><td style="padding:12px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#fdecec;color:#a61b1b;font-size:12px;font-weight:600">FIELD RETURN</span> bag sensor dead</td><td style="padding:12px 8px">Adroit · de-allocated with reason</td><td style="padding:12px 8px;color:#047857">yes · to 2028</td><td style="padding:12px 8px"><select style="height:40px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;background:#ffffff;color:#0f172a"><option>Warranty claim → supplier</option><option>Repair → retest</option><option>Scrap · wipe</option></select></td><td style="padding:12px 16px;text-align:right;color:#4b5565">4 d</td></tr>
+            <tr style="border-top:1px solid #e2e6ed"><td style="padding:12px 16px"><span style="font-family:'IBM Plex Mono',monospace;font-weight:600">TRK-LBX-0001</span><div style="font-size:12px;color:#4b5565">Lockbox · training unit</div></td><td style="padding:12px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#fdecec;color:#a61b1b;font-size:12px;font-weight:600">FIELD RETURN</span> latch jam</td><td style="padding:12px 8px">Muthoot · dedicated env</td><td style="padding:12px 8px;color:#4b5565">in-house · 24 m</td><td style="padding:12px 8px"><select style="height:40px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;background:#ffffff;color:#0f172a"><option>Repair → retest</option><option>Choose…</option><option>Scrap · wipe</option></select></td><td style="padding:12px 16px;text-align:right;color:#4b5565">6 d</td></tr>
+          </tbody>
+        </table>
+        <div style="padding:12px 16px;border-top:1px solid #e2e6ed;display:flex;gap:10px;align-items:center;flex-wrap:wrap"><button style="min-height:44px;padding:0 18px;border:0;border-radius:12px;background:#b91c1c;color:#ffffff;font-size:14px;font-weight:600;cursor:pointer">Apply decisions (reason required)</button><span style="font-size:13px;color:#4b5565">Scrap and warranty claims need Ops head approval. A scrapped device's TRK ID is never reused; its label token is voided so an old sticker opens "this device was retired".</span></div>
+      </section>
+      <section style="background:#ffffff;border:1px solid #e2e6ed;border-radius:16px;padding:16px 20px;display:flex;flex-direction:column;gap:6px;font-size:14px">
+        <h2 style="margin:0;font-size:16px;font-weight:600">Phase 2 — drawn, not in MVP</h2>
+        <div style="color:#4b5565">Label replacement with token rotation (old QR dies, new QR printed, tenant notified) · field device return with courier booking from the tenant portal · repair log per device with parts used.</div>
+      </section>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":900}}'>
+class Component extends DCLogic { renderVals() { return {}; } }
+</script>
+</body>
+</html>

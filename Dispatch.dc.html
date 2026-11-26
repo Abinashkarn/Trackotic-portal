@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Track0tic portal — 5 · Pack and dispatch to tenant</title>
+<script src="./support.js?v=6"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>body{margin:0}a{color:#1a43b8}a:hover{color:#0f2f8a}table{border-collapse:collapse}button,input,select{font-family:inherit}</style>
+</helmet>
+<div style="display:flex;flex-wrap:wrap;min-height:900px;background:#f3f5f9;color:#0f172a;font-family:'Noto Sans',system-ui,sans-serif">
+  <dc-import name="Sidebar" role="assembly" active="dispatch" hint-size="240px,900px"></dc-import>
+  <main style="flex:999 1 560px;min-width:0;padding:0 0 24px;box-sizing:border-box;display:flex;flex-direction:column;gap:18px">
+    <div style="background:#e6f6ef;border-bottom:3px solid #047857;padding:20px 28px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px">
+      <div style="display:flex;align-items:center;gap:14px"><span style="width:44px;height:44px;border-radius:9999px;background:#047857;color:#ffffff;display:inline-flex;align-items:center;justify-content:center;font-weight:600;font-size:20px">5</span><div><div style="font-size:13px;font-weight:600;letter-spacing:0.06em;color:#047857">STAGE 5 · DISPATCHED · GREEN</div><h1 style="margin:0;font-size:24px;line-height:30px;font-weight:600">Pack the allocated devices and send them to the tenant</h1></div></div>
+      <a href="P-Pack.dc.html" style="display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border-radius:12px;background:#1d4ed8;color:#ffffff;font-size:14px;font-weight:600;text-decoration:none">Scan into carton (phone)</a>
+    </div>
+
+    <div style="padding:0 28px;display:grid;grid-template-columns:minmax(0, 1.2fr) minmax(0, 1fr);gap:16px;align-items:start">
+      <section style="background:#ffffff;border:2px solid #047857;border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:14px">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap">
+          <div><div style="font-size:13px;color:#4b5565">Delivery note</div><div style="font-size:22px;font-weight:600;font-family:'IBM Plex Mono',monospace">DN-2026-0412</div><div style="font-size:14px;color:#4b5565">Apollo Pharmacy · DC 11001 Mohan Estate, New Delhi · attn SCM desk</div></div>
+          <select style="height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 12px;font-size:14px;background:#ffffff;color:#0f172a"><option>Apollo Pharmacy · 16 to pack</option><option>Adroit Agencies · 0 to pack</option></select>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3, minmax(0, 1fr));gap:10px">
+          <div style="padding:12px;border-radius:12px;background:#e6f6ef;border:1px solid #9fd8bd"><div style="font-size:13px;font-weight:600;color:#047857">HUB</div><div style="font-size:26px;font-weight:600">{{hub}} <span style="font-size:14px;font-weight:500;color:#047857">/ 10 packed</span></div></div>
+          <div style="padding:12px;border-radius:12px;background:#e6f6ef;border:1px solid #9fd8bd"><div style="font-size:13px;font-weight:600;color:#047857">Pro</div><div style="font-size:26px;font-weight:600">{{pro}} <span style="font-size:14px;font-weight:500;color:#047857">/ 6 packed</span></div></div>
+          <div style="padding:12px;border-radius:12px;background:#eef1f6;border:1px solid #e2e6ed"><div style="font-size:13px;font-weight:600;color:#4b5565">Passport book</div><div style="font-size:20px;font-weight:600">APOLLO-PB-0002</div><div style="font-size:12px;color:#4b5565">1,000 labels · printed here</div></div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <sc-for list="{{cartons}}" as="c" hint-placeholder-count="3">
+            <div style="display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:12px;border:1px solid #e2e6ed;background:{{c.bg}}">
+              <span style="font-family:'IBM Plex Mono',monospace;font-weight:600">{{c.id}}</span>
+              <span style="flex:1 1 auto;font-size:14px">{{c.what}}</span>
+              <span style="font-size:13px;color:#4b5565">{{c.who}}</span>
+              <span style="padding:2px 8px;border-radius:9999px;background:{{c.pillBg}};color:{{c.pillFg}};font-size:12px;font-weight:600">{{c.state}}</span>
+            </div>
+          </sc-for>
+          <button onClick="{{addCarton}}" style="min-height:44px;border:1px dashed #7a8696;border-radius:12px;background:#ffffff;font-size:14px;font-weight:500;cursor:pointer;color:#0f172a">+ New carton · scan devices into it on the phone</button>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:10px">
+          <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Courier<select style="height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;background:#ffffff;color:#0f172a"><option>Blue Dart · surface</option><option>Delhivery</option><option>Own vehicle · Okhla run</option><option>Tenant collects</option></select></label>
+          <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">AWB / vehicle<input type="text" value="BD 7731 0042 118" style="height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;font-family:'IBM Plex Mono',monospace;color:#0f172a"></label>
+        </div>
+        <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+          <button onClick="{{send}}" style="min-height:52px;padding:0 20px;border:0;border-radius:12px;background:#047857;color:#ffffff;font-size:16px;font-weight:600;cursor:pointer">Dispatch {{total}} devices + passport book</button>
+          <button style="min-height:52px;padding:0 16px;border:1px solid #7a8696;border-radius:12px;background:#ffffff;font-size:15px;font-weight:500;cursor:pointer;color:#0f172a">Print delivery note</button>
+          <sc-if value="{{sent}}" hint-placeholder-val="{{ false }}"><span style="padding:6px 10px;border-radius:8px;background:#e6f6ef;color:#047857;font-size:13px;font-weight:600">Dispatched 11:40 · tenant portal shows "sent · GRN pending" per category · audit #88340</span></sc-if>
+          <sc-if value="{{notSent}}" hint-placeholder-val="{{ true }}"><span style="font-size:13px;color:#4b5565">Allowed only when every carton is sealed and the count matches the allocation.</span></sc-if>
+        </div>
+      </section>
+
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <section style="background:#ffffff;border:1px solid #e2e6ed;border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:10px">
+          <h2 style="margin:0;font-size:16px;font-weight:600">What the tenant sees after dispatch</h2>
+          <div style="display:flex;flex-direction:column;gap:6px;font-size:14px">
+            <div style="display:flex;justify-content:space-between;padding:8px 10px;border-radius:8px;background:#f3f5f9"><span>HUB · 10</span><span style="color:#92400e;font-weight:600">sent · GRN pending</span></div>
+            <div style="display:flex;justify-content:space-between;padding:8px 10px;border-radius:8px;background:#f3f5f9"><span>Pro · 6</span><span style="color:#92400e;font-weight:600">sent · GRN pending</span></div>
+            <div style="display:flex;justify-content:space-between;padding:8px 10px;border-radius:8px;background:#f3f5f9"><span>Passports · 1,000</span><span style="color:#047857;font-weight:600">online now · printed · in courier</span></div>
+          </div>
+          <div style="font-size:13px;color:#4b5565;line-height:19px">The tenant's ops does the GRN category-wise in its own portal. Until then the devices are "with courier" here and "sent" there. Device naming by Site ID (11207A…) happens at the tenant's GRN.</div>
+        </section>
+        <section style="background:#ffffff;border:1px solid #e2e6ed;border-radius:16px;overflow:hidden">
+          <div style="padding:12px 16px;border-bottom:1px solid #e2e6ed;font-size:16px;font-weight:600">Recent dispatches</div>
+          <table style="width:100%;font-size:14px">
+            <tbody>
+              <tr style="border-top:1px solid #e2e6ed"><td style="padding:9px 16px;font-family:'IBM Plex Mono',monospace">DN-0411</td><td style="padding:9px 8px">Apollo · 9 Lite</td><td style="padding:9px 8px;color:#4b5565">24 Nov · Blue Dart</td><td style="padding:9px 16px;text-align:right"><span style="padding:2px 8px;border-radius:9999px;background:#fef3e2;color:#92400e;font-size:12px;font-weight:600">GRN pending</span></td></tr>
+              <tr style="border-top:1px solid #e2e6ed"><td style="padding:9px 16px;font-family:'IBM Plex Mono',monospace">DN-0410</td><td style="padding:9px 8px">Apollo · 10 HUB · 20 Pro</td><td style="padding:9px 8px;color:#4b5565">21 Nov · own vehicle</td><td style="padding:9px 16px;text-align:right"><span style="padding:2px 8px;border-radius:9999px;background:#e6f6ef;color:#047857;font-size:12px;font-weight:600">GRN done 22 Nov</span></td></tr>
+              <tr style="border-top:1px solid #e2e6ed"><td style="padding:9px 16px;font-family:'IBM Plex Mono',monospace">DN-0409</td><td style="padding:9px 8px">Axis · 2 Tracker</td><td style="padding:9px 8px;color:#4b5565">18 Nov · installer</td><td style="padding:9px 16px;text-align:right"><span style="padding:2px 8px;border-radius:9999px;background:#e6f6ef;color:#047857;font-size:12px;font-weight:600">fitted in vans</span></td></tr>
+            </tbody>
+          </table>
+        </section>
+      </div>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":900}}'>
+class Component extends DCLogic {
+  constructor(p){ super(p); this.state = { cartons: 2, sent: false }; }
+  renderVals() {
+    const base = [ { id:'CTN-0412-1', what:'10 × HUB · TRK-HUB-900050…059', who:'Sunil R · 10:50', state:'sealed · 10 / 10' }, { id:'CTN-0412-2', what:'6 × Pro · TRK-PRO-900250…255', who:'Sunil R · 11:05', state:'sealed · 6 / 6' }, { id:'CTN-0412-3', what:'empty · scan devices in', who:'—', state:'open' } ];
+    const n = this.state.cartons; const cartons = base.slice(0, n).map(c => ({ ...c, bg: c.state === 'open' ? '#ffffff' : '#e6f6ef', pillBg: c.state === 'open' ? '#eef1f6' : '#047857', pillFg: c.state === 'open' ? '#4b5565' : '#ffffff' }));
+    return { cartons, hub: 10, pro: 6, total: 16, sent: this.state.sent, notSent: !this.state.sent, addCarton: () => this.setState({ cartons: Math.min(n + 1, 3) }), send: () => this.setState({ sent: true }) };
+  }
+}
+</script>
+</body>
+</html>

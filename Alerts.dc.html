@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Track0tic portal — alerts across tenants</title>
+<script src="./support.js?v=6"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>body{margin:0}a{color:#1a43b8}a:hover{color:#0f2f8a}table{border-collapse:collapse}button,input,select,textarea{font-family:inherit}</style>
+</helmet>
+<div style="display:flex;flex-wrap:wrap;min-height:900px;background:#f3f5f9;color:#0f172a;font-family:'Noto Sans',system-ui,sans-serif">
+  <dc-import name="Sidebar" role="support" active="alerts" hint-size="240px,900px"></dc-import>
+  <main style="flex:999 1 560px;min-width:0;padding:24px;box-sizing:border-box;display:flex;flex-direction:column;gap:18px">
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px">
+      <div><div style="font-size:13px;color:#4b5565">4 · Operations</div><h1 style="margin:0;font-size:22px;line-height:28px;font-weight:600">Alerts · 34 open</h1></div>
+      <div style="display:flex;gap:8px"><select style="height:40px;border:1px solid #7a8696;border-radius:8px;padding:0 12px;font-size:14px;background:#ffffff;color:#0f172a"><option>All tenants</option><option>Apollo</option><option>Adroit</option><option>Axis Bank</option><option>Test Lab</option></select><select style="height:40px;border:1px solid #7a8696;border-radius:8px;padding:0 12px;font-size:14px;background:#ffffff;color:#0f172a"><option>Unassigned first</option><option>Mine</option><option>Closed today</option></select></div>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;font-size:13px">
+      <span style="padding:6px 12px;border-radius:9999px;background:#fdecec;color:#a61b1b;font-weight:600;border:2px solid #b91c1c">Excursion 5</span>
+      <span style="padding:6px 12px;border-radius:9999px;background:#fdecec;color:#a61b1b;font-weight:600;border:2px solid #fdecec">Tamper · lid 1</span>
+      <span style="padding:6px 12px;border-radius:9999px;background:#fef3e2;color:#92400e;font-weight:600;border:2px solid #fef3e2">Silent device 9</span>
+      <span style="padding:6px 12px;border-radius:9999px;background:#fef3e2;color:#92400e;font-weight:600;border:2px solid #fef3e2">Low battery 7</span>
+      <span style="padding:6px 12px;border-radius:9999px;background:#fef3e2;color:#92400e;font-weight:600;border:2px solid #fef3e2">Near time limit 2</span>
+      <span style="padding:6px 12px;border-radius:9999px;background:#eef1f6;color:#4b5565;font-weight:600;border:2px solid #eef1f6">Lite not returned 4</span>
+      <span style="padding:6px 12px;border-radius:9999px;background:#eef1f6;color:#4b5565;font-weight:600;border:2px solid #eef1f6">Outside geofence 6</span>
+    </div>
+    <div style="display:grid;grid-template-columns:minmax(0, 1.4fr) minmax(0, 1fr);gap:16px;align-items:start">
+      <section style="background:#ffffff;border:1px solid #e2e6ed;border-radius:12px;overflow:hidden">
+        <table style="width:100%;font-size:14px">
+          <thead><tr style="text-align:left;color:#4b5565;font-size:13px"><th style="padding:10px 16px;font-weight:500">Severity</th><th style="padding:10px 8px;font-weight:500">What · where</th><th style="padding:10px 8px;font-weight:500">Tenant</th><th style="padding:10px 8px;font-weight:500">Age</th><th style="padding:10px 16px;font-weight:500;text-align:right">Owner</th></tr></thead>
+          <tbody>
+            <tr style="border-top:1px solid #e2e6ed;background:#fdecec"><td style="padding:10px 16px"><span style="padding:2px 8px;border-radius:9999px;background:#b91c1c;color:#ffffff;font-size:12px;font-weight:600">EXCURSION</span></td><td style="padding:10px 8px"><strong>HUB 11207A</strong> · 9.4 °C for 22 min · store 11207 Saket · 48 items bound</td><td style="padding:10px 8px">Apollo</td><td style="padding:10px 8px">14 min</td><td style="padding:10px 16px;text-align:right;color:#1a43b8;font-weight:600">Rahul D</td></tr>
+            <tr style="border-top:1px solid #e2e6ed"><td style="padding:10px 16px"><span style="padding:2px 8px;border-radius:9999px;background:#b91c1c;color:#ffffff;font-size:12px;font-weight:600">EXCURSION</span></td><td style="padding:10px 8px"><strong>Pro 900241</strong> · 9.1 °C for 31 min · trip TRP-1182 · 16 passports</td><td style="padding:10px 8px">Adroit</td><td style="padding:10px 8px">40 min</td><td style="padding:10px 16px;text-align:right;color:#4b5565">unassigned</td></tr>
+            <tr style="border-top:1px solid #e2e6ed"><td style="padding:10px 16px"><span style="padding:2px 8px;border-radius:9999px;background:#b91c1c;color:#ffffff;font-size:12px;font-weight:600">LID OPEN</span></td><td style="padding:10px 8px"><strong>Pro TL-P4</strong> · opened 6 min outside lab · pickup PK-0931</td><td style="padding:10px 8px">Test Lab</td><td style="padding:10px 8px">9 min</td><td style="padding:10px 16px;text-align:right;color:#4b5565">unassigned</td></tr>
+            <tr style="border-top:1px solid #e2e6ed"><td style="padding:10px 16px"><span style="padding:2px 8px;border-radius:9999px;background:#b45309;color:#ffffff;font-size:12px;font-weight:600">SILENT</span></td><td style="padding:10px 8px"><strong>Tracker VAN-DL-14</strong> · no GPS fix 38 min · duty DUTY-DL-0226</td><td style="padding:10px 8px">Axis Bank</td><td style="padding:10px 8px">38 min</td><td style="padding:10px 16px;text-align:right;color:#1a43b8;font-weight:600">Rahul D</td></tr>
+            <tr style="border-top:1px solid #e2e6ed"><td style="padding:10px 16px"><span style="padding:2px 8px;border-radius:9999px;background:#b45309;color:#ffffff;font-size:12px;font-weight:600">BATTERY</span></td><td style="padding:10px 8px"><strong>Pro 900241</strong> · 12 % · needs charging · on trip</td><td style="padding:10px 8px">Adroit</td><td style="padding:10px 8px">1 h</td><td style="padding:10px 16px;text-align:right;color:#4b5565">unassigned</td></tr>
+            <tr style="border-top:1px solid #e2e6ed"><td style="padding:10px 16px"><span style="padding:2px 8px;border-radius:9999px;background:#4b5565;color:#ffffff;font-size:12px;font-weight:600">LITE OUT</span></td><td style="padding:10px 8px"><strong>Lite 11207-L3</strong> · at Fortis Vasant Kunj · day 2 · not returned</td><td style="padding:10px 8px">Apollo</td><td style="padding:10px 8px">2 d</td><td style="padding:10px 16px;text-align:right;color:#4b5565">tenant</td></tr>
+            <tr style="border-top:1px solid #e2e6ed"><td colspan="5" style="padding:10px 16px;font-size:13px;color:#4b5565">+ 28 more · the tenant gets every alert in its own portal and by SMS to the people concerned (store staff, warehouse, carrier); Track0tic sees them all and steps in on excursions and silent devices.</td></tr>
+          </tbody>
+        </table>
+      </section>
+      <section style="background:#ffffff;border:2px solid #b91c1c;border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:12px">
+        <div><span style="padding:2px 8px;border-radius:9999px;background:#b91c1c;color:#ffffff;font-size:12px;font-weight:600">EXCURSION</span><div style="font-size:18px;font-weight:600;margin-top:8px">HUB 11207A · store 11207 Saket</div><div style="font-size:14px;color:#4b5565">Apollo Pharmacy · 9.4 °C for 22 min · range 2–8 · grace 30 min · 48 items bound in this fridge</div></div>
+        <div style="display:flex;gap:6px;align-items:flex-end;height:80px;padding:8px;border-radius:8px;background:#f3f5f9" role="img" aria-label="Temperature over the last two hours, rising above 8 degrees in the last 22 minutes">
+          <span style="flex:1;height:40%;background:#1d4ed8;border-radius:3px"></span><span style="flex:1;height:42%;background:#1d4ed8;border-radius:3px"></span><span style="flex:1;height:41%;background:#1d4ed8;border-radius:3px"></span><span style="flex:1;height:45%;background:#1d4ed8;border-radius:3px"></span><span style="flex:1;height:50%;background:#1d4ed8;border-radius:3px"></span><span style="flex:1;height:58%;background:#b45309;border-radius:3px"></span><span style="flex:1;height:70%;background:#b91c1c;border-radius:3px"></span><span style="flex:1;height:78%;background:#b91c1c;border-radius:3px"></span><span style="flex:1;height:84%;background:#b91c1c;border-radius:3px"></span><span style="flex:1;height:86%;background:#b91c1c;border-radius:3px"></span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px;font-size:14px">
+          <div style="display:flex;justify-content:space-between"><span style="color:#4b5565">Notified</span><span>store staff ×2 · DC owner · Apollo admin · SMS 11:00</span></div>
+          <div style="display:flex;justify-content:space-between"><span style="color:#4b5565">Tenant action</span><span style="color:#92400e">none yet</span></div>
+          <div style="display:flex;justify-content:space-between"><span style="color:#4b5565">Public report</span><span>will show NOT COMPLIANT for this leg if it closes out of range</span></div>
+        </div>
+        <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Note (required to close)<textarea rows="2" style="border:1px solid #7a8696;border-radius:8px;padding:8px 10px;font-size:14px;color:#0f172a">Called store 11207 · door left open during stocking · closed 11:12 · temp falling</textarea></label>
+        <div style="display:flex;gap:8px;flex-wrap:wrap"><button style="min-height:44px;padding:0 16px;border:0;border-radius:12px;background:#1d4ed8;color:#ffffff;font-size:14px;font-weight:600;cursor:pointer">Assign to me</button><button style="min-height:44px;padding:0 16px;border:1px solid #7a8696;border-radius:12px;background:#ffffff;font-size:14px;font-weight:500;cursor:pointer;color:#0f172a">Close with note</button><a href="DeviceDetail.dc.html" style="display:inline-flex;align-items:center;font-size:14px;font-weight:500">Device page ›</a></div>
+      </section>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":900}}'>
+class Component extends DCLogic { renderVals() { return {}; } }
+</script>
+</body>
+</html>

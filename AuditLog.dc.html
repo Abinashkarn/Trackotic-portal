@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Track0tic portal — audit log</title>
+<script src="./support.js?v=6"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>body{margin:0}a{color:#1a43b8}a:hover{color:#0f2f8a}table{border-collapse:collapse}button,input,select{font-family:inherit}</style>
+</helmet>
+<div style="display:flex;flex-wrap:wrap;min-height:900px;background:#f3f5f9;color:#0f172a;font-family:'Noto Sans',system-ui,sans-serif">
+  <dc-import name="Sidebar" role="admin" active="audit" hint-size="240px,900px"></dc-import>
+  <main style="flex:999 1 560px;min-width:0;padding:24px;box-sizing:border-box;display:flex;flex-direction:column;gap:18px">
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px">
+      <div><div style="font-size:13px;color:#4b5565">5 · Admin</div><h1 style="margin:0;font-size:22px;line-height:28px;font-weight:600">Audit log · every write, with who, when and why</h1></div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap"><input type="search" placeholder="Device, tenant, user, audit #" style="height:40px;width:240px;border:1px solid #7a8696;border-radius:8px;padding:0 12px;font-size:14px;color:#0f172a"><select style="height:40px;border:1px solid #7a8696;border-radius:8px;padding:0 12px;font-size:14px;background:#ffffff;color:#0f172a"><option>All kinds</option><option>PRINT</option><option>ALLOCATED</option><option>APPROVAL</option><option>TENANT</option><option>USER</option><option>STAGE CHANGE</option></select><button style="min-height:40px;padding:0 14px;border:1px solid #7a8696;border-radius:8px;background:#ffffff;font-size:14px;font-weight:500;cursor:pointer;color:#0f172a">Export CSV</button></div>
+    </div>
+    <div style="padding:12px 14px;border-radius:12px;background:#eef1f6;font-size:13px;line-height:19px;color:#4b5565">Append-only. A <strong>PRINT</strong> row is written for every label printed (device or passport), an <strong>APPROVAL</strong> row for every decision, a <strong>STAGE CHANGE</strong> row for every move 1 → 2 → 3 → 4 → 5 or to !. Rows link to the device, tenant or user they touch. Only Admin sees this page; Ops head sees the floor rows.</div>
+    <section style="background:#ffffff;border:1px solid #e2e6ed;border-radius:12px;overflow:hidden">
+      <div style="overflow-x:auto">
+      <table style="width:100%;font-size:14px;min-width:960px">
+        <thead><tr style="text-align:left;color:#4b5565;font-size:13px"><th style="padding:10px 16px;font-weight:500">#</th><th style="padding:10px 8px;font-weight:500">When</th><th style="padding:10px 8px;font-weight:500">Kind</th><th style="padding:10px 8px;font-weight:500">What</th><th style="padding:10px 8px;font-weight:500">Who</th><th style="padding:10px 8px;font-weight:500">Reason / note</th><th style="padding:10px 16px;font-weight:500;text-align:right">From</th></tr></thead>
+        <tbody>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:9px 16px;font-family:'IBM Plex Mono',monospace;color:#4b5565">88351</td><td style="padding:9px 8px;white-space:nowrap">26 Nov 11:32</td><td style="padding:9px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#e8eefc;color:#1a43b8;font-size:12px;font-weight:600">APPROVAL</span></td><td style="padding:9px 8px">Approved · create tenant Demo Diagnostics</td><td style="padding:9px 8px">Abinash K · Admin</td><td style="padding:9px 8px;color:#4b5565">maker Pooja M · "lab device-only, pilot"</td><td style="padding:9px 16px;text-align:right;color:#4b5565">office · 10.0.4.12</td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:9px 16px;font-family:'IBM Plex Mono',monospace;color:#4b5565">88340</td><td style="padding:9px 8px;white-space:nowrap">26 Nov 11:40</td><td style="padding:9px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#e6f6ef;color:#047857;font-size:12px;font-weight:600">STAGE 5</span></td><td style="padding:9px 8px">16 devices dispatched · DN-2026-0412 · Apollo</td><td style="padding:9px 8px">Sunil R · Assembly</td><td style="padding:9px 8px;color:#4b5565">Blue Dart BD 7731 0042 118</td><td style="padding:9px 16px;text-align:right;color:#4b5565">floor · phone</td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:9px 16px;font-family:'IBM Plex Mono',monospace;color:#4b5565">88322</td><td style="padding:9px 8px;white-space:nowrap">26 Nov 11:21</td><td style="padding:9px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#e8eefc;color:#1a43b8;font-size:12px;font-weight:600">STAGE 3</span></td><td style="padding:9px 8px">TRK-PRO-900402 · SIM 8991…4472 bound · heartbeat 11:21:08</td><td style="padding:9px 8px">Sunil R · Assembly</td><td style="padding:9px 8px;color:#4b5565">—</td><td style="padding:9px 16px;text-align:right;color:#4b5565">floor · phone</td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:9px 16px;font-family:'IBM Plex Mono',monospace;color:#4b5565">88310</td><td style="padding:9px 8px;white-space:nowrap">26 Nov 11:14</td><td style="padding:9px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#fdecec;color:#a61b1b;font-size:12px;font-weight:600">STAGE !</span></td><td style="padding:9px 8px">867530041122330 · QC fail</td><td style="padding:9px 8px">Meena T · QC</td><td style="padding:9px 8px;color:#4b5565">sensor drift 1.8 °C · check 2 of 6</td><td style="padding:9px 16px;text-align:right;color:#4b5565">bench 2</td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:9px 16px;font-family:'IBM Plex Mono',monospace;color:#4b5565">88301</td><td style="padding:9px 8px;white-space:nowrap">26 Nov 10:05</td><td style="padding:9px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#eef1f6;color:#4b5565;font-size:12px;font-weight:600">STAGE 1</span></td><td style="padding:9px 8px">Box RB-0044 · 3 Pro received · PO-2026-0931 (partial, 117 short)</td><td style="padding:9px 8px">Sunil R · Assembly</td><td style="padding:9px 8px;color:#4b5565">partial receive</td><td style="padding:9px 16px;text-align:right;color:#4b5565">floor</td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:9px 16px;font-family:'IBM Plex Mono',monospace;color:#4b5565">88290</td><td style="padding:9px 8px;white-space:nowrap">25 Nov 10:02</td><td style="padding:9px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#e6f6ef;color:#047857;font-size:12px;font-weight:600">PRINT</span></td><td style="padding:9px 8px">16 device labels v1 · Apollo · PDF A4 · = ALLOCATED AL-0118</td><td style="padding:9px 8px">Vikram S · Ops head</td><td style="padding:9px 8px;color:#4b5565">scan test ok on 16 / 16</td><td style="padding:9px 16px;text-align:right;color:#4b5565">office</td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:9px 16px;font-family:'IBM Plex Mono',monospace;color:#4b5565">88288</td><td style="padding:9px 8px;white-space:nowrap">25 Nov 09:58</td><td style="padding:9px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#e8eefc;color:#1a43b8;font-size:12px;font-weight:600">TENANT</span></td><td style="padding:9px 8px">Apollo Pharmacy created · pharmacy chain portal · shared</td><td style="padding:9px 8px">Pooja M · Sales</td><td style="padding:9px 8px;color:#4b5565">approved #A-117 by Abinash K</td><td style="padding:9px 16px;text-align:right;color:#4b5565">mobile</td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:9px 16px;font-family:'IBM Plex Mono',monospace;color:#4b5565">88120</td><td style="padding:9px 8px;white-space:nowrap">22 Nov 16:40</td><td style="padding:9px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#fef3e2;color:#92400e;font-size:12px;font-weight:600">USER</span></td><td style="padding:9px 8px">Adroit · Ramesh K unlocked</td><td style="padding:9px 8px">Rahul D · Support</td><td style="padding:9px 8px;color:#4b5565">5 wrong OTPs · identity confirmed by tenant admin</td><td style="padding:9px 16px;text-align:right;color:#4b5565">home</td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td colspan="7" style="padding:9px 16px;font-size:13px;color:#4b5565">+ 88,000 rows · retained 7 years · hash-chained for BFSI tenants.</td></tr>
+        </tbody>
+      </table>
+      </div>
+    </section>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":900}}'>
+class Component extends DCLogic { renderVals() { return {}; } }
+</script>
+</body>
+</html>

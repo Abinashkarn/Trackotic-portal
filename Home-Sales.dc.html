@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Track0tic portal — Sales home</title>
+<script src="./support.js?v=6"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>body{margin:0}a{color:#1a43b8}a:hover{color:#0f2f8a}table{border-collapse:collapse}</style>
+</helmet>
+<div style="display:flex;flex-wrap:wrap;min-height:900px;background:#f3f5f9;color:#0f172a;font-family:'Noto Sans',system-ui,sans-serif">
+  <dc-import name="Sidebar" role="sales" active="home" hint-size="240px,900px"></dc-import>
+  <main style="flex:999 1 560px;min-width:0;padding:24px;box-sizing:border-box;display:flex;flex-direction:column;gap:20px">
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px">
+      <div><div style="font-size:13px;color:#4b5565">Sales · Delhi NCR scope</div><h1 style="margin:0;font-size:22px;line-height:28px;font-weight:600">My tenants</h1></div>
+      <a href="TenantCreate.dc.html" style="display:inline-flex;align-items:center;min-height:40px;padding:0 14px;border-radius:8px;background:#1d4ed8;color:#ffffff;font-size:14px;font-weight:600;text-decoration:none">+ Create tenant (goes for approval)</a>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(4, minmax(0, 1fr));gap:10px">
+      <div style="background:#ffffff;border:1px solid #e2e6ed;border-radius:12px;padding:14px"><div style="font-size:13px;color:#4b5565">Tenants in my scope</div><div style="font-size:28px;font-weight:600;line-height:36px">4</div><div style="font-size:13px;color:#4b5565">1 waiting for first admin</div></div>
+      <div style="background:#ffffff;border:1px solid #e2e6ed;border-radius:12px;padding:14px"><div style="font-size:13px;color:#4b5565">Devices allocated this month</div><div style="font-size:28px;font-weight:600;line-height:36px">139</div><div style="font-size:13px;color:#4b5565">10 HUB · 120 Pro · 9 Lite</div></div>
+      <div style="background:#ffffff;border:1px solid #e2e6ed;border-radius:12px;padding:14px"><div style="font-size:13px;color:#4b5565">Passport QRs issued</div><div style="font-size:28px;font-weight:600;line-height:36px">7,500</div><div style="font-size:13px;color:#4b5565">3 books · 2 printed by tenants</div></div>
+      <div style="background:#ffffff;border:1px solid #e2e6ed;border-radius:12px;padding:14px"><div style="font-size:13px;color:#4b5565">Open requests</div><div style="font-size:28px;font-weight:600;line-height:36px;color:#92400e">3</div><div style="font-size:13px;color:#4b5565">2 label rolls · 1 device top-up</div></div>
+    </div>
+
+    <section style="background:#ffffff;border:1px solid #e2e6ed;border-radius:12px;overflow:hidden">
+      <div style="padding:14px 16px;border-bottom:1px solid #e2e6ed;display:flex;justify-content:space-between;align-items:center"><h2 style="margin:0;font-size:16px;font-weight:600">Requests from tenant portals</h2><span style="font-size:13px;color:#4b5565">a request becomes an order once you load it into QR labels or Passports</span></div>
+      <table style="width:100%;font-size:14px">
+        <thead><tr style="text-align:left;color:#4b5565;font-size:13px"><th style="padding:8px 16px;font-weight:500">Tenant</th><th style="padding:8px;font-weight:500">Request</th><th style="padding:8px;font-weight:500">Raised by</th><th style="padding:8px;font-weight:500">When</th><th style="padding:8px 16px;font-weight:500;text-align:right">Action</th></tr></thead>
+        <tbody>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:10px 16px;font-weight:600">Adroit Agencies</td><td style="padding:10px 8px">500 passport QRs · 40 × 25 · courier</td><td style="padding:10px 8px">tenant admin · Priya N</td><td style="padding:10px 8px">3 h</td><td style="padding:10px 16px;text-align:right"><a href="Passports.dc.html" style="font-weight:500">Load into Passports ›</a></td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:10px 16px;font-weight:600">Test Lab</td><td style="padding:10px 8px">2,000 passport QRs · tube 25 × 15 · prints self</td><td style="padding:10px 8px">lab ops · Arun K</td><td style="padding:10px 8px">yesterday</td><td style="padding:10px 16px;text-align:right"><a href="Passports.dc.html" style="font-weight:500">Confirm ›</a></td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:10px 16px;font-weight:600">Apollo Pharmacy</td><td style="padding:10px 8px">Device top-up · 15 more Pro for 25 South Delhi stores</td><td style="padding:10px 8px">email · Apollo SCM</td><td style="padding:10px 8px">2 d</td><td style="padding:10px 16px;text-align:right"><a href="QRLabels.dc.html" style="font-weight:500">Load into QR labels ›</a></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section style="background:#ffffff;border:1px solid #e2e6ed;border-radius:12px;overflow:hidden">
+      <div style="padding:14px 16px;border-bottom:1px solid #e2e6ed;display:flex;justify-content:space-between;align-items:center"><h2 style="margin:0;font-size:16px;font-weight:600">Tenants in my scope</h2><a href="Tenants.dc.html" style="font-size:13px">All tenants ›</a></div>
+      <table style="width:100%;font-size:14px">
+        <thead><tr style="text-align:left;color:#4b5565;font-size:13px"><th style="padding:8px 16px;font-weight:500">Tenant</th><th style="padding:8px;font-weight:500">Portal type</th><th style="padding:8px;font-weight:500">Devices</th><th style="padding:8px;font-weight:500">Passports left</th><th style="padding:8px;font-weight:500">Last contact</th><th style="padding:8px 16px;font-weight:500;text-align:right">Status</th></tr></thead>
+        <tbody>
+          <tr style="border-top:1px solid #e2e6ed;background:#fef3e2"><td style="padding:10px 16px"><a href="TenantDetail.dc.html" style="font-weight:600">Apollo Pharmacy</a></td><td style="padding:10px 8px">Pharmacy chain</td><td style="padding:10px 8px">10 HUB · 20 Pro · 9 Lite</td><td style="padding:10px 8px">1,000</td><td style="padding:10px 8px">21 Nov · meeting</td><td style="padding:10px 16px;text-align:right"><span style="padding:2px 8px;border-radius:9999px;background:#fef3e2;color:#92400e;font-size:12px;font-weight:600">no admin yet</span></td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:10px 16px"><a href="TenantDetail.dc.html" style="font-weight:600">Adroit Agencies</a></td><td style="padding:10px 8px">Distributor</td><td style="padding:10px 8px">6 HUB · 24 Pro</td><td style="padding:10px 8px">71</td><td style="padding:10px 8px">today</td><td style="padding:10px 16px;text-align:right"><span style="padding:2px 8px;border-radius:9999px;background:#e6f6ef;color:#047857;font-size:12px;font-weight:600">active</span></td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:10px 16px"><a href="TenantDetail.dc.html" style="font-weight:600">Test Lab</a></td><td style="padding:10px 8px">Lab · device only</td><td style="padding:10px 8px">10 Pro · 2 Lite</td><td style="padding:10px 8px">1,420</td><td style="padding:10px 8px">yesterday</td><td style="padding:10px 16px;text-align:right"><span style="padding:2px 8px;border-radius:9999px;background:#e6f6ef;color:#047857;font-size:12px;font-weight:600">active</span></td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:10px 16px"><a href="TenantDetail.dc.html" style="font-weight:600">Demo Diagnostics</a></td><td style="padding:10px 8px">Lab · device only</td><td style="padding:10px 8px">—</td><td style="padding:10px 8px">—</td><td style="padding:10px 8px">today</td><td style="padding:10px 16px;text-align:right"><span style="padding:2px 8px;border-radius:9999px;background:#e8eefc;color:#1a43b8;font-size:12px;font-weight:600">waiting approval</span></td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":900}}'>
+class Component extends DCLogic { renderVals() { return {}; } }
+</script>
+</body>
+</html>

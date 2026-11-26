@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Track0tic portal — QC operator home</title>
+<script src="./support.js?v=6"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>body{margin:0}a{color:#1a43b8}a:hover{color:#0f2f8a}table{border-collapse:collapse}</style>
+</helmet>
+<div style="display:flex;flex-wrap:wrap;min-height:900px;background:#f3f5f9;color:#0f172a;font-family:'Noto Sans',system-ui,sans-serif">
+  <dc-import name="Sidebar" role="qc" active="home" hint-size="240px,900px"></dc-import>
+  <main style="flex:999 1 560px;min-width:0;padding:28px;box-sizing:border-box;display:flex;flex-direction:column;gap:24px">
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px">
+      <div><div style="font-size:14px;color:#4b5565">Thu 26 Nov · bench 2 · Okhla</div><h1 style="margin:0;font-size:28px;line-height:36px;font-weight:600">Meena, the bench queue</h1></div>
+      <a href="P-Scan.dc.html" style="display:inline-flex;align-items:center;gap:10px;min-height:56px;padding:0 24px;border-radius:12px;background:#1d4ed8;color:#ffffff;font-size:18px;font-weight:600;text-decoration:none"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3M7 12h10"/></svg>Scan the device on the bench</a>
+    </div>
+
+    <div style="display:grid;grid-template-columns:minmax(0, 2fr) minmax(0, 1fr);gap:16px">
+      <a href="QC.dc.html" style="text-decoration:none;color:#0f172a;display:flex;flex-direction:column;gap:14px;padding:24px;border-radius:16px;background:#fef3e2;border:2px solid #b45309;min-height:240px">
+        <span style="display:flex;align-items:center;gap:12px"><span style="width:44px;height:44px;border-radius:9999px;background:#b45309;color:#ffffff;display:inline-flex;align-items:center;justify-content:center;font-weight:600;font-size:20px">2</span><span style="font-size:14px;font-weight:600;letter-spacing:0.06em;color:#92400e">QC BENCH</span></span>
+        <span style="font-size:44px;font-weight:600;line-height:52px">117 <span style="font-size:18px;font-weight:500;color:#92400e">received, not tested</span></span>
+        <span style="display:flex;gap:18px;flex-wrap:wrap;font-size:15px;color:#92400e"><span><strong>77</strong> Pro · RB-0042</span><span><strong>28</strong> HUB · RB-0041</span><span><strong>12</strong> Lite · RB-0043</span></span>
+        <span style="font-size:15px;color:#92400e">Oldest box waiting 3 days · target: nothing older than 2</span>
+        <span style="margin-top:auto;display:inline-flex;align-items:center;justify-content:center;min-height:48px;border-radius:12px;background:#b45309;color:#ffffff;font-size:16px;font-weight:600">Open the queue</span>
+      </a>
+      <a href="Returns.dc.html" style="text-decoration:none;color:#0f172a;display:flex;flex-direction:column;gap:14px;padding:24px;border-radius:16px;background:#fdecec;border:2px solid #f3b4b4;min-height:240px">
+        <span style="display:flex;align-items:center;gap:12px"><span style="width:44px;height:44px;border-radius:9999px;background:#b91c1c;color:#ffffff;display:inline-flex;align-items:center;justify-content:center;font-weight:600;font-size:20px">!</span><span style="font-size:14px;font-weight:600;letter-spacing:0.06em;color:#a61b1b">FAULTS</span></span>
+        <span style="font-size:44px;font-weight:600;line-height:52px">4</span>
+        <span style="font-size:15px;line-height:22px;color:#a61b1b">2 failed QC · 2 back from Adroit<br>decide: repair → retest, or scrap</span>
+        <span style="margin-top:auto;display:inline-flex;align-items:center;justify-content:center;min-height:48px;border-radius:12px;background:#ffffff;border:1px solid #7a8696;font-size:16px;font-weight:600">Open faults</span>
+      </a>
+    </div>
+
+    <section style="background:#ffffff;border:1px solid #e2e6ed;border-radius:12px;overflow:hidden">
+      <div style="padding:14px 20px;border-bottom:1px solid #e2e6ed;display:flex;justify-content:space-between;align-items:center"><h2 style="margin:0;font-size:16px;font-weight:600">Today at this bench</h2><span style="font-size:14px;color:#4b5565">41 tested · 39 pass · 2 fail · 6 min average</span></div>
+      <table style="width:100%;font-size:15px">
+        <thead><tr style="text-align:left;color:#4b5565;font-size:13px"><th style="padding:8px 20px;font-weight:500">Time</th><th style="padding:8px;font-weight:500">Serial</th><th style="padding:8px;font-weight:500">Model</th><th style="padding:8px;font-weight:500">Result</th><th style="padding:8px 20px;font-weight:500;text-align:right">Now</th></tr></thead>
+        <tbody>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:10px 20px">10:58</td><td style="padding:10px 8px;font-family:'IBM Plex Mono',monospace">867530041122331</td><td style="padding:10px 8px">Pro</td><td style="padding:10px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#e8eefc;color:#1a43b8;font-size:12px;font-weight:600">PASS → TRK-PRO-900401</span></td><td style="padding:10px 20px;text-align:right;color:#1a43b8">3 · waiting for SIM</td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:10px 20px">10:51</td><td style="padding:10px 8px;font-family:'IBM Plex Mono',monospace">867530041122330</td><td style="padding:10px 8px">Pro</td><td style="padding:10px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#fdecec;color:#a61b1b;font-size:12px;font-weight:600">FAIL · sensor drift 1.8 °C</span></td><td style="padding:10px 20px;text-align:right;color:#a61b1b">! · in faults</td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:10px 20px">10:44</td><td style="padding:10px 8px;font-family:'IBM Plex Mono',monospace">867530041122329</td><td style="padding:10px 8px">Pro</td><td style="padding:10px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#e8eefc;color:#1a43b8;font-size:12px;font-weight:600">PASS → TRK-PRO-900400</span></td><td style="padding:10px 20px;text-align:right;color:#1a43b8">3 · SIM fitted 11:02</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":900}}'>
+class Component extends DCLogic { renderVals() { return {}; } }
+</script>
+</body>
+</html>

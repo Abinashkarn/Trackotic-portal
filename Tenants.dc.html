@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Track0tic portal — tenants</title>
+<script src="./support.js?v=6"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>body{margin:0}a{color:#1a43b8}a:hover{color:#0f2f8a}table{border-collapse:collapse}button,input,select{font-family:inherit}</style>
+</helmet>
+<div style="display:flex;flex-wrap:wrap;min-height:900px;background:#f3f5f9;color:#0f172a;font-family:'Noto Sans',system-ui,sans-serif">
+  <dc-import name="Sidebar" role="admin" active="tenants" hint-size="240px,900px"></dc-import>
+  <main style="flex:999 1 560px;min-width:0;padding:24px;box-sizing:border-box;display:flex;flex-direction:column;gap:18px">
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px">
+      <div><div style="font-size:13px;color:#4b5565">2 · Tenants</div><h1 style="margin:0;font-size:22px;line-height:28px;font-weight:600">Tenants · 6</h1></div>
+      <div style="display:flex;gap:8px"><input type="search" placeholder="Search tenants" style="height:40px;width:240px;border:1px solid #7a8696;border-radius:8px;padding:0 12px;font-size:14px;color:#0f172a"><a href="TenantCreate.dc.html" style="display:inline-flex;align-items:center;min-height:40px;padding:0 14px;border-radius:8px;background:#1d4ed8;color:#ffffff;font-size:14px;font-weight:600;text-decoration:none">+ Create tenant</a></div>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;font-size:13px">
+      <span style="padding:6px 12px;border-radius:9999px;background:#1d4ed8;color:#ffffff;font-weight:600">All 6</span>
+      <span style="padding:6px 12px;border-radius:9999px;background:#ffffff;border:1px solid #e2e6ed;color:#4b5565;font-weight:600">Pharmacy chain 1</span>
+      <span style="padding:6px 12px;border-radius:9999px;background:#ffffff;border:1px solid #e2e6ed;color:#4b5565;font-weight:600">Distributor 1</span>
+      <span style="padding:6px 12px;border-radius:9999px;background:#ffffff;border:1px solid #e2e6ed;color:#4b5565;font-weight:600">Lab 2</span>
+      <span style="padding:6px 12px;border-radius:9999px;background:#ffffff;border:1px solid #e2e6ed;color:#4b5565;font-weight:600">Cash-van 1</span>
+      <span style="padding:6px 12px;border-radius:9999px;background:#ffffff;border:1px solid #e2e6ed;color:#4b5565;font-weight:600">Lockbox 1</span>
+      <span style="margin-left:auto;padding:6px 12px;border-radius:9999px;background:#fef3e2;color:#92400e;font-weight:600">No admin yet 1</span>
+      <span style="padding:6px 12px;border-radius:9999px;background:#e8eefc;color:#1a43b8;font-weight:600">Waiting approval 1</span>
+    </div>
+    <section style="background:#ffffff;border:1px solid #e2e6ed;border-radius:12px;overflow:hidden">
+      <div style="overflow-x:auto">
+      <table style="width:100%;font-size:14px;min-width:900px">
+        <thead><tr style="text-align:left;color:#4b5565;font-size:13px"><th style="padding:10px 16px;font-weight:500">Tenant</th><th style="padding:10px 8px;font-weight:500">Vertical · type</th><th style="padding:10px 8px;font-weight:500">Portal type</th><th style="padding:10px 8px;font-weight:500">Hosted on</th><th style="padding:10px 8px;font-weight:500">Users</th><th style="padding:10px 8px;font-weight:500">Devices with them</th><th style="padding:10px 8px;font-weight:500">Passports</th><th style="padding:10px 8px;font-weight:500">Status</th><th style="padding:10px 16px;font-weight:500;text-align:right">Owner</th></tr></thead>
+        <tbody>
+          <tr style="border-top:1px solid #e2e6ed;background:#fef3e2"><td style="padding:12px 16px"><a href="TenantDetail.dc.html" style="font-weight:600">Apollo Pharmacy</a><div style="font-size:12px;color:#4b5565">ten_apollo · created yesterday</div></td><td style="padding:12px 8px">Pharma · pharmacy chain</td><td style="padding:12px 8px">Pharmacy chain<div style="font-size:12px;color:#4b5565">DC → store → customer</div></td><td style="padding:12px 8px">Shared</td><td style="padding:12px 8px;color:#92400e;font-weight:600">0 · add admin</td><td style="padding:12px 8px">10 HUB · 20 Pro · 9 Lite</td><td style="padding:12px 8px">1,000</td><td style="padding:12px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#fef3e2;color:#92400e;font-size:12px;font-weight:600;border:1px solid #f0c48a">no admin yet</span></td><td style="padding:12px 16px;text-align:right;color:#4b5565">Pooja M</td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:12px 16px"><a href="TenantDetail.dc.html" style="font-weight:600">Axis Bank</a><div style="font-size:12px;color:#4b5565">ten_axis · 21 Oct</div></td><td style="padding:12px 8px">BFSI · bank, cash-in-transit</td><td style="padding:12px 8px">Cash-van<div style="font-size:12px;color:#4b5565">vans · crew · duties · gate pass</div></td><td style="padding:12px 8px">Shared</td><td style="padding:12px 8px">4 / 100</td><td style="padding:12px 8px">6 Tracker</td><td style="padding:12px 8px;color:#4b5565">n/a</td><td style="padding:12px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#e6f6ef;color:#047857;font-size:12px;font-weight:600">active</span></td><td style="padding:12px 16px;text-align:right;color:#4b5565">Abinash K</td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:12px 16px"><a href="TenantDetail.dc.html" style="font-weight:600">Adroit Agencies</a><div style="font-size:12px;color:#4b5565">ten_adroit · 2 Oct</div></td><td style="padding:12px 8px">Pharma · distributor</td><td style="padding:12px 8px">Distributor<div style="font-size:12px;color:#4b5565">depot → pharmacy</div></td><td style="padding:12px 8px">Shared</td><td style="padding:12px 8px">7 / 25</td><td style="padding:12px 8px">6 HUB · 24 Pro</td><td style="padding:12px 8px">2,400 · 71 left</td><td style="padding:12px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#e6f6ef;color:#047857;font-size:12px;font-weight:600">active</span></td><td style="padding:12px 16px;text-align:right;color:#4b5565">Pooja M</td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:12px 16px"><a href="TenantDetail.dc.html" style="font-weight:600">Test Lab</a><div style="font-size:12px;color:#4b5565">ten_testlab · 6 Oct</div></td><td style="padding:12px 8px">Diagnostics · lab</td><td style="padding:12px 8px">Lab · device only<div style="font-size:12px;color:#4b5565">scan page + alerts · data push off</div></td><td style="padding:12px 8px">Shared</td><td style="padding:12px 8px">2 / 10</td><td style="padding:12px 8px">10 Pro · 2 Lite</td><td style="padding:12px 8px">4,000 · 1,420 left</td><td style="padding:12px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#e6f6ef;color:#047857;font-size:12px;font-weight:600">active</span></td><td style="padding:12px 16px;text-align:right;color:#4b5565">Pooja M</td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:12px 16px"><a href="TenantDetail.dc.html" style="font-weight:600">Muthoot Finance</a><div style="font-size:12px;color:#4b5565">ten_muthoot · 19 Oct</div></td><td style="padding:12px 8px">BFSI · gold-loan NBFC</td><td style="padding:12px 8px">Lockbox<div style="font-size:12px;color:#4b5565">gold pickup · approvals</div></td><td style="padding:12px 8px">Dedicated · Muthoot</td><td style="padding:12px 8px">3 / 50</td><td style="padding:12px 8px">4 Lockbox</td><td style="padding:12px 8px;color:#4b5565">n/a</td><td style="padding:12px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#e6f6ef;color:#047857;font-size:12px;font-weight:600">active</span></td><td style="padding:12px 16px;text-align:right;color:#4b5565">Abinash K</td></tr>
+          <tr style="border-top:1px solid #e2e6ed;background:#e8eefc"><td style="padding:12px 16px"><a href="TenantDetail.dc.html" style="font-weight:600">Demo Diagnostics</a><div style="font-size:12px;color:#4b5565">ten_demolab · today</div></td><td style="padding:12px 8px">Diagnostics · lab</td><td style="padding:12px 8px">Lab · device only</td><td style="padding:12px 8px">Shared</td><td style="padding:12px 8px">—</td><td style="padding:12px 8px">—</td><td style="padding:12px 8px">—</td><td style="padding:12px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#e8eefc;color:#1a43b8;font-size:12px;font-weight:600;border:1px solid #c7d4fb">waiting approval</span></td><td style="padding:12px 16px;text-align:right;color:#4b5565">Pooja M</td></tr>
+        </tbody>
+      </table>
+      </div>
+    </section>
+    <div style="font-size:13px;color:#4b5565">Order of work: <strong>create tenant (portal type decided there) → add first admin → print device QRs = allocate, by category → generate passport QRs → dispatch → tenant GRNs</strong>. Hosted on defaults to the shared platform for every vertical; a dedicated environment is a bank's option, not a rule.</div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":900}}'>
+class Component extends DCLogic { renderVals() { return {}; } }
+</script>
+</body>
+</html>
