@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Track0tic portal — tenant devices: functionality, alerts, fall-outs</title>
+<script src="./support.js?v=6"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>body{margin:0}a{color:#1a43b8}a:hover{color:#0f2f8a}table{border-collapse:collapse}button,input,select,textarea{font-family:inherit}</style>
+</helmet>
+<div style="display:flex;flex-wrap:wrap;min-height:1000px;background:#f3f5f9;color:#0f172a;font-family:'Noto Sans',system-ui,sans-serif">
+  <dc-import name="Sidebar" role="support" active="tdevices" hint-size="240px,900px"></dc-import>
+  <main style="flex:999 1 560px;min-width:0;padding:24px;box-sizing:border-box;display:flex;flex-direction:column;gap:16px">
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px">
+      <div><div style="font-size:13px;color:#4b5565">2 · Tenants</div><h1 style="margin:0;font-size:22px;line-height:28px;font-weight:600">Tenant devices · what works, what fell out</h1></div>
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+        <select onChange="{{setTenant}}" style="height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 12px;font-size:14px;background:#ffffff;color:#0f172a"><option value="apollo">Apollo Pharmacy · 39 devices</option><option value="adroit">Adroit Agencies · 30 devices</option><option value="axis">Axis Bank · 6 trackers</option><option value="testlab">Test Lab · 12 devices</option></select>
+        <a href="{{t.portal}}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border-radius:8px;border:1px solid #7a8696;background:#ffffff;color:#0f172a;font-size:14px;font-weight:500;text-decoration:none">Open {{t.short}}'s portal ↗</a>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(5, minmax(0, 1fr));gap:10px">
+      <button onClick="{{fAll}}" style="text-align:left;background:#ffffff;border:2px solid {{fb.all}};border-radius:12px;padding:12px;cursor:pointer;color:#0f172a"><div style="font-size:12px;color:#4b5565">All with {{t.short}}</div><div style="font-size:26px;font-weight:600">{{t.total}}</div><div style="font-size:12px;color:#4b5565">{{t.mix}}</div></button>
+      <button onClick="{{fOk}}" style="text-align:left;background:#e6f6ef;border:2px solid {{fb.ok}};border-radius:12px;padding:12px;cursor:pointer;color:#0f172a"><div style="font-size:12px;font-weight:600;color:#047857">WORKING</div><div style="font-size:26px;font-weight:600">{{t.ok}}</div><div style="font-size:12px;color:#047857">heartbeat, sensors, battery all fine</div></button>
+      <button onClick="{{fWarn}}" style="text-align:left;background:#fef3e2;border:2px solid {{fb.warn}};border-radius:12px;padding:12px;cursor:pointer;color:#0f172a"><div style="font-size:12px;font-weight:600;color:#92400e">ATTENTION</div><div style="font-size:26px;font-weight:600">{{t.warn}}</div><div style="font-size:12px;color:#92400e">battery low, late heartbeat, Lite out</div></button>
+      <button onClick="{{fOut}}" style="text-align:left;background:#fdecec;border:2px solid {{fb.out}};border-radius:12px;padding:12px;cursor:pointer;color:#0f172a"><div style="font-size:12px;font-weight:600;color:#a61b1b">FALLEN OUT</div><div style="font-size:26px;font-weight:600">{{t.out}}</div><div style="font-size:12px;color:#a61b1b">silent &gt; 6 h, sensor fault, dead battery</div></button>
+      <button onClick="{{fRet}}" style="text-align:left;background:#eef1f6;border:2px solid {{fb.ret}};border-radius:12px;padding:12px;cursor:pointer;color:#0f172a"><div style="font-size:12px;font-weight:600;color:#4b5565">RETURNING</div><div style="font-size:26px;font-weight:600">{{t.ret}}</div><div style="font-size:12px;color:#4b5565">swap sent · courier back to Track0tic</div></button>
+    </div>
+
+    <div style="display:grid;grid-template-columns:minmax(0, 1.65fr) minmax(0, 1fr);gap:16px;align-items:start">
+      <section style="background:#ffffff;border:1px solid #e2e6ed;border-radius:12px;overflow:hidden">
+        <div style="padding:12px 16px;border-bottom:1px solid #e2e6ed;display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap"><span style="font-size:15px;font-weight:600">{{listTitle}} · {{rows.length}}</span><span style="font-size:12px;color:#4b5565">each cell: <span style="color:#047857;font-weight:600">● ok</span> · <span style="color:#92400e;font-weight:600">● attention</span> · <span style="color:#a61b1b;font-weight:600">● fault</span> · word always next to the dot</span></div>
+        <div style="overflow-x:auto">
+        <table style="width:100%;font-size:13px;min-width:860px">
+          <thead><tr style="text-align:left;color:#4b5565;font-size:12px"><th style="padding:8px 12px;font-weight:500">Device · where</th><th style="padding:8px 6px;font-weight:500">Heartbeat</th><th style="padding:8px 6px;font-weight:500">Battery</th><th style="padding:8px 6px;font-weight:500">Temp sensor</th><th style="padding:8px 6px;font-weight:500">GPS</th><th style="padding:8px 6px;font-weight:500">Lid / bag</th><th style="padding:8px 6px;font-weight:500">SIM · data</th><th style="padding:8px 6px;font-weight:500">Alerts</th><th style="padding:8px 12px;font-weight:500;text-align:right">State</th></tr></thead>
+          <tbody>
+            <sc-for list="{{rows}}" as="r" hint-placeholder-count="8">
+              <tr style="border-top:1px solid #e2e6ed;background:{{r.bg}};cursor:pointer" onClick="{{r.pick}}">
+                <td style="padding:9px 12px"><span style="font-family:'IBM Plex Mono',monospace;font-weight:600">{{r.name}}</span><div style="font-size:12px;color:#4b5565">{{r.type}} · {{r.where}}</div></td>
+                <td style="padding:9px 6px;color:{{r.hb.c}};font-weight:500">● {{r.hb.t}}</td>
+                <td style="padding:9px 6px;color:{{r.bat.c}};font-weight:500">● {{r.bat.t}}</td>
+                <td style="padding:9px 6px;color:{{r.temp.c}};font-weight:500">● {{r.temp.t}}</td>
+                <td style="padding:9px 6px;color:{{r.gps.c}};font-weight:500">● {{r.gps.t}}</td>
+                <td style="padding:9px 6px;color:{{r.lid.c}};font-weight:500">● {{r.lid.t}}</td>
+                <td style="padding:9px 6px;color:{{r.sim.c}};font-weight:500">● {{r.sim.t}}</td>
+                <td style="padding:9px 6px">{{r.alerts}}</td>
+                <td style="padding:9px 12px;text-align:right"><span style="padding:2px 8px;border-radius:9999px;background:{{r.pillBg}};color:{{r.pillFg}};font-size:12px;font-weight:600;white-space:nowrap">{{r.state}}</span></td>
+              </tr>
+            </sc-for>
+          </tbody>
+        </table>
+        </div>
+        <div style="padding:10px 16px;border-top:1px solid #e2e6ed;font-size:12px;color:#4b5565;line-height:18px">Rules (Reference data): heartbeat late = no message for 2 × its interval · fallen out = silent &gt; 6 h, or any sensor reporting fault, or battery 0 % · Lite out = away &gt; 2 days · a device the tenant has not GRN'd yet shows "sent" and is not counted as fallen out. Click a row for the fall-out actions.</div>
+      </section>
+
+      <section style="background:#ffffff;border:2px solid {{cur.border}};border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:12px">
+        <div><span style="padding:2px 8px;border-radius:9999px;background:{{cur.pillBg}};color:{{cur.pillFg}};font-size:12px;font-weight:600">{{cur.state}}</span><div style="font-size:20px;font-weight:600;margin-top:8px;font-family:'IBM Plex Mono',monospace">{{cur.name}}</div><div style="font-size:14px;color:#4b5565">{{cur.type}} · {{cur.where}} · {{t.name}}</div></div>
+        <div style="padding:12px;border-radius:8px;background:#f3f5f9;font-size:14px;line-height:20px">{{cur.story}}</div>
+        <div style="display:flex;flex-direction:column;gap:6px;font-size:13px">
+          <div style="display:flex;justify-content:space-between"><span style="color:#4b5565">Tenant told</span><span>{{cur.told}}</span></div>
+          <div style="display:flex;justify-content:space-between"><span style="color:#4b5565">Open alerts</span><span>{{cur.alertsText}}</span></div>
+          <div style="display:flex;justify-content:space-between"><span style="color:#4b5565">Items bound right now</span><span>{{cur.items}}</span></div>
+          <div style="display:flex;justify-content:space-between"><span style="color:#4b5565">Warranty</span><span>{{cur.warranty}}</span></div>
+        </div>
+        <div style="font-size:12px;font-weight:600;letter-spacing:0.06em;color:#4b5565">MANAGE THE FALL-OUT</div>
+        <div style="display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:8px">
+          <button onClick="{{act.call}}" style="min-height:44px;border:1px solid #7a8696;border-radius:10px;background:#ffffff;font-size:13px;font-weight:600;cursor:pointer;color:#0f172a">Call site · log note</button>
+          <button onClick="{{act.raise}}" style="min-height:44px;border:1px solid #7a8696;border-radius:10px;background:#ffffff;font-size:13px;font-weight:600;cursor:pointer;color:#0f172a">Raise to tenant admin</button>
+          <button onClick="{{act.swap}}" style="min-height:44px;border:0;border-radius:10px;background:#1d4ed8;color:#ffffff;font-size:13px;font-weight:600;cursor:pointer">Send a swap · allocate from stock</button>
+          <button onClick="{{act.recall}}" style="min-height:44px;border:1px solid #b91c1c;border-radius:10px;background:#ffffff;color:#a61b1b;font-size:13px;font-weight:600;cursor:pointer">Recall → faults list</button>
+          <button onClick="{{act.snooze}}" style="min-height:44px;border:1px solid #7a8696;border-radius:10px;background:#ffffff;font-size:13px;font-weight:600;cursor:pointer;color:#0f172a">Snooze alerts 24 h (reason)</button>
+          <button onClick="{{act.close}}" style="min-height:44px;border:1px solid #7a8696;border-radius:10px;background:#ffffff;font-size:13px;font-weight:600;cursor:pointer;color:#0f172a">Close · working again</button>
+        </div>
+        <sc-if value="{{did}}" hint-placeholder-val="{{ false }}"><div style="padding:10px 12px;border-radius:8px;background:#e8eefc;border:1px solid #c7d4fb;font-size:13px;line-height:18px;color:#1e3a8a">{{didText}}</div></sc-if>
+        <div style="font-size:12px;color:#4b5565;line-height:18px">A swap = QR labels for one device of the same type, allocated to this tenant with "replaces {{cur.name}}"; the old one goes to Returning, its passports re-bind to the new device at the tenant's next scan. Every action here is an audit row and shows on the tenant's own alert.</div>
+      </section>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":1000}}'>
+class Component extends DCLogic {
+  constructor(p){ super(p); this.state = { tenant: 'apollo', f: 'all', cur: 0, did: '' }; }
+  renderVals() {
+    const C = { ok:'#047857', warn:'#92400e', bad:'#a61b1b', na:'#7a8696' };
+    const c = (k, t) => ({ c: C[k], t });
+    const PILL = { ok:{ bg:'#e6f6ef', fg:'#047857', label:'working', border:'#9fd8bd', rowBg:'#ffffff' }, warn:{ bg:'#fef3e2', fg:'#92400e', label:'attention', border:'#b45309', rowBg:'#fffaf0' }, out:{ bg:'#b91c1c', fg:'#ffffff', label:'fallen out', border:'#b91c1c', rowBg:'#fdecec' }, ret:{ bg:'#eef1f6', fg:'#4b5565', label:'returning', border:'#7a8696', rowBg:'#f8fafc' }, sent:{ bg:'#eef1f6', fg:'#4b5565', label:'sent · GRN pending', border:'#7a8696', rowBg:'#ffffff' } };
+    const T = {
+      apollo: { name:'Apollo Pharmacy', short:'Apollo', portal:'https://abinashkarn.github.io/Trackotic-portal/apollo/', mix:'10 HUB · 20 Pro · 9 Lite', devices:[
+        { name:'11207A', type:'HUB', where:'store 11207 Saket · fridge', s:'warn', hb:c('ok','11:20'), bat:c('ok','mains'), temp:c('warn','9.4 °C · 22 min'), gps:c('na','n/a'), lid:c('ok','closed'), sim:c('ok','12 MB'), alerts:'1 excursion', story:'Temperature above 8 °C for 22 minutes; grace is 30. Store staff and the Apollo admin were notified at 11:00. Door was found open during stocking — closed at 11:12, temperature falling. Not a device fault.', told:'SMS 11:00 · store staff ×2, DC owner, admin', items:'48 items', warranty:'to Nov 2029' },
+        { name:'11001-P2', type:'Pro', where:'in transit · WO-11001-0419', s:'ok', hb:c('ok','11:18'), bat:c('ok','81 %'), temp:c('ok','5.1 °C'), gps:c('ok','fix 11:18'), lid:c('ok','closed'), sim:c('ok','9 MB'), alerts:'—', story:'Working. On a DC → 3 stores run, leg 2 of 3.', told:'—', items:'6 packets', warranty:'to Nov 2029' },
+        { name:'11212B', type:'HUB', where:'store 11212 Hauz Khas · fridge 2', s:'out', hb:c('bad','silent 7 h'), bat:c('na','mains?'), temp:c('bad','no data'), gps:c('na','n/a'), lid:c('bad','no data'), sim:c('warn','last 04:10'), alerts:'1 silent', story:'No message since 04:10. Last reading was normal (4.8 °C). Either mains is off at the fridge or the SIM lost network. 31 items are bound to this fridge and are unmonitored right now — the public report for them will show COMPLIANT WHERE MONITORED with a gap.', told:'SMS 06:10 · store staff, admin · no reply', items:'31 items · unmonitored', warranty:'to Nov 2029' },
+        { name:'11207-L3', type:'Lite', where:'Fortis Vasant Kunj · day 2', s:'warn', hb:c('ok','10:55'), bat:c('warn','23 %'), temp:c('ok','4.0 °C'), gps:c('ok','at hospital'), lid:c('ok','closed'), sim:c('ok','4 MB'), alerts:'1 Lite out', story:'Lite sent with a hospital delivery on 24 Nov and not back. Battery will last about 2 more days. Store 11207 should collect it.', told:'SMS 09:00 · store 11207 staff', items:'1 box', warranty:'to Nov 2029' },
+        { name:'11001-P5', type:'Pro', where:'DC 11001 · charging bay', s:'out', hb:c('ok','11:15'), bat:c('ok','100 %'), temp:c('bad','sensor fault'), gps:c('ok','at DC'), lid:c('ok','closed'), sim:c('ok','2 MB'), alerts:'1 sensor', story:'Temperature sensor reports −127 °C (disconnected). The device must not go on a run. DC ops has already parked it. A swap is the right call.', told:'SMS 08:40 · DC ops, admin · acknowledged', items:'none', warranty:'to Nov 2029 · claimable' },
+        { name:'11230A', type:'HUB', where:'store 11230 Lajpat Nagar', s:'ok', hb:c('ok','11:21'), bat:c('ok','mains'), temp:c('ok','4.6 °C'), gps:c('na','n/a'), lid:c('ok','closed'), sim:c('ok','11 MB'), alerts:'—', story:'Working.', told:'—', items:'52 items', warranty:'to Nov 2029' },
+        { name:'11001-P1', type:'Pro', where:'courier back to Track0tic', s:'ret', hb:c('na','off'), bat:c('na','—'), temp:c('na','—'), gps:c('na','—'), lid:c('na','—'), sim:c('na','—'), alerts:'—', story:'Swapped on 22 Nov for 11001-P6 (bag sensor dead). AWB BD 7731 0040 002. Goes to faults on arrival.', told:'—', items:'none', warranty:'claim open' },
+        { name:'Lite ×9', type:'Lite', where:'DN-0411 · GRN pending', s:'sent', hb:c('na','not yet'), bat:c('na','—'), temp:c('na','—'), gps:c('na','—'), lid:c('na','—'), sim:c('na','—'), alerts:'—', story:'Dispatched 24 Nov, Apollo has not done the GRN. Not counted until then.', told:'—', items:'none', warranty:'from GRN' } ],
+        total:39, ok:33, warn:2, out:2, ret:1 },
+      adroit: { name:'Adroit Agencies', short:'Adroit', portal:'https://abinashkarn.github.io/Trackotic-tenant/', mix:'6 HUB · 24 Pro', devices:[
+        { name:'TRK-PRO-900241', type:'Pro', where:'trip TRP-1182 · 9 pharmacies', s:'out', hb:c('ok','11:19'), bat:c('bad','12 %'), temp:c('bad','9.1 °C · 31 min'), gps:c('ok','Okhla'), lid:c('warn','opened 3×'), sim:c('ok','8 MB'), alerts:'excursion · battery', story:'Battery at 12 % on a live trip and an open excursion. Driver Ramesh K is locked out of the app (5 wrong OTPs) so he never saw the alert. Unlock him, call him, and the trip may still close in range.', told:'SMS 10:40 · driver (locked), manager', items:'16 passports', warranty:'to Oct 2028' },
+        { name:'TRK-HUB-900012', type:'HUB', where:'Okhla depot · cold room', s:'ok', hb:c('ok','11:21'), bat:c('ok','mains'), temp:c('ok','3.9 °C'), gps:c('na','n/a'), lid:c('ok','closed'), sim:c('ok','14 MB'), alerts:'—', story:'Working.', told:'—', items:'310 items', warranty:'to Oct 2028' },
+        { name:'TRK-PRO-900001', type:'Pro', where:'returned · in faults', s:'ret', hb:c('na','off'), bat:c('na','—'), temp:c('na','—'), gps:c('na','—'), lid:c('bad','dead'), sim:c('na','—'), alerts:'—', story:'Bag sensor dead; de-allocated 22 Nov with reason; warranty claim to supplier.', told:'—', items:'none', warranty:'claim open' } ],
+        total:30, ok:27, warn:1, out:1, ret:1 },
+      axis: { name:'Axis Bank', short:'Axis', portal:'https://abinashkarn.github.io/Axis-bank/', mix:'6 Tracker', devices:[
+        { name:'VAN-DL-14', type:'Tracker', where:'duty DUTY-DL-0226 · 6 branches', s:'warn', hb:c('warn','no fix 38 min'), bat:c('ok','van power'), temp:c('na','n/a'), gps:c('warn','last Nehru Place'), lid:c('na','n/a'), sim:c('ok','3 MB'), alerts:'1 silent', story:'No GPS fix for 38 minutes on a live duty; last position Nehru Place basement chest. Probably underground. If no fix by 45 min the bank operator is called.', told:'portal 11:00 · bank operator', items:'crew 4', warranty:'to Nov 2028' },
+        { name:'VAN-DL-09', type:'Tracker', where:'branch Saket · parked', s:'ok', hb:c('ok','11:20'), bat:c('ok','van power'), temp:c('na','n/a'), gps:c('ok','fix 11:20'), lid:c('na','n/a'), sim:c('ok','2 MB'), alerts:'—', story:'Working.', told:'—', items:'—', warranty:'to Nov 2028' } ],
+        total:6, ok:5, warn:1, out:0, ret:0 },
+      testlab: { name:'Test Lab', short:'Test Lab', portal:'https://abinashkarn.github.io/Trackotic-portal/lab/', mix:'10 Pro · 2 Lite', devices:[
+        { name:'TL-P4', type:'Pro', where:'pickup PK-0931 · Dwarka → lab', s:'warn', hb:c('ok','11:19'), bat:c('ok','64 %'), temp:c('ok','4.2 °C'), gps:c('ok','Dwarka Mor'), lid:c('warn','open 6 min'), sim:c('ok','5 MB'), alerts:'1 lid open', story:'Bag opened for 6 minutes outside the lab, 3 h 41 into a 4 h sample limit. The lab decides whether to receive the samples.', told:'SMS 11:05 · lab ops', items:'4 tubes', warranty:'to Oct 2028' },
+        { name:'TL-L1', type:'Lite', where:'lab → partner lab Gurgaon', s:'ok', hb:c('ok','11:10'), bat:c('ok','70 %'), temp:c('ok','3.8 °C'), gps:c('ok','NH-48'), lid:c('ok','closed'), sim:c('ok','3 MB'), alerts:'—', story:'Working.', told:'—', items:'12 tubes', warranty:'to Oct 2028' } ],
+        total:12, ok:10, warn:1, out:0, ret:0 }
+    };
+    const s = this.state; const t = T[s.tenant]; const f = s.f;
+    const all = t.devices.map((d, i) => ({ ...d, idx: i }));
+    const rows = all.filter(d => f === 'all' || (f === 'warn' ? d.s === 'warn' : f === 'ok' ? d.s === 'ok' : f === 'out' ? d.s === 'out' : d.s === 'ret' || d.s === 'sent')).map(d => ({ ...d, state: PILL[d.s].label, pillBg: PILL[d.s].bg, pillFg: PILL[d.s].fg, bg: d.idx === s.cur ? '#e8eefc' : PILL[d.s].rowBg, pick: () => this.setState({ cur: d.idx, did: '' }) }));
+    const cur0 = all[Math.min(s.cur, all.length - 1)]; const cur = { ...cur0, state: PILL[cur0.s].label, pillBg: PILL[cur0.s].bg, pillFg: PILL[cur0.s].fg, border: PILL[cur0.s].border, alertsText: cur0.alerts };
+    const fb = { all: f === 'all' ? '#0f172a' : '#e2e6ed', ok: f === 'ok' ? '#047857' : '#9fd8bd', warn: f === 'warn' ? '#b45309' : '#f0c48a', out: f === 'out' ? '#b91c1c' : '#f3b4b4', ret: f === 'ret' ? '#4b5565' : '#e2e6ed' };
+    const titles = { all:'All devices', ok:'Working', warn:'Attention', out:'Fallen out', ret:'Returning / sent' };
+    const did = (txt) => () => this.setState({ did: txt });
+    return { t, rows, cur, fb, listTitle: titles[f], did: !!s.did, didText: s.did,
+      setTenant: (e) => this.setState({ tenant: e.target.value, cur: 0, f: 'all', did: '' }),
+      fAll: () => this.setState({ f: 'all' }), fOk: () => this.setState({ f: 'ok' }), fWarn: () => this.setState({ f: 'warn' }), fOut: () => this.setState({ f: 'out' }), fRet: () => this.setState({ f: 'ret' }),
+      act: { call: did('Note logged on ' + cur0.name + ' · "called site, waiting for power check" · audit #88402 · visible on the tenant’s alert'),
+             raise: did('Raised to ' + t.name + ' tenant admin by SMS + portal banner · they must acknowledge within 2 h · audit #88403'),
+             swap: did('Swap started: QR labels opened for 1 × ' + cur0.type + ' → ' + t.name + ' with "replaces ' + cur0.name + '" · old device moves to Returning once the new one heartbeats at the site · audit #88404'),
+             recall: did(cur0.name + ' recalled → faults list with reason required · courier label emailed to the site · tenant sees "device being replaced" · audit #88405'),
+             snooze: did('Alerts on ' + cur0.name + ' snoozed 24 h · reason required · the public report is NOT affected · audit #88406'),
+             close: did(cur0.name + ' marked working again after a fresh heartbeat and normal readings · alert closed with note · audit #88407') } };
+  }
+}
+</script>
+</body>
+</html>

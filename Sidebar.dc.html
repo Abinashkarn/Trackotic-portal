@@ -73,6 +73,7 @@ class Component extends DCLogic {
       qc:       [ { n:'2', label:'QC bench', sub:'received, untested', count:'117', c:'amber', href:'QC.dc.html', key:'qc' },
                   { n:'!', label:'Faults', sub:'failed · returned', count:'4', c:'red', href:'Returns.dc.html', key:'returns' } ],
       support:  [ { n:'!', label:'Alerts', sub:'open across tenants', count:'34', c:'red', href:'Alerts.dc.html', key:'alerts' },
+                  { n:'D', label:'Tenant devices', sub:'fall-outs across tenants', count:'3', c:'red', href:'TenantDevices.dc.html', key:'tdevices' },
                   { n:'U', label:'Tenant users', sub:'OTP resend · unlock', count:'3', c:'blue', href:'TenantUsers.dc.html', key:'tusers' },
                   { n:'L', label:'Label requests', sub:'replace · reprint', count:'2', c:'amber', href:'Approvals.dc.html', key:'approvals' } ]
     };
@@ -80,7 +81,7 @@ class Component extends DCLogic {
     const item = (key, label, href, c, badge, badgeBg) => ({ label, href, dot: C[c], bg: a === key ? '#1d4ed8' : 'transparent', badge: badge || false, badgeBg: badgeBg || '#ef4444' });
     const all = [
       { label:'1 · DEVICES', items:[ item('suppliers','Suppliers','Suppliers.dc.html','none'), item('receive','Receive','Receive.dc.html','grey'), item('qc','QC & firmware','QC.dc.html','amber'), item('sim','Fit SIM','SIM.dc.html','blue'), item('inventory','Inventory','Inventory.dc.html','none'), item('labels','QR labels = allocate','QRLabels.dc.html','green'), item('dispatch','Pack & dispatch','Dispatch.dc.html','green'), item('returns','Faulty & returned','Returns.dc.html','red') ] },
-      { label:'2 · TENANTS', items:[ item('tenants','Tenants','Tenants.dc.html','none'), item('tusers','Tenant users','TenantUsers.dc.html','none'), item('journeys','Journey templates','Journeys.dc.html','none'), item('profiles','Temperature profiles','Profiles.dc.html','none') ] },
+      { label:'2 · TENANTS', items:[ item('tenants','Tenants','Tenants.dc.html','none'), item('tusers','Tenant users','TenantUsers.dc.html','none'), item('tdevices','Tenant devices · health','TenantDevices.dc.html','red'), item('journeys','Journey templates','Journeys.dc.html','none'), item('profiles','Temperature profiles','Profiles.dc.html','none') ] },
       { label:'3 · SALE & SUPPLY', items:[ item('allocate','Allocations','Allocate.dc.html','none'), item('passports','Passport QRs & rolls','Passports.dc.html','none') ] },
       { label:'4 · OPERATIONS', items:[ item('trips','Trips / duties','Trips.dc.html','none'), item('alerts','Alerts','Alerts.dc.html','red','34'), item('approvals','Approvals','Approvals.dc.html','none','2','#3b6cf0') ] },
       { label:'5 · ADMIN', items:[ item('staff','Staff users','StaffUsers.dc.html','none'), item('reports','Reports','Reports.dc.html','none'), item('audit','Audit log','AuditLog.dc.html','none'), item('ref','Reference data','RefData.dc.html','none') ] }

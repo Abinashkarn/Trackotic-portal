@@ -1,128 +1,860 @@
 {
-  "v": 3,
-  "createdOnFiles": {"v": 1, "at": "2026-11-26T05:45:00Z"},
-  "title": "Track0tic Portal — Wireframes v2",
-  "launch": {"view": "canvas", "page": "flow"},
-  "pages": [
-    {"id": "flow", "name": "0 · Read me, roles, login"},
-    {"id": "floor", "name": "1 · Operator floor (devices in → out)"},
-    {"id": "tenants", "name": "2 · Tenants & sale"},
-    {"id": "ops", "name": "3 · Operations"},
-    {"id": "admin", "name": "4 · Admin"},
-    {"id": "phone", "name": "5 · Phone scan screens"}
-  ],
-  "designSystems": [
-    {"title": "Track0tic Design System", "namespace": "track0tic", "artifact": "https://claude.ai/artifact/8Vp3xUyfhUvKn7Z24MNErw", "version": "1792506653-0e66", "copiedAt": "2026-11-26T05:45:00Z"}
-  ],
-  "boards": {
-    "Main.dc.html":            {"x": 0,    "y": 0,    "w": 1920, "h": 1080, "page": "flow", "title": "Read me · stage colours · roles · build order"},
-    "Login.dc.html":           {"x": 0,    "y": 1500, "w": 1280, "h": 900,  "page": "flow", "title": "Staff login", "expand": "fill", "is_interactive": true},
-    "Home-Admin.dc.html":      {"x": 1360, "y": 1500, "w": 1280, "h": 900,  "page": "flow", "title": "Home · Admin / Ops head", "expand": "fill"},
-    "Home-Sales.dc.html":      {"x": 2720, "y": 1500, "w": 1280, "h": 900,  "page": "flow", "title": "Home · Sales", "expand": "fill"},
-    "Sidebar.dc.html":         {"x": 4080, "y": 1500, "w": 240,  "h": 900,  "page": "flow", "title": "Sidebar (shared · role-aware)"},
-
-    "Home-OpsAssembly.dc.html":{"x": 0,    "y": 0,    "w": 1280, "h": 900,  "page": "floor", "title": "Home · Ops – Assembly", "expand": "fill"},
-    "Home-OpsQC.dc.html":      {"x": 1360, "y": 0,    "w": 1280, "h": 900,  "page": "floor", "title": "Home · Ops – QC", "expand": "fill"},
-    "Home-OpsSupport.dc.html": {"x": 2720, "y": 0,    "w": 1280, "h": 900,  "page": "floor", "title": "Home · Ops – Support", "expand": "fill"},
-    "Receive.dc.html":         {"x": 0,    "y": 1500, "w": 1280, "h": 900,  "page": "floor", "title": "1 · Receive devices", "expand": "fill", "is_interactive": true},
-    "QC.dc.html":              {"x": 1360, "y": 1500, "w": 1280, "h": 900,  "page": "floor", "title": "2 · QC & firmware", "expand": "fill", "is_interactive": true},
-    "SIM.dc.html":             {"x": 2720, "y": 1500, "w": 1280, "h": 900,  "page": "floor", "title": "3 · Fit SIM", "expand": "fill", "is_interactive": true},
-    "Inventory.dc.html":       {"x": 0,    "y": 3000, "w": 1280, "h": 900,  "page": "floor", "title": "Inventory (stage-coloured)", "expand": "fill", "is_interactive": true},
-    "DeviceDetail.dc.html":    {"x": 1360, "y": 3000, "w": 1280, "h": 900,  "page": "floor", "title": "Device page · lifecycle", "expand": "fill"},
-    "QRLabels.dc.html":        {"x": 2720, "y": 3000, "w": 1280, "h": 900,  "page": "floor", "title": "4 · QR labels = allocate", "expand": "fill", "is_interactive": true},
-    "Dispatch.dc.html":        {"x": 0,    "y": 4500, "w": 1280, "h": 900,  "page": "floor", "title": "5 · Pack & dispatch to tenant", "expand": "fill", "is_interactive": true},
-    "Suppliers.dc.html":       {"x": 1360, "y": 4500, "w": 1280, "h": 900,  "page": "floor", "title": "Suppliers / factories", "expand": "fill"},
-    "Returns.dc.html":         {"x": 2720, "y": 4500, "w": 1280, "h": 900,  "page": "floor", "title": "Faulty & returned devices", "expand": "fill"},
-
-    "Tenants.dc.html":         {"x": 0,    "y": 0,    "w": 1280, "h": 900,  "page": "tenants", "title": "Tenants", "expand": "fill"},
-    "TenantCreate.dc.html":    {"x": 1360, "y": 0,    "w": 1280, "h": 1180, "page": "tenants", "title": "Create tenant · vertical → type → portal type", "expand": "fill", "is_interactive": true},
-    "TenantDetail.dc.html":    {"x": 2720, "y": 0,    "w": 1280, "h": 900,  "page": "tenants", "title": "Tenant page", "expand": "fill", "is_interactive": true},
-    "TenantUsers.dc.html":     {"x": 0,    "y": 1800, "w": 1280, "h": 900,  "page": "tenants", "title": "Tenant users & roles", "expand": "fill"},
-    "Allocate.dc.html":        {"x": 1360, "y": 1800, "w": 1280, "h": 900,  "page": "tenants", "title": "Allocations record", "expand": "fill"},
-    "Passports.dc.html":       {"x": 2720, "y": 1800, "w": 1280, "h": 900,  "page": "tenants", "title": "Passport QRs & label-roll orders", "expand": "fill", "is_interactive": true},
-    "Profiles.dc.html":        {"x": 0,    "y": 3300, "w": 1280, "h": 900,  "page": "tenants", "title": "Temperature profiles (product-wise)", "expand": "fill"},
-    "Journeys.dc.html":        {"x": 1360, "y": 3300, "w": 1280, "h": 900,  "page": "tenants", "title": "Journey templates per portal type", "expand": "fill"},
-
-    "Trips.dc.html":           {"x": 0,    "y": 0,    "w": 1280, "h": 900,  "page": "ops", "title": "Trips / duties across tenants", "expand": "fill"},
-    "Alerts.dc.html":          {"x": 1360, "y": 0,    "w": 1280, "h": 900,  "page": "ops", "title": "Alerts", "expand": "fill"},
-    "Approvals.dc.html":       {"x": 2720, "y": 0,    "w": 1280, "h": 900,  "page": "ops", "title": "Approvals (two-person rule)", "expand": "fill", "is_interactive": true},
-
-    "StaffUsers.dc.html":      {"x": 0,    "y": 0,    "w": 1280, "h": 900,  "page": "admin", "title": "Staff users · 8 roles", "expand": "fill"},
-    "Reports.dc.html":         {"x": 1360, "y": 0,    "w": 1280, "h": 900,  "page": "admin", "title": "Reports", "expand": "fill"},
-    "AuditLog.dc.html":        {"x": 2720, "y": 0,    "w": 1280, "h": 900,  "page": "admin", "title": "Audit log", "expand": "fill"},
-    "RefData.dc.html":         {"x": 0,    "y": 1500, "w": 1280, "h": 900,  "page": "admin", "title": "Reference data · types, portal types, label sizes", "expand": "fill"},
-
-    "P-Login.dc.html":         {"x": 0,    "y": 0,    "w": 390, "h": 844, "page": "phone", "title": "Phone · login by OTP", "is_interactive": true},
-    "P-Home.dc.html":          {"x": 470,  "y": 0,    "w": 390, "h": 844, "page": "phone", "title": "Phone · operator home"},
-    "P-Scan.dc.html":          {"x": 940,  "y": 0,    "w": 390, "h": 844, "page": "phone", "title": "Phone · scan device QR"},
-    "P-QC.dc.html":            {"x": 1410, "y": 0,    "w": 390, "h": 844, "page": "phone", "title": "Phone · QC checklist", "is_interactive": true},
-    "P-SIM.dc.html":           {"x": 1880, "y": 0,    "w": 390, "h": 844, "page": "phone", "title": "Phone · fit SIM", "is_interactive": true},
-    "P-LabelCheck.dc.html":    {"x": 2350, "y": 0,    "w": 390, "h": 844, "page": "phone", "title": "Phone · label scan test"},
-    "P-Pack.dc.html":          {"x": 2820, "y": 0,    "w": 390, "h": 844, "page": "phone", "title": "Phone · pack carton for tenant", "is_interactive": true}
+ "v": 3,
+ "createdOnFiles": {
+  "v": 1,
+  "at": "2026-11-26T05:45:00Z"
+ },
+ "title": "Track0tic Portal — Wireframes v2",
+ "launch": {
+  "view": "canvas",
+  "page": "flow"
+ },
+ "pages": [
+  {
+   "id": "flow",
+   "name": "0 · Read me, roles, login"
   },
-  "order": [
-    "Main.dc.html", "Login.dc.html", "Home-Admin.dc.html", "Home-Sales.dc.html", "Sidebar.dc.html",
-    "Home-OpsAssembly.dc.html", "Home-OpsQC.dc.html", "Home-OpsSupport.dc.html",
-    "Receive.dc.html", "QC.dc.html", "SIM.dc.html", "Inventory.dc.html", "DeviceDetail.dc.html", "QRLabels.dc.html", "Dispatch.dc.html", "Suppliers.dc.html", "Returns.dc.html",
-    "Tenants.dc.html", "TenantCreate.dc.html", "TenantDetail.dc.html", "TenantUsers.dc.html", "Allocate.dc.html", "Passports.dc.html", "Profiles.dc.html", "Journeys.dc.html",
-    "Trips.dc.html", "Alerts.dc.html", "Approvals.dc.html",
-    "StaffUsers.dc.html", "Reports.dc.html", "AuditLog.dc.html", "RefData.dc.html",
-    "P-Login.dc.html", "P-Home.dc.html", "P-Scan.dc.html", "P-QC.dc.html", "P-SIM.dc.html", "P-LabelCheck.dc.html", "P-Pack.dc.html"
-  ],
-  "notes": {
-    "t-flow":   {"x": 0, "y": 1080, "text": "Roles · login · the three homes that are not on the floor", "kind": "title1", "maxW": 4320, "page": "flow"},
-    "s-login":  {"x": 0, "y": 1310, "w": 620, "text": "Staff login. Email + password or mobile OTP. Office roles (Admin, Ops head, QC, Assembly, Sales head) only from an allowed IP; Support and Sales field from anywhere. Lands on the home of the user's role.", "fill": "yellow", "page": "flow"},
-    "s-hadmin": {"x": 1360, "y": 1310, "w": 620, "text": "Admin / Ops head home: the whole floor in one strip (stage counts in stage colours), approvals waiting, alerts, tenants needing attention. Full sidebar.", "fill": "yellow", "page": "flow"},
-    "s-hsales": {"x": 2720, "y": 1310, "w": 620, "text": "Sales home: my tenants, open label-roll and device requests, allocations this month. Sales never touches devices on the floor.", "fill": "yellow", "page": "flow"},
-    "s-side":   {"x": 4080, "y": 1310, "w": 240, "text": "One sidebar, role prop decides what shows. Operators get stage tiles, not a menu.", "fill": "yellow", "page": "flow"},
-
-    "t-floor1": {"x": 0, "y": -420, "text": "Operator homes — one tile per job, stage colour, big targets", "kind": "title1", "maxW": 4000, "page": "floor"},
-    "s-hasm":   {"x": 0, "y": -190, "w": 620, "text": "Assembly operator: three tiles only — Receive (grey), Fit SIM (blue), Pack & dispatch (green) — each with its queue count. Scan button always top-right. Nothing else in the menu.", "fill": "yellow", "page": "floor"},
-    "s-hqc":    {"x": 1360, "y": -190, "w": 620, "text": "QC operator: one tile — the QC bench queue (amber) — plus faults (red). Phone scan opens the checklist for the device on the bench.", "fill": "yellow", "page": "floor"},
-    "s-hsup":   {"x": 2720, "y": -190, "w": 620, "text": "Support: alerts, tenant users (OTP resend, unlock), label replacement requests, approvals it raised. No stock actions.", "fill": "yellow", "page": "floor"},
-    "t-floor2": {"x": 0, "y": 1080, "text": "Devices in — stage 1 grey · stage 2 amber · stage 3 blue", "kind": "title1", "maxW": 4000, "page": "floor"},
-    "s-recv":   {"x": 0, "y": 1310, "w": 620, "text": "Stage 1 · RECEIVED (grey). Supplier + PO + model + serial/IMEI list (paste or CSV). Creates devices inactive · no TRK ID yet. Short count vs invoice is shown, partial receive allowed.", "fill": "yellow", "page": "floor"},
-    "s-qc":     {"x": 1360, "y": 1310, "w": 620, "text": "Stage 2 · QC (amber). Bench queue, checklist per model, firmware flash, pass → TRK ID is minted; fail → red, goes to Returns. Each check is a tap, not a form.", "fill": "yellow", "page": "floor"},
-    "s-sim":    {"x": 2720, "y": 1310, "w": 620, "text": "Stage 3 · SIM BOUND (blue). Scan device, scan SIM barcode, first heartbeat confirms. Device is now 'ready · in stock'. M2M SIM pool shown.", "fill": "yellow", "page": "floor"},
-    "t-floor3": {"x": 0, "y": 2580, "text": "Stock · device page · stage 4 green = labelled and allocated", "kind": "title1", "maxW": 4000, "page": "floor"},
-    "s-inv":    {"x": 0, "y": 2810, "w": 620, "text": "Inventory: one row per device, stage pill in stage colour, filters are the stage chips. Counts by model × stage at the top.", "fill": "yellow", "page": "floor"},
-    "s-dev":    {"x": 1360, "y": 2810, "w": 620, "text": "Device page: lifecycle timeline in stage colours, identity (serial, IMEI, SIM, TRK), QR label state, tenant, last heartbeat, events. Staff actions: reprint (approval), recall, mark faulty.", "fill": "yellow", "page": "floor"},
-    "s-qr":     {"x": 2720, "y": 2810, "w": 620, "text": "Stage 4 · LABELLED = ALLOCATED (green). One flow: tenant → device type + qty → print device QRs (that is the allocation) → passport QR qty + size → print here or tenant prints. No sale type, no cartons here.", "fill": "yellow", "page": "floor"},
-    "t-floor4": {"x": 0, "y": 4080, "text": "Out the door · suppliers · faults", "kind": "title1", "maxW": 4000, "page": "floor"},
-    "s-disp":   {"x": 0, "y": 4310, "w": 620, "text": "Stage 5 · DISPATCHED. Pack allocated devices into cartons (phone scan), delivery note, courier AWB. Tenant sees 'sent · GRN pending' by category until its ops does the GRN.", "fill": "yellow", "page": "floor"},
-    "s-sup":    {"x": 1360, "y": 4310, "w": 620, "text": "Suppliers: factory / in-house assembly, contact, warranty months (12/24/36), models supplied. Picked on Receive.", "fill": "yellow", "page": "floor"},
-    "s-ret":    {"x": 2720, "y": 4310, "w": 620, "text": "Faulty & returned (red): QC fails, field returns, recalls. Repair → back to QC queue; scrap → wiped, label voided. Phase-2 label replacement lives here.", "fill": "yellow", "page": "floor"},
-
-    "t-ten1":   {"x": 0, "y": -420, "text": "Tenants — created here, portal type decided here", "kind": "title1", "maxW": 4000, "page": "tenants"},
-    "s-ten":    {"x": 0, "y": -190, "w": 620, "text": "Tenant list with vertical · type, portal type, hosted on, users, devices by category, status. Amber row = created but no admin yet.", "fill": "yellow", "page": "tenants"},
-    "s-tcreate":{"x": 1360, "y": -190, "w": 620, "text": "Company → vertical → customer type → PORTAL TYPE (pharmacy chain / distributor / device only / lab device-only / full lab / cash-van / lockbox) → devices in use → defaults. Buttons fill the Apollo, Axis, Lab cases.", "fill": "yellow", "page": "tenants"},
-    "s-tdet":   {"x": 2720, "y": -190, "w": 620, "text": "Tenant page: amber banner until the first admin exists. Setup shows portal type, devices in use, login methods, branding, data-push. Tabs: devices, passports, users, settings.", "fill": "yellow", "page": "tenants"},
-    "t-ten2":   {"x": 0, "y": 1380, "text": "Users · allocations · passports", "kind": "title1", "maxW": 4000, "page": "tenants"},
-    "s-tusers": {"x": 0, "y": 1610, "w": 620, "text": "Tenant users: staff ADMIN / Support may add, resend OTP, unlock; roles come from the tenant's templates. Seat count vs limit.", "fill": "yellow", "page": "tenants"},
-    "s-alloc":  {"x": 1360, "y": 1610, "w": 620, "text": "Allocations record: what QR labels wrote. Allocate by specific TRK IDs here when needed. De-allocate needs a reason.", "fill": "yellow", "page": "tenants"},
-    "s-pass":   {"x": 2720, "y": 1610, "w": 620, "text": "Passport QRs: books per tenant, who printed, label sizes; label-roll orders from tenant portals land here as an order to fulfil (print here + courier) or confirm (tenant prints).", "fill": "yellow", "page": "tenants"},
-    "t-ten3":   {"x": 0, "y": 2880, "text": "Defaults a tenant inherits", "kind": "title1", "maxW": 2640, "page": "tenants"},
-    "s-prof":   {"x": 0, "y": 3110, "w": 620, "text": "Temperature profiles are product-wise and dynamic (2–8, −20, ambient…). A tenant gets a default; the pharmacy chain picks per product at bind.", "fill": "yellow", "page": "tenants"},
-    "s-jour":   {"x": 1360, "y": 3110, "w": 620, "text": "Journey templates per portal type: DC→store→customer, depot→pharmacy, home→lab, lab→lab, duty/run, custody. Chains are dynamic; carton legs inherited.", "fill": "yellow", "page": "tenants"},
-
-    "t-ops":    {"x": 0, "y": -420, "text": "Operations — across all tenants", "kind": "title1", "maxW": 4000, "page": "ops"},
-    "s-trips":  {"x": 0, "y": -190, "w": 620, "text": "Trips / duties across tenants: open legs, by portal type (pharmacy journeys, cash-van duties, lockbox pickups). Read-only for staff except exceptions.", "fill": "yellow", "page": "ops"},
-    "s-alerts": {"x": 1360, "y": -190, "w": 620, "text": "Alerts: excursion, silent device, low battery, Lite not returned, tamper. Colour = severity word. Assign to Support, close with a note.", "fill": "yellow", "page": "ops"},
-    "s-appr":   {"x": 2720, "y": -190, "w": 620, "text": "Two-person rule: tenant create/change, contract change, allocation above 50, passport batch above 10,000, label reprint, BFSI actions. Maker sees pending, checker approves with a reason.", "fill": "yellow", "page": "ops"},
-
-    "t-adm":    {"x": 0, "y": -420, "text": "Admin", "kind": "title1", "maxW": 4000, "page": "admin"},
-    "s-staff":  {"x": 0, "y": -190, "w": 620, "text": "Staff users: 8 roles (Admin, Ops head, Ops–Assembly, Ops–QC, Ops–Support, Sales head, Sales scoped head, Sales field); IP-required flag per role; who may create whom.", "fill": "yellow", "page": "admin"},
-    "s-rep":    {"x": 1360, "y": -190, "w": 620, "text": "Reports: stock by stage, devices per tenant, passports issued/used, SLA of the floor (days from receive to dispatch), alerts per tenant. Excel / CSV / PDF.", "fill": "yellow", "page": "admin"},
-    "s-audit":  {"x": 2720, "y": -190, "w": 620, "text": "Audit log: every write, including PRINT of a label and every approval, with who/when/reason. Filter by tenant, device, user.", "fill": "yellow", "page": "admin"},
-    "s-ref":    {"x": 0, "y": 1310, "w": 620, "text": "Reference data: device types (HUB, Pro, Lite, Lockbox, Tracker), verticals, customer types, portal types, label sizes, SIM providers, warranty terms, approval thresholds.", "fill": "yellow", "page": "admin"},
-
-    "t-phone":  {"x": 0, "y": -420, "text": "Phone scan screens — the operator's phone on the floor (390 wide)", "kind": "title1", "maxW": 3210, "page": "phone"},
-    "s-plog":   {"x": 0, "y": -190, "w": 390, "text": "Mobile OTP login. Role decides the home.", "fill": "yellow", "page": "phone"},
-    "s-phome":  {"x": 470, "y": -190, "w": 390, "text": "Big Scan button; the three stage tiles with counts.", "fill": "yellow", "page": "phone"},
-    "s-pscan":  {"x": 940, "y": -190, "w": 390, "text": "Camera. Device QR, SIM barcode, or carton QR — the app knows which.", "fill": "yellow", "page": "phone"},
-    "s-pqc":    {"x": 1410, "y": -190, "w": 390, "text": "Checklist per model, one tap per check. Pass mints the TRK ID.", "fill": "yellow", "page": "phone"},
-    "s-psim":   {"x": 1880, "y": -190, "w": 390, "text": "Scan device → scan SIM → wait for heartbeat → bound (blue).", "fill": "yellow", "page": "phone"},
-    "s-plabel": {"x": 2350, "y": -190, "w": 390, "text": "After printing: scan the sticker; it must open this page = pass.", "fill": "yellow", "page": "phone"},
-    "s-ppack":  {"x": 2820, "y": -190, "w": 390, "text": "Scan devices into a carton for the tenant; count matches the delivery note.", "fill": "yellow", "page": "phone"}
+  {
+   "id": "floor",
+   "name": "1 · Operator floor (devices in → out)"
+  },
+  {
+   "id": "tenants",
+   "name": "2 · Tenants & sale"
+  },
+  {
+   "id": "ops",
+   "name": "3 · Operations"
+  },
+  {
+   "id": "admin",
+   "name": "4 · Admin"
+  },
+  {
+   "id": "phone",
+   "name": "5 · Phone scan screens"
   }
+ ],
+ "designSystems": [
+  {
+   "title": "Track0tic Design System",
+   "namespace": "track0tic",
+   "artifact": "https://claude.ai/artifact/8Vp3xUyfhUvKn7Z24MNErw",
+   "version": "1792506653-0e66",
+   "copiedAt": "2026-11-26T05:45:00Z"
+  }
+ ],
+ "boards": {
+  "Main.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 1920,
+   "h": 1080,
+   "page": "flow",
+   "title": "Read me · stage colours · roles · build order"
+  },
+  "Login.dc.html": {
+   "x": 0,
+   "y": 1500,
+   "w": 1280,
+   "h": 900,
+   "page": "flow",
+   "title": "Staff login",
+   "expand": "fill",
+   "is_interactive": true
+  },
+  "Home-Admin.dc.html": {
+   "x": 1360,
+   "y": 1500,
+   "w": 1280,
+   "h": 900,
+   "page": "flow",
+   "title": "Home · Admin / Ops head",
+   "expand": "fill"
+  },
+  "Home-Sales.dc.html": {
+   "x": 2720,
+   "y": 1500,
+   "w": 1280,
+   "h": 900,
+   "page": "flow",
+   "title": "Home · Sales",
+   "expand": "fill"
+  },
+  "Sidebar.dc.html": {
+   "x": 4080,
+   "y": 1500,
+   "w": 240,
+   "h": 900,
+   "page": "flow",
+   "title": "Sidebar (shared · role-aware)"
+  },
+  "Home-OpsAssembly.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 1280,
+   "h": 900,
+   "page": "floor",
+   "title": "Home · Ops – Assembly",
+   "expand": "fill"
+  },
+  "Home-OpsQC.dc.html": {
+   "x": 1360,
+   "y": 0,
+   "w": 1280,
+   "h": 900,
+   "page": "floor",
+   "title": "Home · Ops – QC",
+   "expand": "fill"
+  },
+  "Home-OpsSupport.dc.html": {
+   "x": 2720,
+   "y": 0,
+   "w": 1280,
+   "h": 900,
+   "page": "floor",
+   "title": "Home · Ops – Support",
+   "expand": "fill"
+  },
+  "Receive.dc.html": {
+   "x": 0,
+   "y": 1500,
+   "w": 1280,
+   "h": 900,
+   "page": "floor",
+   "title": "1 · Receive devices",
+   "expand": "fill",
+   "is_interactive": true
+  },
+  "QC.dc.html": {
+   "x": 1360,
+   "y": 1500,
+   "w": 1280,
+   "h": 900,
+   "page": "floor",
+   "title": "2 · QC & firmware",
+   "expand": "fill",
+   "is_interactive": true
+  },
+  "SIM.dc.html": {
+   "x": 2720,
+   "y": 1500,
+   "w": 1280,
+   "h": 900,
+   "page": "floor",
+   "title": "3 · Fit SIM",
+   "expand": "fill",
+   "is_interactive": true
+  },
+  "Inventory.dc.html": {
+   "x": 0,
+   "y": 3000,
+   "w": 1280,
+   "h": 900,
+   "page": "floor",
+   "title": "Inventory (stage-coloured)",
+   "expand": "fill",
+   "is_interactive": true
+  },
+  "DeviceDetail.dc.html": {
+   "x": 1360,
+   "y": 3000,
+   "w": 1280,
+   "h": 900,
+   "page": "floor",
+   "title": "Device page · lifecycle",
+   "expand": "fill"
+  },
+  "QRLabels.dc.html": {
+   "x": 2720,
+   "y": 3000,
+   "w": 1280,
+   "h": 900,
+   "page": "floor",
+   "title": "4 · QR labels = allocate",
+   "expand": "fill",
+   "is_interactive": true
+  },
+  "Dispatch.dc.html": {
+   "x": 0,
+   "y": 4500,
+   "w": 1280,
+   "h": 900,
+   "page": "floor",
+   "title": "5 · Pack & dispatch to tenant",
+   "expand": "fill",
+   "is_interactive": true
+  },
+  "Suppliers.dc.html": {
+   "x": 1360,
+   "y": 4500,
+   "w": 1280,
+   "h": 900,
+   "page": "floor",
+   "title": "Suppliers / factories",
+   "expand": "fill"
+  },
+  "Returns.dc.html": {
+   "x": 2720,
+   "y": 4500,
+   "w": 1280,
+   "h": 900,
+   "page": "floor",
+   "title": "Faulty & returned devices",
+   "expand": "fill"
+  },
+  "Tenants.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 1280,
+   "h": 900,
+   "page": "tenants",
+   "title": "Tenants",
+   "expand": "fill"
+  },
+  "TenantCreate.dc.html": {
+   "x": 1360,
+   "y": 0,
+   "w": 1280,
+   "h": 1180,
+   "page": "tenants",
+   "title": "Create tenant · vertical → type → portal type",
+   "expand": "fill",
+   "is_interactive": true
+  },
+  "TenantDetail.dc.html": {
+   "x": 2720,
+   "y": 0,
+   "w": 1280,
+   "h": 900,
+   "page": "tenants",
+   "title": "Tenant page",
+   "expand": "fill",
+   "is_interactive": true
+  },
+  "TenantUsers.dc.html": {
+   "x": 0,
+   "y": 1800,
+   "w": 1280,
+   "h": 900,
+   "page": "tenants",
+   "title": "Tenant users & roles",
+   "expand": "fill"
+  },
+  "Allocate.dc.html": {
+   "x": 1360,
+   "y": 1800,
+   "w": 1280,
+   "h": 900,
+   "page": "tenants",
+   "title": "Allocations record",
+   "expand": "fill"
+  },
+  "Passports.dc.html": {
+   "x": 2720,
+   "y": 1800,
+   "w": 1280,
+   "h": 900,
+   "page": "tenants",
+   "title": "Passport QRs & label-roll orders",
+   "expand": "fill",
+   "is_interactive": true
+  },
+  "Profiles.dc.html": {
+   "x": 0,
+   "y": 3300,
+   "w": 1280,
+   "h": 900,
+   "page": "tenants",
+   "title": "Temperature profiles (product-wise)",
+   "expand": "fill"
+  },
+  "Journeys.dc.html": {
+   "x": 1360,
+   "y": 3300,
+   "w": 1280,
+   "h": 900,
+   "page": "tenants",
+   "title": "Journey templates per portal type",
+   "expand": "fill"
+  },
+  "Trips.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 1280,
+   "h": 900,
+   "page": "ops",
+   "title": "Trips / duties across tenants",
+   "expand": "fill"
+  },
+  "Alerts.dc.html": {
+   "x": 1360,
+   "y": 0,
+   "w": 1280,
+   "h": 900,
+   "page": "ops",
+   "title": "Alerts",
+   "expand": "fill"
+  },
+  "Approvals.dc.html": {
+   "x": 2720,
+   "y": 0,
+   "w": 1280,
+   "h": 900,
+   "page": "ops",
+   "title": "Approvals (two-person rule)",
+   "expand": "fill",
+   "is_interactive": true
+  },
+  "StaffUsers.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 1280,
+   "h": 900,
+   "page": "admin",
+   "title": "Staff users · 8 roles",
+   "expand": "fill"
+  },
+  "Reports.dc.html": {
+   "x": 1360,
+   "y": 0,
+   "w": 1280,
+   "h": 900,
+   "page": "admin",
+   "title": "Reports",
+   "expand": "fill"
+  },
+  "AuditLog.dc.html": {
+   "x": 2720,
+   "y": 0,
+   "w": 1280,
+   "h": 900,
+   "page": "admin",
+   "title": "Audit log",
+   "expand": "fill"
+  },
+  "RefData.dc.html": {
+   "x": 0,
+   "y": 1500,
+   "w": 1280,
+   "h": 900,
+   "page": "admin",
+   "title": "Reference data · types, portal types, label sizes",
+   "expand": "fill"
+  },
+  "P-Login.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 390,
+   "h": 844,
+   "page": "phone",
+   "title": "Phone · login by OTP",
+   "is_interactive": true
+  },
+  "P-Home.dc.html": {
+   "x": 470,
+   "y": 0,
+   "w": 390,
+   "h": 844,
+   "page": "phone",
+   "title": "Phone · operator home"
+  },
+  "P-Scan.dc.html": {
+   "x": 940,
+   "y": 0,
+   "w": 390,
+   "h": 844,
+   "page": "phone",
+   "title": "Phone · scan device QR"
+  },
+  "P-QC.dc.html": {
+   "x": 1410,
+   "y": 0,
+   "w": 390,
+   "h": 844,
+   "page": "phone",
+   "title": "Phone · QC checklist",
+   "is_interactive": true
+  },
+  "P-SIM.dc.html": {
+   "x": 1880,
+   "y": 0,
+   "w": 390,
+   "h": 844,
+   "page": "phone",
+   "title": "Phone · fit SIM",
+   "is_interactive": true
+  },
+  "P-LabelCheck.dc.html": {
+   "x": 2350,
+   "y": 0,
+   "w": 390,
+   "h": 844,
+   "page": "phone",
+   "title": "Phone · label scan test"
+  },
+  "P-Pack.dc.html": {
+   "x": 2820,
+   "y": 0,
+   "w": 390,
+   "h": 844,
+   "page": "phone",
+   "title": "Phone · pack carton for tenant",
+   "is_interactive": true
+  },
+  "TenantDevices.dc.html": {
+   "x": 2720,
+   "y": 3300,
+   "w": 1280,
+   "h": 1000,
+   "page": "tenants",
+   "title": "Tenant devices · functionality, alerts, fall-outs",
+   "expand": "fill",
+   "is_interactive": true
+  }
+ },
+ "order": [
+  "Main.dc.html",
+  "Login.dc.html",
+  "Home-Admin.dc.html",
+  "Home-Sales.dc.html",
+  "Sidebar.dc.html",
+  "Home-OpsAssembly.dc.html",
+  "Home-OpsQC.dc.html",
+  "Home-OpsSupport.dc.html",
+  "Receive.dc.html",
+  "QC.dc.html",
+  "SIM.dc.html",
+  "Inventory.dc.html",
+  "DeviceDetail.dc.html",
+  "QRLabels.dc.html",
+  "Dispatch.dc.html",
+  "Suppliers.dc.html",
+  "Returns.dc.html",
+  "Tenants.dc.html",
+  "TenantCreate.dc.html",
+  "TenantDetail.dc.html",
+  "TenantUsers.dc.html",
+  "Allocate.dc.html",
+  "Passports.dc.html",
+  "Profiles.dc.html",
+  "Journeys.dc.html",
+  "TenantDevices.dc.html",
+  "Trips.dc.html",
+  "Alerts.dc.html",
+  "Approvals.dc.html",
+  "StaffUsers.dc.html",
+  "Reports.dc.html",
+  "AuditLog.dc.html",
+  "RefData.dc.html",
+  "P-Login.dc.html",
+  "P-Home.dc.html",
+  "P-Scan.dc.html",
+  "P-QC.dc.html",
+  "P-SIM.dc.html",
+  "P-LabelCheck.dc.html",
+  "P-Pack.dc.html"
+ ],
+ "notes": {
+  "t-flow": {
+   "x": 0,
+   "y": 1080,
+   "text": "Roles · login · the three homes that are not on the floor",
+   "kind": "title1",
+   "maxW": 4320,
+   "page": "flow"
+  },
+  "s-login": {
+   "x": 0,
+   "y": 1310,
+   "w": 620,
+   "text": "Staff login. Email + password or mobile OTP. Office roles (Admin, Ops head, QC, Assembly, Sales head) only from an allowed IP; Support and Sales field from anywhere. Lands on the home of the user's role.",
+   "fill": "yellow",
+   "page": "flow"
+  },
+  "s-hadmin": {
+   "x": 1360,
+   "y": 1310,
+   "w": 620,
+   "text": "Admin / Ops head home: the whole floor in one strip (stage counts in stage colours), approvals waiting, alerts, tenants needing attention. Full sidebar.",
+   "fill": "yellow",
+   "page": "flow"
+  },
+  "s-hsales": {
+   "x": 2720,
+   "y": 1310,
+   "w": 620,
+   "text": "Sales home: my tenants, open label-roll and device requests, allocations this month. Sales never touches devices on the floor.",
+   "fill": "yellow",
+   "page": "flow"
+  },
+  "s-side": {
+   "x": 4080,
+   "y": 1310,
+   "w": 240,
+   "text": "One sidebar, role prop decides what shows. Operators get stage tiles, not a menu.",
+   "fill": "yellow",
+   "page": "flow"
+  },
+  "t-floor1": {
+   "x": 0,
+   "y": -420,
+   "text": "Operator homes — one tile per job, stage colour, big targets",
+   "kind": "title1",
+   "maxW": 4000,
+   "page": "floor"
+  },
+  "s-hasm": {
+   "x": 0,
+   "y": -190,
+   "w": 620,
+   "text": "Assembly operator: three tiles only — Receive (grey), Fit SIM (blue), Pack & dispatch (green) — each with its queue count. Scan button always top-right. Nothing else in the menu.",
+   "fill": "yellow",
+   "page": "floor"
+  },
+  "s-hqc": {
+   "x": 1360,
+   "y": -190,
+   "w": 620,
+   "text": "QC operator: one tile — the QC bench queue (amber) — plus faults (red). Phone scan opens the checklist for the device on the bench.",
+   "fill": "yellow",
+   "page": "floor"
+  },
+  "s-hsup": {
+   "x": 2720,
+   "y": -190,
+   "w": 620,
+   "text": "Support: alerts, tenant users (OTP resend, unlock), label replacement requests, approvals it raised. No stock actions.",
+   "fill": "yellow",
+   "page": "floor"
+  },
+  "t-floor2": {
+   "x": 0,
+   "y": 1080,
+   "text": "Devices in — stage 1 grey · stage 2 amber · stage 3 blue",
+   "kind": "title1",
+   "maxW": 4000,
+   "page": "floor"
+  },
+  "s-recv": {
+   "x": 0,
+   "y": 1310,
+   "w": 620,
+   "text": "Stage 1 · RECEIVED (grey). Supplier + PO + model + serial/IMEI list (paste or CSV). Creates devices inactive · no TRK ID yet. Short count vs invoice is shown, partial receive allowed.",
+   "fill": "yellow",
+   "page": "floor"
+  },
+  "s-qc": {
+   "x": 1360,
+   "y": 1310,
+   "w": 620,
+   "text": "Stage 2 · QC (amber). Bench queue, checklist per model, firmware flash, pass → TRK ID is minted; fail → red, goes to Returns. Each check is a tap, not a form.",
+   "fill": "yellow",
+   "page": "floor"
+  },
+  "s-sim": {
+   "x": 2720,
+   "y": 1310,
+   "w": 620,
+   "text": "Stage 3 · SIM BOUND (blue). Scan device, scan SIM barcode, first heartbeat confirms. Device is now 'ready · in stock'. M2M SIM pool shown.",
+   "fill": "yellow",
+   "page": "floor"
+  },
+  "t-floor3": {
+   "x": 0,
+   "y": 2580,
+   "text": "Stock · device page · stage 4 green = labelled and allocated",
+   "kind": "title1",
+   "maxW": 4000,
+   "page": "floor"
+  },
+  "s-inv": {
+   "x": 0,
+   "y": 2810,
+   "w": 620,
+   "text": "Inventory: one row per device, stage pill in stage colour, filters are the stage chips. Counts by model × stage at the top.",
+   "fill": "yellow",
+   "page": "floor"
+  },
+  "s-dev": {
+   "x": 1360,
+   "y": 2810,
+   "w": 620,
+   "text": "Device page: lifecycle timeline in stage colours, identity (serial, IMEI, SIM, TRK), QR label state, tenant, last heartbeat, events. Staff actions: reprint (approval), recall, mark faulty.",
+   "fill": "yellow",
+   "page": "floor"
+  },
+  "s-qr": {
+   "x": 2720,
+   "y": 2810,
+   "w": 620,
+   "text": "Stage 4 · LABELLED = ALLOCATED (green). One flow: tenant → device type + qty → print device QRs (that is the allocation) → passport QR qty + size → print here or tenant prints. No sale type, no cartons here.",
+   "fill": "yellow",
+   "page": "floor"
+  },
+  "t-floor4": {
+   "x": 0,
+   "y": 4080,
+   "text": "Out the door · suppliers · faults",
+   "kind": "title1",
+   "maxW": 4000,
+   "page": "floor"
+  },
+  "s-disp": {
+   "x": 0,
+   "y": 4310,
+   "w": 620,
+   "text": "Stage 5 · DISPATCHED. Pack allocated devices into cartons (phone scan), delivery note, courier AWB. Tenant sees 'sent · GRN pending' by category until its ops does the GRN.",
+   "fill": "yellow",
+   "page": "floor"
+  },
+  "s-sup": {
+   "x": 1360,
+   "y": 4310,
+   "w": 620,
+   "text": "Suppliers: factory / in-house assembly, contact, warranty months (12/24/36), models supplied. Picked on Receive.",
+   "fill": "yellow",
+   "page": "floor"
+  },
+  "s-ret": {
+   "x": 2720,
+   "y": 4310,
+   "w": 620,
+   "text": "Faulty & returned (red): QC fails, field returns, recalls. Repair → back to QC queue; scrap → wiped, label voided. Phase-2 label replacement lives here.",
+   "fill": "yellow",
+   "page": "floor"
+  },
+  "t-ten1": {
+   "x": 0,
+   "y": -420,
+   "text": "Tenants — created here, portal type decided here",
+   "kind": "title1",
+   "maxW": 4000,
+   "page": "tenants"
+  },
+  "s-ten": {
+   "x": 0,
+   "y": -190,
+   "w": 620,
+   "text": "Tenant list with vertical · type, portal type, hosted on, users, devices by category, status. Amber row = created but no admin yet.",
+   "fill": "yellow",
+   "page": "tenants"
+  },
+  "s-tcreate": {
+   "x": 1360,
+   "y": -190,
+   "w": 620,
+   "text": "Company → vertical → customer type → PORTAL TYPE (pharmacy chain / distributor / device only / lab device-only / full lab / cash-van / lockbox) → devices in use → defaults. Buttons fill the Apollo, Axis, Lab cases.",
+   "fill": "yellow",
+   "page": "tenants"
+  },
+  "s-tdet": {
+   "x": 2720,
+   "y": -190,
+   "w": 620,
+   "text": "Tenant page: amber banner until the first admin exists. Setup shows portal type, devices in use, login methods, branding, data-push. Tabs: devices, passports, users, settings.",
+   "fill": "yellow",
+   "page": "tenants"
+  },
+  "t-ten2": {
+   "x": 0,
+   "y": 1380,
+   "text": "Users · allocations · passports",
+   "kind": "title1",
+   "maxW": 4000,
+   "page": "tenants"
+  },
+  "s-tusers": {
+   "x": 0,
+   "y": 1610,
+   "w": 620,
+   "text": "Tenant users: staff ADMIN / Support may add, resend OTP, unlock; roles come from the tenant's templates. Seat count vs limit.",
+   "fill": "yellow",
+   "page": "tenants"
+  },
+  "s-alloc": {
+   "x": 1360,
+   "y": 1610,
+   "w": 620,
+   "text": "Allocations record: what QR labels wrote. Allocate by specific TRK IDs here when needed. De-allocate needs a reason.",
+   "fill": "yellow",
+   "page": "tenants"
+  },
+  "s-pass": {
+   "x": 2720,
+   "y": 1610,
+   "w": 620,
+   "text": "Passport QRs: books per tenant, who printed, label sizes; label-roll orders from tenant portals land here as an order to fulfil (print here + courier) or confirm (tenant prints).",
+   "fill": "yellow",
+   "page": "tenants"
+  },
+  "t-ten3": {
+   "x": 0,
+   "y": 2880,
+   "text": "Defaults a tenant inherits",
+   "kind": "title1",
+   "maxW": 4000,
+   "page": "tenants"
+  },
+  "s-prof": {
+   "x": 0,
+   "y": 3110,
+   "w": 620,
+   "text": "Temperature profiles are product-wise and dynamic (2–8, −20, ambient…). A tenant gets a default; the pharmacy chain picks per product at bind.",
+   "fill": "yellow",
+   "page": "tenants"
+  },
+  "s-jour": {
+   "x": 1360,
+   "y": 3110,
+   "w": 620,
+   "text": "Journey templates per portal type: DC→store→customer, depot→pharmacy, home→lab, lab→lab, duty/run, custody. Chains are dynamic; carton legs inherited.",
+   "fill": "yellow",
+   "page": "tenants"
+  },
+  "t-ops": {
+   "x": 0,
+   "y": -420,
+   "text": "Operations — across all tenants",
+   "kind": "title1",
+   "maxW": 4000,
+   "page": "ops"
+  },
+  "s-trips": {
+   "x": 0,
+   "y": -190,
+   "w": 620,
+   "text": "Trips / duties across tenants: open legs, by portal type (pharmacy journeys, cash-van duties, lockbox pickups). Read-only for staff except exceptions.",
+   "fill": "yellow",
+   "page": "ops"
+  },
+  "s-alerts": {
+   "x": 1360,
+   "y": -190,
+   "w": 620,
+   "text": "Alerts: excursion, silent device, low battery, Lite not returned, tamper. Colour = severity word. Assign to Support, close with a note.",
+   "fill": "yellow",
+   "page": "ops"
+  },
+  "s-appr": {
+   "x": 2720,
+   "y": -190,
+   "w": 620,
+   "text": "Two-person rule: tenant create/change, contract change, allocation above 50, passport batch above 10,000, label reprint, BFSI actions. Maker sees pending, checker approves with a reason.",
+   "fill": "yellow",
+   "page": "ops"
+  },
+  "t-adm": {
+   "x": 0,
+   "y": -420,
+   "text": "Admin",
+   "kind": "title1",
+   "maxW": 4000,
+   "page": "admin"
+  },
+  "s-staff": {
+   "x": 0,
+   "y": -190,
+   "w": 620,
+   "text": "Staff users: 8 roles (Admin, Ops head, Ops–Assembly, Ops–QC, Ops–Support, Sales head, Sales scoped head, Sales field); IP-required flag per role; who may create whom.",
+   "fill": "yellow",
+   "page": "admin"
+  },
+  "s-rep": {
+   "x": 1360,
+   "y": -190,
+   "w": 620,
+   "text": "Reports: stock by stage, devices per tenant, passports issued/used, SLA of the floor (days from receive to dispatch), alerts per tenant. Excel / CSV / PDF.",
+   "fill": "yellow",
+   "page": "admin"
+  },
+  "s-audit": {
+   "x": 2720,
+   "y": -190,
+   "w": 620,
+   "text": "Audit log: every write, including PRINT of a label and every approval, with who/when/reason. Filter by tenant, device, user.",
+   "fill": "yellow",
+   "page": "admin"
+  },
+  "s-ref": {
+   "x": 0,
+   "y": 1310,
+   "w": 620,
+   "text": "Reference data: device types (HUB, Pro, Lite, Lockbox, Tracker), verticals, customer types, portal types, label sizes, SIM providers, warranty terms, approval thresholds.",
+   "fill": "yellow",
+   "page": "admin"
+  },
+  "t-phone": {
+   "x": 0,
+   "y": -420,
+   "text": "Phone scan screens — the operator's phone on the floor (390 wide)",
+   "kind": "title1",
+   "maxW": 3210,
+   "page": "phone"
+  },
+  "s-plog": {
+   "x": 0,
+   "y": -190,
+   "w": 390,
+   "text": "Mobile OTP login. Role decides the home.",
+   "fill": "yellow",
+   "page": "phone"
+  },
+  "s-phome": {
+   "x": 470,
+   "y": -190,
+   "w": 390,
+   "text": "Big Scan button; the three stage tiles with counts.",
+   "fill": "yellow",
+   "page": "phone"
+  },
+  "s-pscan": {
+   "x": 940,
+   "y": -190,
+   "w": 390,
+   "text": "Camera. Device QR, SIM barcode, or carton QR — the app knows which.",
+   "fill": "yellow",
+   "page": "phone"
+  },
+  "s-pqc": {
+   "x": 1410,
+   "y": -190,
+   "w": 390,
+   "text": "Checklist per model, one tap per check. Pass mints the TRK ID.",
+   "fill": "yellow",
+   "page": "phone"
+  },
+  "s-psim": {
+   "x": 1880,
+   "y": -190,
+   "w": 390,
+   "text": "Scan device → scan SIM → wait for heartbeat → bound (blue).",
+   "fill": "yellow",
+   "page": "phone"
+  },
+  "s-plabel": {
+   "x": 2350,
+   "y": -190,
+   "w": 390,
+   "text": "After printing: scan the sticker; it must open this page = pass.",
+   "fill": "yellow",
+   "page": "phone"
+  },
+  "s-ppack": {
+   "x": 2820,
+   "y": -190,
+   "w": 390,
+   "text": "Scan devices into a carton for the tenant; count matches the delivery note.",
+   "fill": "yellow",
+   "page": "phone"
+  },
+  "s-tdev": {
+   "x": 2720,
+   "y": 3110,
+   "w": 620,
+   "text": "Tenant-wise view of every device's functionality (heartbeat, battery, temp sensor, GPS, lid/bag, SIM) with colour + word per cell. Working / Attention / Fallen out / Returning. Click a device → manage the fall-out: call site, raise to tenant admin, send a swap (= allocate from stock), recall, snooze, close. Every action = audit row + shows on the tenant's alert.",
+   "fill": "yellow",
+   "page": "tenants"
+  }
+ }
 }
