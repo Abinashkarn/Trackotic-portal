@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Track0tic admin — create tenant</title>
-<script src="./support.js?v=4"></script>
+<title>Track0tic admin — create tenant (vertical → customer type → portal type)</title>
+<script src="./support.js?v=5"></script>
 </head>
 <body>
 <x-dc>
@@ -24,75 +24,162 @@
     <section style="background:#fff;border:1px solid #1d4ed8;border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:16px">
       <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px">
         <h2 style="margin:0;font-size:18px;font-weight:600">Create tenant</h2>
-        <span style="font-size:13px;color:#4b5565">Company record only. Users are added on the tenant page right after — a tenant with no login cannot be used, so the page will prompt you.</span>
+        <div style="display:flex;gap:6px;align-items:center;font-size:13px;color:#4b5565">Try the three live cases:
+          <button onClick="{{exApollo}}" style="color:#0f172a;min-height:30px;padding:4px 10px;border:1px solid {{ex.apollo}};border-radius:9999px;background:#fff;font-size:13px;cursor:pointer">Apollo Pharmacy</button>
+          <button onClick="{{exAxis}}" style="color:#0f172a;min-height:30px;padding:4px 10px;border:1px solid {{ex.axis}};border-radius:9999px;background:#fff;font-size:13px;cursor:pointer">Axis Bank</button>
+          <button onClick="{{exLab}}" style="color:#0f172a;min-height:30px;padding:4px 10px;border:1px solid {{ex.lab}};border-radius:9999px;background:#fff;font-size:13px;cursor:pointer">Lab</button>
+        </div>
       </div>
 
-      <div style="font-size:12px;font-weight:600;letter-spacing:0.06em;color:#4b5565">COMPANY</div>
+      <div style="font-size:12px;font-weight:600;letter-spacing:0.06em;color:#4b5565">1 · COMPANY</div>
       <div style="display:grid;grid-template-columns:repeat(3, minmax(0, 1fr));gap:10px">
-        <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Legal name<input type="text" value="Apollo Pharmacy Ltd" style="color:#0f172a;height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px"></label>
-        <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Display name<input type="text" value="Apollo Pharmacy" style="color:#0f172a;height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px"></label>
-        <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">GSTIN<input type="text" value="07AAACA1234F1Z5" style="color:#0f172a;height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;font-family:'IBM Plex Mono',monospace"></label>
-        <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500;grid-column:1 / 3">Registered address<input type="text" value="Select Citywalk Mall, Saket, New Delhi 110017" style="color:#0f172a;height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px"></label>
-        <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Billing email<input type="email" value="accounts@apollopharmacy.in" style="color:#0f172a;height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px"></label>
+        <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Legal name<input type="text" value="{{v.legal}}" style="color:#0f172a;height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px"></label>
+        <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Display name (shown on reports and labels)<input type="text" value="{{v.display}}" style="color:#0f172a;height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px"></label>
+        <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">GSTIN (KYC only, not mandatory)<input type="text" value="{{v.gst}}" style="color:#0f172a;height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;font-family:'IBM Plex Mono',monospace"></label>
+        <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500;grid-column:1 / 3">Registered address<input type="text" value="{{v.addr}}" style="color:#0f172a;height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px"></label>
+        <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Tenant logo (report header, labels)<div style="display:flex;gap:8px;align-items:center;height:44px"><span style="width:44px;height:44px;border:1px dashed #7a8696;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;font-size:11px;color:#4b5565">logo</span><button style="color:#0f172a;min-height:36px;padding:4px 12px;border:1px solid #7a8696;border-radius:8px;background:#fff;font-size:13px;cursor:pointer">Upload PNG / SVG</button></div></label>
+      </div>
+      <div style="font-size:12px;color:#4b5565;margin-top:-6px">Every tenant report and label carries the tenant’s brand on the left and <strong>Powered by Track<span style="color:#ff5a66">0</span>tic<sup style="font-size:0.7em">TM</sup></strong> fixed on the right — not switchable.</div>
+
+      <div style="font-size:12px;font-weight:600;letter-spacing:0.06em;color:#4b5565">2 · WHAT KIND OF TENANT — vertical → customer type → portal type (decided here, only here, at onboarding)</div>
+      <div style="display:grid;grid-template-columns:repeat(4, minmax(0, 1fr));gap:10px">
+        <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Vertical<select onChange="{{setVertical}}" style="color:#0f172a;width:100%;height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;background:#fff"><sc-for list="{{verticals}}" as="o" hint-placeholder-count="5"><option value="{{o.code}}" selected="{{o.sel}}">{{o.label}}</option></sc-for></select></label>
+        <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Customer type<select onChange="{{setCat}}" style="color:#0f172a;width:100%;height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;background:#fff"><sc-for list="{{cats}}" as="c" hint-placeholder-count="4"><option value="{{c.code}}" selected="{{c.sel}}">{{c.label}}</option></sc-for></select></label>
+        <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500;grid-column:3 / 5">Portal type — what this tenant gets<select onChange="{{setPortal}}" style="color:#0f172a;width:100%;height:44px;border:1px solid #1d4ed8;border-radius:8px;padding:0 10px;font-size:14px;background:#fff;font-weight:600"><sc-for list="{{portals}}" as="p" hint-placeholder-count="3"><option value="{{p.code}}" selected="{{p.sel}}">{{p.label}}</option></sc-for></select></label>
+      </div>
+      <div style="padding:12px 14px;border-radius:8px;background:#eef3ff;border:1px solid #c7d4fb;font-size:13px;line-height:19px;color:#1e3a8a"><strong>{{pt.name}}</strong> — {{pt.desc}}</div>
+
+      <div style="display:grid;grid-template-columns:repeat(4, minmax(0, 1fr));gap:10px">
+        <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Hosted on<select style="color:#0f172a;width:100%;height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;background:#fff"><sc-for list="{{pt.hosts}}" as="h" hint-placeholder-count="2"><option>{{h}}</option></sc-for></select></label>
+        <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Seats<input type="text" value="{{pt.seats}}" style="color:#0f172a;height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px"></label>
+        <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Tenant login methods<select style="color:#0f172a;width:100%;height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;background:#fff"><option>Mobile OTP + email/password (both)</option><option>Mobile OTP only</option><option>Email/password only (office roles)</option></select></label>
+        <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Site identity<select style="color:#0f172a;width:100%;height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;background:#fff"><option>{{pt.site}}</option><option>{{pt.siteAlt}}</option></select></label>
       </div>
 
-      <div style="font-size:12px;font-weight:600;letter-spacing:0.06em;color:#4b5565">WHAT KIND OF TENANT</div>
-      <div style="display:grid;grid-template-columns:repeat(4, minmax(0, 1fr));gap:10px">
-        <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Vertical<select onChange="{{setVertical}}" style="color:#0f172a;width:100%;height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;background:#fff"><option value="pharma">Pharma · product passports</option><option value="diag">Diagnostics · sample passports</option><option value="bfsi">BFSI · custody (dedicated environment)</option></select></label>
-        <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Sales category<select style="color:#0f172a;width:100%;height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;background:#fff"><sc-for list="{{v.cats}}" as="c" hint-placeholder-count="4"><option>{{c}}</option></sc-for></select></label>
-        <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Hosted on<select style="color:#0f172a;width:100%;height:44px;border:1px solid {{v.podBorder}};border-radius:8px;padding:0 10px;font-size:14px;background:#fff"><sc-for list="{{v.pods}}" as="pd" hint-placeholder-count="3"><option>{{pd}}</option></sc-for></select></label>
-        <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Seats<input type="text" value="25" style="color:#0f172a;height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px"></label>
+      <div style="font-size:12px;font-weight:600;letter-spacing:0.06em;color:#4b5565">3 · DEVICES THIS TENANT WILL USE — sets the categories on Allocate / QR labels; the tenant GRNs them category-wise</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <sc-for list="{{pt.devices}}" as="d" hint-placeholder-count="4"><span style="display:inline-flex;gap:8px;align-items:center;min-height:36px;padding:4px 12px;border:1px solid {{d.border}};border-radius:9999px;background:{{d.bg}};font-size:13px;font-weight:500">{{d.name}} <span style="font-weight:400;color:#4b5565">· {{d.role}}</span></span></sc-for>
       </div>
 
-      <div style="font-size:12px;font-weight:600;letter-spacing:0.06em;color:#4b5565">DEFAULTS (can change later on the tenant page)</div>
+      <div style="font-size:12px;font-weight:600;letter-spacing:0.06em;color:#4b5565">4 · DEFAULTS (can change later on the tenant page)</div>
       <div style="display:grid;grid-template-columns:repeat(4, minmax(0, 1fr));gap:10px">
-        <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Temperature profile<select style="color:#0f172a;width:100%;height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;background:#fff"><sc-for list="{{v.profiles}}" as="pr" hint-placeholder-count="3"><option>{{pr}}</option></sc-for></select></label>
-        <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Journey template<select style="color:#0f172a;width:100%;height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;background:#fff"><sc-for list="{{v.journeys}}" as="j" hint-placeholder-count="3"><option>{{j}}</option></sc-for></select></label>
-        <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">{{v.quotaLabel}}<input type="text" value="{{v.quota}}" style="color:#0f172a;height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px"></label>
-        <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Location on bind<select style="color:#0f172a;width:100%;height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;background:#fff"><option>{{v.loc}}</option><option>{{v.locAlt}}</option></select></label>
+        <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Temperature profile<select style="color:#0f172a;width:100%;height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;background:#fff"><sc-for list="{{pt.profiles}}" as="pr" hint-placeholder-count="3"><option>{{pr}}</option></sc-for></select></label>
+        <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Journey template<select style="color:#0f172a;width:100%;height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;background:#fff"><sc-for list="{{pt.journeys}}" as="j" hint-placeholder-count="3"><option>{{j}}</option></sc-for></select></label>
+        <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">{{pt.quotaLabel}}<input type="text" value="{{pt.quota}}" style="color:#0f172a;height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px"></label>
+        <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500">Location on bind<select style="color:#0f172a;width:100%;height:44px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;background:#fff"><option>{{pt.loc}}</option><option>{{pt.locAlt}}</option></select></label>
       </div>
-      <sc-if value="{{v.canPrint}}" hint-placeholder-val="{{ true }}"><label style="display:flex;gap:8px;align-items:center;font-size:13px;color:#4b5565"><input type="checkbox" checked style="margin:0;width:16px;height:16px">Tenant may print its own passport labels from the tenant portal</label></sc-if>
-      <sc-if value="{{v.isBfsi}}" hint-placeholder-val="{{ false }}"><div style="padding:12px 14px;border-radius:8px;background:#fef3e2;border:1px solid #f0c48a;font-size:13px;line-height:18px;color:#92400e"><strong>Dedicated environment.</strong> This tenant is created in the bank’s own environment you picked above, not on the shared platform. No public passport pages, no temperature profile — custody only. Branch IP allowlist and maker-checker are switched on by default and set up on the tenant page.</div></sc-if>
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <sc-for list="{{pt.switches}}" as="s" hint-placeholder-count="3"><label style="display:flex;gap:8px;align-items:center;font-size:13px;color:#0f172a"><input type="checkbox" checked="{{s.on}}" style="margin:0;width:16px;height:16px">{{s.text}}</label></sc-for>
+      </div>
+      <sc-if value="{{pt.note}}" hint-placeholder-val="{{ true }}"><div style="padding:12px 14px;border-radius:8px;background:{{pt.noteBg}};border:1px solid {{pt.noteBorder}};font-size:13px;line-height:18px;color:{{pt.noteFg}}">{{pt.note}}</div></sc-if>
 
       <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding-top:6px;border-top:1px solid #e2e6ed">
-        <a href="Admin-TenantDetail.dc.html" style="display:inline-flex;align-items:center;min-height:44px;padding:6px 18px;border-radius:12px;background:#1d4ed8;color:#fff;font-size:14px;font-weight:600;text-decoration:none">{{v.cta}}</a>
+        <a href="Admin-TenantDetail.dc.html" style="display:inline-flex;align-items:center;min-height:44px;padding:6px 18px;border-radius:12px;background:#1d4ed8;color:#fff;font-size:14px;font-weight:600;text-decoration:none">{{pt.cta}}</a>
         <button onClick="{{closeForm}}" style="color:#0f172a;min-height:44px;padding:6px 16px;border:1px solid #7a8696;border-radius:12px;background:#fff;font-size:14px;font-weight:500;cursor:pointer">Cancel</button>
-        <span style="font-size:13px;color:#4b5565">Saves the company and opens its page, which asks for the first admin user before anything else can happen. Audit-logged.</span>
+        <span style="font-size:13px;color:#4b5565">Saves the company + portal type and opens its page, which asks for the <strong>first admin user</strong> before anything else can happen. Portal type is changeable later only by staff, with a reason, audit-logged.</span>
       </div>
     </section>
     </sc-if>
 
     <section style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;overflow:hidden">
       <div style="padding:14px 16px;border-bottom:1px solid #e2e6ed;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
-        <h2 style="margin:0;font-size:18px;font-weight:600">Tenants · shared platform <span style="font-weight:500;color:#4b5565">· 6</span></h2>
+        <h2 style="margin:0;font-size:18px;font-weight:600">Tenants <span style="font-weight:500;color:#4b5565">· 6</span></h2>
         <div style="display:flex;gap:6px;font-size:13px"><span style="padding:6px 12px;border-radius:9999px;background:#1d4ed8;color:#fff;font-weight:500">Active 5</span><span style="padding:6px 12px;border-radius:9999px;background:#fef3e2;color:#92400e;font-weight:500">No users yet 1</span><span style="padding:6px 12px;border-radius:9999px;background:#eef1f6;color:#4b5565;font-weight:500">Suspended 0</span></div>
       </div>
       <table style="width:100%;font-size:14px">
-        <thead><tr style="color:#4b5565;text-align:left;font-size:13px"><th style="padding:10px 16px;font-weight:500">Tenant</th><th style="padding:10px 8px;font-weight:500">Vertical</th><th style="padding:10px 8px;font-weight:500">Users</th><th style="padding:10px 8px;font-weight:500">Devices</th><th style="padding:10px 8px;font-weight:500">Passports</th><th style="padding:10px 8px;font-weight:500">Status</th><th style="padding:10px 16px;font-weight:500;text-align:right">Created</th></tr></thead>
+        <thead><tr style="color:#4b5565;text-align:left;font-size:13px"><th style="padding:10px 16px;font-weight:500">Tenant</th><th style="padding:10px 8px;font-weight:500">Vertical · type</th><th style="padding:10px 8px;font-weight:500">Portal type</th><th style="padding:10px 8px;font-weight:500">Hosted on</th><th style="padding:10px 8px;font-weight:500">Users</th><th style="padding:10px 8px;font-weight:500">Devices</th><th style="padding:10px 8px;font-weight:500">Status</th><th style="padding:10px 16px;font-weight:500;text-align:right">Created</th></tr></thead>
         <tbody>
-          <tr style="border-top:1px solid #e2e6ed;background:#fef3e2"><td style="padding:12px 16px"><a href="Admin-TenantDetail.dc.html"><strong>Apollo Pharmacy</strong></a><div style="font-size:12px;color:#4b5565">ten_apollo · pharmacy chain</div></td><td style="padding:12px 8px">Pharma</td><td style="padding:12px 8px;color:#92400e;font-weight:600">0 · add first admin</td><td style="padding:12px 8px">0</td><td style="padding:12px 8px">0</td><td style="padding:12px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#fef3e2;color:#92400e;font-size:12px;font-weight:500">no users yet</span></td><td style="padding:12px 16px;text-align:right">Today 15:31 · you</td></tr>
-          <tr style="border-top:1px solid #e2e6ed"><td style="padding:12px 16px"><a href="Admin-TenantDetail.dc.html"><strong>Adroit Agencies</strong></a><div style="font-size:12px;color:#4b5565">ten_adroit · distributor</div></td><td style="padding:12px 8px">Pharma</td><td style="padding:12px 8px">7 / 25</td><td style="padding:12px 8px">30</td><td style="padding:12px 8px">2,400</td><td style="padding:12px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#e6f6ef;color:#047857;font-size:12px;font-weight:500">active</span></td><td style="padding:12px 16px;text-align:right">2 Oct</td></tr>
-          <tr style="border-top:1px solid #e2e6ed"><td style="padding:12px 16px"><a href="Admin-TenantDetail.dc.html"><strong>Test Lab</strong></a><div style="font-size:12px;color:#4b5565">ten_testlab · diagnostics</div></td><td style="padding:12px 8px">Diagnostics</td><td style="padding:12px 8px">2 / 10</td><td style="padding:12px 8px">12</td><td style="padding:12px 8px">4,000</td><td style="padding:12px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#e6f6ef;color:#047857;font-size:12px;font-weight:500">active</span></td><td style="padding:12px 16px;text-align:right">6 Oct</td></tr>
-          <tr style="border-top:1px solid #e2e6ed"><td style="padding:12px 16px"><a href="Admin-TenantDetail.dc.html"><strong>Max Pharmacy</strong></a><div style="font-size:12px;color:#4b5565">ten_max · pharmacy chain</div></td><td style="padding:12px 8px">Pharma</td><td style="padding:12px 8px">1 / 10</td><td style="padding:12px 8px">2</td><td style="padding:12px 8px">0</td><td style="padding:12px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#e6f6ef;color:#047857;font-size:12px;font-weight:500">active</span></td><td style="padding:12px 16px;text-align:right">14 Oct</td></tr>
-          <tr style="border-top:1px solid #e2e6ed"><td colspan="7" style="padding:10px 16px;font-size:13px;color:#4b5565">+ 2 more</td></tr>
+          <tr style="border-top:1px solid #e2e6ed;background:#fef3e2"><td style="padding:12px 16px"><a href="Admin-TenantDetail.dc.html"><strong>Apollo Pharmacy</strong></a><div style="font-size:12px;color:#4b5565">ten_apollo</div></td><td style="padding:12px 8px">Pharma · pharmacy chain</td><td style="padding:12px 8px">Pharmacy chain portal<div style="font-size:12px;color:#4b5565">DC → store → customer</div></td><td style="padding:12px 8px">Shared</td><td style="padding:12px 8px;color:#92400e;font-weight:600">0 · add first admin</td><td style="padding:12px 8px">0 <span style="color:#4b5565">(HUB · Pro · Lite)</span></td><td style="padding:12px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#fef3e2;color:#92400e;font-size:12px;font-weight:500">no users yet</span></td><td style="padding:12px 16px;text-align:right">Today 15:31 · you</td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:12px 16px"><a href="Admin-TenantDetail.dc.html"><strong>Axis Bank</strong></a><div style="font-size:12px;color:#4b5565">ten_axis</div></td><td style="padding:12px 8px">BFSI · bank, cash-in-transit</td><td style="padding:12px 8px">Cash-van portal<div style="font-size:12px;color:#4b5565">vans · crew · duties · gate pass</div></td><td style="padding:12px 8px">Shared</td><td style="padding:12px 8px">4 / 25</td><td style="padding:12px 8px">6 <span style="color:#4b5565">(Tracker)</span></td><td style="padding:12px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#e6f6ef;color:#047857;font-size:12px;font-weight:500">active</span></td><td style="padding:12px 16px;text-align:right">21 Oct</td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:12px 16px"><a href="Admin-TenantDetail.dc.html"><strong>Test Lab</strong></a><div style="font-size:12px;color:#4b5565">ten_testlab</div></td><td style="padding:12px 8px">Diagnostics · lab</td><td style="padding:12px 8px">Device only<div style="font-size:12px;color:#4b5565">scan page + alerts · data push off</div></td><td style="padding:12px 8px">Shared</td><td style="padding:12px 8px">2 / 10</td><td style="padding:12px 8px">12 <span style="color:#4b5565">(Pro · Lite)</span></td><td style="padding:12px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#e6f6ef;color:#047857;font-size:12px;font-weight:500">active</span></td><td style="padding:12px 16px;text-align:right">6 Oct</td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:12px 16px"><a href="Admin-TenantDetail.dc.html"><strong>Adroit Agencies</strong></a><div style="font-size:12px;color:#4b5565">ten_adroit</div></td><td style="padding:12px 8px">Pharma · distributor</td><td style="padding:12px 8px">Distributor portal<div style="font-size:12px;color:#4b5565">depot → pharmacy</div></td><td style="padding:12px 8px">Shared</td><td style="padding:12px 8px">7 / 25</td><td style="padding:12px 8px">30 <span style="color:#4b5565">(HUB · Pro)</span></td><td style="padding:12px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#e6f6ef;color:#047857;font-size:12px;font-weight:500">active</span></td><td style="padding:12px 16px;text-align:right">2 Oct</td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td style="padding:12px 16px"><a href="Admin-TenantDetail.dc.html"><strong>Muthoot Finance</strong></a><div style="font-size:12px;color:#4b5565">ten_muthoot</div></td><td style="padding:12px 8px">BFSI · gold-loan NBFC</td><td style="padding:12px 8px">Lockbox portal<div style="font-size:12px;color:#4b5565">gold pickup · approvals</div></td><td style="padding:12px 8px">Dedicated · Muthoot</td><td style="padding:12px 8px">3 / 50</td><td style="padding:12px 8px">4 <span style="color:#4b5565">(Lockbox)</span></td><td style="padding:12px 8px"><span style="padding:2px 8px;border-radius:9999px;background:#e6f6ef;color:#047857;font-size:12px;font-weight:500">active</span></td><td style="padding:12px 16px;text-align:right">19 Oct</td></tr>
+          <tr style="border-top:1px solid #e2e6ed"><td colspan="8" style="padding:10px 16px;font-size:13px;color:#4b5565">+ 1 more</td></tr>
         </tbody>
       </table>
     </section>
-    <div style="font-size:13px;color:#4b5565">Order of work: <strong>create tenant → add first admin (on the tenant page) → allocate devices → issue passports</strong>. BFSI tenants live in their bank’s dedicated environment; choose it under “Hosted on”.</div>
+    <div style="font-size:13px;color:#4b5565">Order of work: <strong>create tenant (with portal type) → add first admin (on the tenant page) → print device QRs = allocate, by category → generate passport QRs</strong>. “Hosted on” defaults to the shared platform for every vertical; a dedicated environment is a choice for a bank, not a rule (Axis Bank runs on the shared platform).</div>
   </main>
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":900}}'>
 class Component extends DCLogic {
-  constructor(p){ super(p); this.state = { form: true, vertical: 'pharma' }; }
+  constructor(p){ super(p); this.state = { form: true, vertical: 'pharma', cat: 'pharmacy', portal: 'pharmacy', ex: 'apollo' }; }
   renderVals() {
-    const V = {
-      pharma: { cats:['Pharmacy chain','Distributor / stockist','CFA','Manufacturer','3PL / logistics'], pods:['Shared platform · trackotic.com'], podBorder:'#7a8696', profiles:['Cold chain 2–8','Frozen −25 to −15','Ambient 15–25'], journeys:['Pharma · retail only','Pharma · depot to pharmacy','Pharma · manufacturer to patient'], quotaLabel:'Passport quota / month', quota:'2,000', loc:'Required', locAlt:'Optional', canPrint:true, isBfsi:false, cta:'Create tenant ›' },
-      diag:   { cats:['Diagnostics lab','Collection centre network','Hospital lab'], pods:['Shared platform · trackotic.com'], podBorder:'#7a8696', profiles:['Lab samples 2–8 · 4 h','Cold chain 2–8','Ambient 15–25'], journeys:['Diagnostics · home to lab'], quotaLabel:'Passport QR quota / month', quota:'5,000', loc:'Required', locAlt:'Optional', canPrint:true, isBfsi:false, cta:'Create tenant ›' },
-      bfsi:   { cats:['Gold loan NBFC','Bank · cash-in-transit','Bank · branch custody'], pods:['choose the bank’s dedicated environment…','Muthoot · dedicated','Axis Bank · dedicated'], podBorder:'#b45309', profiles:['No temperature · custody only'], journeys:['BFSI · custody'], quotaLabel:'Passport QR quota / month', quota:'10,000', loc:'Required (phone GPS, warning only)', locAlt:'Required (hard block)', canPrint:false, isBfsi:true, cta:'Create tenant in dedicated environment ›' }
+    const D = (name, role, on) => ({ name, role, border: on ? '#1d4ed8' : '#d7dce5', bg: on ? '#eef3ff' : '#fff' });
+    const SHARED = 'Shared platform · trackotic.com';
+    const VERT = {
+      pharma: { label: 'Pharma · product passports', cats: { pharmacy: 'Pharmacy chain (retail to customer)', distributor: 'Distributor / stockist', cfa: 'CFA', manufacturer: 'Manufacturer', logistics: '3PL / logistics' } },
+      diag:   { label: 'Diagnostics · sample passports', cats: { lab: 'Diagnostics lab', network: 'Collection centre network', hospital: 'Hospital lab', ivf: 'IVF clinic' } },
+      bfsi:   { label: 'BFSI · custody, no temperature', cats: { bank: 'Bank · cash-in-transit', nbfc: 'Gold-loan NBFC', fintech: 'Fintech / secure courier' } },
+      vacc:   { label: 'Vaccines & biologicals', cats: { vaccines: 'Vaccines', biologicals: 'Biologicals', blood: 'Blood bank' } },
+      food:   { label: 'Food & FMCG', cats: { food: 'Food', fmcg: 'FMCG' } }
     };
-    const v = V[this.state.vertical];
-    return { v, setVertical: (e) => this.setState({ vertical: e.target.value }), showForm: this.state.form, openForm: () => this.setState({ form: true }), closeForm: () => this.setState({ form: false }) }; }
+    const PT = {
+      pharmacy: { name: 'Pharmacy chain portal', desc: 'DC → DC, DC → store, store → store, store → customer. Sites by Site ID (DC and stores), work orders from the Master, gate pass, Fridge Items, HUB/Pro/Lite device cards, public compliance report with the tenant’s brand. (Apollo Pharmacy)',
+        hosts: [SHARED, 'Dedicated environment (optional)'], seats: '500', site: 'Site ID required (unique code per DC / store)', siteAlt: 'Site ID optional',
+        devices: [D('HUB', 'static · cold room / fridge', true), D('Pro', 'running · returnable box', true), D('Lite', 'running · sent out, returned later', true), D('Lockbox', 'not used', false)],
+        profiles: ['Dynamic · product-wise (2–8, −20, ambient)', 'Cold chain 2–8', 'Frozen −25 to −15'], journeys: ['Pharmacy chain · DC → store → customer', 'Pharma · retail only'], quotaLabel: 'Passport quota / month', quota: '20,000', loc: 'Required', locAlt: 'Optional',
+        switches: [{ on: true, text: 'Tenant prints its own passport labels from the tenant portal (multiple label sizes; label-roll orders come to Track0tic)' }, { on: true, text: 'Public compliance report on passport scan (brand of tenant + Powered by Track0tic™; return/failed-delivery remarks never shown)' }, { on: true, text: 'Masters by Excel upload (sites, users); customer mobile numbers kept 24 h' }],
+        note: '', cta: 'Create tenant ›' },
+      distributor: { name: 'Distributor portal', desc: 'Depot → Pro → pharmacy. Passport batches, bind on phone, delivered scan, HUB storage, public compliance PDF. (Adroit Agencies — the shared-pod tenant portal)',
+        hosts: [SHARED], seats: '25', site: 'Depots as sites', siteAlt: 'Site ID required',
+        devices: [D('HUB', 'depot cold room', true), D('Pro', 'transit', true), D('Lite', 'optional', false), D('Lockbox', 'not used', false)],
+        profiles: ['Cold chain 2–8', 'Frozen −25 to −15', 'Ambient 15–25'], journeys: ['Pharma · depot to pharmacy', 'Pharma · manufacturer to patient'], quotaLabel: 'Passport quota / month', quota: '2,000', loc: 'Required', locAlt: 'Optional',
+        switches: [{ on: true, text: 'Tenant prints its own passport labels from the tenant portal' }, { on: true, text: 'Public compliance report on passport scan' }],
+        note: '', cta: 'Create tenant ›' },
+      pharmaDevice: { name: 'Device only — scan page + alerts', desc: 'No tenant portal. Staff bind passport QRs to devices on Track0tic’s own scan page; alerts by SMS/email; compliance PDF on scan. For customers that already run their own system.',
+        hosts: [SHARED], seats: '5', site: 'Not used', siteAlt: 'Site ID optional',
+        devices: [D('HUB', 'optional', true), D('Pro', 'transit', true), D('Lite', 'optional', false), D('Lockbox', 'not used', false)],
+        profiles: ['Cold chain 2–8', 'Frozen −25 to −15', 'Ambient 15–25'], journeys: ['Pharma · retail only'], quotaLabel: 'Passport quota / month', quota: '2,000', loc: 'Required', locAlt: 'Optional',
+        switches: [{ on: false, text: 'Send Track0tic data on to the customer’s own system (webhook / API key — switched on only if they want it)' }, { on: true, text: 'Public compliance report on passport scan' }],
+        note: '', cta: 'Create tenant ›' },
+      labDevice: { name: 'Device only — scan page + alerts (big labs)', desc: 'The lab keeps its own LIS/portal. Phlebotomist binds tube passport QRs to the Pro bag on Track0tic’s scan page; temperature-breach alert → the lab decides whether to receive the sample. Work orders stay in the lab’s system. User management only.',
+        hosts: [SHARED], seats: '10', site: 'Labs / collection centres as sites', siteAlt: 'Site ID required',
+        devices: [D('HUB', 'lab fridge (optional)', false), D('Pro', 'sample bag · one per temperature', true), D('Lite', 'lab → lab transfer', true), D('Lockbox', 'not used', false)],
+        profiles: ['Lab samples 2–8 · 4 h', 'Frozen −25 to −15', 'Ambient 15–25'], journeys: ['Diagnostics · home / centre → lab', 'Diagnostics · lab → lab'], quotaLabel: 'Passport QR quota / month', quota: '5,000', loc: 'Required', locAlt: 'Optional',
+        switches: [{ on: false, text: 'Send Track0tic data on to the lab’s own system (webhook / API key) — off unless the lab asks' }, { on: true, text: 'Tenant prints its own tube-size passport labels' }, { on: true, text: 'Lid-opening alert (when firmware ships)' }],
+        note: 'Sold as the entry product for mature labs. The full lab portal below is the separate, paid upgrade — keep the two apart in the contract and in this setting.', noteBg: '#eef3ff', noteBorder: '#c7d4fb', noteFg: '#1e3a8a', cta: 'Create tenant ›' },
+      labFull: { name: 'Full lab portal (smaller labs)', desc: 'Everything in Device only, plus the lab portal: pickups from home / hospital / collection centre, walk-in bench, sample custody, exceptions, reports, users. For labs without a mature system.',
+        hosts: [SHARED], seats: '25', site: 'Labs / collection centres as sites', siteAlt: 'Site ID required',
+        devices: [D('HUB', 'lab fridge', true), D('Pro', 'sample bag', true), D('Lite', 'lab → lab transfer', true), D('Lockbox', 'not used', false)],
+        profiles: ['Lab samples 2–8 · 4 h', 'Frozen −25 to −15', 'Ambient 15–25'], journeys: ['Diagnostics · home / centre → lab', 'Diagnostics · lab → lab'], quotaLabel: 'Passport QR quota / month', quota: '5,000', loc: 'Required', locAlt: 'Optional',
+        switches: [{ on: true, text: 'Tenant prints its own tube-size passport labels' }, { on: true, text: 'Public compliance report on passport scan' }],
+        note: '', cta: 'Create tenant ›' },
+      cashvan: { name: 'Cash-van portal (CIT)', desc: 'Vans, CIT vendors, crew with KYC (driver, custodian, gunman), duties / work orders, gate pass with odometer boxes, live tracking every 6 min, KM report vs vendor invoice, vendor document expiry alerts. No temperature, no public passport page. (Axis Bank)',
+        hosts: [SHARED, 'Dedicated environment · bank cloud (optional)'], seats: '100', site: 'Branches & chests as geofenced sites', siteAlt: 'Site ID optional',
+        devices: [D('Tracker', 'fixed in van · GPS + KM', true), D('Pro', 'not used', false), D('Lite', 'not used', false), D('Lockbox', 'phase 2 · cash lockbox', false)],
+        profiles: ['No temperature · custody only'], journeys: ['BFSI · duty / run'], quotaLabel: 'Duties / month (no passports)', quota: '—', loc: 'Required (phone GPS, warning only)', locAlt: 'Required (hard block)',
+        switches: [{ on: true, text: 'Maker → checker → approver on masters (vendor maker, bank operator checker, bank admin approver)' }, { on: true, text: 'Vendor one-time links for master data (no vendor logins)' }, { on: false, text: 'Branch IP allowlist for office roles' }],
+        note: 'Axis Bank runs on the shared platform today (UAT at apiuat.trackotic.com). A dedicated environment is offered to a bank, never forced. Device QR only — no passport QRs.', noteBg: '#fef3e2', noteBorder: '#f0c48a', noteFg: '#92400e', cta: 'Create tenant ›' },
+      lockbox: { name: 'Lockbox portal (gold pickup)', desc: 'Collector app + branch approver, GPS-geofenced lockbox that seals at the customer and opens at the branch, pouch records, hash-chained audit, 5-year encrypted retention. (Muthoot)',
+        hosts: ['Dedicated environment · Muthoot', SHARED], seats: '50', site: 'Branches as geofenced sites', siteAlt: 'Site ID optional',
+        devices: [D('Lockbox', 'sealed pickup box', true), D('Tracker', 'not used', false), D('Pro', 'not used', false), D('Lite', 'not used', false)],
+        profiles: ['No temperature · custody only'], journeys: ['BFSI · custody'], quotaLabel: 'Pickups / month (no passports)', quota: '—', loc: 'Required (hard block)', locAlt: 'Required (phone GPS, warning only)',
+        switches: [{ on: true, text: 'Maker-checker mandatory · approvals only through the portal with a confirm step' }, { on: true, text: 'Branch IP allowlist for office roles' }],
+        note: 'Created in the bank’s dedicated environment when one is chosen under Hosted on. No public passport pages.', noteBg: '#fef3e2', noteBorder: '#f0c48a', noteFg: '#92400e', cta: 'Create tenant in dedicated environment ›' }
+    };
+    const PORTALS = { pharma: ['pharmacy', 'distributor', 'pharmaDevice'], diag: ['labDevice', 'labFull'], bfsi: ['cashvan', 'lockbox'], vacc: ['distributor', 'pharmaDevice'], food: ['pharmaDevice', 'distributor'] };
+    const DEFAULT_PORTAL = { pharma: { pharmacy: 'pharmacy', distributor: 'distributor', cfa: 'distributor', manufacturer: 'pharmaDevice', logistics: 'pharmaDevice' }, diag: { lab: 'labDevice', network: 'labFull', hospital: 'labDevice', ivf: 'labFull' }, bfsi: { bank: 'cashvan', nbfc: 'lockbox', fintech: 'cashvan' }, vacc: { vaccines: 'distributor', biologicals: 'distributor', blood: 'pharmaDevice' }, food: { food: 'pharmaDevice', fmcg: 'distributor' } };
+    const EX = { apollo: { vertical: 'pharma', cat: 'pharmacy', portal: 'pharmacy', legal: 'Apollo Pharmacies Ltd', display: 'Apollo Pharmacy', gst: '07AAACA1234F1Z5', addr: 'Chennai HO · MVP: 25 stores, South Delhi' },
+                 axis:   { vertical: 'bfsi', cat: 'bank', portal: 'cashvan', legal: 'Axis Bank Ltd', display: 'Axis Bank', gst: '27AAACU2414K1ZN', addr: 'Axis House, Worli, Mumbai 400025' },
+                 lab:    { vertical: 'diag', cat: 'lab', portal: 'labDevice', legal: 'Demo Diagnostics Pvt Ltd', display: 'Demo Lab', gst: '—', addr: 'Lab + 6 collection centres, Delhi NCR' } };
+    const s = this.state; const e = EX[s.ex] || EX.apollo;
+    const vert = VERT[s.vertical]; const catCode = vert.cats[s.cat] ? s.cat : Object.keys(vert.cats)[0];
+    const portalCode = PORTALS[s.vertical].includes(s.portal) ? s.portal : DEFAULT_PORTAL[s.vertical][catCode];
+    const pt = PT[portalCode];
+    const verticals = Object.keys(VERT).map(k => ({ code: k, label: VERT[k].label, sel: k === s.vertical }));
+    const cats = Object.keys(vert.cats).map(k => ({ code: k, label: vert.cats[k], sel: k === catCode }));
+    const portals = PORTALS[s.vertical].map(k => ({ code: k, label: PT[k].name, sel: k === portalCode }));
+    const pick = (ex) => () => this.setState({ ex, vertical: EX[ex].vertical, cat: EX[ex].cat, portal: EX[ex].portal, form: true });
+    const sel = (k) => s.ex === k ? '#1d4ed8' : '#7a8696';
+    return { v: { legal: e.legal, display: e.display, gst: e.gst, addr: e.addr }, verticals, cats, portals, pt, ex: { apollo: sel('apollo'), axis: sel('axis'), lab: sel('lab') },
+      setVertical: (ev) => { const nv = ev.target.value; const c0 = Object.keys(VERT[nv].cats)[0]; this.setState({ vertical: nv, cat: c0, portal: DEFAULT_PORTAL[nv][c0], ex: '' }); },
+      setCat: (ev) => this.setState({ cat: ev.target.value, portal: DEFAULT_PORTAL[s.vertical][ev.target.value], ex: '' }),
+      setPortal: (ev) => this.setState({ portal: ev.target.value }),
+      exApollo: pick('apollo'), exAxis: pick('axis'), exLab: pick('lab'),
+      showForm: s.form, openForm: () => this.setState({ form: true }), closeForm: () => this.setState({ form: false }) };
+  }
 }
 </script>
 </body>

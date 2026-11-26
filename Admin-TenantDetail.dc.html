@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Track0tic admin — tenant detail</title>
-<script src="./support.js?v=4"></script>
+<script src="./support.js?v=5"></script>
 </head>
 <body>
 <x-dc>
@@ -19,7 +19,7 @@
     <div style="display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:12px">
       <div>
         <h1 style="margin:0;font-size:26px;line-height:32px;font-weight:600">Adroit Agencies</h1>
-        <div style="display:flex;gap:8px;align-items:center;margin-top:6px;font-size:14px;color:#4b5565">pharma · shared platform · <span style="padding:2px 8px;border-radius:9999px;background:#e6f6ef;color:#047857;font-size:12px;font-weight:500">active</span> · since 2 Oct 2026 · <span style="font-family:'IBM Plex Mono',monospace">ten_adroit</span></div>
+        <div style="display:flex;gap:8px;align-items:center;margin-top:6px;font-size:14px;color:#4b5565">pharma · distributor portal · shared platform · <span style="padding:2px 8px;border-radius:9999px;background:#e6f6ef;color:#047857;font-size:12px;font-weight:500">active</span> · since 2 Oct 2026 · <span style="font-family:'IBM Plex Mono',monospace">ten_adroit</span></div>
       </div>
       <div style="display:flex;gap:8px;flex-wrap:wrap">
         <a href="Admin-Issue.dc.html" style="display:inline-flex;align-items:center;height:40px;padding:0 14px;border:0;border-radius:8px;background:#1d4ed8;color:#fff;font-size:14px;font-weight:600;text-decoration:none">Issue passports</a>
@@ -67,13 +67,18 @@
       <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:start">
         <section style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;padding:16px 20px;display:flex;flex-direction:column;gap:8px;font-size:14px">
           <h2 style="margin:0;font-size:16px;font-weight:600">Setup</h2>
-          <div style="display:flex;justify-content:space-between"><span style="color:#4b5565">Vertical</span><span>Pharma · product passports</span></div>
+          <div style="display:flex;justify-content:space-between"><span style="color:#4b5565">Vertical</span><span>Pharma · distributor / stockist</span></div>
+          <div style="display:flex;justify-content:space-between;gap:12px"><span style="color:#4b5565">Portal type</span><span style="text-align:right"><strong>Distributor portal</strong> · depot → pharmacy · <a href="Admin-Tenants.dc.html" style="color:#1a43b8">change (staff, reason, audit)</a></span></div>
+          <div style="display:flex;justify-content:space-between;gap:12px"><span style="color:#4b5565">Devices in use</span><span style="text-align:right">HUB · Pro <span style="color:#4b5565">(Lite off)</span> · tenant GRNs by category</span></div>
           <div style="display:flex;justify-content:space-between"><span style="color:#4b5565">Hosted on</span><span>Shared platform · ap-south-1</span></div>
           <div style="display:flex;justify-content:space-between"><span style="color:#4b5565">Default profile</span><span>2–8 °C · 30 min grace · <a href="Admin-Profiles.dc.html" style="color:#1a43b8">profiles</a></span></div>
           <div style="display:flex;justify-content:space-between"><span style="color:#4b5565">Journey template</span><span>Depot → Pro → Pharmacy · <a href="Admin-Journeys.dc.html" style="color:#1a43b8">edit</a></span></div>
           <div style="display:flex;justify-content:space-between"><span style="color:#4b5565">Location on bind</span><span>required (pharma)</span></div>
           <div style="display:flex;justify-content:space-between"><span style="color:#4b5565">Passport quota</span><span>5,000 / month · 2,400 used</span></div>
-          <div style="display:flex;justify-content:space-between"><span style="color:#4b5565">Prints own passports</span><span>yes · from tenant portal</span></div>
+          <div style="display:flex;justify-content:space-between"><span style="color:#4b5565">Prints own passports</span><span>yes · 40×25 and 25×15 · roll orders to Track0tic</span></div>
+          <div style="display:flex;justify-content:space-between;gap:12px"><span style="color:#4b5565">Tenant logins</span><span style="text-align:right">mobile OTP + email/password</span></div>
+          <div style="display:flex;justify-content:space-between;gap:12px"><span style="color:#4b5565">Branding</span><span style="text-align:right">Adroit logo on reports · Powered by Track0tic™ fixed</span></div>
+          <div style="display:flex;justify-content:space-between;gap:12px"><span style="color:#4b5565">Data push to own system</span><span style="text-align:right">off</span></div>
           <div style="display:flex;justify-content:space-between"><span style="color:#4b5565">Depots</span><span>Okhla (hub TRK-HUB-900004)</span></div>
         </section>
         <section style="background:#fff;border:1px solid #e2e6ed;border-radius:12px;padding:16px 20px;display:flex;flex-direction:column;gap:8px;font-size:14px">
@@ -82,7 +87,7 @@
           <div style="display:flex;justify-content:space-between"><span style="color:#4b5565">Escalation</span><span>Delhi Zone Manager</span></div>
           <div style="display:flex;justify-content:space-between"><span style="color:#4b5565">Plan</span><span>Devices sold · passports per 1,000</span></div>
           <div style="display:flex;justify-content:space-between"><span style="color:#4b5565">Last invoice</span><span>INV-2026-118 · 2 Oct</span></div>
-          <div style="display:flex;justify-content:space-between"><span style="color:#4b5565">Allowed IPs</span><span style="color:#4b5565">not enforced (shared pod)</span></div>
+          <div style="display:flex;justify-content:space-between"><span style="color:#4b5565">Allowed IPs</span><span style="color:#4b5565">not enforced (shared platform)</span></div>
           <h2 style="margin:10px 0 0;font-size:16px;font-weight:600">Recent activity</h2>
           <div style="color:#4b5565">21 Oct · asked to replace label on PRO-900001 · <a href="Admin-Approvals.dc.html" style="color:#1a43b8">waiting</a></div>
           <div style="color:#4b5565">21 Oct · 48 passports issued from tenant portal</div>
@@ -109,7 +114,7 @@ class Component extends DCLogic {
       ['devices','Devices · 30','Same table as Inventory, filtered to this tenant','Columns: TRK ID, model, depot hub, last sync, open passports, firmware.'],
       ['passports','Passports · 2,400','Batches issued to Adroit','Per batch: size, issued by (staff or tenant portal), printed, used, void. Links to Issue passports.'],
       ['users','Users · 7','Opens Users and roles for this tenant','Same page as the Users board, preselected.'],
-      ['settings','Settings','Profile, journey template, quota, location rule, IP allowlist (bank environments)','Every change here needs a reason and lands in the audit log.']
+      ['settings','Settings','Portal type, devices in use, profile, journey template, quota, location rule, login methods, branding, data push, IP allowlist (bank environments)','Every change here needs a reason and lands in the audit log.']
     ];
     const t = this.state.tab;
     const tabs = defs.map(d => ({ label: d[1], line: t === d[0] ? '#1d4ed8' : 'transparent', w: t === d[0] ? 600 : 500, fg: t === d[0] ? '#1a43b8' : '#4b5565', pick: () => this.setState({ tab: d[0] }) }));
