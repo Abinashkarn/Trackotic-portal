@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Lab phone: Device plan. Type the code</title>
+<script src="./support.js?v=6"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;family=Noto+Sans:wght@400;500;600&amp;family=Noto+Sans+Devanagari:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#0a5e53}a:hover{color:#063f38}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; overflow: hidden; background: #ffffff">
+<sc-if value="{{ isEn }}" hint-placeholder-val="{{ true }}"><div lang="en" style="width: 390px; height: 844px; box-sizing: border-box; display: flex; flex-direction: column; background: #ffffff; color: #17202e; font-family: 'Noto Sans', system-ui, sans-serif; font-size: 17px; line-height: 1.4; overflow: hidden"><header style="flex: 0 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 10px 20px; border-bottom: 1px solid #e2e5ea"><span style="display: flex; align-items: center; gap: 10px"><span role="img" aria-label="Lab logo goes here" style="flex: 0 0 auto; width: 36px; height: 36px; border: 1px dashed #5b6675; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #566173">Logo</span><span style="display: flex; flex-direction: column"><span style="font-size: 17px; font-weight: 600; color: #17202e">[LAB NAME]</span><span style="font-size: 12px; color: #566173">Powered by Track<span style="color: #c8281a">0</span>tic<sup style="font-size: 8px">&#8482;</sup></span></span></span><button type="button" onClick="{{ setHi }}" style="min-height: 44px; padding: 8px 14px; border: 1px solid #0b7a6c; border-radius: 8px; background: #ffffff; color: #0a5e53; font-size: 15px; font-weight: 600; font-family: 'Noto Sans Devanagari', 'Noto Sans', sans-serif; cursor: pointer">&#2361;&#2367;&#2344;&#2381;&#2342;&#2368;</button></header><main style="flex: 1 1 auto; min-height: 0; overflow-y: auto; padding: 20px 20px 12px; display: flex; flex-direction: column; gap: 12px"><span style="font-size: 13px; letter-spacing: 0.05em; text-transform: uppercase; color: #566173">Binding to PRO-L001-04</span><h1 style="margin: 0; font-size: 28px; line-height: 1.15; font-weight: 600">Type the code</h1><div style="display: flex; flex-direction: column; gap: 6px"><label for="p87" style="font-size: 15px; font-weight: 600">Code printed under the QR</label><input id="p87" type="text" value="" placeholder="8 characters" style="min-height: 52px; box-sizing: border-box; width: 100%; padding: 12px; border: 1px solid #8a94a3; border-radius: 8px; font-size: 18px; font-family: inherit; color: #17202e"></div><p style="margin: 0; padding: 12px 14px; border-radius: 8px; background: #e0f2ef; color: #17202e; font-size: 14px; line-height: 1.45">Use this when the label is wet, torn or will not scan. The record shows it was typed, not scanned.</p></main><footer style="flex: 0 0 auto; padding: 14px 20px 18px; box-shadow: 0 -2px 10px rgba(23, 32, 46, 0.12); display: flex; flex-direction: column; gap: 10px"><a href="EBind.dc.html" style="display: block; box-sizing: border-box; min-height: 56px; padding: 15px 18px; border-radius: 8px; background: #0b7a6c; color: #ffffff; font-size: 18px; font-weight: 600; text-align: center; text-decoration: none">Bind this passport</a><a href="EBind.dc.html" style="display: block; min-height: 44px; box-sizing: border-box; padding: 10px; text-align: center; font-size: 16px; font-weight: 600">Back to scanning</a></footer></div></sc-if>
+<sc-if value="{{ isHi }}" hint-placeholder-val="{{ false }}"><div lang="hi" style="width: 390px; height: 844px; box-sizing: border-box; display: flex; flex-direction: column; background: #ffffff; color: #17202e; font-family: 'Noto Sans Devanagari', 'Noto Sans', system-ui, sans-serif; font-size: 17px; line-height: 1.4; overflow: hidden"><header style="flex: 0 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 10px 20px; border-bottom: 1px solid #e2e5ea"><span style="display: flex; align-items: center; gap: 10px"><span role="img" aria-label="Lab logo goes here" style="flex: 0 0 auto; width: 36px; height: 36px; border: 1px dashed #5b6675; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #566173">Logo</span><span style="display: flex; flex-direction: column"><span style="font-size: 17px; font-weight: 600; color: #17202e">[LAB NAME]</span><span style="font-size: 12px; color: #566173">Powered by Track<span style="color: #c8281a">0</span>tic<sup style="font-size: 8px">&#8482;</sup></span></span></span><button type="button" onClick="{{ setEn }}" style="min-height: 44px; padding: 8px 14px; border: 1px solid #0b7a6c; border-radius: 8px; background: #ffffff; color: #0a5e53; font-size: 15px; font-weight: 600; font-family: 'Noto Sans Devanagari', 'Noto Sans', sans-serif; cursor: pointer">English</button></header><main style="flex: 1 1 auto; min-height: 0; overflow-y: auto; padding: 20px 20px 12px; display: flex; flex-direction: column; gap: 12px"><span style="font-size: 13px; letter-spacing: 0.05em; text-transform: uppercase; color: #566173">PRO-L001-04 से जोड़ रहे हैं</span><h1 style="margin: 0; font-size: 28px; line-height: 1.15; font-weight: 600">कोड टाइप करें</h1><div style="display: flex; flex-direction: column; gap: 6px"><label for="p88" style="font-size: 15px; font-weight: 600">QR के नीचे छपा कोड</label><input id="p88" type="text" value="" placeholder="8 characters" style="min-height: 52px; box-sizing: border-box; width: 100%; padding: 12px; border: 1px solid #8a94a3; border-radius: 8px; font-size: 18px; font-family: inherit; color: #17202e"></div><p style="margin: 0; padding: 12px 14px; border-radius: 8px; background: #e0f2ef; color: #17202e; font-size: 14px; line-height: 1.45">जब लेबल गीला हो, फटा हो या स्कैन न हो तब इसका उपयोग करें। रिकॉर्ड में दिखेगा कि कोड टाइप किया गया था, स्कैन नहीं।</p></main><footer style="flex: 0 0 auto; padding: 14px 20px 18px; box-shadow: 0 -2px 10px rgba(23, 32, 46, 0.12); display: flex; flex-direction: column; gap: 10px"><a href="EBind.dc.html" style="display: block; box-sizing: border-box; min-height: 56px; padding: 15px 18px; border-radius: 8px; background: #0b7a6c; color: #ffffff; font-size: 18px; font-weight: 600; text-align: center; text-decoration: none">यह पासपोर्ट जोड़ें</a><a href="EBind.dc.html" style="display: block; min-height: 44px; box-sizing: border-box; padding: 10px; text-align: center; font-size: 16px; font-weight: 600">स्कैनिंग पर वापस</a></footer></div></sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+componentDidMount() {
+try {
+if (window.localStorage.getItem('labLang') === 'hi') { this.setState({ lang: 'hi' }); }
+} catch (e) {}
+}
+renderVals() {
+var self = this;
+var lang = (this.state && this.state.lang) || 'en';
+var pick = function (l) {
+return function () {
+try { window.localStorage.setItem('labLang', l); } catch (e) {}
+self.setState({ lang: l });
+};
+};
+return { isEn: lang !== 'hi', isHi: lang === 'hi', setEn: pick('en'), setHi: pick('hi') };
+}
+}
+</script>
+</body>
+</html>

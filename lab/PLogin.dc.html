@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Lab portal: Portal login</title>
+<script src="./support.js?v=6"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;family=Noto+Sans:wght@400;500;600&amp;family=Noto+Sans+Devanagari:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#0a5e53}a:hover{color:#063f38}
+</style>
+</helmet>
+<div style="display: flex; flex-wrap: wrap; min-height: 1500px; overflow-x: hidden; background: #f1f3f6; color: #17202e; font-family: 'Noto Sans', system-ui, sans-serif; line-height: 1.35"><main style="flex: 1 1 100%; min-height: 1500px; display: flex; align-items: flex-start; justify-content: center; padding: 96px 24px; box-sizing: border-box"><div style="width: 100%; max-width: 440px; background: #ffffff; border: 1px solid #e2e5ea; border-radius: 12px; padding: 32px; display: flex; flex-direction: column; gap: 16px; box-sizing: border-box"><span style="display: flex; align-items: center; gap: 12px"><span role="img" aria-label="Lab logo goes here" style="flex: 0 0 auto; width: 48px; height: 48px; border: 1px dashed #5b6675; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #566173">Logo</span><span style="display: flex; flex-direction: column"><span style="font-size: 22px; font-weight: 600">[LAB NAME]</span><span style="font-size: 13px; color: #566173">Powered by Track<span style="color: #c8281a">0</span>tic<sup style="font-size: 8px">&#8482;</sup></span></span></span><h1 style="margin: 0; font-size: 24px; font-weight: 600">Log in</h1><div style="display: flex; gap: 8px; flex-wrap: wrap"><button type="button" aria-pressed="true" style="min-height: 48px; padding: 10px 16px; border-radius: 999px; font-size: 16px; font-family: inherit; cursor: pointer; background: #e0f2ef; color: #0a5e53; border: 1px solid #8fcfc5; font-weight: 600">Mobile number and code</button><button type="button" aria-pressed="false" style="min-height: 48px; padding: 10px 16px; border-radius: 999px; font-size: 16px; font-family: inherit; cursor: pointer; background: #ffffff; color: #17202e; border: 1px solid #b9c2cf; font-weight: 500">Email and password</button></div><div style="display: flex; flex-direction: column; gap: 6px; min-width: 0"><label for="f41" style="font-size: 14px; font-weight: 600">Mobile number *</label><input id="f41" type="text" value="" placeholder="10 digits" style="min-height: 48px; box-sizing: border-box; width: 100%; padding: 10px 12px; border: 1px solid #8a94a3; border-radius: 8px; font-size: 16px; font-family: inherit; background: #ffffff; color: #17202e"></div><a href="Main.dc.html" style="display: inline-block; min-height: 48px; box-sizing: border-box; padding: 11px 18px; border-radius: 8px; font-size: 16px; font-weight: 600; font-family: inherit; text-decoration: none; cursor: pointer; background: #0b7a6c; color: #ffffff; border: 1px solid #0b7a6c">Send code</a><a href="PLogin.dc.html" style="font-size: 16px; font-weight: 600">Forgot password</a><p style="margin: 0; padding: 12px 14px; border-radius: 8px; background: #e0f2ef; color: #17202e; font-size: 14px; line-height: 1.45">One page for everyone. After login the portal opens by role: Lab Admin and Quality Manager see everything, a centre in-charge sees only that centre. A mobile number that is not registered gets "Contact your lab admin".</p></div></main></div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1360,"height":1500}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>
