@@ -70,12 +70,20 @@
 
       <div style="display:flex;flex-direction:column;gap:14px">
         <section style="background:#ffffff;border:1px solid #e2e6ed;border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:10px">
-          <h2 style="margin:0;font-size:16px;font-weight:600">Label preview · device QR</h2>
-          <div style="display:flex;align-items:center;gap:14px;padding:14px;border:1px dashed #7a8696;border-radius:8px;background:#ffffff">
+          <h2 style="margin:0;font-size:16px;font-weight:600">Label previews · every label carries the tenant name and Track<span style="color:#ff5a66">0</span>tic<sup style="font-size:0.6em">TM</sup></h2>
+          <div style="font-size:12px;font-weight:600;letter-spacing:0.06em;color:#4b5565">DEVICE QR · 60 × 30 mm</div>
+          <div style="display:flex;align-items:center;gap:14px;padding:12px 14px;border:1px dashed #7a8696;border-radius:8px;background:#ffffff">
             <div style="width:72px;height:72px;background:repeating-conic-gradient(#0f172a 0 25%, #ffffff 0 50%) 0 0 / 12px 12px;flex:0 0 auto" role="img" aria-label="QR code placeholder"></div>
-            <div style="display:flex;flex-direction:column;gap:2px"><span style="font-family:'IBM Plex Mono',monospace;font-size:15px;font-weight:600">{{range1}}</span><span style="font-size:11px;color:#4b5565">60 × 30 mm · polyester · EC Q · /d/‹token›</span><span style="font-size:12px;font-weight:600">Track<span style="color:#ff5a66">0</span>tic<sup style="font-size:0.6em">TM</sup></span></div>
+            <div style="display:flex;flex-direction:column;gap:2px;min-width:0"><span style="font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{t.name}}</span><span style="font-family:'IBM Plex Mono',monospace;font-size:15px;font-weight:600">{{range1}}</span><span style="font-size:11px;color:#4b5565">{{type}} · /d/‹token›</span><span style="font-size:12px;font-weight:600">Track<span style="color:#ff5a66">0</span>tic<sup style="font-size:0.6em">TM</sup> <span style="font-weight:400;color:#4b5565">· track verified</span></span></div>
           </div>
-          <div style="font-size:13px;color:#4b5565">After printing, scan one sticker with the phone: it must open that device's page (<a href="P-LabelCheck.dc.html">label scan test</a>). Reprint needs approval; the old token dies.</div>
+          <sc-if value="{{t.passports}}" hint-placeholder-val="{{ true }}">
+          <div style="font-size:12px;font-weight:600;letter-spacing:0.06em;color:#4b5565">PASSPORT QR · 40 × 25 mm (25 × 15 keeps tenant + Track0tic™ only, code under the QR)</div>
+          <div style="display:flex;align-items:center;gap:12px;padding:10px 12px;border:1px dashed #7a8696;border-radius:8px;background:#ffffff;max-width:300px">
+            <div style="width:56px;height:56px;background:repeating-conic-gradient(#0f172a 0 25%, #ffffff 0 50%) 0 0 / 10px 10px;flex:0 0 auto" role="img" aria-label="QR code placeholder"></div>
+            <div style="display:flex;flex-direction:column;gap:2px;min-width:0"><span style="font-size:12px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{t.name}}</span><span style="font-family:'IBM Plex Mono',monospace;font-size:14px;font-weight:600">097FQYD7</span><span style="font-size:10px;color:#4b5565">scan for cold-chain report</span><span style="font-size:11px;font-weight:600">Track<span style="color:#ff5a66">0</span>tic<sup style="font-size:0.6em">TM</sup></span></div>
+          </div>
+          </sc-if>
+          <div style="font-size:13px;color:#4b5565">Tenant name = the display name set at tenant creation; the Track0tic™ wordmark (red 0, TM) is fixed on every label and never removed. After printing, scan one sticker: it must open that device's page (<a href="P-LabelCheck.dc.html">label scan test</a>). Reprint needs approval; the old token dies.</div>
         </section>
         <section style="background:#ffffff;border:1px solid #e2e6ed;border-radius:16px;overflow:hidden">
           <div style="padding:12px 16px;border-bottom:1px solid #e2e6ed;font-size:16px;font-weight:600">{{t.short}} · what they have</div>
