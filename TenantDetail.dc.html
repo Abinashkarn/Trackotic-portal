@@ -88,6 +88,25 @@
       </section>
     </div>
     </sc-if>
+    <sc-if value="{{isSettings}}" hint-placeholder-val="{{ false }}">
+    <section style="background:#ffffff;border:1px solid #e2e6ed;border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px"><h2 style="margin:0;font-size:16px;font-weight:600">Portal type &amp; modules · Apollo Pharmacy</h2><span style="font-size:13px;color:#4b5565">Pharma · pharmacy chain · plan: <strong>{{planText}}</strong></span></div>
+      <table style="width:100%;font-size:13px;border-collapse:collapse">
+        <thead><tr style="text-align:left;color:#4b5565;font-size:12px"><th style="padding:6px 8px;font-weight:500">Module</th><th style="padding:6px 8px;font-weight:500;text-align:center">Device only</th><th style="padding:6px 8px;font-weight:500;text-align:center">Full portal</th><th style="padding:6px 8px;font-weight:500;text-align:right">This tenant</th></tr></thead>
+        <tbody>
+          <sc-for list="{{mods}}" as="m" hint-placeholder-count="8">
+            <tr style="border-top:1px solid #e2e6ed"><td style="padding:7px 8px">{{m.label}}<sc-if value="{{m.always}}" hint-placeholder-val="{{ false }}"><span style="margin-left:6px;font-size:11px;color:#4b5565">always on</span></sc-if></td><td style="padding:7px 8px;text-align:center;color:{{m.c1}};font-weight:600">{{m.t1}}</td><td style="padding:7px 8px;text-align:center;color:{{m.c2}};font-weight:600">{{m.t2}}</td><td style="padding:7px 8px;text-align:right"><sc-if value="{{m.always}}" hint-placeholder-val="{{ false }}"><span style="font-size:12px;color:#047857;font-weight:600">on</span></sc-if><sc-if value="{{m.toggle}}" hint-placeholder-val="{{ true }}"><button onClick="{{m.flip}}" style="min-width:56px;min-height:28px;border:1px solid {{m.swBorder}};border-radius:9999px;background:{{m.swBg}};color:{{m.swFg}};font-size:12px;font-weight:600;cursor:pointer">{{m.swText}}</button></sc-if></td></tr>
+          </sc-for>
+        </tbody>
+      </table>
+      <div style="display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:10px">
+        <div style="padding:12px;border-radius:8px;background:#f3f5f9;font-size:13px;line-height:19px"><strong>Change portal type</strong> (e.g. Device only → Full portal): keeps every device, passport QR and past record; the new menu items appear at the tenant's next login. Going the other way hides the modules; their records are kept. Needs a reason; goes to Approvals as a contract change.</div>
+        <div style="padding:12px;border-radius:8px;background:#f3f5f9;font-size:13px;line-height:19px"><strong>Switch a single module</strong>: makes the plan <em>Custom</em>. Same rule — on shows it, off hides it, nothing is deleted. Audit-logged with your name and the reason.</div>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><select style="height:40px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;background:#ffffff;color:#0f172a"><option>Pharmacy chain portal (current)</option><option>Distributor portal</option><option>Device only</option></select><input type="text" placeholder="Reason (required)" style="flex:1 1 220px;height:40px;border:1px solid #7a8696;border-radius:8px;padding:0 10px;font-size:14px;color:#0f172a"><button style="min-height:40px;padding:0 14px;border:0;border-radius:8px;background:#1d4ed8;color:#ffffff;font-size:14px;font-weight:600;cursor:pointer">Save → Approvals</button></div>
+      <div style="font-size:13px;color:#4b5565">Also on this tab: devices in use, temperature profiles, journey template, passport quota, site identity, login methods, branding (logo · Powered by Track0tic™ fixed), data push, IP allowlist.</div>
+    </section>
+    </sc-if>
     <sc-if value="{{isOther}}" hint-placeholder-val="{{ false }}">
     <section style="background:#ffffff;border:1px solid #e2e6ed;border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:8px;min-height:300px">
       <div style="font-size:16px;font-weight:600">{{otherTitle}}</div>
@@ -99,14 +118,17 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":900}}'>
 class Component extends DCLogic {
-  constructor(p){ super(p); this.state = { tab: 'overview', admin: false }; }
+  constructor(p){ super(p); this.state = { tab: 'overview', admin: false, mods: {} }; }
   renderVals() {
     const defs = [ ['overview','Overview','',''], ['devices','Devices · 39','Opens Tenant devices · functionality, alerts, fall-outs for this tenant','Per device: heartbeat, battery, temp sensor, GPS, lid/bag, SIM — colour + word. Working / Attention / Fallen out / Returning. Actions: call site, raise to admin, send a swap, recall, snooze, close.'], ['passports','Passports · 1,000','Books issued to this tenant and label-roll orders','Per book: size, printed by (Track0tic / tenant), used, void. Links to Passport QRs & rolls.'], ['users','Users','Opens Tenant users for this tenant','Same page as Tenant users, preselected. Staff Admin / Support may add, resend OTP, unlock.'], ['settings','Settings','Portal type, devices in use, profiles, journey template, quota, site identity, login methods, branding, data push, IP allowlist','Every change asks for a reason and lands in the audit log. Portal type change needs Admin.'] ];
+    const ROWS = [ ['Devices, binding by scan, alerts, passport report', 1, 1, true], ['Users & roles, temperature limits, inventory & GRN, label orders', 1, 1, true], ['Sites by Site ID (DC / store) masters', 0, 1], ['Work orders & gate pass', 0, 1], ['Fridge items & store-in binding', 0, 1], ['Home delivery with delivered confirmation', 0, 1], ['Partner distributors & Excel masters', 0, 1], ['Own passport label printing', 'opt', 1], ['Customer system link (webhook / API)', 'opt', 'opt'] ];
+    const ct = (v) => v === 1 ? ['Yes', '#047857'] : v === 'opt' ? ['Optional', '#4b5565'] : ['—', '#7a8696'];
+    let custom = false; const mods = ROWS.map((r, i) => { const always = !!r[3]; const dflt = r[2] === 1; const ov = this.state.mods[i]; const on = always ? true : (ov === undefined ? dflt : ov); if (!always && on !== dflt) custom = true; return { label: r[0], always, toggle: !always, t1: ct(r[1])[0], c1: ct(r[1])[1], t2: ct(r[2])[0], c2: ct(r[2])[1], swText: on ? 'On' : 'Off', swBg: on ? '#047857' : '#ffffff', swFg: on ? '#ffffff' : '#4b5565', swBorder: on ? '#047857' : '#7a8696', flip: () => this.setState({ mods: { ...this.state.mods, [i]: !on } }) }; });
     const t = this.state.tab; const a = this.state.admin;
     return { needsAdmin: !a, hasAdmin: a, addAdmin: () => this.setState({ admin: true }), userCount: a ? 1 : 0, adminLine: a ? 'Priya Nair · +91 98100 22310' : 'none yet',
       statusBg: a ? '#e6f6ef' : '#fef3e2', statusFg: a ? '#047857' : '#92400e', statusText: a ? 'active' : 'no admin yet',
       tabs: defs.map(d => ({ label: d[1], line: t === d[0] ? '#1d4ed8' : 'transparent', w: t === d[0] ? 600 : 500, fg: t === d[0] ? '#1a43b8' : '#4b5565', pick: () => this.setState({ tab: d[0] }) })),
-      isOverview: t === 'overview', isOther: t !== 'overview', otherTitle: (defs.find(d => d[0] === t) || defs[0])[2], otherText: (defs.find(d => d[0] === t) || defs[0])[3] };
+      isOverview: t === 'overview', isSettings: t === 'settings', isOther: t !== 'overview' && t !== 'settings', mods, planText: custom ? 'Custom' : 'Full portal (pharmacy chain)', otherTitle: (defs.find(d => d[0] === t) || defs[0])[2], otherText: (defs.find(d => d[0] === t) || defs[0])[3] };
   }
 }
 </script>
